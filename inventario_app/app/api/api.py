@@ -1,28 +1,26 @@
 from app.services.inventario_crud import InventarioCRUD
+from flask import request, jsonify
 from flask_restful import Resource
-from flask import request
 
-#Creamos instancia del CRUD
-inventario_crud = InventarioCRUD()
+#Inicializamos el CRUD
+inventario_CRUD = InventarioCRUD()
 
 class InventarioHealth(Resource):
     def get(self):
         return {'status': 'healthy'}, 200
 
-class HospedajeSearchResource(Resource):
-    def get(self, ciudad, capacidad):
-        #Creamos diccionario con parametros de busqueda
-        busqueda_params = {
-            'ciudad': ciudad,
-            'capacidad': capacidad
-        }
+class FiltroHabitaciones(Resource):
+    def get(self):
+        #Traemos los parametros de busqueda
+        ciudad = request.args.get('ciudad')
+        capacidad = request.args.get('capacidad')
 
-        #Traemos los hospedajes que cumplen con los parametros de busqueda
-        hospedajes = inventario_crud.hospedajesCiudadCapacidadDB(busqueda_params)
+        #Traemos las habitaciones disponibles segun los parametros de busqueda
+        response = inventario_CRUD.habitacionesDisponibles(ciudad, capacidad)
 
-        #Validamos si hubo un error en la consulta
-        if isinstance(hospedajes, str):
-            return {'msg': 'Error al buscar hospedajes', 'error': hospedajes}, 500
-        
-        return hospedajes, 200
+        #Validamos que la respuesta no sea error
+        if isinstance(response, str):
+            return jsonify({'msg': 'Error al buscar habitaciones', 'error': response}), 500
+
+        return jsonify(response), 200
 

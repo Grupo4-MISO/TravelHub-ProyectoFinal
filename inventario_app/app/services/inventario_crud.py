@@ -1,108 +1,54 @@
-from app.db.habitacion import HabitacionORM, db
-from app.db.hospedaje import HospedajeORM, db
+from app.db.models import db, HospedajeORM, HabitacionORM
 
 class InventarioCRUD:
     def __init__(self):
         self.db = db.session
     
-    def crearHospedajeDB(self, hospedaje_data: dict):
+    def habitacionesDisponibles(self, ciudad, capacidad):
         try:
-            #Creamos nuevo hospedaje en base de datos
-            nuevo_hospedaje = HospedajeORM(**hospedaje_data)
+            #Definimos la consulta para obtener habitaciones disponibles
+            query = self.db.query(
+                HabitacionORM.id.label('habitacion_id'),
+                HabitacionORM.precio,
+                HabitacionORM.capacidad,
+                HospedajeORM.id.label('hospedaje_id'),
+                HospedajeORM.nombre,
+                HospedajeORM.pais,
+                HospedajeORM.ciudad,
+                HospedajeORM.direccion,
+                HospedajeORM.rating
+            ).join(HospedajeORM, HabitacionORM.propiedad_id == HospedajeORM.id)
 
-            #Hacemos persistencia del nuevo hospedaje
-            self.db.add(nuevo_hospedaje)
-            self.db.commit()
+            #Aplicamos filtros de ciudad y capacidad
+            if ciudad:
+                query = query.filter(HospedajeORM.ciudad == ciudad)
+            
+            if capacidad:
+                query = query.filter(HabitacionORM.capacidad >= capacidad)
+            
+            #Realizamos query
+            resultados = query.all()
 
-            return nuevo_hospedaje
-        
+            #Construimos respuesta
+            response = [
+                {
+                    'habitacion_id': str(campo.habitacion_id),
+                    'hospedaje_id': str(campo.hospedaje_id),
+                    'nombre': campo.nombre,
+                    'pais': campo.pais,
+                    'ciudad': campo.ciudad,
+                    'direccion': campo.direccion,
+                    'rating': campo.rating,
+                    'capacidad': campo.capacidad,
+                    'precio': campo.precio,
+                }
+                for campo in resultados
+            ]
+
+            return response
+    
         except Exception as e:
             self.db.rollback()
             return str(e)
-    
-    def obtenerHospedajeDB(self, hospedaje_id: str):
-        try:
-            #Traemos el hospedaje de la base de datos
-            hospedaje = self.db.query(HospedajeORM).filter_by(id = hospedaje_id).first()
 
-            #Si el hospedaje no existe, retornamos None
-            if not hospedaje:
-                return None
-            
-            return hospedaje
-        
-        except Exception as e:
-            return str(e)
-    
-    def actualizarHospedajeDB(self, hospedaje_id: str, hospedaje_data: dict):
-        try:
-            #Traemos el hospedaje de la base de datos
-            hospedaje = self.db.query(HospedajeORM).filter_by(id = hospedaje_id).first()
 
-            #Si el hospedaje no existe, retornamos None
-            if not hospedaje:
-                return None
-            
-            #Actualizamos los campos del hospedaje
-            for key, value in hospedaje_data.items():
-                if hasattr(hospedaje, key):
-                    setattr(hospedaje, key, value)
-            
-            #Hacemos persistencia de los cambios
-            self.db.commit()
-
-            return hospedaje
-        
-        except Exception as e:
-            self.db.rollback()
-            return str(e)
-    
-    def eliminarHospedajeDB(self, hospedaje_id: str):
-        try:
-            #Traemos el hospedaje de la base de datos
-            hospedaje = self.db.query(HospedajeORM).filter_by(id = hospedaje_id).first()
-
-            #Si el hospedaje no existe, retornamos None
-            if not hospedaje:
-                return None
-            
-            #Eliminamos el hospedaje de la base de datos
-            self.db.delete(hospedaje)
-            self.db.commit()
-
-            return hospedaje
-        
-        except Exception as e:
-            self.db.rollback()
-            return str(e)
-    
-    def obtenerHabitacionesPorHospedajeDB(self, hospedaje_id: str):
-        try:
-            #Traemos las habitaciones del hospedaje de la base de datos
-            habitaciones = self.db.query(HabitacionORM).filter_by(propiedad_id = hospedaje_id).all()
-
-            return habitaciones
-        
-        except Exception as e:
-            return str(e)
-    
-    def hospedajesCiudadCapacidadDB(self, filtros: dict):
-        try:
-            #Definimos query
-            query = (
-                self.db.query(HospedajeORM)
-                .join(HabitacionORM, HabitacionORM.propiedad_id == HospedajeORM.id)
-                .filter(HospedajeORM.ciudad == filtros.get('ciudad'))
-                .filter(HabitacionORM.capacidad >= filtros.get('capacidad'))
-                .distinct()
-            )
-
-            #Ejecutamos query y retornamos resultados
-            hospedajes = query.all()
-
-            return [hospedaje.habitacion_id for hospedaje in hospedajes]
-        
-        except Exception as e:
-            self.db.rollback()
-            return str(e)
-        
