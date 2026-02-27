@@ -1,6 +1,5 @@
-from app.api.api import InventarioHealth, HospedajeSearchResource
-from reserva_app.app.db.reserva import db_habitacion
-from app.db.hospedaje import db_hospedaje
+from app.api.api import ReservaHealth, ReservaSearchResource
+from reserva_app.app.db.reserva import db
 from flask_jwt_extended import JWTManager
 from flask_restful import Api
 from flask_cors import CORS
@@ -22,13 +21,9 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600
 #Inicializamos la base de datos
 if not app.config.get('TESTING'):
     with app.app_context():
-        #Creamos tabla de hospedaje
-        db_hospedaje.init_app(app)
-        db_hospedaje.create_all()
-
-        #Creamos tabla de habitacion
-        db_habitacion.init_app(app)
-        db_habitacion.create_all()
+        #Creamos tabla de reservas en la base de datos
+        db.init_app(app)
+        db.create_all()
 
 #Habilitamos CORS
 CORS(app)
@@ -38,8 +33,8 @@ jwt = JWTManager(app)
 
 #Registramos la API RESTful
 api = Api(app)
-api.add_resource(InventarioHealth, 'api/v1/health')
-api.add_resource(HospedajeSearchResource, 'api/v1/hospedajes/search')
+api.add_resource(ReservaHealth, 'api/v1/health')
+api.add_resource(ReservaSearchResource, 'api/v1/reservas/search')
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port = 5000, debug = True)
+    app.run(host = '0.0.0.0', port = 3001, debug = True)

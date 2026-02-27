@@ -1,4 +1,5 @@
 from app.db.reserva import ReservaORM, db
+from datetime import datetime
 
 class ReservaCRUD:
     def __init__(self):
@@ -70,6 +71,32 @@ class ReservaCRUD:
             self.db.commit()
 
             return reserva
+        
+        except Exception as e:
+            self.db.rollback()
+            return str(e)
+    
+    def habitacionesReservasDisponiblesDB(self, fecha_inicio: str, fecha_fin: str, habitaciones: list):
+        try:
+            #Pasamos las fechas a formato datetime
+            fecha_inicio = datetime.strptime(fecha_inicio, '%Y-%m-%d')
+            fecha_fin = datetime.strptime(fecha_fin, '%Y-%m-%d')
+
+            #Consulta para reservas que se cruzan con las fechas dadas
+            reservas_cruzadas = self.db.query(ReservaORM).filter(
+                ReservaORM.habitacion_id.in_(habitaciones),
+                ReservaORM.estado == 'confirmada',
+                ReservaORM.fecha_inicio >= fecha_inicio,
+                ReservaORM.fecha_fin <= fecha_fin
+            )
+
+            #Extraemos las habitaciones ocupadas
+            habitaciones_ocupadas = {reservas_cruzada.habitacion_id for reservas_cruzada in reservas_cruzadas}
+
+            #Filtramos las habitaciones disponibles
+            habitaciones_disponibles = [habitacion_id for habitacion_id in habitaciones if habitacion_id not in habitaciones_ocupadas]
+
+            return habitaciones_disponibles
         
         except Exception as e:
             self.db.rollback()
