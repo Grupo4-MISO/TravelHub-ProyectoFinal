@@ -5,7 +5,7 @@ from flask import request
 #Creamos instancia del CRUD
 inventario_crud = InventarioCRUD()
 
-class BlacklistHealth(Resource):
+class InventarioHealth(Resource):
     def get(self):
         return {'status': 'healthy'}, 200
 
