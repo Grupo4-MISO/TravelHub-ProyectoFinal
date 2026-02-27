@@ -3,18 +3,18 @@ from flask_sqlalchemy import SQLAlchemy
 import uuid
 
 #Creamos base de datos
-db = SQLAlchemy()
+db_hospedaje = SQLAlchemy()
 
-class HospedajeORM(db.Model):
+class HospedajeORM(db_hospedaje.Model):
     __tablename__ = 'hospedajes'
 
-    id = db.Column(UUID(as_uuid = True), primary_key = True, default = uuid.uuid4)
-    nombre = db.Column(db.String(255), nullable = False)
-    pais = db.Column(db.String(255), nullable = False)
-    ciudad = db.Column(db.String(255), nullable = False)
-    direccion = db.Column(db.String(255), nullable = False)
-    rating = db.Column(db.Float, nullable = False)
-    created_at = db.Column(db.DateTime, server_default = db.func.now())
-    updated_at = db.Column(db.DateTime, server_default = db.func.now(), onupdate = db.func.now())
+    id = db_hospedaje.Column(UUID(as_uuid = True), primary_key = True, default = uuid.uuid4)
+    nombre = db_hospedaje.Column(db_hospedaje.String(255), nullable = False)
+    pais = db_hospedaje.Column(db_hospedaje.String(255), nullable = False)
+    ciudad = db_hospedaje.Column(db_hospedaje.String(255), nullable = False)
+    direccion = db_hospedaje.Column(db_hospedaje.String(255), nullable = False)
+    rating = db_hospedaje.Column(db_hospedaje.Float, nullable = False)
+    created_at = db_hospedaje.Column(db_hospedaje.DateTime, server_default = db_hospedaje.func.now())
+    updated_at = db_hospedaje.Column(db_hospedaje.DateTime, server_default = db_hospedaje.func.now(), onupdate = db_hospedaje.func.now())
 
     
