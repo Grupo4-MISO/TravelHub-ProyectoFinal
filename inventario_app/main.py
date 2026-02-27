@@ -1,8 +1,6 @@
-from app.api.api import InventarioHealth, HospedajeSearchResource
-from app.db.habitacion import db_habitacion
-from app.db.hospedaje import db_hospedaje
-from flask_jwt_extended import JWTManager
+from app.api.api import InventarioHealth, FiltroHabitaciones
 from flask_restful import Api
+from app.db.models import db
 from flask_cors import CORS
 from flask import Flask
 
@@ -22,24 +20,14 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600
 #Inicializamos la base de datos
 if not app.config.get('TESTING'):
     with app.app_context():
-        #Creamos tabla de hospedaje
-        db_hospedaje.init_app(app)
-        db_hospedaje.create_all()
-
-        #Creamos tabla de habitacion
-        db_habitacion.init_app(app)
-        db_habitacion.create_all()
+        #Creamos tablas en la base de datos
+        db.init_app(app)
+        db.create_all()
 
 #Habilitamos CORS
 CORS(app)
 
-#Inicializamos el JWTManager
-jwt = JWTManager(app)
-
 #Registramos la API RESTful
 api = Api(app)
 api.add_resource(InventarioHealth, 'api/v1/health')
-api.add_resource(HospedajeSearchResource, 'api/v1/hospedajes/search')
-
-if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port = 5000, debug = True)
+api.add_resource(FiltroHabitaciones, 'api/v1/habitaciones/filtro')

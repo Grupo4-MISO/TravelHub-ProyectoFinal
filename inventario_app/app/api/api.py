@@ -7,7 +7,7 @@ inventario_CRUD = InventarioCRUD()
 
 class InventarioHealth(Resource):
     def get(self):
-        return {'status': 'healthy'}, 200
+        return jsonify({'status': 'healthy'}), 200
 
 class FiltroHabitaciones(Resource):
     def get(self):
