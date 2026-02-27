@@ -96,8 +96,11 @@ class InventarioCRUD:
                 .filter(HabitacionORM.capacidad >= filtros.get('capacidad'))
                 .distinct()
             )
-            
-            return query.all()
+
+            #Ejecutamos query y retornamos resultados
+            hospedajes = query.all()
+
+            return [hospedaje.habitacion_id for hospedaje in hospedajes]
         
         except Exception as e:
             self.db.rollback()
