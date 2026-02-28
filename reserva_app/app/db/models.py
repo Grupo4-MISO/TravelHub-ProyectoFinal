@@ -10,7 +10,6 @@ class ReservaORM(db.Model):
 
     id = db.Column(UUID(as_uuid = True), primary_key = True, default = uuid.uuid4)
     habitacion_id = db.Column(UUID(as_uuid = True), nullable = False)
-    usuario_id = db.Column(UUID(as_uuid = True), nullable = False)
     check_in = db.Column(db.Date, nullable = False)
     check_out = db.Column(db.Date, nullable = False)
     estado = db.Column(db.String(20), nullable = False, default = 'pendiente')
