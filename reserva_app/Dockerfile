@@ -14,8 +14,8 @@ COPY . .
 # Asegurar que el directorio de trabajo esta en PYTHONPATH
 ENV PYTHONPATH=/app
 
-# Puerto que usa la app
+# Exponer el puerto
 EXPOSE 3001
 
-# Comando por defecto: Gunicorn sirviendo la app
-CMD ["python3", "main.py"]
+# Comando para lanzar FastAPI con Uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3001"]

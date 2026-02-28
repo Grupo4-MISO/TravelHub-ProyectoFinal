@@ -1,6 +1,5 @@
-from app.api.api import ReservaHealth, ReservaSearchResource
-from reserva_app.app.db.reserva import db
-from flask_jwt_extended import JWTManager
+from app.api.api import ReservaHealth, VerificarDisponibilidad
+from reserva_app.app.db.models import db
 from flask_restful import Api
 from flask_cors import CORS
 from flask import Flask
@@ -28,13 +27,7 @@ if not app.config.get('TESTING'):
 #Habilitamos CORS
 CORS(app)
 
-#Inicializamos el JWTManager
-jwt = JWTManager(app)
-
 #Registramos la API RESTful
 api = Api(app)
 api.add_resource(ReservaHealth, 'api/v1/health')
-api.add_resource(ReservaSearchResource, 'api/v1/reservas/search')
-
-if __name__ == '__main__':
-    app.run(host = '0.0.0.0', port = 3001, debug = True)
+api.add_resource(VerificarDisponibilidad, 'api/v1/reservas/disponibilidad')
