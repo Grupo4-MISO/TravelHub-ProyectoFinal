@@ -2,13 +2,9 @@ from fastapi import FastAPI, Response, status
 from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI(title="k8s-observability-experiment", version="1.0.0")
+Instrumentator().instrument(app).expose(app, endpoint="/metrics")
 
 state = {"forced_unhealthy": False}
-
-
-@app.on_event("startup")
-def setup_metrics() -> None:
-    Instrumentator().instrument(app).expose(app, endpoint="/metrics")
 
 
 @app.get("/")
