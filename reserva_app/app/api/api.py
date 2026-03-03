@@ -26,6 +26,8 @@ class VerificarDisponibilidad(Resource):
         #Validamos si hubo un error en la consulta
         if isinstance(disponibilidad, str):
             return {'msg': 'Error al verificar disponibilidad', 'error': disponibilidad}, 500
+        
+        #TODO: Mandamos habitaciones ids disponibles a cache
     
         return disponibilidad, 200
 

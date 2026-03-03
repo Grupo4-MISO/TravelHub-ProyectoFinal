@@ -1,4 +1,5 @@
 from app.utils.inventario_helper import InventarioHelper
+from app.utils.busquedas_helper import BusquedasHelper
 from app.utils.reserva_helper import ReservaHelper
 from flask_restful import Resource
 from flask import request
@@ -20,6 +21,14 @@ class Search(Resource):
         check_in = request.args.get('check_in')
         check_out = request.args.get('check_out')
 
+        #TODO: Validar cache para esta busqueda
+        disponibles_cache = set() #Set de habitaciones ids
+
+        #TODO: Si hay cache, retornar habitaciones disponibles desde cache
+        if disponibles_cache:
+            #Consulta al microservicio de inventario
+            hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
+
         #Consulta al microservicio de inventario
         hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
 
@@ -38,10 +47,6 @@ class Search(Resource):
             return {'msg': 'Error al verificar disponibilidad', 'error': disponibles}, 500
 
         #Filtramos habitaciones disponibles
-        hospedajes_habitaciones_disponibles = list()
-
-        for hospedaje_habitacion in hospedajes_habitaciones:
-            if hospedaje_habitacion.get('habitacion_id') in disponibles:
-                hospedajes_habitaciones_disponibles.append(hospedaje_habitacion)
+        hospedajes_habitaciones_disponibles = BusquedasHelper.filtrarHabitacionesDisponibles(hospedajes_habitaciones, disponibles)
 
         return hospedajes_habitaciones_disponibles, 200
