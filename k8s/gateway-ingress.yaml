@@ -18,6 +18,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: inventario-app-service
+                name: inventarios-app-service
+                port:
+                  number: 80
+          - path: /api/v1/busquedas
+            pathType: Prefix
+            backend:
+              service:
+                name: busquedas-app-service
                 port:
                   number: 80

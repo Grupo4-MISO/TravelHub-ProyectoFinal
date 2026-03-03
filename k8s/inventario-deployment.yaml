@@ -21,7 +21,7 @@ spec:
         - containerPort: 3000
         env:
         - name: DATABASE_URL
-          value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260303150510966300000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
+          value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260303154439362100000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
         readinessProbe:
           httpGet:
             path: api/v1/inventarios/health

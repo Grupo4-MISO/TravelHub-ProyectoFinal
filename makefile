@@ -11,7 +11,7 @@ DB_PASSWORD=proyectogrupo4
 # Microservicios
 SERVICES=busquedas-app inventarios-app reservas-app
 FOLDERS=busquedas_app inventario_app reserva_app
-IMAGE_TAG=v2.0.0
+IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
 SERVICES_NEW=busquedas-app inventarios-app reservas-app
@@ -117,6 +117,6 @@ docker-push-new:
 # =====================
 
 infra: ecr rds eks
-images: ecr-login docker-push-all-local
+images: ecr-login docker-push-all
 deploy: infra images ingress
 destroy: destroy-ingress destroy-eks destroy-rds destroy-ecr
