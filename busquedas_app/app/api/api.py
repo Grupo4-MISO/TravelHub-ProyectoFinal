@@ -21,31 +21,27 @@ class Search(Resource):
         check_out = request.args.get('check_out')
 
         #Consulta al microservicio de inventario
-        habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
+        hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
 
         #Validamos que la respuesta no sea error
-        if isinstance(habitaciones, str):
-            return {'msg': 'Error al buscar habitaciones', 'error': habitaciones}, 500
+        if isinstance(hospedajes_habitaciones, str):
+            return {'msg': 'Error al buscar habitaciones', 'error': hospedajes_habitaciones}, 500
 
         #Construimos los ids de habitaciones
-        habitaciones_ids = [habitacion.get('id') for habitacion in habitaciones]
+        habitaciones_ids = [habitacion.get('id') for habitacion in hospedajes_habitaciones]
 
         #Consulta al microservicio de reservas
-        disponibilidad = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out)
+        disponibles = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out)
 
         #Validamos que la respuesta no sea error
-        if isinstance(disponibilidad, str):
-            return {'msg': 'Error al verificar disponibilidad', 'error': disponibilidad}, 500
+        if isinstance(disponibles, str):
+            return {'msg': 'Error al verificar disponibilidad', 'error': disponibles}, 500
 
         #Filtramos habitaciones disponibles
-        disponibles = list()
+        hospedajes_habitaciones_disponibles = list()
 
-        for habitacion in habitaciones:
-            #Extraemos habitacion_id
-            habitacion_id = str(habitacion.get('id'))
+        for hospedaje_habitacion in hospedajes_habitaciones:
+            if hospedaje_habitacion.get('habitacion_id') in disponibles:
+                hospedajes_habitaciones_disponibles.append(hospedaje_habitacion)
 
-            #Validamos disponibilidad
-            if disponibilidad.get(habitacion_id) is True:
-                disponibles.append(habitacion)
-        
-        return disponibles, 200
+        return hospedajes_habitaciones_disponibles, 200

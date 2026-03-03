@@ -33,7 +33,10 @@ class ReservaCRUD:
                 #Llenamos el diccionario de disponibilidad
                 disponibilidad[habitacion_id] = habitacion_id not in habitaciones_ids_ocupadas
             
-            return disponibilidad
+            #Filtramos habitaciones disponibles
+            disponibles = list(filter(lambda habitacion_id: disponibilidad.get(habitacion_id) is True, disponibilidad.keys()))
+
+            return disponibles
 
         except Exception as e:
             self.db.rollback()
