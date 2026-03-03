@@ -24,11 +24,11 @@ spec:
           value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20250928192204952500000001.cp4iaucce7um.us-east-1.rds.amazonaws.com:5432/proyect_db
         readinessProbe:
           httpGet:
-            path: reservas/ping
+            path: api/v1/reservas/health
             port: 3001
         livenessProbe:
           httpGet:
-            path: reservas/ping
+            path: api/v1/reservas/health
             port: 3001
           initialDelaySeconds: 5 
           periodSeconds: 30
