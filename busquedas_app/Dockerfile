@@ -15,7 +15,7 @@ COPY . .
 ENV PYTHONPATH=/app
 
 # Puerto que usa la app
-EXPOSE 5000
+EXPOSE 3002
 
 # Comando por defecto: Gunicorn sirviendo la app
-CMD ["python3", "application.py"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3002"]
