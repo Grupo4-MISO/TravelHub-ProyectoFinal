@@ -5,3 +5,5 @@ secret_name              = "proyect_grupo_4/db-credentials"
 db_allocated_storage_gib = 20 # Almacenamiento inicial en GB https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html
 db_name                  = "proyect_db"
 owner                    = "grupo4" # Reemplazar con el nombre de usuario real
+db_username              = "proyectogrupo4"
+db_password              = "proyectogrupo4"
