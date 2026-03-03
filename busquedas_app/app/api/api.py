@@ -28,7 +28,7 @@ class Search(Resource):
             return {'msg': 'Error al buscar habitaciones', 'error': hospedajes_habitaciones}, 500
 
         #Construimos los ids de habitaciones
-        habitaciones_ids = [habitacion.get('id') for habitacion in hospedajes_habitaciones]
+        habitaciones_ids = [habitacion.get('habitacion_id') for habitacion in hospedajes_habitaciones]
 
         #Consulta al microservicio de reservas
         disponibles = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out)
