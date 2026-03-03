@@ -11,7 +11,6 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 app = Flask(__name__)
 
 #Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'supersecretkey'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True

@@ -1,4 +1,4 @@
-from reserva_app.app.services.reserva_crud import ReservaCRUD
+from app.services.reserva_crud import ReservaCRUD
 from flask_restful import Resource
 from datetime import datetime
 from flask import request

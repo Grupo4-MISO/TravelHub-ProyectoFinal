@@ -1,4 +1,4 @@
-from reserva_app.app.db.models import ReservaORM, db
+from app.db.models import ReservaORM, db
 from sqlalchemy import not_
 
 class ReservaCRUD:

@@ -11,7 +11,7 @@ DB_PASSWORD=proyectogrupo4
 # Microservicios
 SERVICES=busquedas-app inventarios-app reservas-app
 FOLDERS=busquedas_app inventario_app reserva_app
-IMAGE_TAG=v1.0.0
+IMAGE_TAG=v2.0.0
 
 # Nueva version imagen
 SERVICES_NEW=busquedas-app inventarios-app reservas-app
@@ -91,6 +91,16 @@ docker-push-all:
 		i=$$((i+1)); \
 	done
 
+docker-push-all-local:
+	@i=0; \
+	for service in $(SERVICES); do \
+		folder=$$(echo $(FOLDERS) | cut -d' ' -f$$((i+1))); \
+		echo ">>> Construyendo y subiendo $$service desde $$folder"; \
+		docker build --rm -t $$service:$(IMAGE_TAG) -f $$folder/Dockerfile $$folder/.; \
+		docker tag $$service:$(IMAGE_TAG) $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$$service:$(IMAGE_TAG); \
+		i=$$((i+1)); \
+	done
+
 docker-push-new:
 	@i=0; \
 	for service in $(SERVICES_NEW); do \
@@ -107,6 +117,6 @@ docker-push-new:
 # =====================
 
 infra: ecr rds eks
-images: ecr-login docker-push-all
+images: ecr-login docker-push-all-local
 deploy: infra images ingress
 destroy: destroy-ingress destroy-eks destroy-rds destroy-ecr

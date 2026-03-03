@@ -20,8 +20,6 @@ spec:
         ports:
         - containerPort: 3002
         env:
-        - name: DATABASE_URL
-          value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260303014201562900000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
         - name: INVENTARIOS_URL
           value: http://inventarios-app-service:80
         - name: RESERVAS_URL
