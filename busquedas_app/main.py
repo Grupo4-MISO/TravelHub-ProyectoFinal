@@ -4,9 +4,6 @@ from flask_cors import CORS
 from flask import Flask
 import os
 
-#Traemos del ambiente las variables de configuracion
-DATABASE_URL = os.getenv('DATABASE_URL')
-
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
 
