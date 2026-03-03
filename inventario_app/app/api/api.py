@@ -1,13 +1,13 @@
 from app.services.inventario_crud import InventarioCRUD
-from flask import request, jsonify
 from flask_restful import Resource
+from flask import request
 
 #Inicializamos el CRUD
 inventario_CRUD = InventarioCRUD()
 
 class InventarioHealth(Resource):
     def get(self):
-        return jsonify({'status': 'healthy'}), 200
+        return {'status': 'healthy'}, 200
 
 class FiltroHabitaciones(Resource):
     def get(self):
@@ -20,7 +20,7 @@ class FiltroHabitaciones(Resource):
 
         #Validamos que la respuesta no sea error
         if isinstance(response, str):
-            return jsonify({'msg': 'Error al buscar habitaciones', 'error': response}), 500
+            return {'msg': 'Error al buscar habitaciones', 'error': response}, 500
 
-        return jsonify(response), 200
+        return response, 200
 

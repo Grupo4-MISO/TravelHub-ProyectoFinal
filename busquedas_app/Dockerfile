@@ -1,21 +1,28 @@
 FROM public.ecr.aws/docker/library/python:3.12-slim
 
-# Crear y usar el directorio de trabajo
+# Evita generar archivos .pyc
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Directorio de trabajo
 WORKDIR /app
 
-# Copiar e instalar dependencias
+# Instalar dependencias del sistema necesarias (opcional pero recomendado)
+RUN apt-get update && apt-get install -y build-essential && rm -rf /var/lib/apt/lists/*
+
+# Copiar requirements
 COPY requirements.txt .
+
+# Instalar dependencias
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install gunicorn
 
-# Copiar el resto del codigo
+# Copiar el código
 COPY . .
 
-# Asegurar que el directorio de trabajo esta en PYTHONPATH
-ENV PYTHONPATH=/app
-
-# Puerto que usa la app
+# Exponer puerto
 EXPOSE 3002
 
-# Comando por defecto: Gunicorn sirviendo la app
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3002"]
+# Ejecutar con Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:3002", "main:app"]

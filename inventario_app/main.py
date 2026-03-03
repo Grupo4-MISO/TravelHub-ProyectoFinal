@@ -33,5 +33,5 @@ CORS(app)
 
 #Registramos la API RESTful
 api = Api(app)
-api.add_resource(InventarioHealth, 'api/v1/inventarios/health')
-api.add_resource(FiltroHabitaciones, 'api/v1/inventarios/filtro')
+api.add_resource(InventarioHealth, '/api/v1/inventarios/health')
+api.add_resource(FiltroHabitaciones, '/api/v1/inventarios/filtro')

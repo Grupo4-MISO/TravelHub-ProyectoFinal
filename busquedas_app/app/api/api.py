@@ -1,7 +1,7 @@
 from app.utils.inventario_helper import InventarioHelper
 from app.utils.reserva_helper import ReservaHelper
 from flask_restful import Resource
-from flask import jsonify, request
+from flask import request
 import os
 
 #Traemos las variables de entorno para las URLs de los microservicios
@@ -25,7 +25,7 @@ class Search(Resource):
 
         #Validamos que la respuesta no sea error
         if isinstance(habitaciones, str):
-            return jsonify({'msg': 'Error al buscar habitaciones', 'error': habitaciones}), 500
+            return {'msg': 'Error al buscar habitaciones', 'error': habitaciones}, 500
 
         #Construimos los ids de habitaciones
         habitaciones_ids = [habitacion.get('id') for habitacion in habitaciones]
@@ -35,7 +35,7 @@ class Search(Resource):
 
         #Validamos que la respuesta no sea error
         if isinstance(disponibilidad, str):
-            return jsonify({'msg': 'Error al verificar disponibilidad', 'error': disponibilidad}), 500
+            return {'msg': 'Error al verificar disponibilidad', 'error': disponibilidad}, 500
 
         #Filtramos habitaciones disponibles
         disponibles = list()
@@ -48,4 +48,4 @@ class Search(Resource):
             if disponibilidad.get(habitacion_id) is True:
                 disponibles.append(habitacion)
         
-        return jsonify(disponibles), 200
+        return disponibles, 200

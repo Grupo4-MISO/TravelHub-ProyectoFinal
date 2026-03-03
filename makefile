@@ -14,8 +14,8 @@ FOLDERS=busquedas_app inventario_app reserva_app
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
-SERVICES_NEW=users-app
-FOLDERS_NEW=users_app
+SERVICES_NEW=busquedas-app inventarios-app reservas-app
+FOLDERS_NEW=busquedas_app inventario_app reserva_app
 IMAGE_TAG_NEW=v2.0.0
 
 export AWS_REGION
@@ -92,9 +92,15 @@ docker-push-all:
 	done
 
 docker-push-new:
-	docker build --rm -t $(SERVICES_NEW):$(IMAGE_TAG_NEW) -f $(FOLDERS_NEW)/Dockerfile $(FOLDERS_NEW)/.; \
-	docker tag $(SERVICES_NEW):$(IMAGE_TAG_NEW) $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(SERVICES_NEW):$(IMAGE_TAG_NEW); \
-	docker push $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(SERVICES_NEW):$(IMAGE_TAG_NEW)
+	@i=0; \
+	for service in $(SERVICES_NEW); do \
+		folder=$$(echo $(FOLDERS_NEW) | cut -d' ' -f$$((i+1))); \
+		echo ">>> Construyendo y subiendo $$service desde $$folder"; \
+		docker build --rm -t $$service:$(IMAGE_TAG_NEW) -f $$folder/Dockerfile $$folder/.; \
+		docker tag $$service:$(IMAGE_TAG_NEW) $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$$service:$(IMAGE_TAG_NEW); \
+		docker push $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$$service:$(IMAGE_TAG_NEW); \
+		i=$$((i+1)); \
+	done
 
 # =====================
 # WORKFLOWS COMPLETOS

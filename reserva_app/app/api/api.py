@@ -1,14 +1,14 @@
 from reserva_app.app.services.reserva_crud import ReservaCRUD
 from flask_restful import Resource
-from flask import request, jsonify
 from datetime import datetime
+from flask import request
 
 #Instanciamos crud
 reservas_crud = ReservaCRUD()
 
 class ReservaHealth(Resource):
     def get(self):
-        return jsonify({'status': 'healthy'}), 200
+        return {'status': 'healthy'}, 200
 
 class VerificarDisponibilidad(Resource):
     def post(self):
@@ -25,7 +25,7 @@ class VerificarDisponibilidad(Resource):
 
         #Validamos si hubo un error en la consulta
         if isinstance(disponibilidad, str):
-            return jsonify({'msg': 'Error al verificar disponibilidad', 'error': disponibilidad}), 500
+            return {'msg': 'Error al verificar disponibilidad', 'error': disponibilidad}, 500
     
-        return jsonify(disponibilidad), 200
+        return disponibilidad, 200
 

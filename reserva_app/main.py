@@ -1,6 +1,6 @@
 from app.api.api import ReservaHealth, VerificarDisponibilidad
-from reserva_app.app.db.models import db
 from flask_restful import Api
+from app.db.models import db
 from flask_cors import CORS
 from flask import Flask
 import os
@@ -33,5 +33,5 @@ CORS(app)
 
 #Registramos la API RESTful
 api = Api(app)
-api.add_resource(ReservaHealth, 'api/v1/reservas/health')
-api.add_resource(VerificarDisponibilidad, 'api/v1/reservas/disponibilidad')
+api.add_resource(ReservaHealth, '/api/v1/reservas/health')
+api.add_resource(VerificarDisponibilidad, '/api/v1/reservas/disponibilidad')
