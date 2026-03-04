@@ -2,7 +2,6 @@ from app.api.api import Search, SearchHealth
 from flask_restful import Api
 from flask_cors import CORS
 from flask import Flask
-import os
 
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
