@@ -5,6 +5,8 @@ module "eks_cluster" {
   cluster_name    = var.cluster_name
   cluster_version = var.k8s_cluster_version
 
+  manage_aws_auth = true
+
   vpc_id     = data.aws_vpc.default.id
   subnet_ids = data.aws_subnets.all.ids
 
@@ -14,6 +16,14 @@ module "eks_cluster" {
 
   # Dejar que el módulo cree el IAM Role del cluster
   create_iam_role = true
+
+  aws_auth_users = [
+    {
+      userarn  = "arn:aws:iam::387050840675:user/daniel"
+      username = "daniel"
+      groups   = ["system:masters"]
+    }
+  ]
 
   eks_managed_node_groups = {
     default = {
