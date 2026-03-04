@@ -5,8 +5,6 @@ module "eks_cluster" {
   cluster_name    = var.cluster_name
   cluster_version = var.k8s_cluster_version
 
-  manage_aws_auth = true
-
   vpc_id     = data.aws_vpc.default.id
   subnet_ids = data.aws_subnets.all.ids
 

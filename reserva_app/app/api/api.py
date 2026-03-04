@@ -21,6 +21,17 @@ class VerificarDisponibilidad(Resource):
         check_in = datetime.strptime(data.get('check_in'), '%Y-%m-%d').date()
         check_out = datetime.strptime(data.get('check_out'), '%Y-%m-%d').date()
 
+        print(f"Datos recibidos - Habitaciones: {habitaciones_ids}, Check-in: {check_in}, Check-out: {check_out}")
+
+        if check_in >= check_out:
+            return {'msg': 'La fecha de check-out debe ser posterior a la fecha de check-in'}, 400
+
+        if check_out <= check_in:
+            return {'msg': 'La fecha de check-in debe ser anterior a la fecha de check-out'}, 400
+        
+        if check_out < datetime.now().date():
+            return {'msg': 'La fecha de check-out debe ser una fecha futura'}, 400
+
         #Verificamos disponibilidad
         disponibilidad = reservas_crud.verificarDisponibilidad(habitaciones_ids, check_in, check_out)
 

@@ -28,3 +28,7 @@ output "eks_node_group_autoscaling_group_names" {
   description = "Nombres de los Auto Scaling Groups de los nodos gestionados por EKS."
   value       = module.my_eks_cluster.eks_managed_node_groups_autoscaling_group_names 
 }
+
+output "node_security_group_id" {
+  value = module.my_eks_cluster.node_security_group_id
+}

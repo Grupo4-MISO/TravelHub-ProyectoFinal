@@ -14,9 +14,9 @@ FOLDERS=busquedas_app inventario_app reserva_app
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
-SERVICES_NEW=busquedas-app inventarios-app reservas-app
-FOLDERS_NEW=busquedas_app inventario_app reserva_app
-IMAGE_TAG_NEW=v4.0.0
+SERVICES_NEW=reservas-app
+FOLDERS_NEW=reserva_app
+IMAGE_TAG_NEW=v2.0.0
 
 export AWS_REGION
 
@@ -43,6 +43,12 @@ eks:
 	terraform apply ".tfplan" && \
 	aws eks update-kubeconfig --region $(AWS_REGION) --name proyecto-final-grupo-4
 
+elasticache:
+	cd terraform/stacks/elasticache && \
+	terraform init -backend-config="../../environments/elasticache/backend.tfvars" && \
+	terraform plan -var-file="../../environments/elasticache/terraform.tfvars" -out .tfplan && \
+	terraform apply ".tfplan"
+
 ingress:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && \
 	helm repo update && \
@@ -66,6 +72,10 @@ destroy-rds:
 destroy-eks:
 	cd terraform/stacks/eks && \
 	terraform destroy -var-file="../../environments/eks/terraform.tfvars"
+
+destroy-elasticache:
+	cd terraform/stacks/elasticache && \
+	terraform destroy -var-file="../../environments/elasticache/terraform.tfvars"
 
 destroy-ingress:
 	kubectl delete service ingress-nginx-controller -n ingress-nginx || true
@@ -116,7 +126,7 @@ docker-push-new:
 # WORKFLOWS COMPLETOS
 # =====================
 
-infra: ecr rds eks
+infra: ecr rds eks elasticache
 images: ecr-login docker-push-all
 deploy: infra images ingress
-destroy: destroy-ingress destroy-eks destroy-rds destroy-ecr
+destroy: destroy-ingress destroy-eks destroy-rds destroy-ecr destroy-elasticache

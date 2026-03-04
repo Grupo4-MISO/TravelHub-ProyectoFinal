@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: busquedas-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/busquedas-app:v4.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/busquedas-app:v1.0.0
         ports:
         - containerPort: 3002
         env:
@@ -28,6 +28,8 @@ spec:
           value: http://reservas-app-service:80
         - name: ENDPOINT_RESERVA
           value: /api/v1/reservas/disponibilidad
+        - name: REDIS_HOST
+          value: master.name.igqc6u.use1.cache.amazonaws.com
         readinessProbe:
           httpGet:
             path: api/v1/busquedas/health

@@ -1,5 +1,3 @@
-variable "name" { 
-  description = "Nombre de redis."
-  type        = string
-  nullable    = false
+variable "name" {
+  type = string
 }
