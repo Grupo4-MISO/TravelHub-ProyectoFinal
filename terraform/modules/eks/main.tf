@@ -70,7 +70,7 @@ module "eks_cluster" {
       cidr_blocks = ["0.0.0.0/0"]
     }
   }
-
+  
   # IRSA deshabilitado por ahora
   enable_irsa = false
 
