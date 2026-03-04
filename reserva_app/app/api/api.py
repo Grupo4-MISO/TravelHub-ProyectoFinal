@@ -31,3 +31,8 @@ class VerificarDisponibilidad(Resource):
     
         return disponibilidad, 200
 
+class VerificarCache(Resource):
+    def get(self):
+        #TODO: Implementar endpoint para verificar cache de disponibilidad
+        pass
+

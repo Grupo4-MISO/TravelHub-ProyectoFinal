@@ -22,12 +22,7 @@ class Search(Resource):
         check_out = request.args.get('check_out')
 
         #TODO: Validar cache para esta busqueda
-        disponibles_cache = set() #Set de habitaciones ids
-
-        #TODO: Si hay cache, retornar habitaciones disponibles desde cache
-        if disponibles_cache:
-            #Consulta al microservicio de inventario
-            hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
+        disponibles = set() #Set de habitaciones ids
 
         #Consulta al microservicio de inventario
         hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
@@ -36,15 +31,16 @@ class Search(Resource):
         if isinstance(hospedajes_habitaciones, str):
             return {'msg': 'Error al buscar habitaciones', 'error': hospedajes_habitaciones}, 500
 
-        #Construimos los ids de habitaciones
-        habitaciones_ids = [habitacion.get('habitacion_id') for habitacion in hospedajes_habitaciones]
+        if not disponibles:
+            #Construimos los ids de habitaciones
+            habitaciones_ids = [habitacion.get('habitacion_id') for habitacion in hospedajes_habitaciones]
 
-        #Consulta al microservicio de reservas
-        disponibles = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out)
+            #Consulta al microservicio de reservas
+            disponibles = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out)
 
-        #Validamos que la respuesta no sea error
-        if isinstance(disponibles, str):
-            return {'msg': 'Error al verificar disponibilidad', 'error': disponibles}, 500
+            #Validamos que la respuesta no sea error
+            if isinstance(disponibles, str):
+                return {'msg': 'Error al verificar disponibilidad', 'error': disponibles}, 500
 
         #Filtramos habitaciones disponibles
         hospedajes_habitaciones_disponibles = BusquedasHelper.filtrarHabitacionesDisponibles(hospedajes_habitaciones, disponibles)
