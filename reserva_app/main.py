@@ -1,5 +1,5 @@
 from app.api.api import ReservaHealth, VerificarDisponibilidad, SeedReservas
-from reserva_app.app.db.models import db
+from app.db.models import db
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS

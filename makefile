@@ -14,9 +14,9 @@ FOLDERS=busquedas_app inventario_app reserva_app
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
-SERVICES_NEW=busquedas-app inventarios-app reservas-app
-FOLDERS_NEW=busquedas_app inventario_app reserva_app
-IMAGE_TAG_NEW=v2.0.0
+SERVICES_NEW=reservas-app
+FOLDERS_NEW=reserva_app
+IMAGE_TAG_NEW=v3.0.0
 
 export AWS_REGION
 
@@ -117,6 +117,6 @@ docker-push-new:
 # =====================
 
 infra: ecr rds eks
-images: ecr-login docker-push-all
+images: ecr-login docker-push-all-new
 deploy: infra images ingress
 destroy: destroy-ingress destroy-eks destroy-rds destroy-ecr
