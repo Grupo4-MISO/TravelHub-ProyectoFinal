@@ -1,5 +1,8 @@
 import requests
+import os
 
+#Importamos ruta del endpoint
+ENDPOINT_RESERVA = os.getenv('ENDPOINT_RESERVA')
 class ReservaHelper:
     @staticmethod
     def disponibilidadReserva(reserva_url, habitacion_ids, check_in, check_out):
@@ -12,7 +15,7 @@ class ReservaHelper:
 
         try:
             #Hacemos la consulta al microservicio de reservas
-            response = requests.post(reserva_url, json = payload)
+            response = requests.post(f"{reserva_url}{ENDPOINT_RESERVA}", json = payload)
 
             #Genera expecion si el status code es diferente a 200
             response.raise_for_status()

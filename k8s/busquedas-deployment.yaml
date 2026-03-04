@@ -22,8 +22,12 @@ spec:
         env:
         - name: INVENTARIOS_URL
           value: http://inventarios-app-service:80
+        - name: ENDPOINT_INVENTARIO
+          value: /api/v1/inventarios/filtro
         - name: RESERVAS_URL
           value: http://reservas-app-service:80
+        - name: ENDPOINT_RESERVA
+          value: /api/v1/reservas/disponibilidad
         readinessProbe:
           httpGet:
             path: api/v1/busquedas/health
