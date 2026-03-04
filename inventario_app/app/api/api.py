@@ -1,4 +1,5 @@
 from app.services.inventario_crud import InventarioCRUD
+from app.utils.seedHelper import SeedHelper
 from flask_restful import Resource
 from flask import request
 
@@ -23,4 +24,18 @@ class FiltroHabitaciones(Resource):
             return {'msg': 'Error al buscar habitaciones', 'error': response}, 500
 
         return response, 200
+
+
+class SeedDB(Resource):
+    def post(self):
+        result = SeedHelper.reset_and_seed()
+
+        if not result.get('ok'):
+            return {'msg': 'Error al ejecutar el seed', 'error': result.get('error')}, 500
+
+        return {
+            'msg': 'Seed ejecutado correctamente',
+            'hospedajes_insertados': result['hospedajes_insertados'],
+            'habitaciones_insertadas': result['habitaciones_insertadas'],
+        }, 200
 
