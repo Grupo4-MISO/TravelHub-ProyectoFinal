@@ -34,6 +34,6 @@ CORS(app)
 
 #Registramos la API RESTful
 api = Api(app)
-api.add_resource(ReservaHealth, 'api/v1/reservas/health')
-api.add_resource(VerificarDisponibilidad, 'api/v1/reservas/disponibilidad')
-api.add_resource(SeedReservas, 'api/v1/reservas/seed/<int:cantidad>')
+api.add_resource(ReservaHealth, '/api/v1/reservas/health')
+api.add_resource(VerificarDisponibilidad, '/api/v1/reservas/disponibilidad')
+api.add_resource(SeedReservas, '/api/v1/reservas/seed/<int:cantidad>')
