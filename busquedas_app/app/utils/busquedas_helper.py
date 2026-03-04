@@ -1,4 +1,3 @@
-
 class BusquedasHelper:
     @staticmethod
     def filtrarHabitacionesDisponibles(hospedajes_habitaciones, disponibles):
