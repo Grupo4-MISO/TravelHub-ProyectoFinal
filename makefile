@@ -129,4 +129,4 @@ docker-push-new:
 infra: ecr rds eks elasticache
 images: ecr-login docker-push-all
 deploy: infra images ingress
-destroy: destroy-ingress destroy-eks destroy-rds destroy-ecr destroy-elasticache
+destroy: destroy-ingress destroy-elasticache destroy-eks destroy-rds destroy-ecr
