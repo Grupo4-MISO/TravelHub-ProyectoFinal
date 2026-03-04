@@ -36,7 +36,7 @@ class Search(Resource):
             habitaciones_ids = [habitacion.get('habitacion_id') for habitacion in hospedajes_habitaciones]
 
             #Consulta al microservicio de reservas
-            disponibles = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out, ciudad, capacidad)
+            disponibles = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out)
 
             #Validamos que la respuesta no sea error
             if isinstance(disponibles, str):

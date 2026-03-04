@@ -5,14 +5,12 @@ import os
 ENDPOINT_RESERVA = os.getenv('ENDPOINT_RESERVA')
 class ReservaHelper:
     @staticmethod
-    def disponibilidadReserva(reserva_url, habitacion_ids, check_in, check_out, ciudad, capacidad):
+    def disponibilidadReserva(reserva_url, habitacion_ids, check_in, check_out):
         #Payload para la consulta
         payload = {
             'habitacion_ids': habitacion_ids,
             'check_in': check_in,
             'check_out': check_out,
-            'ciudad': ciudad,
-            'capacidad': capacidad
         }
 
         try:
