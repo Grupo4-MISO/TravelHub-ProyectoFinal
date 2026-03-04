@@ -34,7 +34,7 @@ class ReservaCRUD:
                 disponibilidad[habitacion_id] = habitacion_id not in habitaciones_ids_ocupadas
             
             #Filtramos habitaciones disponibles
-            disponibles = set(filter(lambda habitacion_id: disponibilidad.get(habitacion_id) is True, disponibilidad.keys()))
+            disponibles = list(set(filter(lambda habitacion_id: disponibilidad.get(habitacion_id) is True, disponibilidad.keys())))
 
             return disponibles
 
