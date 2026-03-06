@@ -11,17 +11,17 @@
         <elementProp name="ThreadGroup.main_controller" elementType="com.blazemeter.jmeter.control.VirtualUserController"/>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <stringProp name="TargetLevel">600</stringProp>
-        <stringProp name="RampUp">300</stringProp>
+        <stringProp name="RampUp">185</stringProp>
         <stringProp name="Steps">120</stringProp>
-        <stringProp name="Hold">5</stringProp>
+        <stringProp name="Hold">2</stringProp>
         <stringProp name="LogFilename"></stringProp>
         <stringProp name="Iterations"></stringProp>
         <boolProp name="same_user_on_next_iteration">true</boolProp>
         <stringProp name="Unit">S</stringProp>
       </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="api_videos_upload">
-          <stringProp name="HTTPSampler.domain">entrega5-638708992.us-east-1.elb.amazonaws.com</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="api_search">
+          <stringProp name="HTTPSampler.domain">a78625386747a4cb29673b5fdc07eafe-1061956774.us-east-1.elb.amazonaws.com</stringProp>
           <stringProp name="HTTPSampler.port">80</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
@@ -49,14 +49,14 @@
               </elementProp>
               <elementProp name="check_in" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.value">2026-06-24</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">check_in</stringProp>
               </elementProp>
               <elementProp name="check_out" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.value">2026-07-03</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">check_out</stringProp>
@@ -65,7 +65,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="header_api_videos_upload">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="header_api_search">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Connection</stringProp>
@@ -74,7 +74,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="report_api_videos_upload">
+          <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="report_api_search">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -145,7 +145,7 @@
                 <connectTime>true</connectTime>
               </value>
             </objProp>
-            <stringProp name="filename">C:\Users\lenovo\Documents\Daniel\MISW\semestre_IV\MISW4501\proyecto\TravelHub-ProyectoFinal\experimentos</stringProp>
+            <stringProp name="filename">C:\Users\lenovo\Documents\Daniel\MISW\semestre_IV\MISW4501\proyecto\TravelHub-ProyectoFinal\experimentos\table.csv</stringProp>
           </ResultCollector>
           <hashTree/>
           <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseCodesPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Codes per Second">
