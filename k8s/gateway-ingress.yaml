@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway-ingress-8
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /api/v1/reservas
+            pathType: Prefix
+            backend:
+              service:
+                name: reservas-app-service
+                port:
+                  number: 80
+          - path: /api/v1/inventarios
+            pathType: Prefix
+            backend:
+              service:
+                name: inventarios-app-service
+                port:
+                  number: 80
+          - path: /api/v1/busquedas
+            pathType: Prefix
+            backend:
+              service:
+                name: busquedas-app-service
+                port:
+                  number: 80

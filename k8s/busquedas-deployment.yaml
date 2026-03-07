@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busquedas-app
+  labels:
+    app: busquedas-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busquedas-app
+  template:
+    metadata:
+      labels:
+        app: busquedas-app
+    spec:
+      containers:
+      - name: busquedas-api
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/busquedas-app:v1.0.0
+        ports:
+        - containerPort: 3002
+        env:
+        - name: INVENTARIOS_URL
+          value: http://inventarios-app-service:80
+        - name: ENDPOINT_INVENTARIO
+          value: /api/v1/inventarios/filtro
+        - name: RESERVAS_URL
+          value: http://reservas-app-service:80
+        - name: ENDPOINT_RESERVA
+          value: /api/v1/reservas/disponibilidad
+        - name: REDIS_HOST
+          value: master.name.igqc6u.use1.cache.amazonaws.com
+        readinessProbe:
+          httpGet:
+            path: api/v1/busquedas/health
+            port: 3002
+        livenessProbe:
+          httpGet:
+            path: api/v1/busquedas/health
+            port: 3002
+          initialDelaySeconds: 5 
+          periodSeconds: 30
+          failureThreshold: 3
