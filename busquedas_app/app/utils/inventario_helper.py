@@ -24,4 +24,4 @@ class InventarioHelper:
             return response.json()
 
         except requests.exceptions.RequestException as e:
-            raise ExternalServiceError(str(e))
+            raise ExternalServiceError(f"Error al consultar el microservicio de inventario: {str(e)}")
