@@ -1,10 +1,14 @@
 from app.api.api import Search, SearchHealth
+from app.errors.handlers import ErrorHandler
 from flask_restful import Api
 from flask_cors import CORS
 from flask import Flask
 
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
+
+#Registramos el manejador de errores
+ErrorHandler.errors(app)
 
 #Ponemos configuraciones de la app
 app.config['JWT_SECRET_KEY'] = 'supersecretkey'

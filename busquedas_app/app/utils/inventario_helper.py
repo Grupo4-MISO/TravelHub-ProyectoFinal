@@ -1,3 +1,4 @@
+from app.errors.exceptions import ExternalServiceError
 import requests
 import os
 
@@ -23,4 +24,4 @@ class InventarioHelper:
             return response.json()
 
         except requests.exceptions.RequestException as e:
-            return str(e)
+            raise ExternalServiceError(str(e))

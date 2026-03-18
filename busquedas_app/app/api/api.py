@@ -1,3 +1,4 @@
+from app.errors.exceptions import BadRequestError, ExternalServiceError
 from app.utils.inventario_helper import InventarioHelper
 from app.utils.busquedas_helper import BusquedasHelper
 from app.utils.reserva_helper import ReservaHelper
@@ -32,6 +33,19 @@ class Search(Resource):
         check_in = request.args.get('check_in')
         check_out = request.args.get('check_out')
 
+        #Validamos parametros de busqueda
+        respuesta_validacion_ciudad = BusquedasHelper.validacionCampoCiudad(ciudad)
+        if not respuesta_validacion_ciudad:
+            raise BadRequestError(respuesta_validacion_ciudad)
+        
+        respuesta_validacion_capacidad = BusquedasHelper.validacionCampoCapacidad(capacidad)
+        if not respuesta_validacion_capacidad:
+            raise BadRequestError(respuesta_validacion_capacidad)
+        
+        respuesta_validacion_fechas = BusquedasHelper.validacionCampoFechas(check_in, check_out)
+        if not respuesta_validacion_fechas:
+            raise BadRequestError(respuesta_validacion_fechas)
+
         #Construimos la clave de cache
         cache_key = CacheHelper.construirCacheKey(ciudad, capacidad, check_in, check_out)
 
@@ -41,20 +55,12 @@ class Search(Resource):
         if not disponibles:
             #Consulta al microservicio de inventario
             hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
-
-            #Validamos que la respuesta no sea error
-            if isinstance(hospedajes_habitaciones, str):
-                return {'msg': 'Error al buscar habitaciones', 'error': hospedajes_habitaciones}, 500
             
             #Construimos los ids de habitaciones
             habitaciones_ids = [habitacion.get('habitacion_id') for habitacion in hospedajes_habitaciones]
 
             #Consulta al microservicio de reservas
             disponibles = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out)
-
-            #Validamos que la respuesta no sea error
-            if isinstance(disponibles, str):
-                return {'msg': 'Error al verificar disponibilidad', 'error': disponibles}, 500
 
             #Filtramos habitaciones disponibles
             hospedajes_habitaciones_disponibles = BusquedasHelper.filtrarHabitacionesDisponibles(hospedajes_habitaciones, disponibles)
@@ -64,5 +70,4 @@ class Search(Resource):
 
             return hospedajes_habitaciones_disponibles, 200
 
-        print(disponibles)
         return disponibles, 200
