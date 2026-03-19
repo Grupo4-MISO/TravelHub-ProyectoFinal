@@ -1,4 +1,5 @@
 from app.db.models import db, HospedajeORM, HabitacionORM
+from app.errors.exceptions import DatababaseError
 
 class InventarioCRUD:
     def __init__(self):
@@ -49,6 +50,6 @@ class InventarioCRUD:
     
         except Exception as e:
             self.db.rollback()
-            return str(e)
+            return DatababaseError(f"Error en la base de datos: {str(e)}")
 
 
