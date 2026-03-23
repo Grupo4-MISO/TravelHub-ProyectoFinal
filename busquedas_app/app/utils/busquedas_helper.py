@@ -1,6 +1,11 @@
+from app.errors.exceptions import BadRequestError
 from datetime import datetime
 
 class BusquedasHelper:
+    @staticmethod
+    def convertirFechasDate(fecha):
+        return datetime.strptime(fecha, '%Y-%m-%d').date()
+    
     @staticmethod
     def filtrarHabitacionesDisponibles(hospedajes_habitaciones, disponibles):
         #Diccionario de habitaciones disponibles
@@ -14,52 +19,57 @@ class BusquedasHelper:
                 hospedajes_habitaciones_disponibles.append(hospedaje_habitacion)
         
         return hospedajes_habitaciones_disponibles
-    
+
     @staticmethod
     def validacionCampoCiudad(ciudad):
         if not ciudad:
-            return 'El campo ciudad es requerido'
+            raise BadRequestError('El campo ciudad no debe ser vacío')
+
+        try:
+            ciudad = int(ciudad)
+
+            if isinstance(ciudad, int):
+                raise BadRequestError('El campo ciudad debe ser un texto')
         
-        if not isinstance(ciudad, str):
-            return 'El campo ciudad debe ser una cadena de texto'
-        
-        return True
+        except ValueError:
+            return None
     
     @staticmethod
     def validacionCampoCapacidad(capacidad):
-        if not capacidad:
-            return 'El campo capacidad es requerido'
+        try:
+            capacidad = int(capacidad)
+
+        except ValueError:
+            raise BadRequestError('El campo capacidad debe ser un número entero')
         
-        if not isinstance(capacidad, int):
-            return 'El campo capacidad debe ser un número entero'
+        except TypeError:
+            raise BadRequestError('El campo capacidad no debe ser vacío')
         
         if capacidad <= 0:
-            return 'El campo capacidad debe ser un número entero positivo'
-        
-        return True
+            raise BadRequestError('El campo capacidad debe ser un número entero positivo')
     
     @staticmethod
     def validacionCampoFechas(check_in, check_out):
-        if not check_in or not check_out:
-            return 'Los campos check_in y check_out son requeridos'
+        try:
+            check_in = BusquedasHelper.convertirFechasDate(check_in)
+
+        except ValueError:
+            raise BadRequestError('La fecha de check-in debe estar en formato YYYY-MM-DD')
         
+        except TypeError:
+            raise BadRequestError('La fecha de check-in no debe ser vacía')
+        
+        try:
+            check_out = BusquedasHelper.convertirFechasDate(check_out)
+
+        except ValueError:
+            raise BadRequestError('La fecha de check-out debe estar en formato YYYY-MM-DD')
+    
+        except TypeError:
+            raise BadRequestError('La fecha de check-out no debe ser vacía')
+    
         if check_in >= check_out:
-            return 'La fecha de check-out debe ser posterior a la fecha de check-in'
-        
-        if check_out <= check_in:
-            return 'La fecha de check-in debe ser anterior a la fecha de check-out'
+            raise BadRequestError('La fecha de check-out debe ser posterior a la fecha de check-in')
         
         if check_out < datetime.now().date():
-            return {'msg': 'La fecha de check-out debe ser una fecha futura'}, 400
-
-        try:
-            datetime.strptime(check_in, '%Y-%m-%d')
-        except ValueError:
-            return 'La fecha de check-in debe estar en formato YYYY-MM-DD'
-        
-        try:
-            datetime.strptime(check_out, '%Y-%m-%d')
-        except ValueError:
-            return 'La fecha de check-out debe estar en formato YYYY-MM-DD'
-
-        return True
+            raise BadRequestError('La fecha de check-out debe ser una fecha futura')

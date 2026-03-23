@@ -1,4 +1,4 @@
-from exceptions import APIError
+from app.errors.exceptions import APIError
 
 class ErrorHandler:
     @staticmethod

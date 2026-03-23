@@ -1,4 +1,3 @@
-from app.errors.exceptions import BadRequestError
 from app.services.reserva_crud import ReservaCRUD
 from app.utils.seedHelper import SeedHelper
 from app.utils.helper import ReservaHelper
@@ -17,12 +16,11 @@ class VerificarDisponibilidad(Resource):
         #Obtenemos los datos del request
         data = request.get_json()
 
+        #Validamos campos de fechas
+        check_in, check_out = ReservaHelper.validacionCampoFechas(data.get('check_in'), data.get('check_out'))
+
         #Obtenemos datos del request de ids
         habitaciones_ids = data.get('habitacion_ids')
-
-        #Convertimos las fechas de string a date
-        check_in = ReservaHelper.convertirFechasDate(data.get('check_in'))
-        check_out = ReservaHelper.convertirFechasDate(data.get('check_out'))
 
         #Verificamos disponibilidad
         disponibilidad = reservas_crud.verificarDisponibilidad(habitaciones_ids, check_in, check_out)

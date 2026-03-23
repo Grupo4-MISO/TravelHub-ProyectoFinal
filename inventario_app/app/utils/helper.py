@@ -1,23 +1,32 @@
+from app.errors.exceptions import BadRequestError
+
 class InventarioHelper:
     @staticmethod
     def validacionCampoCiudad(ciudad):
         if not ciudad:
-            return 'El campo ciudad es requerido'
+            raise BadRequestError('El campo ciudad no debe ser vacío')
+
+        try:
+            ciudad = int(ciudad)
+
+            if isinstance(ciudad, int):
+                raise BadRequestError('El campo ciudad debe ser un texto')
         
-        if not isinstance(ciudad, str):
-            return 'El campo ciudad debe ser una cadena de texto'
-        
-        return True
+        except ValueError:
+            return ciudad
     
     @staticmethod
     def validacionCampoCapacidad(capacidad):
-        if not capacidad:
-            return 'El campo capacidad es requerido'
+        try:
+            capacidad = int(capacidad)
+
+        except ValueError:
+            raise BadRequestError('El campo capacidad debe ser un número entero')
         
-        if not isinstance(capacidad, int):
-            return 'El campo capacidad debe ser un número entero'
+        except TypeError:
+            raise BadRequestError('El campo capacidad no debe ser vacío')
         
         if capacidad <= 0:
-            return 'El campo capacidad debe ser un número entero positivo'
-        
-        return True
+            raise BadRequestError('El campo capacidad debe ser un número entero positivo')
+
+        return capacidad
