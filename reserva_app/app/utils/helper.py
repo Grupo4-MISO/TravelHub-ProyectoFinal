@@ -29,6 +29,9 @@ class ReservaHelper:
         if check_in >= check_out:
             raise BadRequestError('La fecha de check-out debe ser posterior a la fecha de check-in')
         
+        if check_in < datetime.now().date():
+            raise BadRequestError('La fecha de check-in debe ser una fecha futura')
+
         if check_out < datetime.now().date():
             raise BadRequestError('La fecha de check-out debe ser una fecha futura')
 
