@@ -64,3 +64,13 @@ readinessProbe:
 ```
 
 Si llamas `POST /simulate/down`, Kubernetes debería marcar el pod como no listo (y eventualmente reiniciarlo según política/probe).
+
+
+## Configuración del experimento
+
+A continuación, se va a explicar la forma en la que se configura y ejecutar el experimento propuesto
+
+### Pre-requisitos
+- Kubernetes(EKS, Minikube, K3S)
+- Kubectl
+- Helm
