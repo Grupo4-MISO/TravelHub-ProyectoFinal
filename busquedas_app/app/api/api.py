@@ -1,7 +1,7 @@
+from app.errors.exceptions import BadRequestError, NotFoundError
 from app.utils.inventario_helper import InventarioHelper
 from app.utils.busquedas_helper import BusquedasHelper
 from app.utils.reserva_helper import ReservaHelper
-from app.errors.exceptions import BadRequestError
 from app.utils.cache_helper import CacheHelper
 from flask_restful import Resource
 from flask import request
@@ -55,12 +55,20 @@ class Search(Resource):
         if not disponibles:
             #Consulta al microservicio de inventario
             hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
+
+            #Validamos que existan hospedajes para la ciudad y capacidad especificada
+            if not hospedajes_habitaciones:
+                return NotFoundError('No se encontraron hospedajes disponibles para la ciudad o capacidad especificada'), 404
             
             #Construimos los ids de habitaciones
             habitaciones_ids = [habitacion.get('habitacion_id') for habitacion in hospedajes_habitaciones]
 
             #Consulta al microservicio de reservas
             disponibles = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out)
+
+            #Validamos que existan habitaciones disponibles para las fechas especificadas
+            if not disponibles:
+                return NotFoundError('No se encontraron habitaciones disponibles para las fechas especificadas'), 404
 
             #Filtramos habitaciones disponibles
             hospedajes_habitaciones_disponibles = BusquedasHelper.filtrarHabitacionesDisponibles(hospedajes_habitaciones, disponibles)
