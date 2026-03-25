@@ -21,7 +21,7 @@ class BusquedasHelper:
         return hospedajes_habitaciones_disponibles
 
     @staticmethod
-    def validacionCampoCiudad(ciudad):
+    def validacionCampoCiudad(ciudad = None):
         if not ciudad:
             raise BadRequestError('El campo ciudad no debe ser vacío')
 
@@ -35,7 +35,7 @@ class BusquedasHelper:
             return None
     
     @staticmethod
-    def validacionCampoCapacidad(capacidad):
+    def validacionCampoCapacidad(capacidad = None):
         try:
             capacidad = int(capacidad)
 
@@ -49,7 +49,7 @@ class BusquedasHelper:
             raise BadRequestError('El campo capacidad debe ser un número entero positivo')
     
     @staticmethod
-    def validacionCampoFechas(check_in, check_out):
+    def validacionCampoFechas(check_in = None, check_out = None):
         try:
             check_in = BusquedasHelper.convertirFechasDate(check_in)
 
@@ -67,12 +67,12 @@ class BusquedasHelper:
     
         except TypeError:
             raise BadRequestError('La fecha de check-out no debe ser vacía')
-    
-        if check_in >= check_out:
-            raise BadRequestError('La fecha de check-out debe ser posterior a la fecha de check-in')
         
         if check_in < datetime.now().date():
             raise BadRequestError('La fecha de check-in debe ser una fecha futura')
         
         if check_out < datetime.now().date():
             raise BadRequestError('La fecha de check-out debe ser una fecha futura')
+        
+        if check_in >= check_out:
+            raise BadRequestError('La fecha de check-out debe ser posterior a la fecha de check-in')
