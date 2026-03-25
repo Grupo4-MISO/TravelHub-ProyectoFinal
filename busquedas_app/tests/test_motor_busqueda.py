@@ -208,7 +208,6 @@ def test_filtrar_habitaciones_disponibles():
 
 def test_busqueda_completa(mocker):
     #Creamos app
-    # Crear app de prueba
     app = Flask(__name__)
     api = Api(app)
     api.add_resource(Search, "/search")
