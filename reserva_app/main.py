@@ -1,4 +1,4 @@
-from app.api.api import ReservaHealth, VerificarDisponibilidad, SeedReservas
+from app.api.api import ReservaHealth, VerificarDisponibilidad, SeedReservas, HoldReserva
 from app.db.models import db
 from flask_restful import Api
 from app.db.models import db
@@ -37,3 +37,4 @@ api = Api(app)
 api.add_resource(ReservaHealth, '/api/v1/reservas/health')
 api.add_resource(VerificarDisponibilidad, '/api/v1/reservas/disponibilidad')
 api.add_resource(SeedReservas, '/api/v1/reservas/seed/<int:cantidad>')
+api.add_resource(HoldReserva, '/api/v1/reservas/hold')
