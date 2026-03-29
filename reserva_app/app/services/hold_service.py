@@ -1,10 +1,21 @@
 from app.utils.hold_cache_helper import HoldCacheHelper
-from app.db.models import ReservaORM, db
-from sqlalchemy import not_
+from app.db.models import db
+from app.services.reserva_crud import ReservaCRUD
+from flask import current_app
 
 class HoldService:
     def __init__(self):
         self.db = db.session
+        self.reserva_crud = ReservaCRUD()
+
+    def _get_hold_ttl_seconds(self):
+        ttl_config = current_app.config.get('HOLD_TTL_SECONDS', 900)
+        try:
+            ttl = int(ttl_config)
+        except (TypeError, ValueError):
+            ttl = 900
+
+        return max(1, ttl)
 
     # ------------------------------------------------------------------
     # Método principal: orquesta el flujo de reserva temporal
@@ -24,8 +35,12 @@ class HoldService:
           str   con el mensaje de error (sigue la convención de reserva_crud).
         """
         try:
+            hold_ttl_seconds = self._get_hold_ttl_seconds()
+
             # Paso 1 — Verificar disponibilidad en base de datos
             disponible_en_bd = self._verificar_disponibilidad_bd(habitacion_id, check_in, check_out)
+            if isinstance(disponible_en_bd, str):
+                return disponible_en_bd
             if not disponible_en_bd:
                 return {'disponible': False, 'motivo': 'La habitación ya tiene una reserva confirmada en esas fechas'}
 
@@ -40,7 +55,7 @@ class HoldService:
                     check_in=check_in,
                     check_out=check_out,
                     user_id=user_id,
-                    ttl_segundos=900,
+                    ttl_segundos=hold_ttl_seconds,
                 )
                 if hold_actualizado:
                     return {'disponible': True, 'hold': hold_actualizado}
@@ -56,7 +71,7 @@ class HoldService:
                 habitacion_id=habitacion_id,
                 check_in=check_in,
                 check_out=check_out,
-                ttl_segundos=900
+                ttl_segundos=hold_ttl_seconds
             )
 
             # Paso 5 — Retornar resultado
@@ -69,13 +84,16 @@ class HoldService:
             return str(e)
 
     # ------------------------------------------------------------------
-    # Método privado: verifica disponibilidad en base de datos (mock)
+    # Método privado: verifica disponibilidad en base de datos
     # ------------------------------------------------------------------
     def _verificar_disponibilidad_bd(self, habitacion_id, check_in, check_out):
         """
-        Mock que siempre retorna que la habitación está disponible.
-        
+        Verifica disponibilidad consultando ReservaCRUD.
+
         Retorna:
-          True  si la habitación está disponible (siempre).
+          bool si la habitación está disponible.
+          str  con el mensaje de error en caso de falla.
         """
-        return True
+        # TODO: Reemplazar esta consulta directa por el servicio externo de consultas
+        # cuando se implemente el patrón CQRS.
+        return self.reserva_crud.verificarDisponibilidadHabitacion(habitacion_id, check_in, check_out)
