@@ -43,6 +43,7 @@ class InventarioCRUD:
                     'rating': campo.rating,
                     'capacidad': campo.capacidad,
                     'precio': campo.precio,
+                    'descripcion': campo.descripcion
                 }
                 for campo in resultados
             ]
