@@ -12,6 +12,7 @@ class InventarioCRUD:
                 HabitacionORM.id.label('habitacion_id'),
                 HabitacionORM.precio,
                 HabitacionORM.capacidad,
+                HabitacionORM.descripcion,
                 HospedajeORM.id.label('hospedaje_id'),
                 HospedajeORM.nombre,
                 HospedajeORM.pais,
