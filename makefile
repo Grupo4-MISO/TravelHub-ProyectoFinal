@@ -14,9 +14,9 @@ FOLDERS=busquedas_app inventario_app reserva_app
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
-SERVICES_NEW=busquedas-app inventarios-app reservas-app
-FOLDERS_NEW=busquedas_app inventario_app reserva_app
-IMAGE_TAG_NEW=v12.0.0
+SERVICES_NEW=busquedas-app
+FOLDERS_NEW=busquedas_app
+IMAGE_TAG_NEW=v1.0.0
 
 export AWS_REGION
 
