@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-observability-experiment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-observability-experiment
+  template:
+    metadata:
+      labels:
+        app: k8s-observability-experiment
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "8000"
+    spec:
+      imagePullSecrets:
+        - name: ecr-secret
+      containers:
+        - name: app
+          image: 050451362222.dkr.ecr.us-east-1.amazonaws.com/proyecto-final/observabilidad:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: observability-service
+  namespace: default
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+spec:
+  type: LoadBalancer
+  selector:
+    app: k8s-observability-experiment
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000

@@ -16,3 +16,6 @@ override.tf.json
 *_override.tf.json
 .terraform/modules
 .terraform/plugins
+
+**/__pycache__/
+**/*.pyc
