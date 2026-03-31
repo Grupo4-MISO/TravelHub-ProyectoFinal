@@ -25,6 +25,11 @@ def test_validacion_campo_ciudad_valido():
 
     assert resultado is None
 
+def test_limpieza_campo_ciudad():
+    resultado = BusquedasHelper.limpiarCampoCiudad('  Bogotá  ')
+
+    assert resultado == 'Bogota'
+
 def test_validacion_campo_capacidad_vacio():
     with pytest.raises(BadRequestError) as exc_info:
         BusquedasHelper.validacionCampoCapacidad()
