@@ -76,3 +76,8 @@ class BusquedasHelper:
         
         if check_in >= check_out:
             raise BadRequestError('La fecha de check-out debe ser posterior a la fecha de check-in')
+    
+    @staticmethod
+    def limpiarCampoCiudad(ciudad):
+        ciudad = ciudad.replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u').replace('Á', 'A').replace('É', 'E').replace('Í', 'I').replace('Ó', 'O').replace('Ú', 'U')
+        return ciudad.strip()

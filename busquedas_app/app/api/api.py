@@ -40,6 +40,9 @@ class Search(Resource):
         
         BusquedasHelper.validacionCampoFechas(check_in, check_out)
 
+        #Limpieza de parametros de busqueda
+        ciudad = BusquedasHelper.limpiarCampoCiudad(ciudad)
+
         #Construimos la clave de cache
         cache_key = CacheHelper.construirCacheKey(ciudad, capacidad, check_in, check_out)
 
