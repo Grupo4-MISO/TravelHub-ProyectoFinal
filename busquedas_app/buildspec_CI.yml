@@ -24,7 +24,7 @@ phases:
           echo "No hay cambios en busquedas_app. Terminando build..."
           exit 0
         fi
-
+      - cd busquedas_app
       - echo "Instalando dependencias y ejecutando tests..."
       - export PYTHONPATH=.
       - python -m pip install --upgrade pip
