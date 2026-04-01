@@ -44,7 +44,7 @@ phases:
       - cat imageDetail.json
 
 artifacts:
-  base-directory: busquedas_app
+  base-directory: .
   files:
-    - '**/*'
-    - imageDetail.json
+    - busquedas_app/imageDetail.json
+    - busquedas_app/chart/**/*
