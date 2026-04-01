@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands:
       - echo "Pre-build iniciado en $(date)"
-      
+
       - cd busquedas_app
       - echo "Instalando dependencias y ejecutando tests..."
       - export PYTHONPATH=.
@@ -44,5 +44,7 @@ phases:
       - cat imageDetail.json
 
 artifacts:
+  base-directory: busquedas_app
   files:
+    - '**/*'
     - imageDetail.json
