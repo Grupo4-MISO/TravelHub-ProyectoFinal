@@ -4,6 +4,7 @@ phases:
   install:
     commands:
       - echo Installing tools...
+      
       - curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
       - curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
       - chmod +x kubectl
@@ -22,7 +23,7 @@ phases:
   build:
     commands:
       - echo "Deploying with Helm..."
-      
+
       - helm upgrade --install busquedas ./busquedas_app/chart \
         --set image.repository=$IMAGE_REPO \
         --set image.tag=$IMAGE_TAG
