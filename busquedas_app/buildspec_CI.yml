@@ -8,35 +8,52 @@ env:
 phases:
   pre_build:
     commands:
-      - echo "Installing dependencies and running tests..."
+      - echo "Detectando cambios en el repositorio..."
+
+      # Detectar archivos modificados
+      - CHANGED_FILES=$(git diff --name-only $CODEBUILD_RESOLVED_SOURCE_VERSION^ $CODEBUILD_RESOLVED_SOURCE_VERSION || echo "")
+
+      - echo "Archivos modificados:"
+      - echo "$CHANGED_FILES"
+
+      # Filtrar por microservicio
+      - |
+        if echo "$CHANGED_FILES" | grep -q "^busquedas_app/"; then
+          echo "Cambios detectados en busquedas_app. Continuando..."
+        else
+          echo "No hay cambios en busquedas_app. Terminando build..."
+          exit 0
+        fi
+
+      - echo "Instalando dependencias y ejecutando tests..."
       - export PYTHONPATH=.
       - python -m pip install --upgrade pip
       - pip install -r requirements.txt
       - pytest tests/ -v
 
-      - echo "Logging in to Amazon ECR..."
+      - echo "Login en ECR..."
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
 
-      - echo "Setting image tag..."
+      - echo "Generando tag de imagen..."
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - echo "IMAGE_TAG=$IMAGE_TAG"
 
   build:
     commands:
-      - echo "Build started on $(date)"
-      - echo "Building Docker image..."
+      - echo "Build iniciado en $(date)"
+      - echo "Construyendo imagen Docker..."
       - docker build -t busquedas-app:$IMAGE_TAG .
 
-      - echo "Tagging Docker image..."
+      - echo "Taggeando imagen..."
       - docker tag busquedas-app:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
 
   post_build:
     commands:
-      - echo "Build completed on $(date)"
-      - echo "Pushing Docker image..."
+      - echo "Build finalizado en $(date)"
+      - echo "Pushing imagen a ECR..."
       - docker push $REPOSITORY_URI:$IMAGE_TAG
 
-      - echo "Writing image detail artifact..."
+      - echo "Generando artifact para deploy..."
       - printf '{"image_uri":"%s"}' "$REPOSITORY_URI:$IMAGE_TAG" > imageDetail.json
       - cat imageDetail.json
 
