@@ -21,8 +21,13 @@ phases:
       - IMAGE_TAG=$(echo $IMAGE_URI | cut -d ':' -f2)
 
   build:
-    commands:
-      - echo "Deploying with Helm..."
-      - helm upgrade --install busquedas ./busquedas_app/chart \
-        --set image.repository=$IMAGE_REPO \
-        --set image.tag=$IMAGE_TAG
+  commands:
+    - echo "Debug Helm..."
+    - ls -R
+
+    - helm version
+
+    - helm upgrade --install busquedas ./busquedas_app/chart \
+      --set image.repository=$IMAGE_REPO \
+      --set image.tag=$IMAGE_TAG \
+      --debug
