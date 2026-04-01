@@ -1,3 +1,4 @@
+from app.errors.exceptions import DatababaseError
 from app.db.models import ReservaORM, db
 from sqlalchemy import not_
 
@@ -40,5 +41,5 @@ class ReservaCRUD:
 
         except Exception as e:
             self.db.rollback()
-            return str(e)
+            return DatababaseError(f"Error al verificar disponibilidad: {str(e)}")
         

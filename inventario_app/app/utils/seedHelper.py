@@ -2,19 +2,19 @@ from app.db.models import db, HospedajeORM, HabitacionORM
 
 # ---------------------------------------------------------------------------
 # Datos de hoteles representativos en Colombia — 7 hoteles por ciudad
-# Ciudades: Bogotá, Medellín, Cartagena, Cali, Santa Marta,
-#           Barranquilla, San Andrés, Manizales, Villa de Leyva
+# Ciudades: Bogota, Medellin, Cartagena, Cali, Santa Marta,
+#           Barranquilla, San Andres, Manizales, Villa de Leyva
 # ---------------------------------------------------------------------------
 HOSPEDAJES_SEED = [
 
     # ════════════════════════════════════════════════════════════════════════
-    # BOGOTÁ  (7 hoteles)
+    # Bogota  (7 hoteles)
     # ════════════════════════════════════════════════════════════════════════
     {
         "nombre": "Hotel Casa Medina",
         "pais": "Colombia",
-        "ciudad": "Bogotá",
-        "direccion": "Carrera 7 # 69A-22, Chapinero, Bogotá",
+        "ciudad": "Bogota",
+        "direccion": "Carrera 7 # 69A-22, Chapinero, Bogota",
         "rating": 4.8,
         "habitaciones": [
             {"descripcion": "Habitación Estándar Doble", "capacidad": 2, "precio": 380000.0},
@@ -23,10 +23,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "Sofitel Bogotá Victoria Regia",
+        "nombre": "Sofitel Bogota Victoria Regia",
         "pais": "Colombia",
-        "ciudad": "Bogotá",
-        "direccion": "Calle 98 # 9A-03, Chicó, Bogotá",
+        "ciudad": "Bogota",
+        "direccion": "Calle 98 # 9A-03, Chicó, Bogota",
         "rating": 4.7,
         "habitaciones": [
             {"descripcion": "Habitación Clásica",  "capacidad": 2, "precio": 450000.0},
@@ -37,8 +37,8 @@ HOSPEDAJES_SEED = [
     {
         "nombre": "Hotel Tequendama",
         "pais": "Colombia",
-        "ciudad": "Bogotá",
-        "direccion": "Carrera 10 # 26-21, Centro, Bogotá",
+        "ciudad": "Bogota",
+        "direccion": "Carrera 10 # 26-21, Centro, Bogota",
         "rating": 4.2,
         "habitaciones": [
             {"descripcion": "Habitación Sencilla",        "capacidad": 1, "precio": 180000.0},
@@ -49,8 +49,8 @@ HOSPEDAJES_SEED = [
     {
         "nombre": "Hotel B.O.G",
         "pais": "Colombia",
-        "ciudad": "Bogotá",
-        "direccion": "Calle 11 # 4-16, La Candelaria, Bogotá",
+        "ciudad": "Bogota",
+        "direccion": "Calle 11 # 4-16, La Candelaria, Bogota",
         "rating": 4.6,
         "habitaciones": [
             {"descripcion": "Habitación Urban",      "capacidad": 2, "precio": 410000.0},
@@ -59,10 +59,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "W Bogotá",
+        "nombre": "W Bogota",
         "pais": "Colombia",
-        "ciudad": "Bogotá",
-        "direccion": "Calle 100 # 8A-01, Chicó, Bogotá",
+        "ciudad": "Bogota",
+        "direccion": "Calle 100 # 8A-01, Chicó, Bogota",
         "rating": 4.7,
         "habitaciones": [
             {"descripcion": "Wonderful Room",         "capacidad": 2, "precio": 600000.0},
@@ -71,10 +71,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "Hyatt Regency Bogotá",
+        "nombre": "Hyatt Regency Bogota",
         "pais": "Colombia",
-        "ciudad": "Bogotá",
-        "direccion": "Calle 24 # 57A-60, Salitre, Bogotá",
+        "ciudad": "Bogota",
+        "direccion": "Calle 24 # 57A-60, Salitre, Bogota",
         "rating": 4.5,
         "habitaciones": [
             {"descripcion": "Habitación King Estándar",  "capacidad": 2, "precio": 390000.0},
@@ -83,10 +83,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "Hotel Click Clack Bogotá",
+        "nombre": "Hotel Click Clack Bogota",
         "pais": "Colombia",
-        "ciudad": "Bogotá",
-        "direccion": "Carrera 11 # 93-77, Chicó, Bogotá",
+        "ciudad": "Bogota",
+        "direccion": "Carrera 11 # 93-77, Chicó, Bogota",
         "rating": 4.4,
         "habitaciones": [
             {"descripcion": "Habitación Pequeña",    "capacidad": 1, "precio": 220000.0},
@@ -96,13 +96,13 @@ HOSPEDAJES_SEED = [
     },
 
     # ════════════════════════════════════════════════════════════════════════
-    # MEDELLÍN  (7 hoteles)
+    # Medellin  (7 hoteles)
     # ════════════════════════════════════════════════════════════════════════
     {
-        "nombre": "Hotel Dann Carlton Medellín",
+        "nombre": "Hotel Dann Carlton Medellin",
         "pais": "Colombia",
-        "ciudad": "Medellín",
-        "direccion": "Calle 1A Sur # 43A-83, El Poblado, Medellín",
+        "ciudad": "Medellin",
+        "direccion": "Calle 1A Sur # 43A-83, El Poblado, Medellin",
         "rating": 4.6,
         "habitaciones": [
             {"descripcion": "Habitación Estándar",  "capacidad": 2, "precio": 320000.0},
@@ -111,10 +111,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "Intercontinental Medellín",
+        "nombre": "Intercontinental Medellin",
         "pais": "Colombia",
-        "ciudad": "Medellín",
-        "direccion": "Calle 16 # 28-51, Laureles, Medellín",
+        "ciudad": "Medellin",
+        "direccion": "Calle 16 # 28-51, Laureles, Medellin",
         "rating": 4.5,
         "habitaciones": [
             {"descripcion": "Habitación Club",  "capacidad": 2, "precio": 490000.0},
@@ -123,10 +123,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "Hotel Park 10 Medellín",
+        "nombre": "Hotel Park 10 Medellin",
         "pais": "Colombia",
-        "ciudad": "Medellín",
-        "direccion": "Carrera 36D # 10A-22, El Poblado, Medellín",
+        "ciudad": "Medellin",
+        "direccion": "Carrera 36D # 10A-22, El Poblado, Medellin",
         "rating": 4.4,
         "habitaciones": [
             {"descripcion": "Habitación Sencilla", "capacidad": 1, "precio": 200000.0},
@@ -135,10 +135,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "The Charlee Hotel Medellín",
+        "nombre": "The Charlee Hotel Medellin",
         "pais": "Colombia",
-        "ciudad": "Medellín",
-        "direccion": "Carrera 43B # 11-50, El Poblado, Medellín",
+        "ciudad": "Medellin",
+        "direccion": "Carrera 43B # 11-50, El Poblado, Medellin",
         "rating": 4.7,
         "habitaciones": [
             {"descripcion": "Habitación Lifestyle",   "capacidad": 2, "precio": 480000.0},
@@ -149,8 +149,8 @@ HOSPEDAJES_SEED = [
     {
         "nombre": "Hotel Diez Categoría Colombia",
         "pais": "Colombia",
-        "ciudad": "Medellín",
-        "direccion": "Calle 11A # 32-65, El Poblado, Medellín",
+        "ciudad": "Medellin",
+        "direccion": "Calle 11A # 32-65, El Poblado, Medellin",
         "rating": 4.5,
         "habitaciones": [
             {"descripcion": "Habitación Estándar",  "capacidad": 2, "precio": 350000.0},
@@ -159,10 +159,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "Hotel Nutibara Medellín",
+        "nombre": "Hotel Nutibara Medellin",
         "pais": "Colombia",
-        "ciudad": "Medellín",
-        "direccion": "Carrera 50 # 52A-28, Centro, Medellín",
+        "ciudad": "Medellin",
+        "direccion": "Carrera 50 # 52A-28, Centro, Medellin",
         "rating": 4.1,
         "habitaciones": [
             {"descripcion": "Habitación Sencilla",     "capacidad": 1, "precio": 150000.0},
@@ -173,8 +173,8 @@ HOSPEDAJES_SEED = [
     {
         "nombre": "Hotel Estelar Milla de Oro",
         "pais": "Colombia",
-        "ciudad": "Medellín",
-        "direccion": "Carrera 43A # 6 Sur-15, El Poblado, Medellín",
+        "ciudad": "Medellin",
+        "direccion": "Carrera 43A # 6 Sur-15, El Poblado, Medellin",
         "rating": 4.6,
         "habitaciones": [
             {"descripcion": "Habitación Confort",   "capacidad": 2, "precio": 370000.0},
@@ -536,13 +536,13 @@ HOSPEDAJES_SEED = [
     },
 
     # ════════════════════════════════════════════════════════════════════════
-    # SAN ANDRÉS  (7 hoteles)
+    # San Andres  (7 hoteles)
     # ════════════════════════════════════════════════════════════════════════
     {
         "nombre": "Hotel Decameron San Luis",
         "pais": "Colombia",
-        "ciudad": "San Andrés",
-        "direccion": "Km 13 vía San Luis, San Andrés Isla",
+        "ciudad": "San Andres",
+        "direccion": "Km 13 vía San Luis, San Andres Isla",
         "rating": 4.5,
         "habitaciones": [
             {"descripcion": "Habitación Estándar Todo Incluido",  "capacidad": 2, "precio": 580000.0},
@@ -553,8 +553,8 @@ HOSPEDAJES_SEED = [
     {
         "nombre": "Casa Harb Hotel Boutique",
         "pais": "Colombia",
-        "ciudad": "San Andrés",
-        "direccion": "Av. Colombia # 3-59, San Andrés Isla",
+        "ciudad": "San Andres",
+        "direccion": "Av. Colombia # 3-59, San Andres Isla",
         "rating": 4.6,
         "habitaciones": [
             {"descripcion": "Habitación Coral",               "capacidad": 2, "precio": 420000.0},
@@ -563,10 +563,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "Hotel Sunrise Beach San Andrés",
+        "nombre": "Hotel Sunrise Beach San Andres",
         "pais": "Colombia",
-        "ciudad": "San Andrés",
-        "direccion": "Av. Colombia # 1A-104, San Andrés Isla",
+        "ciudad": "San Andres",
+        "direccion": "Av. Colombia # 1A-104, San Andres Isla",
         "rating": 4.3,
         "habitaciones": [
             {"descripcion": "Habitación Playa",         "capacidad": 2, "precio": 360000.0},
@@ -575,10 +575,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "Hotel Lord Pierre San Andrés",
+        "nombre": "Hotel Lord Pierre San Andres",
         "pais": "Colombia",
-        "ciudad": "San Andrés",
-        "direccion": "Av. 20 de Julio # 3-88, San Andrés Isla",
+        "ciudad": "San Andres",
+        "direccion": "Av. 20 de Julio # 3-88, San Andres Isla",
         "rating": 4.0,
         "habitaciones": [
             {"descripcion": "Habitación Estándar",       "capacidad": 2, "precio": 290000.0},
@@ -587,10 +587,10 @@ HOSPEDAJES_SEED = [
         ],
     },
     {
-        "nombre": "Portobelo Hotel San Andrés",
+        "nombre": "Portobelo Hotel San Andres",
         "pais": "Colombia",
-        "ciudad": "San Andrés",
-        "direccion": "Carretera Circunvalar Km 2, San Andrés Isla",
+        "ciudad": "San Andres",
+        "direccion": "Carretera Circunvalar Km 2, San Andres Isla",
         "rating": 4.2,
         "habitaciones": [
             {"descripcion": "Habitación Jardín Tropical","capacidad": 2, "precio": 310000.0},
@@ -601,8 +601,8 @@ HOSPEDAJES_SEED = [
     {
         "nombre": "Cocoplum Beach Hotel",
         "pais": "Colombia",
-        "ciudad": "San Andrés",
-        "direccion": "North End, San Andrés Isla",
+        "ciudad": "San Andres",
+        "direccion": "North End, San Andres Isla",
         "rating": 4.4,
         "habitaciones": [
             {"descripcion": "Habitación Coconut",       "capacidad": 2, "precio": 380000.0},
@@ -613,8 +613,8 @@ HOSPEDAJES_SEED = [
     {
         "nombre": "Hotel Decameron Isleño",
         "pais": "Colombia",
-        "ciudad": "San Andrés",
-        "direccion": "Km 3 vía Sound Bay, San Andrés Isla",
+        "ciudad": "San Andres",
+        "direccion": "Km 3 vía Sound Bay, San Andres Isla",
         "rating": 4.3,
         "habitaciones": [
             {"descripcion": "Habitación Todo Incluido",     "capacidad": 2, "precio": 530000.0},

@@ -1,7 +1,7 @@
 from app.services.reserva_crud import ReservaCRUD
 from app.utils.seedHelper import SeedHelper
+from app.utils.helper import ReservaHelper
 from flask_restful import Resource
-from datetime import datetime
 from flask import request
 
 #Instanciamos crud
@@ -16,28 +16,14 @@ class VerificarDisponibilidad(Resource):
         #Obtenemos los datos del request
         data = request.get_json()
 
-        #Obtenemos datos del request
+        #Validamos campos de fechas
+        check_in, check_out = ReservaHelper.validacionCampoFechas(data.get('check_in'), data.get('check_out'))
+
+        #Obtenemos datos del request de ids
         habitaciones_ids = data.get('habitacion_ids')
-        check_in = datetime.strptime(data.get('check_in'), '%Y-%m-%d').date()
-        check_out = datetime.strptime(data.get('check_out'), '%Y-%m-%d').date()
-
-        print(f"Datos recibidos - Habitaciones: {habitaciones_ids}, Check-in: {check_in}, Check-out: {check_out}")
-
-        if check_in >= check_out:
-            return {'msg': 'La fecha de check-out debe ser posterior a la fecha de check-in'}, 400
-
-        if check_out <= check_in:
-            return {'msg': 'La fecha de check-in debe ser anterior a la fecha de check-out'}, 400
-        
-        if check_out < datetime.now().date():
-            return {'msg': 'La fecha de check-out debe ser una fecha futura'}, 400
 
         #Verificamos disponibilidad
         disponibilidad = reservas_crud.verificarDisponibilidad(habitaciones_ids, check_in, check_out)
-
-        #Validamos si hubo un error en la consulta
-        if isinstance(disponibilidad, str):
-            return {'msg': 'Error al verificar disponibilidad', 'error': disponibilidad}, 500
     
         return disponibilidad, 200
 

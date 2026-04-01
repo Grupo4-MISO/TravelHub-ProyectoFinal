@@ -1,4 +1,5 @@
 from app.db.models import db, HospedajeORM, HabitacionORM
+from app.errors.exceptions import DatababaseError
 
 class InventarioCRUD:
     def __init__(self):
@@ -11,6 +12,7 @@ class InventarioCRUD:
                 HabitacionORM.id.label('habitacion_id'),
                 HabitacionORM.precio,
                 HabitacionORM.capacidad,
+                HabitacionORM.descripcion,
                 HospedajeORM.id.label('hospedaje_id'),
                 HospedajeORM.nombre,
                 HospedajeORM.pais,
@@ -41,6 +43,7 @@ class InventarioCRUD:
                     'rating': campo.rating,
                     'capacidad': campo.capacidad,
                     'precio': campo.precio,
+                    'descripcion': campo.descripcion
                 }
                 for campo in resultados
             ]
@@ -49,6 +52,6 @@ class InventarioCRUD:
     
         except Exception as e:
             self.db.rollback()
-            return str(e)
+            return DatababaseError(f"Error en la base de datos: {str(e)}")
 
 
