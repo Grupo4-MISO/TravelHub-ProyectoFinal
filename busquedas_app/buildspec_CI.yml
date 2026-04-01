@@ -9,6 +9,7 @@ phases:
   pre_build:
     commands:
       - echo "Pre-build iniciado en $(date)"
+      
       - cd busquedas_app
       - echo "Instalando dependencias y ejecutando tests..."
       - export PYTHONPATH=.
