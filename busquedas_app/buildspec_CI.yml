@@ -8,37 +8,20 @@ env:
 phases:
   pre_build:
     commands:
-      - echo "Detectando cambios en el repositorio..."
+      - echo "Pre-build iniciado en $(date)"
+      - cd busquedas_app
+      - echo "Instalando dependencias y ejecutando tests..."
+      - export PYTHONPATH=.
+      - python -m pip install --upgrade pip
+      - pip install -r requirements.txt
+      - pytest tests/ -v
 
-      # Detectar archivos modificados
-      - CHANGED_FILES=$(git diff --name-only HEAD~1 2>/dev/null || git ls-files)
+      - echo "Login en ECR..."
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
 
-      - echo "Archivos modificados:"
-      - echo "$CHANGED_FILES"
-
-      # Filtrar por microservicio
-      - |
-        if echo "$CHANGED_FILES" | grep -q "^busquedas_app/"; then
-          echo "Cambios detectados en busquedas_app. Continuando..."
-
-          - cd busquedas_app
-          - echo "Instalando dependencias y ejecutando tests..."
-          - export PYTHONPATH=.
-          - python -m pip install --upgrade pip
-          - pip install -r requirements.txt
-          - pytest tests/ -v
-
-          - echo "Login en ECR..."
-          - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
-
-          - echo "Generando tag de imagen..."
-          - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-          - echo "IMAGE_TAG=$IMAGE_TAG"
-
-        else
-          echo "No hay cambios en busquedas_app. Terminando build..."
-          exit 0
-        fi
+      - echo "Generando tag de imagen..."
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo "IMAGE_TAG=$IMAGE_TAG"
 
   build:
     commands:
