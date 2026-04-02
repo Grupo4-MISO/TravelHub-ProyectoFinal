@@ -1,4 +1,5 @@
 from app.api.api import InventarioHealth, FiltroHabitaciones, SeedDB
+from app.errors.handlers import ErrorHandler
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -10,6 +11,9 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
+
+#Registramos el manejador de errores
+ErrorHandler.errors(app)
 
 #Ponemos configuraciones de la app
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL

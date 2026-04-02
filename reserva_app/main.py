@@ -1,4 +1,5 @@
 from app.api.api import ReservaHealth, VerificarDisponibilidad, SeedReservas, HoldReserva
+from app.errors.handlers import ErrorHandler
 from app.db.models import db
 from flask_restful import Api
 from app.db.models import db
@@ -11,6 +12,9 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
+
+#Registramos el manejador de errores
+ErrorHandler.errors(app)
 
 #Ponemos configuraciones de la app
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL

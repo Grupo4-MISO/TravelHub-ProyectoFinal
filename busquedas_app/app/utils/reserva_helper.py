@@ -1,8 +1,10 @@
+from app.errors.exceptions import ExternalServiceError
 import requests
 import os
 
 #Importamos ruta del endpoint
 ENDPOINT_RESERVA = os.getenv('ENDPOINT_RESERVA')
+
 class ReservaHelper:
     @staticmethod
     def disponibilidadReserva(reserva_url, habitacion_ids, check_in, check_out):
@@ -23,4 +25,4 @@ class ReservaHelper:
             return response.json()
         
         except requests.exceptions.RequestException as e:
-            return str(e)
+            return ExternalServiceError(f"Error al consultar el microservicio de reservas: {str(e)}")

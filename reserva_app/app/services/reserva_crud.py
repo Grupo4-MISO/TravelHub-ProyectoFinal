@@ -1,3 +1,4 @@
+from app.errors.exceptions import DatababaseError
 from app.db.models import ReservaORM, db
 from sqlalchemy import not_
 from datetime import date

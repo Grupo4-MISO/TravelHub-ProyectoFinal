@@ -1,6 +1,7 @@
 from app.utils.inventario_helper import InventarioHelper
 from app.utils.busquedas_helper import BusquedasHelper
 from app.utils.reserva_helper import ReservaHelper
+from app.errors.exceptions import NotFoundError
 from app.utils.cache_helper import CacheHelper
 from flask_restful import Resource
 from flask import request
@@ -32,6 +33,16 @@ class Search(Resource):
         check_in = request.args.get('check_in')
         check_out = request.args.get('check_out')
 
+        #Validamos parametros de busqueda
+        BusquedasHelper.validacionCampoCiudad(ciudad)
+        
+        BusquedasHelper.validacionCampoCapacidad(capacidad)
+        
+        BusquedasHelper.validacionCampoFechas(check_in, check_out)
+
+        #Limpieza de parametros de busqueda
+        ciudad = BusquedasHelper.limpiarCampoCiudad(ciudad)
+
         #Construimos la clave de cache
         cache_key = CacheHelper.construirCacheKey(ciudad, capacidad, check_in, check_out)
 
@@ -42,9 +53,9 @@ class Search(Resource):
             #Consulta al microservicio de inventario
             hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
 
-            #Validamos que la respuesta no sea error
-            if isinstance(hospedajes_habitaciones, str):
-                return {'msg': 'Error al buscar habitaciones', 'error': hospedajes_habitaciones}, 500
+            #Validamos que existan hospedajes para la ciudad y capacidad especificada
+            if not hospedajes_habitaciones:
+                raise NotFoundError('No se encontraron hospedajes disponibles para la ciudad o capacidad especificada')
             
             #Construimos los ids de habitaciones
             habitaciones_ids = [habitacion.get('habitacion_id') for habitacion in hospedajes_habitaciones]
@@ -52,9 +63,9 @@ class Search(Resource):
             #Consulta al microservicio de reservas
             disponibles = ReservaHelper.disponibilidadReserva(RESERVAS_URL, habitaciones_ids, check_in, check_out)
 
-            #Validamos que la respuesta no sea error
-            if isinstance(disponibles, str):
-                return {'msg': 'Error al verificar disponibilidad', 'error': disponibles}, 500
+            #Validamos que existan habitaciones disponibles para las fechas especificadas
+            if not disponibles:
+                raise NotFoundError('No se encontraron habitaciones disponibles para las fechas especificadas')
 
             #Filtramos habitaciones disponibles
             hospedajes_habitaciones_disponibles = BusquedasHelper.filtrarHabitacionesDisponibles(hospedajes_habitaciones, disponibles)
@@ -64,5 +75,4 @@ class Search(Resource):
 
             return hospedajes_habitaciones_disponibles, 200
 
-        print(disponibles)
         return disponibles, 200

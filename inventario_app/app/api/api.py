@@ -1,4 +1,5 @@
 from app.services.inventario_crud import InventarioCRUD
+from app.utils.helper import InventarioHelper
 from app.utils.seedHelper import SeedHelper
 from flask_restful import Resource
 from flask import request
@@ -16,15 +17,15 @@ class FiltroHabitaciones(Resource):
         ciudad = request.args.get('ciudad')
         capacidad = request.args.get('capacidad')
 
+        #Validamos los parametros de busqueda
+        ciudad = InventarioHelper.validacionCampoCiudad(ciudad)
+        
+        capacidad = InventarioHelper.validacionCampoCapacidad(capacidad)
+
         #Traemos las habitaciones disponibles segun los parametros de busqueda
         response = inventario_CRUD.habitacionesDisponibles(ciudad, capacidad)
 
-        #Validamos que la respuesta no sea error
-        if isinstance(response, str):
-            return {'msg': 'Error al buscar habitaciones', 'error': response}, 500
-
         return response, 200
-
 
 class SeedDB(Resource):
     def post(self):
