@@ -1,0 +1,21 @@
+image:
+  repository: 387050840675.dkr.ecr.us-east-1.amazonaws.com/busquedas-app
+  tag: v1.0.0
+
+service:
+  port: 80
+
+replicaCount: 1
+
+inventarios:
+  URL: http://inventarios-app-service:80
+  endpoint: /api/v1/inventarios/filtro
+
+reservas:
+  URL: http://reservas-app-service:80
+  endpoint: /api/v1/reservas/disponibilidad
+
+redisHost: master.name.igqc6u.use1.cache.amazonaws.com
+healthPath: api/v1/busquedas/health
+port: 3002
+nodePort: 30002

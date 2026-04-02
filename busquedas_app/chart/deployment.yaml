@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busquedas-app
+  labels:
+    app: busquedas-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: busquedas-app
+  template:
+    metadata:
+      labels:
+        app: busquedas-app
+    spec:
+      containers:
+      - name: busquedas-api
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.port }}
+        env:
+        - name: INVENTARIOS_URL
+          value: {{ .Values.inventarios.URL }}
+        - name: ENDPOINT_INVENTARIO
+          value: {{ .Values.inventarios.endpoint }}
+        - name: RESERVAS_URL
+          value: {{ .Values.reservas.URL }}
+        - name: ENDPOINT_RESERVA
+          value: {{ .Values.reservas.endpoint }}
+        - name: REDIS_HOST
+          value: {{ .Values.redisHost }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+          initialDelaySeconds: 5 
+          periodSeconds: 30
+          failureThreshold: 3
