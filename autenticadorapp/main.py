@@ -1,6 +1,7 @@
 from app.api.api import Health, Login, UserResource
 from flask_restful import Api
 from app.db.models import db
+from app.utils.default_users import create_default_users
 from flask_cors import CORS
 from flask import Flask
 import os
@@ -59,7 +60,6 @@ Swagger(app, config=swagger_config, template=swagger_template)
 
 # Configuración de base de datos (pruebas locales)
 # app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://usuario:password@localhost:5432/travelhub"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///travelhub.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 #Inicializamos la base de datos
@@ -68,6 +68,7 @@ if not app.config.get('TESTING'):
         #Creamos tablas en la base de datos
         db.init_app(app)
         db.create_all()
+        create_default_users()
 
 #Habilitamos CORS
 CORS(app)
