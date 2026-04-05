@@ -49,3 +49,4 @@ artifacts:
     - busquedas_app/imageDetail.json
     - busquedas_app/chart/**/*
     - busquedas_app/buildspec_image.yml
+    - k8s/gateway-ingress.yaml
