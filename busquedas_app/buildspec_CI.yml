@@ -48,4 +48,4 @@ artifacts:
   files:
     - busquedas_app/imageDetail.json
     - busquedas_app/chart/**/*
-    - busquedas_app/buildspec_CD.yml
+    - busquedas_app/buildspec_image.yml
