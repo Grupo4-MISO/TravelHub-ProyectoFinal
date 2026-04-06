@@ -142,10 +142,8 @@ class UserResource(Resource):
             required: true
             schema:
               type: object
-              required: [username, email, password, role]
+              required: [email, password, role]
               properties:
-                username:
-                  type: string
                 email:
                   type: string
                 password:
@@ -174,6 +172,7 @@ class UserResource(Resource):
 
         try:
             payload["role"] = UserRole(payload["role"])
+            payload["username"] = payload["email"].split("@")[0]
         except ValueError as exc:
             return {
                 "message": f"Invalid role '{payload.get('role')}'. Allowed roles: {[r.value for r in UserRole]}",

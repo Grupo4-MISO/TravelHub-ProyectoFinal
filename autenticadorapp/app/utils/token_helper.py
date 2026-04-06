@@ -9,6 +9,7 @@ from app.db.models import User
 def generate_token(user):
     payload = {
         "sub": str(user.id),
+        "username": user.username,
         "role": user.role.value,
         "exp": datetime.utcnow() + timedelta(hours=24),
         "iat": datetime.utcnow()
@@ -21,7 +22,6 @@ def generate_token(user):
     )
 
     return token
-
 
 def token_required(f):
     @wraps(f)
