@@ -97,40 +97,7 @@ class Login(Resource):
             }
         }, 200
 
-class UserResource(Resource):
-    @token_required
-    def get(current_user, self, user_id):
-        """
-        Obtener usuario por ID
-        ---
-        tags:
-          - Users
-        parameters:
-          - in: path
-            name: user_id
-            required: true
-            type: string
-            format: uuid
-        security:
-          - Bearer: []
-        responses:
-          200:
-            description: Usuario encontrado
-          404:
-            description: Usuario no encontrado
-        """
-        user = user_crud.get_user_by_id(UUID(user_id))
-
-        if not user:
-            return {"message": "User not found"}, 404
-
-        return {
-            "id": str(user.id),
-            "username": user.username,
-            "email": user.email,
-            "role": user.role.value
-        }, 200
-
+class UserCollectionResource(Resource):
     def post(self):
         """
         Crear usuario
@@ -193,6 +160,40 @@ class UserResource(Resource):
             "email": user.email
         }, 201
 
+class UserDetailResource(Resource):
+    @token_required
+    def get(current_user, self, user_id):
+        """
+        Obtener usuario por ID
+        ---
+        tags:
+          - Users
+        parameters:
+          - in: path
+            name: user_id
+            required: true
+            type: string
+            format: uuid
+        security:
+          - Bearer: []
+        responses:
+          200:
+            description: Usuario encontrado
+          404:
+            description: Usuario no encontrado
+        """
+        user = user_crud.get_user_by_id(UUID(user_id))
+
+        if not user:
+            return {"message": "User not found"}, 404
+
+        return {
+            "id": str(user.id),
+            "username": user.username,
+            "email": user.email,
+            "role": user.role.value
+        }, 200
+
     @token_required
     @roles_required("Administrator", "Manager")
     def put(current_user, self, user_id):
@@ -236,7 +237,6 @@ class UserResource(Resource):
 
         return {"message": "User updated"}, 200
 
-
     @token_required
     @roles_required("Administrator")
     def delete(current_user, self, user_id):
@@ -266,8 +266,22 @@ class UserResource(Resource):
 
         return {"message": "User deleted"}, 200
 
+
 class SeedDB(Resource):
     def post(self):
+        """
+        Ejecutar seed para poblar la base de datos
+        ---
+        tags:
+          - Users
+        security:
+          - Bearer: []
+        responses:
+          200:
+            description: Seed ejecutado correctamente
+          500:
+            description: Error al ejecutar el seed
+        """
         result = SeedHelper.reset_and_seed()
 
         if not result.get('ok'):

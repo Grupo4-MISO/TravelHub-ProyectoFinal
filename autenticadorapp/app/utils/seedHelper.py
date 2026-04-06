@@ -1,4 +1,5 @@
-from app.db.models import UserRole, db, User, UserCrud
+from app.db.models import UserRole, db, User
+from werkzeug.security import generate_password_hash
 
 # ---------------------------------------------------------------------------
 # Datos de cuentas para autenticación base
@@ -112,7 +113,7 @@ class SeedHelper:
                     id = data.get("id"),    
                     username=data["email"].split("@")[0],
                     email=data["email"],
-                    password=data["password"],
+                    password_hash=generate_password_hash(data["password"]),
                     first_name=data.get("first_name"),
                     last_name=data.get("last_name"),
                     is_active = data.get("is_active", True),
