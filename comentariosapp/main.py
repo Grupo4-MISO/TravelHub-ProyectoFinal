@@ -79,11 +79,10 @@ api = Api(app)
 api.add_resource(Health, '/api/v1/Comments/health')
 api.add_resource(CommentResource,
     '/api/v1/Comments/reviews',
-    '/api/v1/Comments/reviews/<string:id>'
 )
 api.add_resource(
     CommentByHospedajeResource,
-    '/api/v1/Comments/reviews/hospedajes/<string:hospedajeId>'
+    '/api/v1/Comments/reviews/hospedajes/<string:id>'
 )
 
 if __name__ == "__main__":

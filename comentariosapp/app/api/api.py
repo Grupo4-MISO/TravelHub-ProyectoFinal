@@ -191,7 +191,7 @@ class CommentResource(Resource):
 
 class CommentByHospedajeResource(Resource):
     @token_required
-    def get(current_user, self, hospedajeId):
+    def get(current_user, self, id):
         """
         Obtener comentarios por ID de hospedaje
         ---
@@ -199,7 +199,7 @@ class CommentByHospedajeResource(Resource):
           - Comments
         parameters:
           - in: path
-            name: hospedajeId
+            name: id
             required: true
             type: string
             format: uuid
@@ -211,7 +211,7 @@ class CommentByHospedajeResource(Resource):
           404:
             description: Comentarios no encontrados
         """
-        reviews = comment_crud.get_all_reviews_by_hospedaje_id(UUID(hospedajeId))
+        reviews = comment_crud.get_all_reviews_by_hospedaje_id(UUID(id))
 
         if not reviews:
             return {"message": "Commentarios no encontrados"}, 404
