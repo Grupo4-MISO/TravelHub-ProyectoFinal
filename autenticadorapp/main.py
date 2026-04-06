@@ -1,7 +1,6 @@
-from app.api.api import Health, Login, UserResource
+from app.api.api import Health, Login, UserResource, SeedUsers
 from flask_restful import Api
 from app.db.models import db
-from app.utils.default_users import create_default_users
 from flask_cors import CORS
 from flask import Flask
 import os
@@ -68,20 +67,19 @@ if not app.config.get('TESTING'):
         #Creamos tablas en la base de datos
         db.init_app(app)
         db.create_all()
-        create_default_users()
 
 #Habilitamos CORS
 CORS(app)
 
 #Registramos la API RESTful
 api = Api(app)
-
 api.add_resource(Health, '/api/v1/auth/health')
 api.add_resource(Login, "/api/v1/auth/login")
 api.add_resource(UserResource, 
     '/api/v1/auth/users', 
     '/api/v1/auth/users/<string:user_id>'
 )
+api.add_resource(SeedUsers, '/api/v1/auth/seed')
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)

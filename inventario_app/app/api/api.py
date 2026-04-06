@@ -26,6 +26,45 @@ class FiltroHabitaciones(Resource):
         response = inventario_CRUD.habitacionesDisponibles(ciudad, capacidad)
 
         return response, 200
+    
+
+class buscarHotel(Resource):
+    #Endpoint para identificar un hotel en inventario(por ahora busca por nombre) 
+    def get(self):
+        nombre_hotel = request.args.get('nombre')
+        hotel = inventario_CRUD.buscarHotel(nombre_hotel)
+        if hotel is None:
+            return {'msg': 'Hotel no encontrado'}, 404
+        
+        response = {
+            'id': str(hotel.id),
+            'nombre': hotel.nombre,
+            'pais': hotel.pais,
+            'ciudad': hotel.ciudad,
+            'direccion': hotel.direccion,
+            'rating': hotel.rating
+        }
+        return response, 200
+
+class HabitacionesporId(Resource):
+    #Retorna las habitaciones, para el dashboard
+    def get(self):
+        id_hotel = request.args.get('id')
+
+        habitaciones = inventario_CRUD.habitacionesporIdHotel(id_hotel)
+        if habitaciones is None:
+            response = []
+        else:
+            response = [
+                {
+                    'habitacion_id': str(habitacion.id),
+                    'precio': habitacion.precio,
+                    'capacidad': habitacion.capacidad,
+                    'descripcion': habitacion.descripcion
+                }
+                for habitacion in habitaciones
+            ]
+        return response, 200
 
 class SeedDB(Resource):
     def post(self):

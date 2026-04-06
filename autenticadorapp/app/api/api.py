@@ -5,9 +5,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from app.db.models import UserRole
 import jwt
 from datetime import datetime, timedelta, timezone
-
 from app.services.user_crud import UserCrud
 from app.utils.token_helper import token_required, roles_required
+from app.utils.seedHelper import SeedHelper
 
 user_crud = UserCrud()
 
@@ -266,3 +266,10 @@ class UserResource(Resource):
 
         return {"message": "User deleted"}, 200
 
+class SeedUsers(Resource):
+    def post(self):
+      try:
+          SeedHelper.create_default_users()
+          return {"message": "Default users created"}, 200
+      except Exception as exc:
+          return {"message": "Error creating default users", "error": str(exc)}, 500
