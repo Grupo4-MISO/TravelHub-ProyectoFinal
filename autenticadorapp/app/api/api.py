@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, timezone
 
 from app.services.user_crud import UserCrud
 from app.utils.token_helper import token_required, roles_required
+from app.utils.seedHelper import SeedHelper
 
 user_crud = UserCrud()
 
@@ -265,3 +266,14 @@ class UserResource(Resource):
 
         return {"message": "User deleted"}, 200
 
+class SeedDB(Resource):
+    def post(self):
+        result = SeedHelper.reset_and_seed()
+
+        if not result.get('ok'):
+            return {'msg': 'Error al ejecutar el seed', 'error': result.get('error')}, 500
+
+        return {
+            'msg': 'Seed ejecutado correctamente',
+            'Usuarios insertados': result['users_insertados'],
+        }, 200
