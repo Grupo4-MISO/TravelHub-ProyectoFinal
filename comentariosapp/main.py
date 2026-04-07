@@ -1,4 +1,4 @@
-from app.api.api import Health, CommentResource, CommentByHospedajeResource
+from app.api.api import Health, CommentResource, CommentByHospedajeResource, SeedDB
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -17,6 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
     "DATABASE_URL",
     "sqlite:///travelhub.db"
 )
+#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'o+jGoFFM5+EZULQUkXUkmxNU9eGSxU89GlCG9hbNSYI='
 app.config['SECRET_KEY'] = app.config['JWT_SECRET_KEY']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -84,6 +85,7 @@ api.add_resource(
     CommentByHospedajeResource,
     '/api/v1/Comments/reviews/hospedajes/<string:id>'
 )
+api.add_resource(SeedDB, '/api/v1/Comments/seed')
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5001, debug=True)
+    app.run(host="127.0.0.1", port=5004, debug=True)

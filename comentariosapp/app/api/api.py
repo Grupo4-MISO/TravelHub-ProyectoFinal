@@ -5,7 +5,8 @@ import jwt
 from datetime import datetime, timedelta, timezone
 
 from app.utils import token_helper
-from comentariosapp.app.services.comment_crud import comment_crud
+from app.services.comment_crud import comment_crud
+from app.utils.seedHelper import SeedHelper
 from app.utils.token_helper import token_required, roles_required
 
 user_crud = ()
@@ -188,7 +189,6 @@ class CommentResource(Resource):
 
         return {"message": "Comment deleted"}, 200
 
-
 class CommentByHospedajeResource(Resource):
     @token_required
     def get(current_user, self, id):
@@ -230,3 +230,28 @@ class CommentByHospedajeResource(Resource):
             ]
         }, 200
 
+class SeedDB(Resource):
+    def post(self):
+        """
+        Ejecutar seed para poblar la base de datos
+        ---
+        tags:
+          - Comments
+        security:
+          - Bearer: []
+        responses:
+          200:
+            description: Seed ejecutado correctamente
+          500:
+            description: Error al ejecutar el seed
+        """
+        result = SeedHelper.reset_and_seed()
+
+        if not result.get('ok'):
+            return {'msg': 'Error al ejecutar el seed', 'error': result.get('error')}, 500
+
+        return {
+            'msg': 'Seed ejecutado correctamente',
+            'Comentarios insertados': result['reviews_insertados'],
+            'Hospedajes procesados': result['hospedajes_procesados']
+        }, 200

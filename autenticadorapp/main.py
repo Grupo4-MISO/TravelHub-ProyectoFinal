@@ -4,7 +4,7 @@ from app.db.models import db
 from flask_cors import CORS
 from flask import Flask
 import os
-from flasgger import Swagger
+from flasgger import Swagger 
 
 #Traemos del ambiente las variables de configuracion
 DATABASE_URL = os.getenv('DATABASE_URL')
@@ -17,6 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
     "DATABASE_URL",
     "sqlite:///travelhub.db"
 )
+#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'o+jGoFFM5+EZULQUkXUkmxNU9eGSxU89GlCG9hbNSYI='
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True

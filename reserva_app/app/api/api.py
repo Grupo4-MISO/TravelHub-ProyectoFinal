@@ -50,6 +50,12 @@ class SeedReservas(Resource):
 
         return response, 200
 
+# Aqui va el post de crear la reserva temporal en redis mientras el cliente 
+# se decide a pagar o no, con un hold de 15 minutos. 
+
+# Aqui va sacar la reserva de redis y crear la reserva definitiva en postgres cuando el usuario se decide a pagar
+# y creamos un registro de transacción con el servicio de pagos
+
 # -----------------------------------------------------------------------
 # Instanciamos el servicio de hold
 # -----------------------------------------------------------------------
