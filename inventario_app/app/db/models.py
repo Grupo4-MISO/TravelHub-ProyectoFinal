@@ -33,6 +33,7 @@ class HabitacionORM(db.Model):
 
     id = db.Column(UUID(as_uuid = True), primary_key = True, default = uuid.uuid4)
     propiedad_id = db.Column(UUID(as_uuid = True), db.ForeignKey('hospedajes.id'), nullable = False)
+    code = db.Column(db.String(50), nullable = False)
     descripcion = db.Column(db.String(255), nullable = False)
     capacidad = db.Column(db.Integer, nullable = False)
     precio = db.Column(db.Float, nullable = False)

@@ -10,6 +10,7 @@ class InventarioCRUD:
             #Definimos la consulta para obtener habitaciones disponibles
             query = self.db.query(
                 HabitacionORM.id.label('habitacion_id'),
+                HabitacionORM.code,
                 HabitacionORM.precio,
                 HabitacionORM.capacidad,
                 HabitacionORM.descripcion,
@@ -18,7 +19,8 @@ class InventarioCRUD:
                 HospedajeORM.pais,
                 HospedajeORM.ciudad,
                 HospedajeORM.direccion,
-                HospedajeORM.rating
+                HospedajeORM.rating,
+                HospedajeORM.reviews,
             ).join(HospedajeORM, HabitacionORM.propiedad_id == HospedajeORM.id)
 
             #Aplicamos filtros de ciudad y capacidad
@@ -36,11 +38,13 @@ class InventarioCRUD:
                 {
                     'habitacion_id': str(campo.habitacion_id),
                     'hospedaje_id': str(campo.hospedaje_id),
+                    'code': campo.code,
                     'nombre': campo.nombre,
                     'pais': campo.pais,
                     'ciudad': campo.ciudad,
                     'direccion': campo.direccion,
                     'rating': campo.rating,
+                    'reviews': campo.reviews,
                     'capacidad': campo.capacidad,
                     'precio': campo.precio,
                     'descripcion': campo.descripcion

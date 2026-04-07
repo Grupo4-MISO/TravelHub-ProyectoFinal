@@ -2,6 +2,7 @@ import uuid
 import random
 
 from app.db.models import db, AmenidadORM, HabitacionORM, HospedajeORM, Hospedaje_AmenidadORM
+from sqlalchemy import text
 
 AMENIDADES_SEED = [
     { "id" : "d329c0e8-42e6-40c8-8cf7-4e4e309f537c", "name" : "WiFi", "icon" : "IconWiFi" },
@@ -958,6 +959,26 @@ class SeedHelper:
     """Herramienta para poblar y restablecer las tablas de hospedajes, habitaciones y amenidades."""
 
     @staticmethod
+    def _ensure_habitaciones_code_column():
+        """
+        Asegura que la columna code exista en SQLite antes del seed.
+        Esto corrige bases locales creadas con un esquema anterior.
+        """
+        uri = str(db.engine.url)
+
+        if not uri.startswith("sqlite"):
+            return
+
+        columns = db.session.execute(text("PRAGMA table_info(habitaciones)"))
+        column_names = {row[1] for row in columns}
+
+        if "code" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE habitaciones ADD COLUMN code VARCHAR(50) NOT NULL DEFAULT ''")
+            )
+            db.session.commit()
+
+    @staticmethod
     def reset_and_seed():   
         """
         Elimina todos los registros existentes de habitaciones, hospedajes,
@@ -967,6 +988,8 @@ class SeedHelper:
             dict con el resumen de registros insertados o un mensaje de error.
         """
         try:
+            SeedHelper._ensure_habitaciones_code_column()
+
             # Primero borramos habitaciones por la FK
             HabitacionORM.query.delete()
             Hospedaje_AmenidadORM.query.delete()
@@ -999,6 +1022,7 @@ class SeedHelper:
                     ciudad=data["ciudad"],
                     direccion=data["direccion"],
                     rating=data["rating"],
+                    reviews=data["reviews"],
                 )
                 db.session.add(hospedaje)
                 db.session.flush()  # Obtenemos el id antes del commit
