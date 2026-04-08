@@ -41,5 +41,5 @@ class ReservaCRUD:
 
         except Exception as e:
             self.db.rollback()
-            return DatababaseError(f"Error al verificar disponibilidad: {str(e)}")
+            raise DatababaseError(f"Error al verificar disponibilidad: {str(e)}")
         

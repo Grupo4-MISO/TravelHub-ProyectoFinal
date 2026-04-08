@@ -26,6 +26,13 @@ class FiltroHabitaciones(Resource):
         response = inventario_CRUD.habitacionesDisponibles(ciudad, capacidad)
 
         return response, 200
+    
+class ListadoCiudades(Resource):
+    def get(self):
+        #Traemos el listado de ciudades disponibles en el inventario
+        ciudades = inventario_CRUD.listadoCiudades()
+
+        return ciudades, 200
 
 class SeedDB(Resource):
     def post(self):

@@ -1,4 +1,4 @@
-from app.api.api import InventarioHealth, FiltroHabitaciones, SeedDB
+from app.api.api import InventarioHealth, FiltroHabitaciones, SeedDB, ListadoCiudades
 from app.errors.handlers import ErrorHandler
 from flask_restful import Api
 from app.db.models import db
@@ -40,3 +40,4 @@ api = Api(app)
 api.add_resource(InventarioHealth, '/api/v1/inventarios/health')
 api.add_resource(FiltroHabitaciones, '/api/v1/inventarios/filtro')
 api.add_resource(SeedDB, '/api/v1/inventarios/seed')
+api.add_resource(ListadoCiudades, '/api/v1/inventarios/ciudades')

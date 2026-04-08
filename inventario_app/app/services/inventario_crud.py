@@ -4,7 +4,18 @@ from app.errors.exceptions import DatababaseError
 class InventarioCRUD:
     def __init__(self):
         self.db = db.session
-    
+
+    def listadoCiudades(self):
+        try:
+            #Query de consulta
+            query = self.db.query(HospedajeORM.ciudad).distinct().all()
+            
+            return [ciudad[0] for ciudad in query]
+
+        except Exception as e:
+            self.db.rollback()
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
+        
     def habitacionesDisponibles(self, ciudad, capacidad):
         try:
             #Definimos la consulta para obtener habitaciones disponibles
@@ -52,6 +63,6 @@ class InventarioCRUD:
     
         except Exception as e:
             self.db.rollback()
-            return DatababaseError(f"Error en la base de datos: {str(e)}")
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
 
 
