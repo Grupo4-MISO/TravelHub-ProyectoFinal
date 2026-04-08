@@ -32,6 +32,9 @@ class ListadoCiudades(Resource):
         #Traemos el listado de ciudades disponibles en el inventario
         ciudades = inventario_CRUD.listadoCiudades()
 
+        #Ordenamos el listado de ciudades
+        ciudades = InventarioHelper.ordenarCiudades(ciudades)  
+
         return ciudades, 200
 
 class SeedDB(Resource):
