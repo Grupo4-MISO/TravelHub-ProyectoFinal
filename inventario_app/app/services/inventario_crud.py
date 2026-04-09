@@ -5,6 +5,17 @@ class InventarioCRUD:
     def __init__(self):
         self.db = db.session
 
+    def listadoPaises(self):
+        try:
+            #Query de consulta
+            query = self.db.query(HospedajeORM.pais).distinct().all()
+
+            return sorted([pais[0] for pais in query])
+        
+        except Exception as e:
+            self.db.rollback()
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
+
     def listadoCiudades(self):
         try:
             #Query de consulta

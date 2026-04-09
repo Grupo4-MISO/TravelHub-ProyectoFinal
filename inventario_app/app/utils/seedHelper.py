@@ -48,9 +48,9 @@ HOSPEDAJES_SEED = [
     },
     {
         "nombre": "Hotel B.O.G",
-        "pais": "Colombia",
-        "ciudad": "Bogota",
-        "direccion": "Calle 11 # 4-16, La Candelaria, Bogota",
+        "pais": "Argentina",
+        "ciudad": "Buenos Aires",
+        "direccion": "Calle 11 # 4-16, La Candelaria, Buenos Aires",
         "rating": 4.6,
         "habitaciones": [
             {"descripcion": "Habitación Urban",      "capacidad": 2, "precio": 410000.0},

@@ -31,8 +31,15 @@ class ListadoCiudades(Resource):
     def get(self):
         #Traemos el listado de ciudades disponibles en el inventario
         ciudades = inventario_CRUD.listadoCiudades()
-        
+
         return ciudades, 200
+
+class ListadoPaises(Resource):
+    def get(self):
+        #Traemos el listado de paises disponibles en el inventario
+        paises = inventario_CRUD.listadoPaises()
+
+        return paises, 200
 
 class SeedDB(Resource):
     def post(self):
