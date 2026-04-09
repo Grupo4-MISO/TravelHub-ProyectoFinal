@@ -10,11 +10,11 @@ def test_listado_ciudades(mocker):
     client = app.test_client()
 
     #Mockeamos la respuesta del CRUD
-    ciudades = {
-        "Barranquilla": "Colombia",
-        "Cali": "Colombia",
-        "Medellin": "Colombia"
-    }
+    ciudades = [
+        {'ciudad': 'Barranquilla', 'pais': 'Colombia'},
+        {'ciudad': 'Cartagena', 'pais': 'Colombia'},
+        {'ciudad': 'Medellín', 'pais': 'Colombia'},
+    ]
     mocker.patch('app.services.inventario_crud.InventarioCRUD.listadoCiudades', return_value = ciudades)
 
     #Hacemos peticion GET
@@ -23,4 +23,4 @@ def test_listado_ciudades(mocker):
     assert response.status_code == 200
     assert response.get_json() == ciudades
     assert len(response.get_json()) == len(ciudades)
-    assert 'Barranquilla' in response.get_json()
+    assert {'ciudad': 'Barranquilla', 'pais': 'Colombia'} in response.get_json()

@@ -9,9 +9,15 @@ class InventarioCRUD:
         try:
             #Query de consulta
             query = self.db.query(HospedajeORM.ciudad, HospedajeORM.pais).distinct().all()
-            
-            return {ciudad: pais for ciudad, pais in query}
 
+            #Construimos respuesta
+            ciudades = list()
+
+            for ciudad, pais in query:
+                ciudades.append({'ciudad': ciudad, 'pais': pais})
+            
+            return ciudades
+            
         except Exception as e:
             self.db.rollback()
             raise DatababaseError(f"Error en la base de datos: {str(e)}")
