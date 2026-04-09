@@ -8,9 +8,9 @@ class InventarioCRUD:
     def listadoCiudades(self):
         try:
             #Query de consulta
-            query = self.db.query(HospedajeORM.ciudad).distinct().all()
+            query = self.db.query(HospedajeORM.ciudad, HospedajeORM.pais).distinct().all()
             
-            return [ciudad[0] for ciudad in query]
+            return {ciudad: pais for ciudad, pais in query}
 
         except Exception as e:
             self.db.rollback()

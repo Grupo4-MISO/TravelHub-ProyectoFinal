@@ -30,7 +30,3 @@ class InventarioHelper:
             raise BadRequestError('El campo capacidad debe ser un número entero positivo')
 
         return capacidad
-
-    @staticmethod
-    def ordenarCiudades(ciudades):
-        return sorted(ciudades)
