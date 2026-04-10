@@ -6,8 +6,9 @@ class ManagerCrud:
 
     def create_manager(self, data: dict):
         try:
+            raw_hospedaje_id = data.get("hospedajeId")
             manager = Manager(
-                hospedajeId=UUID(str(data.get("hospedajeId"))),
+                hospedajeId=UUID(str(raw_hospedaje_id)) if raw_hospedaje_id else None,
                 userId=UUID(str(data.get("userId"))),
                 userName=data.get("userName"),
                 email=data.get("email"),

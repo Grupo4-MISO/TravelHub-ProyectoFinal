@@ -117,32 +117,55 @@ def test_create_manager_ok(client, monkeypatch):
     user_id = uuid4()
     manager = make_manager(hospedaje_id=hospedaje_id, user_id=user_id, username="marco")
 
+    monkeypatch.setattr(
+        api_module.AsyncUserService,
+        "validate_user_creation_data",
+        lambda email, password, first_name, last_name: (True, None),
+    )
+    monkeypatch.setattr(
+        api_module.AsyncUserService,
+        "create_user_in_auth_service",
+        lambda email, password, first_name, last_name, role="Manager": (
+            {
+                "id": str(user_id),
+                "username": "marco",
+                "email": "marco@example.com",
+            },
+            None,
+        ),
+    )
     monkeypatch.setattr(api_module.manager_crud, "create_manager", lambda data: manager)
 
     resp = client.post(
         "/api/v1/Managers",
         json={
             "hospedajeId": str(hospedaje_id),
-            "userName": "marco",
-            "userId": str(user_id),
             "email": "marco@example.com",
+            "password": "Pass12345",
             "first_name": "Marco",
             "last_name": "User",
         },
-        headers=auth_headers(user_id=user_id, username="marco"),
     )
 
     assert resp.status_code == 201
     assert resp.get_json() == {
-        "id": str(manager.id),
-        "hospedajeId": str(manager.hospedajeId),
-        "userName": manager.userName,
-        "userId": str(manager.userId),
-        "email": manager.email,
-        "first_name": manager.first_name,
-        "last_name": manager.last_name,
-        "created_at": manager.created_at.isoformat(),
-        "updated_at": manager.updated_at.isoformat(),
+        "message": "Manager y usuario creados exitosamente",
+        "manager": {
+            "id": str(manager.id),
+            "hospedajeId": str(manager.hospedajeId),
+            "userName": manager.userName,
+            "userId": str(manager.userId),
+            "email": manager.email,
+            "first_name": manager.first_name,
+            "last_name": manager.last_name,
+            "created_at": manager.created_at.isoformat(),
+            "updated_at": manager.updated_at.isoformat(),
+        },
+        "user": {
+            "id": str(user_id),
+            "username": "marco",
+            "email": "marco@example.com",
+        },
     }
 
 

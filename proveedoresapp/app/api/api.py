@@ -15,7 +15,7 @@ async_user_service = AsyncUserService()
 def _serialize_manager(manager):
   return {
     "id": str(manager.id),
-    "hospedajeId": str(manager.hospedajeId),
+    "hospedajeId": str(manager.hospedajeId) if manager.hospedajeId else None,
     "userId": str(manager.userId),
     "userName": manager.userName,
     "email": manager.email,
@@ -57,11 +57,12 @@ class ManagerResource(Resource):
             required: true
             schema:
               type: object
-              required: [hospedajeId, first_name, last_name, email, password]
+              required: [first_name, last_name, email, password]
               properties:
                 hospedajeId:
                   type: string
                   format: uuid
+                  nullable: true
                 password:
                   type: string
                   minLength: 8
@@ -104,7 +105,7 @@ class ManagerResource(Resource):
         payload = request.get_json()
         
         # Validar datos requeridos
-        required_fields = ["hospedajeId", "first_name", "last_name", "email", "password"]
+        required_fields = ["first_name", "last_name", "email", "password"]
         missing_fields = [field for field in required_fields if not payload.get(field)]
         
         if missing_fields:

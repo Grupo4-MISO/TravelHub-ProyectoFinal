@@ -11,7 +11,7 @@ class Manager(db.Model):
 
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
-    hospedajeId = db.Column(UUID(as_uuid=True), nullable=False)
+    hospedajeId = db.Column(UUID(as_uuid=True), nullable=True)
 
     userId = db.Column(UUID(as_uuid=True), default=uuid.uuid4)
 

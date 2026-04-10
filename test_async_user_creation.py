@@ -40,6 +40,9 @@ def test_create_admin_user():
     if response.status_code == 201:
         print("\n✓ Usuario administrador creado exitosamente")
         return response.json()
+    elif response.status_code == 409:
+        print("\n✓ Usuario administrador ya existe, se continúa con login")
+        return {"email": "admin@travelhub.com"}
     else:
         print("\n✗ Error al crear usuario administrador")
         return None
@@ -86,6 +89,7 @@ def test_create_manager(token):
     data = {
         "hospedajeId": str(uuid4()),
         "email": unique_email,
+        "password": "Pass12345",
         "first_name": "Juan",
         "last_name": "Pérez"
     }
@@ -152,6 +156,7 @@ def test_duplicate_email(token):
     data = {
         "hospedajeId": str(uuid4()),
         "email": "admin@travelhub.com",  # Email que ya existe
+        "password": "Pass12345",
         "first_name": "Carlos",
         "last_name": "García"
     }
