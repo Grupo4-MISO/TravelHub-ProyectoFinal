@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: inventarios-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/inventarios-app:v4.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/inventarios-app:v5.0.0
         ports:
         - containerPort: 3000
         env:

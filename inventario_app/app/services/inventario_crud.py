@@ -1,6 +1,6 @@
 import uuid
 from app.utils.helper import InventarioHelper
-from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM
+from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM, Hospedaje_ImagenORM
 from app.errors.exceptions import DatababaseError
 
 class InventarioCRUD:
@@ -172,9 +172,11 @@ class InventarioCRUD:
                 HospedajeORM.direccion,
                 HospedajeORM.rating,
                 HospedajeORM.reviews,
-                CountryORM.CurrencyCode.label('currency_code')
+                CountryORM.CurrencyCode.label('currency_code'),
+                Hospedaje_ImagenORM.url.label('image_url')
             ).join(HospedajeORM, HabitacionORM.propiedad_id == HospedajeORM.id)\
-            .join(CountryORM, HospedajeORM.countryCode == CountryORM.code)
+            .join(CountryORM, HospedajeORM.countryCode == CountryORM.code)\
+            .join(Hospedaje_ImagenORM, HospedajeORM.id == Hospedaje_ImagenORM.hospedaje_id)
 
             #Aplicamos filtros de ciudad y capacidad
             if ciudad:
@@ -202,6 +204,7 @@ class InventarioCRUD:
                     'precio': campo.precio,
                     'descripcion': campo.descripcion,
                     'currency_code': campo.currency_code,
+                    'image_url': campo.image_url,
                 }
                 for campo in resultados
             ]
