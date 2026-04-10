@@ -1,4 +1,4 @@
-from app.api.api import ReservaHealth, VerificarDisponibilidad, SeedReservas
+from app.api.api import ReservaHealth, VerificarDisponibilidad, SeedReservas, HoldReserva
 from app.errors.handlers import ErrorHandler
 from app.db.models import db
 from flask_restful import Api
@@ -8,7 +8,7 @@ from flask import Flask
 import os
 
 #Traemos del ambiente las variables de configuracion
-DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASE_URL = os.getenv('DATABASE_URL') 
 
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
@@ -17,7 +17,11 @@ app = Flask(__name__)
 ErrorHandler.errors(app)
 
 #Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+    "DATABASE_URL",
+    "sqlite:///travelhub.db"
+)
+#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'supersecretkey'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -25,6 +29,7 @@ app.config['JWT_TOKEN_LOCATION'] = ['headers']
 app.config['JWT_HEADER_NAME'] = 'Authorization'
 app.config['JWT_HEADER_TYPE'] = 'Bearer'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600
+app.config['HOLD_TTL_SECONDS'] = os.getenv('HOLD_TTL_SECONDS', 900)
 
 #Inicializamos la base de datos
 if not app.config.get('TESTING'):
@@ -41,3 +46,4 @@ api = Api(app)
 api.add_resource(ReservaHealth, '/api/v1/reservas/health')
 api.add_resource(VerificarDisponibilidad, '/api/v1/reservas/disponibilidad')
 api.add_resource(SeedReservas, '/api/v1/reservas/seed/<int:cantidad>')
+api.add_resource(HoldReserva, '/api/v1/reservas/hold')

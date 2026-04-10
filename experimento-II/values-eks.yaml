@@ -1,0 +1,35 @@
+prometheus:
+  prometheusSpec:
+    # Desactiva el volumen persistente y usa almacenamiento temporal
+    storageSpec:
+      emptyDir:
+        medium: "" 
+    # Mantenemos esto para que lea tus PrometheusRule de cualquier namespace
+    ruleSelectorNilUsesHelmValues: false
+
+alertmanager:
+  alertmanagerSpec:
+    # También desactivamos el volumen para Alertmanager
+    storageSpec:
+      emptyDir:
+        medium: ""
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      group_by: ['alertname']
+      group_wait: 30s
+      group_interval: 1m
+      repeat_interval: 12h
+      receiver: 'slack-notifications'
+    receivers:
+    - name: 'slack-notifications'
+      slack_configs:
+      - api_url: ''
+        channel: '#travel-hub'
+        send_resolved: true
+    - name: 'null'
+    routes:
+    - receiver: 'slack-notifications'
+      matchers:
+        - severity="critical"

@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: observabilidad-alerts-final
+  namespace: monitoring
+  labels:
+    release: my-prometheus
+spec:
+  groups:
+  - name: app-alerts
+    rules:
+    - alert: AppDown
+      expr: kube_deployment_status_replicas_available{deployment="k8s-observability-experiment"} == 0 or absent(kube_deployment_status_replicas_available{deployment="k8s-observability-experiment"})
+      for: 30s
+      labels:
+        severity: critical
+      annotations:
+        summary: "La aplicación observabilidad no está disponible"
