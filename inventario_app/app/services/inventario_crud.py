@@ -4,6 +4,38 @@ from app.errors.exceptions import DatababaseError
 class InventarioCRUD:
     def __init__(self):
         self.db = db.session
+
+    def crear_hospedaje(self, data):
+        try:
+            hospedaje = HospedajeORM(
+                nombre=data.get('nombre'),
+                countryCode=data.get('countryCode'),
+                pais=data.get('pais'),
+                ciudad=data.get('ciudad'),
+                direccion=data.get('direccion'),
+                rating=float(data.get('rating')),
+                reviews=int(data.get('reviews')),
+            )
+
+            self.db.add(hospedaje)
+            self.db.commit()
+
+            return {
+                'id': str(hospedaje.id),
+                'nombre': hospedaje.nombre,
+                'countryCode': hospedaje.countryCode,
+                'pais': hospedaje.pais,
+                'ciudad': hospedaje.ciudad,
+                'direccion': hospedaje.direccion,
+                'rating': hospedaje.rating,
+                'reviews': hospedaje.reviews,
+                'created_at': hospedaje.created_at.isoformat() if hasattr(hospedaje.created_at, 'isoformat') else hospedaje.created_at,
+                'updated_at': hospedaje.updated_at.isoformat() if hasattr(hospedaje.updated_at, 'isoformat') else hospedaje.updated_at,
+            }
+
+        except Exception as e:
+            self.db.rollback()
+            return DatababaseError(f"Error en la base de datos: {str(e)}")
     
     def habitacionesDisponibles(self, ciudad, capacidad):
         try:

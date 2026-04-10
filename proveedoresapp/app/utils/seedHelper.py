@@ -104,7 +104,8 @@ class SeedHelper:
 
             # Recorrer cada manager
             for manager in MANAGERS_FALLBACK:
-                manager_id = uuid.UUID(manager["id"])
+                raw_manager_id = manager.get("id")
+                manager_id = raw_manager_id if isinstance(raw_manager_id, uuid.UUID) else uuid.UUID(str(raw_manager_id))
 
                 # Seleccionar aleatoriamente 1 hospedaje para el manager
                 num_hospedaje = random.randint(1, 1)
@@ -121,7 +122,7 @@ class SeedHelper:
                 # Crear el Manager
                 manager_obj = Manager(
                     id=uuid.uuid4(),
-                    hospedajeId=hospedajes_seleccionados[0]["id"],
+                    hospedajeId=uuid.UUID(str(hospedajes_seleccionados[0]["id"])),
                     userId=manager_id,
                     userName=user_name,
                     email = manager.get('email'),

@@ -45,8 +45,7 @@ class Health(Resource):
         return {'status': 'healthy'}, 200
 
 class ManagerResource(Resource):
-    @token_required
-    def post(current_user, self):
+    def post(self):
         """
         Crear manager con usuario en autenticadorapp
         ---
@@ -58,11 +57,14 @@ class ManagerResource(Resource):
             required: true
             schema:
               type: object
-              required: [hospedajeId, first_name, last_name, email]
+              required: [hospedajeId, first_name, last_name, email, password]
               properties:
                 hospedajeId:
                   type: string
                   format: uuid
+                password:
+                  type: string
+                  minLength: 8
                 first_name:
                   type: string
                   example: Juan
@@ -102,7 +104,7 @@ class ManagerResource(Resource):
         payload = request.get_json()
         
         # Validar datos requeridos
-        required_fields = ["hospedajeId", "first_name", "last_name", "email"]
+        required_fields = ["hospedajeId", "first_name", "last_name", "email", "password"]
         missing_fields = [field for field in required_fields if not payload.get(field)]
         
         if missing_fields:
@@ -113,6 +115,7 @@ class ManagerResource(Resource):
         # Validar datos del usuario
         is_valid, validation_error = AsyncUserService.validate_user_creation_data(
             email=payload.get("email"),
+          password=payload.get("password"),
             first_name=payload.get("first_name"),
             last_name=payload.get("last_name")
         )
@@ -123,6 +126,7 @@ class ManagerResource(Resource):
         # Crear usuario en autenticadorapp de forma asincrónica
         user_data, user_error = AsyncUserService.create_user_in_auth_service(
             email=payload.get("email"),
+          password=payload.get("password"),
             first_name=payload.get("first_name"),
             last_name=payload.get("last_name"),
             role="Manager"
@@ -154,7 +158,6 @@ class ManagerResource(Resource):
             "manager": _serialize_manager(manager),
             "user": user_data
         }, 201
-
 
 class ManagerResourceById(Resource):
     @token_required

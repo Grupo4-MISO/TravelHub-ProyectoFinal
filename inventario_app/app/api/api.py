@@ -1,6 +1,7 @@
 from app.services.inventario_crud import InventarioCRUD, CountriesCRUD
 from app.utils.helper import InventarioHelper
 from app.utils.seedHelper import SeedHelper
+from app.errors.exceptions import BadRequestError, DatababaseError
 from flask_restful import Resource
 from flask import request
 from flasgger import swag_from
@@ -46,7 +47,6 @@ class CountryList(Resource):
                 """Obtener lista de países."""
                 countries = countries_CRUD.obtener_paises()
                 return countries, 200
-
 
 class PopularCitiesByCountry(Resource):
         @swag_from({
@@ -108,7 +108,6 @@ class InventarioHealth(Resource):
                 """Health check del servicio de inventario."""
                 return {'status': 'healthy'}, 200
 
-
 class FiltroHabitaciones(Resource):
         @swag_from({
                 'tags': ['Inventario'],
@@ -144,7 +143,6 @@ class FiltroHabitaciones(Resource):
                 response = inventario_CRUD.habitacionesDisponibles(ciudad, capacidad)
 
                 return response, 200
-
 
 class SeedDB(Resource):
         @swag_from({
@@ -187,4 +185,66 @@ class SeedDB(Resource):
                         'hospedajes_insertados': result['hospedajes_insertados'],
                         'habitaciones_insertadas': result['habitaciones_insertadas'],
                 }, 200
+
+
+class HospedajeCollection(Resource):
+        @swag_from({
+                'tags': ['Hospedajes'],
+                'parameters': [
+                        {
+                                'in': 'body',
+                                'name': 'body',
+                                'required': True,
+                                'schema': {
+                                        'type': 'object',
+                                        'required': ['nombre', 'countryCode', 'pais', 'ciudad', 'direccion', 'rating', 'reviews'],
+                                        'properties': {
+                                                'nombre': {'type': 'string', 'example': 'Hotel Andino'},
+                                                'countryCode': {'type': 'string', 'example': 'CO'},
+                                                'pais': {'type': 'string', 'example': 'Colombia'},
+                                                'ciudad': {'type': 'string', 'example': 'Bogotá'},
+                                                'direccion': {'type': 'string', 'example': 'Calle 123 #45-67'},
+                                                'rating': {'type': 'number', 'format': 'float', 'example': 4.5},
+                                                'reviews': {'type': 'integer', 'example': 120},
+                                        }
+                                }
+                        }
+                ],
+                'responses': {
+                        201: {'description': 'Hospedaje creado exitosamente'},
+                        400: {'description': 'Datos inválidos'},
+                        500: {'description': 'Error en la base de datos'}
+                }
+        })
+        def post(self):
+                """Crear un hospedaje."""
+                payload = request.get_json() or {}
+
+                required_fields = ['nombre', 'countryCode', 'pais', 'ciudad', 'direccion', 'rating', 'reviews']
+                missing_fields = [field for field in required_fields if payload.get(field) in [None, '']]
+                if missing_fields:
+                        raise BadRequestError(f"Faltan campos requeridos: {', '.join(missing_fields)}")
+
+                try:
+                        rating = float(payload.get('rating'))
+                        reviews = int(payload.get('reviews'))
+                except (TypeError, ValueError):
+                        raise BadRequestError('Los campos rating y reviews deben ser numéricos válidos')
+
+                if rating < 0 or rating > 5:
+                        raise BadRequestError('El campo rating debe estar entre 0 y 5')
+
+                if reviews < 0:
+                        raise BadRequestError('El campo reviews debe ser un número entero mayor o igual a 0')
+
+                payload['countryCode'] = str(payload.get('countryCode')).upper().strip()
+                payload['rating'] = rating
+                payload['reviews'] = reviews
+
+                created = inventario_CRUD.crear_hospedaje(payload)
+
+                if isinstance(created, DatababaseError):
+                        return {'msg': created.message}, 500
+
+                return created, 201
 

@@ -1,5 +1,4 @@
 import requests
-import secrets
 from typing import Optional, Dict, Tuple
 
 # URL base del servicio de autenticación
@@ -14,6 +13,7 @@ class AsyncUserService:
     @staticmethod
     def create_user_in_auth_service(
         email: str,
+        password: str,
         first_name: str,
         last_name: str,
         role: str = "Manager"
@@ -23,6 +23,7 @@ class AsyncUserService:
         
         Args:
             email (str): Email del usuario
+            password (str): Password del usuario
             first_name (str): Nombre del usuario
             last_name (str): Apellido del usuario
             role (str): Rol del usuario (default: Manager)
@@ -35,6 +36,7 @@ class AsyncUserService:
         Ejemplo:
             user_data, error = AsyncUserService.create_user_in_auth_service(
                 email="manager@example.com",
+                password="supersecreto123",
                 first_name="Juan",
                 last_name="Pérez"
             )
@@ -44,13 +46,10 @@ class AsyncUserService:
                 user_id = user_data["id"]
         """
         try:
-            # Generar una contraseña temporal segura
-            temporary_password = secrets.token_urlsafe(16)
-            
             # Preparar el payload
             payload = {
                 "email": email,
-                "password": temporary_password,
+                "password": password,
                 "role": role,
                 "first_name": first_name,
                 "last_name": last_name
@@ -100,6 +99,7 @@ class AsyncUserService:
     @staticmethod
     def validate_user_creation_data(
         email: str,
+        password: str,
         first_name: str,
         last_name: str
     ) -> Tuple[bool, Optional[str]]:
@@ -108,6 +108,7 @@ class AsyncUserService:
         
         Args:
             email (str): Email del usuario
+            password (str): Password del usuario
             first_name (str): Nombre del usuario
             last_name (str): Apellido del usuario
         
@@ -116,6 +117,9 @@ class AsyncUserService:
         """
         if not email or "@" not in email:
             return False, "Email inválido"
+
+        if not password or len(password) < 8:
+            return False, "El password es requerido y debe tener al menos 8 caracteres"
         
         if not first_name or len(first_name.strip()) == 0:
             return False, "El nombre es requerido"
