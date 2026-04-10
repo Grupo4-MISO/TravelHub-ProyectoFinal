@@ -116,7 +116,7 @@ class ManagerResource(Resource):
         # Validar datos del usuario
         is_valid, validation_error = AsyncUserService.validate_user_creation_data(
             email=payload.get("email"),
-          password=payload.get("password"),
+            password=payload.get("password"), 
             first_name=payload.get("first_name"),
             last_name=payload.get("last_name")
         )
