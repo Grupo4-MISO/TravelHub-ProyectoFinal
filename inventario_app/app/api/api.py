@@ -186,7 +186,6 @@ class SeedDB(Resource):
                         'habitaciones_insertadas': result['habitaciones_insertadas'],
                 }, 200
 
-
 class HospedajeCollection(Resource):
         @swag_from({
                 'tags': ['Hospedajes'],
