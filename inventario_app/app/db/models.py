@@ -17,6 +17,7 @@ class HospedajeORM(db.Model):
 
     id = db.Column(UUID(as_uuid = True), primary_key = True, default = uuid.uuid4)
     nombre = db.Column(db.String(255), nullable = False)
+    countryCode = db.Column(db.String(10), nullable = False)
     pais = db.Column(db.String(255), nullable = False)
     ciudad = db.Column(db.String(255), nullable = False)
     direccion = db.Column(db.String(255), nullable = False)
@@ -26,7 +27,6 @@ class HospedajeORM(db.Model):
     updated_at = db.Column(db.DateTime, nullable = False, default = db.func.current_timestamp(), onupdate = db.func.current_timestamp())
     habitaciones = db.relationship('HabitacionORM', backref = 'hospedaje', lazy = True)
     amenidades = db.relationship('AmenidadORM', secondary = 'hospedajes_amenidades', back_populates = 'hospedajes', lazy = True)
-
 
 class HabitacionORM(db.Model):
     __tablename__ = 'habitaciones'
@@ -49,3 +49,16 @@ class AmenidadORM(db.Model):
     created_at = db.Column(db.DateTime, nullable = False, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable = False, default = db.func.current_timestamp(), onupdate = db.func.current_timestamp())
     hospedajes = db.relationship('HospedajeORM', secondary = 'hospedajes_amenidades', back_populates = 'amenidades', lazy = True)
+
+class CountryORM(db.Model):
+    __tablename__ = 'countries'
+
+    id = db.Column(UUID(as_uuid = True), primary_key = True, default = uuid.uuid4)
+    name = db.Column(db.String(100), nullable = False)
+    code = db.Column(db.String(10), nullable = False)
+    CurrencyCode = db.Column(db.String(10), nullable = False)
+    CurrencySymbol = db.Column(db.String(10), nullable = False)
+    FlagEmoji = db.Column(db.String(10), nullable = False)
+    PhoneCode = db.Column(db.String(10), nullable = False)
+    created_at = db.Column(db.DateTime, nullable = False, default = db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, nullable = False, default = db.func.current_timestamp(), onupdate = db.func.current_timestamp())

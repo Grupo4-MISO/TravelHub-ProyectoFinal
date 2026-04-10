@@ -1,4 +1,4 @@
-from app.services.inventario_crud import InventarioCRUD
+from app.services.inventario_crud import InventarioCRUD, CountriesCRUD
 from app.utils.helper import InventarioHelper
 from app.utils.seedHelper import SeedHelper
 from flask_restful import Resource
@@ -7,8 +7,88 @@ from flasgger import swag_from
 
 # Inicializamos el CRUD
 inventario_CRUD = InventarioCRUD()
+countries_CRUD = CountriesCRUD()
+
+POPULAR_CITIES_BY_COUNTRY = {
+        "CO": ["Cartagena", "Bogotá", "Medellín", "Cali", "Santa Marta", "San Andrés", "Eje Cafetero", "Villa de Leyva"],
+        "PE": ["Lima", "Cusco", "Arequipa", "Puno", "Trujillo", "Máncora", "Paracas", "Iquitos"],
+        "EC": ["Quito", "Guayaquil", "Cuenca", "Galápagos", "Montañita", "Baños", "Manta", "Otavalo"],
+        "MX": ["Ciudad de México", "Cancún", "Playa del Carmen", "Guadalajara", "Puerto Vallarta", "Oaxaca", "Tulum", "Los Cabos"],
+        "CL": ["Santiago", "Valparaíso", "Viña del Mar", "Puerto Varas", "San Pedro de Atacama", "Punta Arenas", "La Serena", "Concepción"],
+        "AR": ["Buenos Aires", "Mendoza", "Bariloche", "Córdoba", "Salta", "Puerto Madryn", "Ushuaia", "Mar del Plata"],
+}
+
+class CountryList(Resource):
+        @swag_from({
+                'tags': ['Countries'],
+                'responses': {
+                        200: {
+                                'description': 'Lista de países',
+                                'schema': {
+                                        'type': 'array',
+                                        'items': {
+                                                'type': 'object',
+                                                'properties': {
+                                                        'id': {'type': 'string', 'example': '123e4567-e89b-12d3-a456-426614174000'},
+                                                        'name': {'type': 'string', 'example': 'Argentina'},
+                                                        'code': {'type': 'string', 'example': 'AR'},
+                                                        'CurrencyCode': {'type': 'string', 'example': 'ARS'},
+                                                        'CurrencySymbol': {'type': 'string', 'example': '$'},
+                                                        'FlagEmoji': {'type': 'string', 'example': '🇦🇷'},
+                                                        'PhoneCode': {'type': 'string', 'example': '+54'},
+                                                }
+                                        }
+                                }
+                        }
+                }
+        })
+        def get(self):
+                """Obtener lista de países."""
+                countries = countries_CRUD.obtener_paises()
+                return countries, 200
 
 
+class PopularCitiesByCountry(Resource):
+        @swag_from({
+                'tags': ['Countries'],
+                'parameters': [
+                        {
+                                'name': 'code',
+                                'in': 'path',
+                                'type': 'string',
+                                'required': True,
+                                'description': 'Código del país (ejemplo: CO, PE, EC, MX, CL, AR)',
+                        },
+                ],
+                'responses': {
+                        200: {
+                                'description': 'Ciudades populares del país consultado',
+                                'schema': {
+                                        'type': 'array',
+                                        'items': {'type': 'string'},
+                                        'example': ['Cartagena', 'Bogotá', 'Medellín', 'Cali', 'Santa Marta', 'San Andrés', 'Eje Cafetero', 'Villa de Leyva']
+                                }
+                        },
+                        400: {
+                                'description': 'Código inválido o no configurado',
+                        }
+                }
+        })
+        def get(self, code):
+                """Obtener ciudades populares de un país por su código."""
+                country_code = (code or '').upper().strip()
+
+                if not country_code:
+                        return {'msg': 'El parámetro code es requerido en la URL'}, 400
+
+                cities = POPULAR_CITIES_BY_COUNTRY.get(country_code)
+                if cities is None:
+                        return {
+                                'msg': f'No hay ciudades configuradas para el código de país {country_code}'
+                        }, 400
+
+                return cities, 200
+        
 class InventarioHealth(Resource):
         @swag_from({
                 'tags': ['Health'],
@@ -68,7 +148,7 @@ class FiltroHabitaciones(Resource):
 
 class SeedDB(Resource):
         @swag_from({
-                'tags': ['Inventario'],
+                'tags': ['Seed'],
                 'responses': {
                         200: {
                                 'description': 'Seed ejecutado correctamente',
@@ -76,6 +156,7 @@ class SeedDB(Resource):
                                         'type': 'object',
                                         'properties': {
                                                 'msg': {'type': 'string', 'example': 'Seed ejecutado correctamente'},
+                                                'countries_insertados': {'type': 'integer', 'example': 6},
                                                 'hospedajes_insertados': {'type': 'integer', 'example': 63},
                                                 'habitaciones_insertadas': {'type': 'integer', 'example': 189},
                                         }
@@ -102,6 +183,7 @@ class SeedDB(Resource):
 
                 return {
                         'msg': 'Seed ejecutado correctamente',
+                        'countries_insertados': result['countries_insertados'],
                         'hospedajes_insertados': result['hospedajes_insertados'],
                         'habitaciones_insertadas': result['habitaciones_insertadas'],
                 }, 200

@@ -1,8 +1,73 @@
 import uuid
 import random
 
-from app.db.models import db, AmenidadORM, HabitacionORM, HospedajeORM, Hospedaje_AmenidadORM
+from app.db.models import (
+    db,
+    AmenidadORM,
+    HabitacionORM,
+    HospedajeORM,
+    Hospedaje_AmenidadORM,
+    CountryORM,
+)
 from sqlalchemy import text
+
+COUNTRIES_SEED = [
+    { 
+        "id" : "a3d59338-df76-4b27-92b9-d8d188a1a34a", 
+        "name" : "Colombia", 
+        "code" : "CO", 
+        "currencyCode" : "COP", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇨🇴",
+        "phoneCode" : "+57"
+    },
+    { 
+        "id" : "83cfaba7-7c63-4943-a984-34e2613f5300", 
+        "name" : "Perú", 
+        "code" : "PE", 
+        "currencyCode" : "PEN", 
+        "currencySymbol" : "S/",
+        "flagEmoji" : "🇵🇪",
+        "phoneCode" : "+51"
+    },
+    { 
+        "id" : "82ee7241-0e45-4e74-ab37-d590e3e3ba96", 
+        "name" : "Ecuador", 
+        "code" : "EC", 
+        "currencyCode" : "USD", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇪🇨",
+        "phoneCode" : "+593"
+    },
+    { 
+        "id" : "cecf374a-c329-4bca-b113-2fa2ad0ccf53", 
+        "name" : "México", 
+        "code" : "MX", 
+        "currencyCode" : "MXN", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇲🇽",
+        "phoneCode" : "+52"
+    },
+    { 
+        "id" : "79bde85e-343c-4d8f-8688-9518fcb15504", 
+        "name" : "Chile", 
+        "code" : "CL", 
+        "currencyCode" : "CLP", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇨🇱",
+        "phoneCode" : "+56"
+    },
+    { 
+        "id" : "2a1572bf-1ad7-4bf0-b8ae-000c067cbd45", 
+        "name" : "Argentina", 
+        "code" : "AR", 
+        "currencyCode" : "ARS", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇦🇷",
+        "phoneCode" : "+54"
+    }
+]
+
 
 AMENIDADES_SEED = [
     { "id" : "d329c0e8-42e6-40c8-8cf7-4e4e309f537c", "name" : "WiFi", "icon" : "IconWiFi" },
@@ -41,7 +106,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "300d110a-e8a8-4fce-ba66-a4883b20e6b9",
         "nombre": "Hotel Casa Medina",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Bogota",
         "direccion": "Carrera 7 # 69A-22, Chapinero, Bogota",
         "rating": 4.8, 
@@ -55,7 +120,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "859f1435-879b-4590-b09c-33bb3ab9df0e",
         "nombre": "Sofitel Bogota Victoria Regia",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Bogota",
         "direccion": "Calle 98 # 9A-03, Chicó, Bogota",
         "rating": 4.7,
@@ -69,7 +134,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "ce956720-a473-42c6-a0a5-eef6b0b8415a",
         "nombre": "Hotel Tequendama",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Bogota",
         "direccion": "Carrera 10 # 26-21, Centro, Bogota",
         "rating": 4.2,
@@ -83,7 +148,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "11aa8a43-2216-4ae4-b121-d61cd73c1b0d",
         "nombre": "Hotel B.O.G",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Bogota",
         "direccion": "Calle 11 # 4-16, La Candelaria, Bogota",
         "rating": 4.6,
@@ -97,7 +162,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "d5dbb696-6bd4-4265-9032-9101965b34db",
         "nombre": "W Bogota",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Bogota",
         "direccion": "Calle 100 # 8A-01, Chicó, Bogota",
         "rating": 4.7,
@@ -111,7 +176,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "66ef518d-0d97-4652-93aa-fcea4b917158",
         "nombre": "Hyatt Regency Bogota",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Bogota",
         "direccion": "Calle 24 # 57A-60, Salitre, Bogota",
         "rating": 4.5,
@@ -125,7 +190,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "63534bd8-8476-4874-b4ad-c29fca185161",
         "nombre": "Hotel Click Clack Bogota",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Bogota",
         "direccion": "Carrera 11 # 93-77, Chicó, Bogota",
         "rating": 4.4,
@@ -143,7 +208,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "b99a11f9-ffdc-42d1-887e-4cc652471f0c",
         "nombre": "Hotel Dann Carlton Medellin",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Medellin",
         "direccion": "Calle 1A Sur # 43A-83, El Poblado, Medellin",
         "rating": 4.6,
@@ -157,7 +222,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "33774a58-5203-4910-8d18-c1a4d43a0add",
         "nombre": "Intercontinental Medellin",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Medellin",
         "direccion": "Calle 16 # 28-51, Laureles, Medellin",
         "rating": 4.5,
@@ -171,7 +236,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "79be1bfc-37b1-49b7-a92b-6922d39ca65a",
         "nombre": "Hotel Park 10 Medellin",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Medellin",
         "direccion": "Carrera 36D # 10A-22, El Poblado, Medellin",
         "rating": 4.4,
@@ -185,7 +250,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "c9d34eb9-8447-44ab-9002-0dd11c3cd215",
         "nombre": "The Charlee Hotel Medellin",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Medellin",
         "direccion": "Carrera 43B # 11-50, El Poblado, Medellin",
         "rating": 4.7,
@@ -199,7 +264,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "fdbb20bf-9ce8-4476-a8a2-bfb5cb3bcb10",
         "nombre": "Hotel Diez Categoría Colombia",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Medellin",
         "direccion": "Calle 11A # 32-65, El Poblado, Medellin",
         "rating": 4.5,
@@ -213,7 +278,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "e7769aaf-603e-465f-840a-0f804373d985",
         "nombre": "Hotel Nutibara Medellin",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Medellin",
         "direccion": "Carrera 50 # 52A-28, Centro, Medellin",
         "rating": 4.1,
@@ -227,7 +292,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "cea4d236-be70-45bf-8a16-f83ef756312f",
         "nombre": "Hotel Estelar Milla de Oro",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Medellin",
         "direccion": "Carrera 43A # 6 Sur-15, El Poblado, Medellin",
         "rating": 4.6,
@@ -245,7 +310,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "177baefd-8f4c-4333-92fe-b7947a4e5a06",
         "nombre": "Hotel Charleston Santa Teresa",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cartagena",
         "direccion": "Plaza de Santa Teresa, Centro Histórico, Cartagena",
         "rating": 4.9,
@@ -259,7 +324,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "2cbed5ca-76ea-4674-972d-609439da3be7",
         "nombre": "Sofitel Legend Santa Clara",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cartagena",
         "direccion": "Calle del Torno # 39-29, Centro Histórico, Cartagena",
         "rating": 4.9,
@@ -273,7 +338,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "e6f10ee9-10b9-4cab-b812-b13a8af287a0",
         "nombre": "Hotel Movich Cartagena de Indias",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cartagena",
         "direccion": "Bocagrande, Carrera 3 # 8-129, Cartagena",
         "rating": 4.3,
@@ -287,7 +352,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "dc55b37d-8ded-49b6-a04b-9cece2734efb",
         "nombre": "Bastión Luxury Hotel",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cartagena",
         "direccion": "Calle del Guerrero # 29-10, Centro Histórico, Cartagena",
         "rating": 4.8,
@@ -301,7 +366,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "dc5be755-1636-4599-9f43-9d97743b2786",
         "nombre": "Hotel Caribe by Faranda",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cartagena",
         "direccion": "Carrera 1 # 2-87, Bocagrande, Cartagena",
         "rating": 4.2,
@@ -315,7 +380,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "9046b401-28e5-45d7-a05b-1e7c825c2fed",
         "nombre": "Almirante Cartagena Hotel",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cartagena",
         "direccion": "Av. San Martín # 4-33, Bocagrande, Cartagena",
         "rating": 4.1,
@@ -329,7 +394,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "3faa135c-376f-4cad-9bf6-64bb98a93a85",
         "nombre": "El Marqués Hotel Boutique",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cartagena",
         "direccion": "Calle 33 # 3-67, Getsemaní, Cartagena",
         "rating": 4.5,
@@ -347,7 +412,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "996d574f-ca06-45aa-859a-51b16f171c13",
         "nombre": "Hotel Dann Carlton Cali",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cali",
         "direccion": "Avenida Colombia # 2-72, Cali",
         "rating": 4.4,
@@ -361,7 +426,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "721a9e18-93ea-472a-b266-8628b20c7aed",
         "nombre": "GHL Hotel Collection Palma Real",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cali",
         "direccion": "Calle 19A Norte # 8N-40, Cali",
         "rating": 4.3,
@@ -375,7 +440,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "b60a1ad8-d32b-42ab-8696-fe8fd249df75",
         "nombre": "Hotel Spiwak Chipichape",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cali",
         "direccion": "Carrera 1B # 66-200, Chipichape, Cali",
         "rating": 4.5,
@@ -389,7 +454,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "a7e4aad0-967b-464a-ab44-38417219de76",
         "nombre": "Estelar Belmonte Cali",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cali",
         "direccion": "Calle 16A Norte # 4N-62, Normandía, Cali",
         "rating": 4.4,
@@ -403,7 +468,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "ac522e77-2cb2-4377-8016-902a56310169",
         "nombre": "Hotel Camino Real Cali",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cali",
         "direccion": "Av. Colombia # 7-38, Granada, Cali",
         "rating": 4.0,
@@ -417,7 +482,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "a611593b-7aa5-41dc-9645-ee45a88519f1",
         "nombre": "Hotel Boutique Bello Horizonte Cali",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cali",
         "direccion": "Calle 5B # 36A-27, San Fernando, Cali",
         "rating": 4.6,
@@ -431,7 +496,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "6a57e50e-e7c7-4830-b422-87a7b7929671",
         "nombre": "Hotel Casa Republicana Cali",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Cali",
         "direccion": "Carrera 6 # 8-13, Centro Histórico, Cali",
         "rating": 4.2,
@@ -449,7 +514,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "a367622d-3d77-484a-8cd8-8bee9e9d1219",
         "nombre": "Hotel Zuana Beach Resort",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Santa Marta",
         "direccion": "Carrera 2 # 6-10, El Rodadero, Santa Marta",
         "rating": 4.5,
@@ -463,7 +528,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "6e46139f-10c3-47ff-8e55-e3e7fed7ba6c",
         "nombre": "Casa Loma Hotel Boutique",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Santa Marta",
         "direccion": "Carrera 20 # 3-69, Centro Histórico, Santa Marta",
         "rating": 4.6,
@@ -477,7 +542,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "0a784cd5-4ae6-4408-8a7c-eb2267b994de",
         "nombre": "Irotama Resort Santa Marta",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Santa Marta",
         "direccion": "Km 14 vía Santa Marta-Barranquilla, Santa Marta",
         "rating": 4.4,
@@ -491,7 +556,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "d3fb8472-4137-4a4a-931f-e203b8c798e5",
         "nombre": "La Sierra Hotel El Rodadero",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Santa Marta",
         "direccion": "Carrera 1A # 9-47, El Rodadero, Santa Marta",
         "rating": 4.3,
@@ -505,7 +570,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "262c174d-b9cc-4860-939c-00bb940a7f45",
         "nombre": "Tamacá Beach Resort Hotel",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Santa Marta",
         "direccion": "Carrera 2 # 11A-98, El Rodadero, Santa Marta",
         "rating": 4.2,
@@ -519,7 +584,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "a4c036cb-a020-4f79-8ab2-855ecffdb1cd",
         "nombre": "Hotel Bello Horizonte Santa Marta",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Santa Marta",
         "direccion": "Carrera 2 # 11-24, El Rodadero, Santa Marta",
         "rating": 4.1,
@@ -533,7 +598,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "c926533b-d033-4573-a0f3-8368378afcf5",
         "nombre": "Hotel Boutique La Tortuga",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Santa Marta",
         "direccion": "Calle 18 # 3-26, Centro Histórico, Santa Marta",
         "rating": 4.7,
@@ -551,7 +616,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "b760a30f-4ef3-443b-b928-64c3fee45f02",
         "nombre": "Hotel El Prado",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Barranquilla",
         "direccion": "Carrera 54 # 70-10, El Prado, Barranquilla",
         "rating": 4.4,
@@ -565,7 +630,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "8c2e8214-d38d-4364-b9f9-ab911ba95d8a",
         "nombre": "GHL Hotel Barranquilla",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Barranquilla",
         "direccion": "Carrera 52 # 75-30, Barranquilla",
         "rating": 4.2,
@@ -579,7 +644,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "035c5388-66b6-4e30-baf2-8a20afff7f11",
         "nombre": "Hotel Dann Carlton Barranquilla",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Barranquilla",
         "direccion": "Carrera 50 # 80-41, El Nogal, Barranquilla",
         "rating": 4.5,
@@ -593,7 +658,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "f839f286-3b95-48a9-aa4b-562c71d346b8",
         "nombre": "Sonesta Hotel Barranquilla",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Barranquilla",
         "direccion": "Calle 106 # 50-48, Barranquilla",
         "rating": 4.3,
@@ -607,7 +672,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "b97e420c-4649-4c66-9337-8bff924a34d1",
         "nombre": "Holiday Inn Barranquilla",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Barranquilla",
         "direccion": "Carrera 54 # 59-45, Barranquilla",
         "rating": 4.1,
@@ -621,7 +686,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "05f12119-2fdb-4472-837b-4f44fbc7f422",
         "nombre": "Estelar Barranquilla Hotel",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Barranquilla",
         "direccion": "Carrera 53 # 98-228, Barranquilla",
         "rating": 4.4,
@@ -635,7 +700,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "09dfea9e-994b-46a2-85b3-03deb3dc16d6",
         "nombre": "Hotel Movich Buró 26 Barranquilla",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Barranquilla",
         "direccion": "Carrera 53B # 26-21, Barranquilla",
         "rating": 4.3,
@@ -653,7 +718,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "f56de4e2-a3a5-4a88-8259-70c16c53d943",
         "nombre": "Hotel Decameron San Luis",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "San Andres",
         "direccion": "Km 13 vía San Luis, San Andres Isla",
         "rating": 4.5,
@@ -667,7 +732,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "1c72f450-be39-4c76-9ac7-110634c63f5d",
         "nombre": "Casa Harb Hotel Boutique",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "San Andres",
         "direccion": "Av. Colombia # 3-59, San Andres Isla",
         "rating": 4.6,
@@ -681,7 +746,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "0fedea59-bcc4-4b90-b703-b8613d93c415",
         "nombre": "Hotel Sunrise Beach San Andres",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "San Andres",
         "direccion": "Av. Colombia # 1A-104, San Andres Isla",
         "rating": 4.3,
@@ -695,7 +760,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "81057645-60de-468e-a6b2-6591575839b5",
         "nombre": "Hotel Lord Pierre San Andres",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "San Andres",
         "direccion": "Av. 20 de Julio # 3-88, San Andres Isla",
         "rating": 4.0,
@@ -709,7 +774,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "f71b03be-da4c-4fff-9204-574cded1b9a7",
         "nombre": "Portobelo Hotel San Andres",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "San Andres",
         "direccion": "Carretera Circunvalar Km 2, San Andres Isla",
         "rating": 4.2,
@@ -723,7 +788,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "08cfcc5b-ede9-4e48-be6b-123631bc966e",
         "nombre": "Cocoplum Beach Hotel",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "San Andres",
         "direccion": "North End, San Andres Isla",
         "rating": 4.4,
@@ -737,7 +802,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "dab02bbb-28de-4c1c-8ec5-2c518766b7e3",
         "nombre": "Hotel Decameron Isleño",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "San Andres",
         "direccion": "Km 3 vía Sound Bay, San Andres Isla",
         "rating": 4.3,
@@ -755,7 +820,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "0533ce73-5cf4-4440-9d87-9cb4de0b0b3f",
         "nombre": "Hotel Recinto del Pensamiento",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Manizales",
         "direccion": "Km 11 vía al Magdalena, Manizales",
         "rating": 4.3,
@@ -769,7 +834,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "b6892dc3-2458-4c8d-9bd9-5b14c1a16e06",
         "nombre": "Hotel Varuna Manizales",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Manizales",
         "direccion": "Carrera 23 # 66-87, Manizales",
         "rating": 4.4,
@@ -783,7 +848,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "8f37dc55-8932-4f12-b840-5fd0c2d9f14a",
         "nombre": "Hotel Carretero Manizales",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Manizales",
         "direccion": "Av. Santander # 11-51, Manizales",
         "rating": 4.0,
@@ -797,7 +862,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "e751bc79-4262-4750-af23-f8056d9fe116",
         "nombre": "Hotel Estelar El Cable Manizales",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Manizales",
         "direccion": "Carrera 23 # 66-23, El Cable, Manizales",
         "rating": 4.5,
@@ -811,7 +876,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "6555b91c-f59d-46ae-9b25-6ecfc744c148",
         "nombre": "Hotel Termales del Ruiz",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Manizales",
         "direccion": "Carretera al Nevado del Ruiz Km 22, Manizales",
         "rating": 4.6,
@@ -825,7 +890,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "ea4a19ea-97ed-4b4e-9171-f428ff7e6a29",
         "nombre": "GHL Hotel Manizales",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Manizales",
         "direccion": "Carrera 22 # 20-20, Manizales",
         "rating": 4.2,
@@ -839,7 +904,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "7a4aa60c-fab5-43c4-b234-e1c72f249b18",
         "nombre": "Hotel Las Colinas Manizales",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Manizales",
         "direccion": "Calle 22 # 20-20, Centro, Manizales",
         "rating": 4.1,
@@ -857,7 +922,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "f46f0dbe-5f49-4073-9434-60a830777db4",
         "nombre": "Hotel Mesón de los Virreyes",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Villa de Leyva",
         "direccion": "Carrera 9 # 9-35, Plaza Mayor, Villa de Leyva",
         "rating": 4.7,
@@ -871,7 +936,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "7e568af0-e961-47ae-a8ca-c6e98b96bb57",
         "nombre": "Posada de San Antonio Villa de Leyva",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Villa de Leyva",
         "direccion": "Calle 13 # 8-53, Villa de Leyva",
         "rating": 4.5,
@@ -885,7 +950,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "b9491d5c-4df2-4521-acac-d6bd1a005b7f",
         "nombre": "La Posada de San Jorge",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Villa de Leyva",
         "direccion": "Carrera 9 # 11-34, Villa de Leyva",
         "rating": 4.6,
@@ -899,7 +964,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "5b2a8073-523c-4aba-94c0-c263e1b3575d",
         "nombre": "Hospedería Renacer",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Villa de Leyva",
         "direccion": "Calle 12 # 9-21, Villa de Leyva",
         "rating": 4.3,
@@ -913,7 +978,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "30dec8f0-6f56-4802-8198-3a0c4ed2d280",
         "nombre": "Hotel Boutique Plaza Mayor Villa de Leyva",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Villa de Leyva",
         "direccion": "Calle 13 # 7-58, Plaza Mayor, Villa de Leyva",
         "rating": 4.8,
@@ -927,7 +992,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "80a879cd-ca1e-481b-aeb7-2792144c95a8",
         "nombre": "Posada Campanario Villa de Leyva",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Villa de Leyva",
         "direccion": "Vereda Sachica Km 2, Villa de Leyva",
         "rating": 4.4,
@@ -941,7 +1006,7 @@ HOSPEDAJES_SEED = [
     {
         "id": "42663bab-43bb-47f3-bd69-96af05b7c8f0",
         "nombre": "Hotel Casa de los Pájaros",
-        "pais": "Colombia",
+        "pais": "Colombia", "countryCode" : "CO",
         "ciudad": "Villa de Leyva",
         "direccion": "Carrera 10 # 13-20, Villa de Leyva",
         "rating": 4.5,
@@ -979,6 +1044,26 @@ class SeedHelper:
             db.session.commit()
 
     @staticmethod
+    def _ensure_hospedajes_country_code_column():
+        """
+        Asegura que la columna countryCode exista en SQLite antes del seed.
+        Esto corrige bases locales creadas con un esquema anterior.
+        """
+        uri = str(db.engine.url)
+
+        if not uri.startswith("sqlite"):
+            return
+
+        columns = db.session.execute(text("PRAGMA table_info(hospedajes)"))
+        column_names = {row[1] for row in columns}
+
+        if "countryCode" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE hospedajes ADD COLUMN \"countryCode\" VARCHAR(10) NOT NULL DEFAULT ''")
+            )
+            db.session.commit()
+
+    @staticmethod
     def reset_and_seed():   
         """
         Elimina todos los registros existentes de habitaciones, hospedajes,
@@ -989,19 +1074,36 @@ class SeedHelper:
         """
         try:
             SeedHelper._ensure_habitaciones_code_column()
+            SeedHelper._ensure_hospedajes_country_code_column()
+            CountryORM.__table__.create(bind=db.engine, checkfirst=True)
 
             # Primero borramos habitaciones por la FK
             HabitacionORM.query.delete()
             Hospedaje_AmenidadORM.query.delete()
             HospedajeORM.query.delete()
             AmenidadORM.query.delete()
+            CountryORM.query.delete()
             db.session.flush()
 
             hospedajes_insertados = 0
             habitaciones_insertadas = 0
             amenidades_insertadas = 0
             amenidades_asignadas = 0
+            countries_insertados = 0
             amenidades_creadas = []
+
+            for country_data in COUNTRIES_SEED:
+                country = CountryORM(
+                    id=uuid.UUID(country_data["id"]),
+                    name=country_data["name"],
+                    code=country_data["code"],
+                    CurrencyCode=country_data["currencyCode"],
+                    CurrencySymbol=country_data["currencySymbol"],
+                    FlagEmoji=country_data["flagEmoji"],
+                    PhoneCode=country_data["phoneCode"],
+                )
+                db.session.add(country)
+                countries_insertados += 1
 
             for amenidad_data in AMENIDADES_SEED:
                 amenidad = AmenidadORM(
@@ -1018,6 +1120,7 @@ class SeedHelper:
             for data in HOSPEDAJES_SEED:
                 hospedaje = HospedajeORM(
                     nombre=data["nombre"],
+                    countryCode = data["countryCode"],
                     pais=data["pais"],
                     ciudad=data["ciudad"],
                     direccion=data["direccion"],
@@ -1049,6 +1152,7 @@ class SeedHelper:
 
             return {
                 "ok": True,
+                "countries_insertados": countries_insertados,
                 "amenidades_insertadas": amenidades_insertadas,
                 "amenidades_asignadas": amenidades_asignadas,
                 "hospedajes_insertados": hospedajes_insertados,

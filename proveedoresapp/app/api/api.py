@@ -1,26 +1,26 @@
 from flask_restful import Resource
-from flask import request, current_app
+from flask import request
 from uuid import UUID
-import jwt
-from datetime import datetime, timedelta, timezone
 
 from app.utils import token_helper
-from app.services.comment_crud import ReviewCrud
+from app.services.manager_crud import ManagerCrud
 from app.utils.seedHelper import SeedHelper
 from app.utils.token_helper import token_required, roles_required
 
-comment_crud = ReviewCrud()
+manager_crud = ManagerCrud()
 
-def _serialize_review(review):
+
+def _serialize_manager(manager):
   return {
-    "id": str(review.id),
-    "hospedajeId": str(review.hospedajeId),
-    "userName": review.userName,
-    "userId": str(review.userId),
-    "rating": review.rating,
-    "comment": review.comment,
-    "created_at": review.created_at.isoformat() if hasattr(review.created_at, "isoformat") else review.created_at,
-    "updated_at": review.updated_at.isoformat() if hasattr(review.updated_at, "isoformat") else review.updated_at,
+    "id": str(manager.id),
+    "hospedajeId": str(manager.hospedajeId),
+    "userId": str(manager.userId),
+    "userName": manager.userName,
+    "email": manager.email,
+    "first_name": manager.first_name,
+    "last_name": manager.last_name,
+    "created_at": manager.created_at.isoformat() if hasattr(manager.created_at, "isoformat") else manager.created_at,
+    "updated_at": manager.updated_at.isoformat() if hasattr(manager.updated_at, "isoformat") else manager.updated_at,
   }
 
 class Health(Resource):
@@ -42,62 +42,63 @@ class Health(Resource):
         """
         return {'status': 'healthy'}, 200
 
-class ReviewResource(Resource):
+class ManagerResource(Resource):
     @token_required
     def post(current_user, self):
         """
-        Crear Reviews
+        Crear manager
         ---
         tags:
-          - Reviews
+          - Managers
         parameters:
           - in: body
             name: body
             required: true
             schema:
               type: object
-              required: [hospedajeId, comment, rating]
+              required: [hospedajeId, first_name, last_name, email]
               properties:
                 hospedajeId:
                   type: string
                   format: uuid
-                comment:
+                first_name:
                   type: string
-                rating:
-                  type: number
-                  minimum: 1
-                  maximum: 5
+                last_name:
+                  type: string
+                email:
+                  type: string
+                  format: email
         security:
           - Bearer: []
         responses:
           201:
-            description: Commentario creado
+            description: Manager creado
           400:
             description: Datos inválidos
         """
         payload = request.get_json()
         userId = token_helper.get_userId_from_token()
         userName = token_helper.get_userName_from_token()
-        
+
         payload["userName"] = userName
         payload["userId"] = userId
 
-        review = comment_crud.create_review(payload)
+        manager = manager_crud.create_manager(payload)
 
-        if not review:
-            return {"message": "Error creating review (duplicate?)"}, 409
+        if not manager:
+            return {"message": "Error creating manager (duplicate?)"}, 409
 
-        return _serialize_review(review), 201
+        return _serialize_manager(manager), 201
 
 
-class ReviewResourceById(Resource):
+class ManagerResourceById(Resource):
     @token_required
     def get(current_user, self, id):
         """
-        Obtener Review por ID
+        Obtener Manager por ID
         ---
         tags:
-          - Reviews
+          - Managers
         parameters:
           - in: path
             name: id
@@ -108,25 +109,25 @@ class ReviewResourceById(Resource):
           - Bearer: []
         responses:
           200:
-            description: Review encontrado
+            description: Manager encontrado
           404:
-            description: Review no encontrado
+            description: Manager no encontrado
         """
-        review = comment_crud.get_review_by_id(UUID(id))
+        manager = manager_crud.get_manager_by_id(UUID(id))
 
-        if not review:
-            return {"message": "Review not found"}, 404
+        if not manager:
+            return {"message": "Manager not found"}, 404
 
-        return _serialize_review(review), 200
+        return _serialize_manager(manager), 200
 
     @token_required
     @roles_required("Administrator")
     def put(current_user, self, id):
         """
-        Actualizar review
+        Actualizar manager
         ---
         tags:
-          - Reviews
+          - Managers
         parameters:
           - in: path
             name: id
@@ -139,37 +140,38 @@ class ReviewResourceById(Resource):
             schema:
               type: object
               properties:
-                comment:
+                first_name:
                   type: string
-                rating:
-                  type: number
-                  minimum: 1
-                  maximum: 5
+                last_name:
+                  type: string
+                email:
+                  type: string
+                  format: email
         security:
           - Bearer: []
         responses:
           200:
-            description: Comentario actualizado
+            description: manager actualizado
           400:
             description: Error al actualizar
         """
         data = request.get_json()
 
-        review = comment_crud.update_review(UUID(id), data)
+        manager = manager_crud.update_manager(UUID(id), data)
 
-        if not review:
-            return {"message": "Error updating comment"}, 400
+        if not manager:
+            return {"message": "Error updating manager"}, 400
 
-        return {"message": "Comment updated"}, 200
+        return {"message": "Manager updated"}, 200
 
     @token_required
     @roles_required("Administrator")
     def delete(current_user, self, id):
         """
-        Eliminar comentario
+        Eliminar manager
         ---
         tags:
-          - Reviews
+          - Managers
         parameters:
           - in: path
             name: id
@@ -180,25 +182,25 @@ class ReviewResourceById(Resource):
           - Bearer: []
         responses:
           200:
-            description: Comentario eliminado
+            description: manager eliminado
           404:
-            description: Comentario no encontrado
+            description: manager no encontrado
         """
-        success = comment_crud.delete_review(UUID(id))
+        success = manager_crud.delete_manager(UUID(id))
 
         if not success:
-            return {"message": "Comment not found"}, 404
+            return {"message": "Manager not found"}, 404
 
-        return {"message": "Comment deleted"}, 200
+        return {"message": "Manager deleted"}, 200
 
-class ReviewByHospedajeResource(Resource):
+class ManagerByHospedajeResource(Resource):
     @token_required
     def get(current_user, self, id):
         """
-        Obtener reviews por ID de hospedaje
+        Obtener managers por ID de hospedaje
         ---
         tags:
-          - ReviewsByHospedaje
+          - ManagersByHospedaje
         parameters:
           - in: path
             name: id
@@ -209,26 +211,28 @@ class ReviewByHospedajeResource(Resource):
           - Bearer: []
         responses:
           200:
-            description: Reviews encontrados
+            description: managers encontrados
           404:
-            description: Reviews no encontrados
+            description: managers no encontrados
         """
-        reviews = comment_crud.get_all_reviews_by_hospedaje_id(UUID(id))
+        managers = manager_crud.get_all_managers_by_hospedaje_id(UUID(id))
 
-        if not reviews:
-          return {"message": "Commentarios no encontrados"}, 404
+        if not managers:
+            return {"message": "Managers no encontrados"}, 404
 
         return {
-          "comments": [
+            "managers": [
                 {
-                    "id": str(review.id),
-                    "hospedajeId": str(review.hospedajeId),
-                    "userName": review.userName,
-                    "userId": str(review.userId),
-                    "comment": review.comment,
-                    "rating": review.rating,
+                    "id": str(manager.id),
+                    "hospedajeId": str(manager.hospedajeId),
+                    "userName": manager.userName,
+                    "userId": str(manager.userId),
+                    "email": manager.email,
+                    "first_name": manager.first_name,
+                    "last_name": manager.last_name,
+                    "created_at": manager.created_at.isoformat() if hasattr(manager.created_at, "isoformat") else manager.created_at,
                 }
-                for review in reviews
+                for manager in managers
             ]
         }, 200
 
@@ -254,6 +258,5 @@ class SeedDB(Resource):
 
         return {
             'msg': 'Seed ejecutado correctamente',
-            'Comentarios insertados': result['reviews_insertados'],
-            'Hospedajes procesados': result['hospedajes_procesados']
+            'Managers procesados': result['managers_procesados']
         }, 200

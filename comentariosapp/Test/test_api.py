@@ -1,8 +1,14 @@
 from datetime import datetime
 from types import SimpleNamespace
 from uuid import uuid4
+import sys
+from pathlib import Path
 
 import jwt
+
+APP_ROOT = Path(__file__).resolve().parents[1]
+if str(APP_ROOT) not in sys.path:
+    sys.path.insert(0, str(APP_ROOT))
 
 from app.api import api as api_module
 from main import app
@@ -37,7 +43,7 @@ def make_review(review_id=None, hospedaje_id=None, user_id=None, username="teste
 
 
 def test_health_ok(client):
-    resp = client.get("/api/v1/Comments/health")
+    resp = client.get("/api/v1/health")
     assert resp.status_code == 200
     assert resp.get_json() == {"status": "healthy"}
 
@@ -47,7 +53,7 @@ def test_get_review_by_id_ok(client, monkeypatch):
     review = make_review(review_id=review_id)
     monkeypatch.setattr(api_module.comment_crud, "get_review_by_id", lambda review_uuid: review if review_uuid == review_id else None)
 
-    resp = client.get(f"/api/v1/Comments/reviews/{review_id}", headers=auth_headers())
+    resp = client.get(f"/api/v1/reviews/{review_id}", headers=auth_headers())
 
     assert resp.status_code == 200
     assert resp.get_json() == {
@@ -65,7 +71,7 @@ def test_get_review_by_id_ok(client, monkeypatch):
 def test_get_review_by_id_requires_token(client):
     review_id = uuid4()
 
-    resp = client.get(f"/api/v1/Comments/reviews/{review_id}")
+    resp = client.get(f"/api/v1/reviews/{review_id}")
 
     assert resp.status_code == 401
     assert resp.get_json() == {"message": "Token missing"}
@@ -80,7 +86,7 @@ def test_get_reviews_by_hospedaje_ok(client, monkeypatch):
     monkeypatch.setattr(api_module.comment_crud, "get_all_reviews_by_hospedaje_id", lambda value: reviews if value == hospedaje_id else [])
 
     resp = client.get(
-        f"/api/v1/Comments/reviews/hospedajes/{hospedaje_id}",
+        f"/api/v1/reviews/hospedajes/{hospedaje_id}",
         headers=auth_headers(),
     )
 
@@ -96,7 +102,7 @@ def test_get_reviews_by_hospedaje_not_found(client, monkeypatch):
     monkeypatch.setattr(api_module.comment_crud, "get_all_reviews_by_hospedaje_id", lambda value: [])
 
     resp = client.get(
-        f"/api/v1/Comments/reviews/hospedajes/{hospedaje_id}",
+        f"/api/v1/reviews/hospedajes/{hospedaje_id}",
         headers=auth_headers(),
     )
 
@@ -112,7 +118,7 @@ def test_create_review_ok(client, monkeypatch):
     monkeypatch.setattr(api_module.comment_crud, "create_review", lambda data: review)
 
     resp = client.post(
-        "/api/v1/Comments/reviews",
+        "/api/v1/reviews",
         json={
             "hospedajeId": str(hospedaje_id),
             "comment": "Muy bueno",
@@ -139,7 +145,7 @@ def test_update_review_ok(client, monkeypatch):
     monkeypatch.setattr(api_module.comment_crud, "update_review", lambda review_uuid, data: True if review_uuid == review_id else None)
 
     resp = client.put(
-        f"/api/v1/Comments/reviews/{review_id}",
+        f"/api/v1/reviews/{review_id}",
         json={"comment": "Comentario actualizado", "rating": 4},
         headers=auth_headers(role="Administrator"),
     )
@@ -152,7 +158,7 @@ def test_update_review_forbidden_for_non_admin(client):
     review_id = uuid4()
 
     resp = client.put(
-        f"/api/v1/Comments/reviews/{review_id}",
+        f"/api/v1/reviews/{review_id}",
         json={"comment": "Comentario actualizado", "rating": 4},
         headers=auth_headers(role="User"),
     )
@@ -166,7 +172,7 @@ def test_delete_review_ok(client, monkeypatch):
     monkeypatch.setattr(api_module.comment_crud, "delete_review", lambda review_uuid: review_uuid == review_id)
 
     resp = client.delete(
-        f"/api/v1/Comments/reviews/{review_id}",
+        f"/api/v1/reviews/{review_id}",
         headers=auth_headers(role="Administrator"),
     )
 

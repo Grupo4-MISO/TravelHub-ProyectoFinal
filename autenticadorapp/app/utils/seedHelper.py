@@ -46,7 +46,7 @@ AUTH_SEED = [
         "is_verified": True,
         "role": UserRole.ADMIN,
     },
-        {
+    {
         "id": uuid.UUID("9a4a97e8-7f0e-46fb-a451-d7de8ef19ba5"),
         "email": "carla.gomez@yopmail.com",
         "password": "12345",

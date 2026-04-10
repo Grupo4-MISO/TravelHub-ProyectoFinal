@@ -1,4 +1,4 @@
-from app.api.api import Health, ReviewResource, ReviewResourceById, ReviewByHospedajeResource, SeedDB
+from app.api.api import Health, ManagerByHospedajeResource, ManagerResource, ManagerResourceById, SeedDB
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -27,15 +27,15 @@ app.config['JWT_HEADER_NAME'] = 'Authorization'
 app.config['JWT_HEADER_TYPE'] = 'Bearer'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600
 app.config["SWAGGER"] = {
-    "title": "TravelHub Comments API",
+    "title": "TravelHub Managers API",
     "uiversion": 3
 }
 
 swagger_template = {
     "swagger": "2.0",
     "info": {
-        "title": "TravelHub Comments API",
-        "description": "Documentación de endpoints de comentarios",
+        "title": "TravelHub Managers API",
+        "description": "Documentación de endpoints de managers",
         "version": "1.0.0"
     },
     "basePath": "/",
@@ -77,14 +77,14 @@ CORS(app)
 #Registramos la API RESTful
 api = Api(app)
 
-api.add_resource(Health, '/api/v1/health')
-api.add_resource(ReviewResource, '/api/v1/reviews')
-api.add_resource(ReviewResourceById, '/api/v1/reviews/<string:id>')
+api.add_resource(Health, '/api/v1/Managers/health')
+api.add_resource(ManagerResource, '/api/v1/Managers')
+api.add_resource(ManagerResourceById, '/api/v1/Managers/<string:id>')
 api.add_resource(
-    ReviewByHospedajeResource,
-    '/api/v1/reviews/hospedajes/<string:id>'
+    ManagerByHospedajeResource,
+    '/api/v1/Managers/hospedajes/<string:id>'
 )
-api.add_resource(SeedDB, '/api/v1/seed')
+api.add_resource(SeedDB, '/api/v1/Managers/seed')
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5004, debug=True)
+    app.run(host="127.0.0.1", port=5005, debug=True)
