@@ -131,11 +131,12 @@ class FiltroHabitaciones(Resource):
                 """Obtener habitaciones disponibles por ciudad y capacidad."""
                 ciudad = request.args.get('ciudad')
                 capacidad = request.args.get('capacidad')
+                currency_code = request.args.get('currency_code')
 
                 ciudad = InventarioHelper.validacionCampoCiudad(ciudad)
                 capacidad = InventarioHelper.validacionCampoCapacidad(capacidad)
 
-                response = inventario_CRUD.habitacionesDisponibles(ciudad, capacidad)
+                response = inventario_CRUD.habitacionesDisponibles(ciudad, capacidad, currency_code)
 
                 return response, 200
     

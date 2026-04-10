@@ -29,7 +29,7 @@ COUNTRIES_SEED = [
         "name" : "Perú", 
         "code" : "PE", 
         "currencyCode" : "PEN", 
-        "currencySymbol" : "S/",
+        "currencySymbol" : "$",
         "flagEmoji" : "🇵🇪",
         "phoneCode" : "+51"
     },

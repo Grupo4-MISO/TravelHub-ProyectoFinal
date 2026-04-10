@@ -7,11 +7,12 @@ ENDPOINT_INVENTARIO = os.getenv('ENDPOINT_INVENTARIO')
 
 class InventarioHelper:
     @staticmethod
-    def getInventario(inventario_url, ciudad, capacidad):
+    def getInventario(inventario_url, ciudad, capacidad, currency_code):
         #Definimos los parametros de consulta
         params = {
             "ciudad": ciudad,
-            "capacidad": capacidad
+            "capacidad": capacidad,
+            "currency_code": currency_code
         }
 
         try:

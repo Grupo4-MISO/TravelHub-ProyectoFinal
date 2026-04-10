@@ -2,8 +2,8 @@ import json
 
 class CacheHelper:
     @staticmethod
-    def construirCacheKey(ciudad, capacidad, check_in, check_out):
-        return f"search:{ciudad}:{capacidad}:{check_in}:{check_out}"
+    def construirCacheKey(ciudad, capacidad, check_in, check_out, country_code, currency_code):
+        return f"search:{ciudad}:{capacidad}:{check_in}:{check_out}:{country_code}:{currency_code}"
 
     @staticmethod
     def obtenerCache(redis_client, key):

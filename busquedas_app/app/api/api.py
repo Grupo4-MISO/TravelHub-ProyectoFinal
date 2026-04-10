@@ -32,6 +32,8 @@ class Search(Resource):
         capacidad = request.args.get('capacidad')
         check_in = request.args.get('check_in')
         check_out = request.args.get('check_out')
+        country_code = request.args.get('country_code')
+        currency_code = request.args.get('currency_code')
 
         #Validamos parametros de busqueda
         BusquedasHelper.validacionCampoCiudad(ciudad)
@@ -44,14 +46,14 @@ class Search(Resource):
         ciudad = BusquedasHelper.limpiarCampoCiudad(ciudad)
 
         #Construimos la clave de cache
-        cache_key = CacheHelper.construirCacheKey(ciudad, capacidad, check_in, check_out)
+        cache_key = CacheHelper.construirCacheKey(ciudad, capacidad, check_in, check_out, country_code, currency_code)
 
         #Intentamos obtener resultados de cache
         disponibles = CacheHelper.obtenerCache(redis_client, cache_key)
 
         if not disponibles:
             #Consulta al microservicio de inventario
-            hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
+            hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad, currency_code)
 
             #Validamos que existan hospedajes para la ciudad y capacidad especificada
             if not hospedajes_habitaciones:

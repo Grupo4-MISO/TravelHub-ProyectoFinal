@@ -1,5 +1,5 @@
 import uuid
-
+from app.utils.helper import InventarioHelper
 from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM
 from app.errors.exceptions import DatababaseError
 
@@ -156,7 +156,7 @@ class InventarioCRUD:
             self.db.rollback()
             return DatababaseError(f"Error en la base de datos: {str(e)}")
     
-    def habitacionesDisponibles(self, ciudad, capacidad):
+    def habitacionesDisponibles(self, ciudad, capacidad, currency_code_destino):
         try:
             #Definimos la consulta para obtener habitaciones disponibles
             query = self.db.query(
@@ -172,7 +172,9 @@ class InventarioCRUD:
                 HospedajeORM.direccion,
                 HospedajeORM.rating,
                 HospedajeORM.reviews,
-            ).join(HospedajeORM, HabitacionORM.propiedad_id == HospedajeORM.id)
+                CountryORM.CurrencyCode.label('currency_code')
+            ).join(HospedajeORM, HabitacionORM.propiedad_id == HospedajeORM.id)\
+            .join(CountryORM, HospedajeORM.countryCode == CountryORM.code)
 
             #Aplicamos filtros de ciudad y capacidad
             if ciudad:
@@ -198,13 +200,17 @@ class InventarioCRUD:
                     'reviews': campo.reviews,
                     'capacidad': campo.capacidad,
                     'precio': campo.precio,
-                    'descripcion': campo.descripcion
+                    'descripcion': campo.descripcion,
+                    'currency_code': campo.currency_code,
                 }
                 for campo in resultados
             ]
+            
+            #Construimos respuesta con precios convertidos
+            response_convertida = InventarioHelper.convertirPrecios(response, currency_code_destino)
 
-            return response
-    
+            return response_convertida
+        
         except Exception as e:
             self.db.rollback()
             raise DatababaseError(f"Error en la base de datos: {str(e)}")
