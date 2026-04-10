@@ -1,0 +1,2578 @@
+[
+  {
+    "id": "4f8ef1df-d410-598b-b736-2f4538f0398b",
+    "nombre": "Lima Grand Hotel",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Lima",
+    "direccion": "Av. Principal 104, Lima",
+    "rating": 4.2,
+    "reviews": 495,
+    "habitaciones": [
+      {
+        "id": "fb2626ac-3594-5d9d-9a28-aa95d6dcc187",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 190.0
+      },
+      {
+        "id": "3fdc6948-6e76-5468-a19e-28e14cbe8a76",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 290.0
+      },
+      {
+        "id": "86f20be7-10d4-5d86-9a09-3fd5496df80e",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 450.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "9a0df285-6338-5bdf-9a1d-128821c320b6",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4e9a06cd-1a3c-5f3a-9d6c-215bfa5d7e49",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -12.0464,
+    "longitude": -77.0428,
+    "description": "Hospedaje en Lima, Perú."
+  },
+  {
+    "id": "4c5c1958-8591-5a7e-8f84-3e1aa3210cd6",
+    "nombre": "Hotel Boutique Lima",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Lima",
+    "direccion": "Av. Principal 105, Lima",
+    "rating": 4.3,
+    "reviews": 590,
+    "habitaciones": [
+      {
+        "id": "4a562488-c74c-5379-929d-69366f7a2766",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 208.0
+      },
+      {
+        "id": "980d2b1b-710a-5c78-a1fc-c72421d5b83d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 308.0
+      },
+      {
+        "id": "8bd1152f-d505-53a4-bd12-1a0d15439783",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 468.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "749c2b3d-f822-5f43-9008-59c64381f81a",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e5dc11aa-bc8a-51f6-9c43-38e4842dca56",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -12.0464,
+    "longitude": -77.0428,
+    "description": "Hospedaje en Lima, Perú."
+  },
+  {
+    "id": "44b782b5-4325-55e7-be0d-e7d01a3cc6a0",
+    "nombre": "Lima Plaza Suites",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Lima",
+    "direccion": "Av. Principal 106, Lima",
+    "rating": 4.4,
+    "reviews": 685,
+    "habitaciones": [
+      {
+        "id": "1b68ef8b-6ee2-52c3-8b75-427de9b60ca6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 226.0
+      },
+      {
+        "id": "50b075ed-5245-5650-8518-6c6f96279e89",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 326.0
+      },
+      {
+        "id": "77c60b2b-e180-5c3b-b674-442fb8a3390c",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 486.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "61ddb3d5-ea73-587e-93df-9e39d2ae846c",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "35d2410e-45c7-53ca-8b76-65ec0ad163ba",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -12.0464,
+    "longitude": -77.0428,
+    "description": "Hospedaje en Lima, Perú."
+  },
+  {
+    "id": "87c332e0-185f-51ee-b265-d0934c49617c",
+    "nombre": "Hotel Mirador de Lima",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Lima",
+    "direccion": "Av. Principal 107, Lima",
+    "rating": 4.5,
+    "reviews": 780,
+    "habitaciones": [
+      {
+        "id": "cecd61d6-a606-5b26-9866-90125d6a3106",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 244.0
+      },
+      {
+        "id": "9b57cb0d-02ba-5613-b167-bd3502e61678",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 344.0
+      },
+      {
+        "id": "cd8026e8-a5df-5caf-8c28-5f8328c4baad",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 504.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c84c7e85-222c-5a02-96ca-825df8fd47ce",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "2c8a85bb-cda2-581b-a77d-d220b96e4b89",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -12.0464,
+    "longitude": -77.0428,
+    "description": "Hospedaje en Lima, Perú."
+  },
+  {
+    "id": "8c105fea-6050-5f30-9c2a-96bfd63a7c8d",
+    "nombre": "Lima Business \u0026 Stay",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Lima",
+    "direccion": "Av. Principal 108, Lima",
+    "rating": 4.6,
+    "reviews": 875,
+    "habitaciones": [
+      {
+        "id": "9ae97b3a-9fc1-5bf3-bc28-7a0a08cd9b53",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 262.0
+      },
+      {
+        "id": "26166d73-4405-5a63-84fd-ccc9a2da8a36",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 362.0
+      },
+      {
+        "id": "727b0898-c22f-5a83-a0a3-284348fd0c86",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 522.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "217b532c-029e-564d-82d5-dc1f63581c78",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d714dc24-fa54-5c43-a60d-64ee966701b8",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -12.0464,
+    "longitude": -77.0428,
+    "description": "Hospedaje en Lima, Perú."
+  },
+  {
+    "id": "c0552567-c814-5e55-b390-7a8b7100a1b7",
+    "nombre": "Casa Colonial Lima",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Lima",
+    "direccion": "Av. Principal 109, Lima",
+    "rating": 4.7,
+    "reviews": 970,
+    "habitaciones": [
+      {
+        "id": "b8538cf7-59f4-5b00-9088-d165b0cc18b5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 280.0
+      },
+      {
+        "id": "78f21628-a60c-50e0-a290-09963ec0163f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 380.0
+      },
+      {
+        "id": "04a00f10-cd83-5df3-aa6d-ab0c5d192d74",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 540.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "62704973-2668-5041-8dd6-038fc101bf41",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4889c621-418a-5a75-b638-fba448c6e64b",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -12.0464,
+    "longitude": -77.0428,
+    "description": "Hospedaje en Lima, Perú."
+  },
+  {
+    "id": "ad438ced-4b5f-55ca-990c-6341b30a46c7",
+    "nombre": "Hotel Costa Lima",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Lima",
+    "direccion": "Av. Principal 110, Lima",
+    "rating": 4.8,
+    "reviews": 1065,
+    "habitaciones": [
+      {
+        "id": "453a0c6a-0aaa-5349-91b5-cefb8d1a936f",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 298.0
+      },
+      {
+        "id": "6b25c9d2-00c6-5789-bada-75137f6aca1a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 398.0
+      },
+      {
+        "id": "2121a8e4-b6bd-5b3c-b4c3-6a0d258a5c17",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 558.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "65b7dba1-5696-5285-b758-6b2c413a16e8",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "2b0d67e7-50a7-518c-9389-966a83116cbd",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -12.0464,
+    "longitude": -77.0428,
+    "description": "Hospedaje en Lima, Perú."
+  },
+  {
+    "id": "4adaac07-0836-50b4-a2af-e7f1469348db",
+    "nombre": "Cusco Grand Hotel",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Cusco",
+    "direccion": "Av. Principal 107, Cusco",
+    "rating": 4.3,
+    "reviews": 675,
+    "habitaciones": [
+      {
+        "id": "785f8786-b868-5662-8118-da2216ad3e73",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 202.0
+      },
+      {
+        "id": "34c0eed6-3a8a-5e0b-98e4-b2db8373cdd4",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 302.0
+      },
+      {
+        "id": "86820528-9cb9-5157-ae59-e395f2e5ef3a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 462.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "bfa2f139-5ec1-54aa-ad58-9729ec28299a",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "bca5d82c-55c2-5825-81f4-baa54b7ad721",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.5319,
+    "longitude": -71.9675,
+    "description": "Hospedaje en Cusco, Perú."
+  },
+  {
+    "id": "38321a9e-6945-51e1-8020-05fa2f0a3216",
+    "nombre": "Hotel Boutique Cusco",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Cusco",
+    "direccion": "Av. Principal 108, Cusco",
+    "rating": 4.4,
+    "reviews": 770,
+    "habitaciones": [
+      {
+        "id": "b533b3c1-8d05-5586-877e-ebf1c03223a5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 220.0
+      },
+      {
+        "id": "eed9c982-1b39-54cd-b66f-8e6fa81977ec",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 320.0
+      },
+      {
+        "id": "6e2e0384-93ad-5e9c-be25-74f03e7b78c9",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 480.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "2a6f6208-8c9f-5676-a6bf-31ec9b888210",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1d14061b-436c-5e25-9bce-e743d6460e93",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.5319,
+    "longitude": -71.9675,
+    "description": "Hospedaje en Cusco, Perú."
+  },
+  {
+    "id": "6c44122e-a0d0-5dd3-8187-d414387ed822",
+    "nombre": "Cusco Plaza Suites",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Cusco",
+    "direccion": "Av. Principal 109, Cusco",
+    "rating": 4.5,
+    "reviews": 865,
+    "habitaciones": [
+      {
+        "id": "e41aae0f-cecb-5dcc-9670-34f7125e6ea2",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 238.0
+      },
+      {
+        "id": "0abc54f2-219f-591e-8df8-3cf10b3f15f4",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 338.0
+      },
+      {
+        "id": "aa60d367-b426-59a7-af06-b349ccc22d12",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 498.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "df15bf49-9e16-5eee-8a44-65783b8a303d",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ccdd3a00-5273-54cf-9ec4-bd7928500233",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.5319,
+    "longitude": -71.9675,
+    "description": "Hospedaje en Cusco, Perú."
+  },
+  {
+    "id": "8fd60a32-5407-56d2-a6e2-12b3b5196310",
+    "nombre": "Hotel Mirador de Cusco",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Cusco",
+    "direccion": "Av. Principal 110, Cusco",
+    "rating": 4.6,
+    "reviews": 960,
+    "habitaciones": [
+      {
+        "id": "5ec2f9b3-8914-536b-bfcd-f2f3c1442f70",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 256.0
+      },
+      {
+        "id": "1f288d49-a7b7-597a-a4a5-14c29bc06639",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 356.0
+      },
+      {
+        "id": "4c15a2ef-855d-583b-8654-23d64f2d0914",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 516.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "b22d953b-1103-5c12-94d3-e29afe1370c0",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "2a5846fd-3c17-5bda-b75d-a0b5b52b0137",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.5319,
+    "longitude": -71.9675,
+    "description": "Hospedaje en Cusco, Perú."
+  },
+  {
+    "id": "b63b1755-9ba3-50fb-a512-a81dffe1b6cb",
+    "nombre": "Cusco Business \u0026 Stay",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Cusco",
+    "direccion": "Av. Principal 111, Cusco",
+    "rating": 4.7,
+    "reviews": 1055,
+    "habitaciones": [
+      {
+        "id": "784fe72a-4195-5c6d-a0c2-beebdd363b87",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 274.0
+      },
+      {
+        "id": "e5982cb1-a67d-5425-a4cc-ff8594cea387",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 374.0
+      },
+      {
+        "id": "49ca5647-db77-521b-a9d4-000ff23abd17",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 534.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "1ae57dae-2061-55fb-b0aa-4716118d94be",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e1044bd6-ca1e-5080-8631-12cbe9596306",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.5319,
+    "longitude": -71.9675,
+    "description": "Hospedaje en Cusco, Perú."
+  },
+  {
+    "id": "3a895f57-5da1-5b55-981b-4628901ec867",
+    "nombre": "Casa Colonial Cusco",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Cusco",
+    "direccion": "Av. Principal 112, Cusco",
+    "rating": 4.8,
+    "reviews": 1150,
+    "habitaciones": [
+      {
+        "id": "5c1687c6-18d9-57e8-8088-d764820456b1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 292.0
+      },
+      {
+        "id": "3b9ded38-c664-5cca-a167-538a2ad1fdb1",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 392.0
+      },
+      {
+        "id": "48b7f799-8824-51f8-b1ee-089cf1bf7d60",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 552.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ef46a30c-8d70-587c-b7c7-fef6fed52540",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "cf7032a6-91fe-5187-ae08-b512c25f9b50",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.5319,
+    "longitude": -71.9675,
+    "description": "Hospedaje en Cusco, Perú."
+  },
+  {
+    "id": "40296191-186b-546a-b01e-c039ae100105",
+    "nombre": "Hotel Costa Cusco",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Cusco",
+    "direccion": "Av. Principal 113, Cusco",
+    "rating": 4.9,
+    "reviews": 1245,
+    "habitaciones": [
+      {
+        "id": "761eda49-2e9e-53e5-8a5e-d8a6b2c3be62",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 310.0
+      },
+      {
+        "id": "8b68442a-9f3e-535e-a3c3-2c6a642fd62d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 410.0
+      },
+      {
+        "id": "45984289-7c4c-5117-90c2-2aebea83e4e6",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 570.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "dfb2be62-a582-504b-8981-326ac20247dd",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "65614da2-e2b6-5233-acd3-04155e98f756",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.5319,
+    "longitude": -71.9675,
+    "description": "Hospedaje en Cusco, Perú."
+  },
+  {
+    "id": "9f84c790-6457-56eb-a930-936706477b71",
+    "nombre": "Arequipa Grand Hotel",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Arequipa",
+    "direccion": "Av. Principal 110, Arequipa",
+    "rating": 4.4,
+    "reviews": 855,
+    "habitaciones": [
+      {
+        "id": "747ede6e-6506-5ead-b955-2da207982404",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 214.0
+      },
+      {
+        "id": "aad33d64-b752-567c-8491-d9cd02c3bd04",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 314.0
+      },
+      {
+        "id": "e7057920-3fed-56a1-832c-4aa8380bd264",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 474.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "cf45dc4d-0017-5b09-a955-e6ab569c673a",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "9a6899d7-1869-5ccb-a277-08c4cf1671e5",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -16.409,
+    "longitude": -71.5375,
+    "description": "Hospedaje en Arequipa, Perú."
+  },
+  {
+    "id": "9fdd47f9-dce4-5298-b79f-f8f982078004",
+    "nombre": "Hotel Boutique Arequipa",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Arequipa",
+    "direccion": "Av. Principal 111, Arequipa",
+    "rating": 4.5,
+    "reviews": 950,
+    "habitaciones": [
+      {
+        "id": "d9389963-6250-5b3f-a992-3858f00b2231",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 232.0
+      },
+      {
+        "id": "ae36d95c-80ff-520a-94a0-39be1536243a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 332.0
+      },
+      {
+        "id": "e366dcb7-89e9-58f6-84fa-3392d28505b9",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 492.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "1b039079-bce2-5ffb-9ff9-b1ef1f17a047",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "8e929513-8c11-50c2-9746-8117669c7418",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -16.409,
+    "longitude": -71.5375,
+    "description": "Hospedaje en Arequipa, Perú."
+  },
+  {
+    "id": "8cdb4c2d-4322-5718-a754-6aa7d4e4f60a",
+    "nombre": "Arequipa Plaza Suites",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Arequipa",
+    "direccion": "Av. Principal 112, Arequipa",
+    "rating": 4.6,
+    "reviews": 1045,
+    "habitaciones": [
+      {
+        "id": "b50c0ffb-673e-524a-af0f-dd45e85a0d91",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 250.0
+      },
+      {
+        "id": "27707012-27e8-5b61-90f3-7375ebf108be",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 350.0
+      },
+      {
+        "id": "3bbb9a25-1066-54c4-917d-ae32148a2b2d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 510.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a704d40f-50ab-5dba-bf45-c4b11353e308",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d3aea15d-7b4c-5d89-993e-143b87792c30",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -16.409,
+    "longitude": -71.5375,
+    "description": "Hospedaje en Arequipa, Perú."
+  },
+  {
+    "id": "08a8a667-9329-51e5-b933-ca9f588eda71",
+    "nombre": "Hotel Mirador de Arequipa",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Arequipa",
+    "direccion": "Av. Principal 113, Arequipa",
+    "rating": 4.7,
+    "reviews": 1140,
+    "habitaciones": [
+      {
+        "id": "dd6ad8fd-a83a-59d0-8deb-1d65d3260122",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 268.0
+      },
+      {
+        "id": "68a50b7f-fa43-56f5-8315-34f57d38578a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 368.0
+      },
+      {
+        "id": "98911651-ca2f-5085-ac61-0ab625bba113",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 528.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "203e087f-7951-5d03-a9bd-8ee0839d1b13",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d31c4657-1bfd-5093-b3e7-ba7186279a12",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -16.409,
+    "longitude": -71.5375,
+    "description": "Hospedaje en Arequipa, Perú."
+  },
+  {
+    "id": "d6a2287c-1ece-5c31-b235-9f1cfe4c89a5",
+    "nombre": "Arequipa Business \u0026 Stay",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Arequipa",
+    "direccion": "Av. Principal 114, Arequipa",
+    "rating": 4.8,
+    "reviews": 1235,
+    "habitaciones": [
+      {
+        "id": "b3be9cae-5057-54a1-85e4-a6f5e479ec88",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 286.0
+      },
+      {
+        "id": "3135ed89-4199-5144-bbce-8b3d59f77c6f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 386.0
+      },
+      {
+        "id": "274a7d58-bc14-54a2-926e-dee16f9c9992",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 546.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c8aa8a8a-78e4-5bc7-8586-530dd736df20",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1dd6faf2-fe2a-5ef0-90bf-018d3b970f2c",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -16.409,
+    "longitude": -71.5375,
+    "description": "Hospedaje en Arequipa, Perú."
+  },
+  {
+    "id": "808dd541-8767-57d9-88fa-83ffda9ed6b6",
+    "nombre": "Casa Colonial Arequipa",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Arequipa",
+    "direccion": "Av. Principal 115, Arequipa",
+    "rating": 4.9,
+    "reviews": 1330,
+    "habitaciones": [
+      {
+        "id": "f91d422a-45c2-519f-9453-7ff8681940ac",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 304.0
+      },
+      {
+        "id": "c1eac988-2624-54c3-856c-753ba138a0d0",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 404.0
+      },
+      {
+        "id": "8dcba403-556a-5969-a83a-3fd3c6c6bdcb",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 564.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "20221019-d863-59c2-840a-fb4522ebd87f",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ab69dba7-d149-59a0-8731-9290345ddd2c",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -16.409,
+    "longitude": -71.5375,
+    "description": "Hospedaje en Arequipa, Perú."
+  },
+  {
+    "id": "2de26247-1a7a-5708-9218-c1eac4831613",
+    "nombre": "Hotel Costa Arequipa",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Arequipa",
+    "direccion": "Av. Principal 116, Arequipa",
+    "rating": 4.0,
+    "reviews": 1425,
+    "habitaciones": [
+      {
+        "id": "98c0dd2d-3823-543b-97c4-34a66d3b7930",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 322.0
+      },
+      {
+        "id": "e4e97afb-af3f-589b-9eff-405be0ec439f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 422.0
+      },
+      {
+        "id": "573adce5-c1ee-5437-8c81-93b204ca336e",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 582.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "df652d23-9211-573f-bede-0bf72655f03b",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ec14a081-4d97-53e9-807e-ebde1e229ac7",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -16.409,
+    "longitude": -71.5375,
+    "description": "Hospedaje en Arequipa, Perú."
+  },
+  {
+    "id": "81da2828-2499-5e77-9242-9ac0f1f1a915",
+    "nombre": "Puno Grand Hotel",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Puno",
+    "direccion": "Av. Principal 113, Puno",
+    "rating": 4.5,
+    "reviews": 1035,
+    "habitaciones": [
+      {
+        "id": "7ca216b8-525e-5f6f-9618-df4a0af764c2",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 226.0
+      },
+      {
+        "id": "211a9a33-618a-5605-a9f3-c6ea531bee35",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 326.0
+      },
+      {
+        "id": "36817949-8ce4-5306-986a-1f708d73e045",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 486.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c4184401-fe6a-5b91-ba7c-bb2db57b6aee",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "0f7eb2a6-2de7-5b60-8c0a-17e3e75f4d5b",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -15.8402,
+    "longitude": -70.0219,
+    "description": "Hospedaje en Puno, Perú."
+  },
+  {
+    "id": "89b6b7e1-ff44-581e-a866-58f32717c388",
+    "nombre": "Hotel Boutique Puno",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Puno",
+    "direccion": "Av. Principal 114, Puno",
+    "rating": 4.6,
+    "reviews": 1130,
+    "habitaciones": [
+      {
+        "id": "b2da455b-cff0-526e-a7ac-ff6f2870f2e4",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 244.0
+      },
+      {
+        "id": "1bf97c1a-7e1f-5ded-b2f5-ef8d86904f8b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 344.0
+      },
+      {
+        "id": "d7d0e0f8-e456-591f-9af0-ed93f38d1471",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 504.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "9dee89cd-3e8f-54c6-b1c8-8fe7ffa4a475",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ae3dfb2d-92e7-50cf-bf11-9ed22fb894bc",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -15.8402,
+    "longitude": -70.0219,
+    "description": "Hospedaje en Puno, Perú."
+  },
+  {
+    "id": "7d90639f-fbd7-52a2-ae24-da7adfca3111",
+    "nombre": "Puno Plaza Suites",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Puno",
+    "direccion": "Av. Principal 115, Puno",
+    "rating": 4.7,
+    "reviews": 1225,
+    "habitaciones": [
+      {
+        "id": "4399bb46-6e8c-5af5-990e-869bcbae84ee",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 262.0
+      },
+      {
+        "id": "3f274fca-2432-56aa-81a3-9d9edb4028a2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 362.0
+      },
+      {
+        "id": "eb6749e5-3a26-52cc-bf1a-f9e776217f25",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 522.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "30320d40-c3f9-5f06-a73d-d0d907a806ff",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "7872f33e-c392-5302-978b-ae1e5aabfd45",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -15.8402,
+    "longitude": -70.0219,
+    "description": "Hospedaje en Puno, Perú."
+  },
+  {
+    "id": "7b26b6a7-f652-5465-8d68-2c1cc8089774",
+    "nombre": "Hotel Mirador de Puno",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Puno",
+    "direccion": "Av. Principal 116, Puno",
+    "rating": 4.8,
+    "reviews": 1320,
+    "habitaciones": [
+      {
+        "id": "2bbb24cd-1811-57f6-9161-e5f9ba494e57",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 280.0
+      },
+      {
+        "id": "26df471f-434e-5560-ac68-a742e5176a33",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 380.0
+      },
+      {
+        "id": "6d7699cc-941d-5f3b-a6ba-3aa83415af01",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 540.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "95ebe52e-9819-5c0b-85e5-4a8d61341941",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "0ee907bc-843d-55c6-8601-f4775673f503",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -15.8402,
+    "longitude": -70.0219,
+    "description": "Hospedaje en Puno, Perú."
+  },
+  {
+    "id": "8416d483-3060-51cd-9cb7-155ac3e51120",
+    "nombre": "Puno Business \u0026 Stay",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Puno",
+    "direccion": "Av. Principal 117, Puno",
+    "rating": 4.9,
+    "reviews": 1415,
+    "habitaciones": [
+      {
+        "id": "4c9fc6de-74df-53b4-908e-9d518904cb20",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 298.0
+      },
+      {
+        "id": "4cfdef3d-36ea-58fd-b318-486306af38f6",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 398.0
+      },
+      {
+        "id": "ac232e71-3c6c-5235-9807-e6e139acc434",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 558.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "b981705b-024c-5ca3-bbc7-e2217e6c0040",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "6a165fad-0580-5f33-b2be-a9b1be36296f",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -15.8402,
+    "longitude": -70.0219,
+    "description": "Hospedaje en Puno, Perú."
+  },
+  {
+    "id": "4233bd47-5aba-5a4d-8c3c-2b090db00c6e",
+    "nombre": "Casa Colonial Puno",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Puno",
+    "direccion": "Av. Principal 118, Puno",
+    "rating": 4.0,
+    "reviews": 1510,
+    "habitaciones": [
+      {
+        "id": "64d325c9-820e-5ce3-a6b3-e9b2b90f7d56",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 316.0
+      },
+      {
+        "id": "a0928116-ec28-59c8-8438-aefaae9e5a04",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 416.0
+      },
+      {
+        "id": "983d30b4-aa59-5afb-9c9e-49de9d3eaf1f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 576.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "385f56bc-2f0a-59e7-a5bb-49791bd986d6",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d6fc9ca2-e3ee-5799-817a-e4d9a9634071",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -15.8402,
+    "longitude": -70.0219,
+    "description": "Hospedaje en Puno, Perú."
+  },
+  {
+    "id": "1f61ed57-0e8d-5942-b688-c94625b118ed",
+    "nombre": "Hotel Costa Puno",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Puno",
+    "direccion": "Av. Principal 119, Puno",
+    "rating": 4.1,
+    "reviews": 1605,
+    "habitaciones": [
+      {
+        "id": "78b25692-aa3e-5680-af95-c3df0200f5f3",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 334.0
+      },
+      {
+        "id": "ad65a969-27ef-58e3-880b-dbade2f52380",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 434.0
+      },
+      {
+        "id": "a368ae38-adce-509a-9e88-43b321961b01",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 594.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ac9b06f1-6c6c-5850-b005-e7e345b1b898",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "40db4199-52f9-51b2-b233-51d2a69387fd",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -15.8402,
+    "longitude": -70.0219,
+    "description": "Hospedaje en Puno, Perú."
+  },
+  {
+    "id": "4173b81f-0e27-58ab-adef-b6ac241696a2",
+    "nombre": "Trujillo Grand Hotel",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Trujillo",
+    "direccion": "Av. Principal 116, Trujillo",
+    "rating": 4.6,
+    "reviews": 1215,
+    "habitaciones": [
+      {
+        "id": "06396036-893e-516e-a225-af983cbbf4d7",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 238.0
+      },
+      {
+        "id": "11127e93-5b29-58dd-8fcf-f60905f3da1c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 338.0
+      },
+      {
+        "id": "7c8871a4-0ef5-5bb1-90d5-60f4b36c9d70",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 498.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "37ba7683-45c4-5816-b389-b0ad5f4e252e",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "dba30ad3-0824-5d4f-a76d-3c92886768c2",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -8.1118,
+    "longitude": -79.0288,
+    "description": "Hospedaje en Trujillo, Perú."
+  },
+  {
+    "id": "3d5b4b47-8ff4-5c3d-9de7-8ac7ed3a1d49",
+    "nombre": "Hotel Boutique Trujillo",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Trujillo",
+    "direccion": "Av. Principal 117, Trujillo",
+    "rating": 4.7,
+    "reviews": 1310,
+    "habitaciones": [
+      {
+        "id": "242666fc-eddf-51db-b0ad-427e1cb9f09b",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 256.0
+      },
+      {
+        "id": "96674146-e872-5ced-bc38-28309eac6b33",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 356.0
+      },
+      {
+        "id": "4b690655-3d19-5ce2-8f02-3776a4ba76f0",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 516.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d6c4a427-c15e-5f3a-ae96-decf0b5f7a74",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "39ec348e-1ab7-55b4-b52d-0854560b8c15",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -8.1118,
+    "longitude": -79.0288,
+    "description": "Hospedaje en Trujillo, Perú."
+  },
+  {
+    "id": "72227537-9856-55a0-b1c0-b503e2361324",
+    "nombre": "Trujillo Plaza Suites",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Trujillo",
+    "direccion": "Av. Principal 118, Trujillo",
+    "rating": 4.8,
+    "reviews": 1405,
+    "habitaciones": [
+      {
+        "id": "14ae2ced-2e07-5f02-9e2a-831d305a40dc",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 274.0
+      },
+      {
+        "id": "b4b89a72-ad6a-569f-a341-bbf6fe7cbe2f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 374.0
+      },
+      {
+        "id": "c078fb53-8ff0-5813-b548-6b62f6d76215",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 534.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "aec3abf5-422c-59ce-a9f1-750d2e478a32",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1c66fdb4-f071-5457-86f6-6537301883f0",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -8.1118,
+    "longitude": -79.0288,
+    "description": "Hospedaje en Trujillo, Perú."
+  },
+  {
+    "id": "196b0238-9d51-5e0b-a6d5-3f2fcb38d19e",
+    "nombre": "Hotel Mirador de Trujillo",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Trujillo",
+    "direccion": "Av. Principal 119, Trujillo",
+    "rating": 4.9,
+    "reviews": 1500,
+    "habitaciones": [
+      {
+        "id": "aaa09750-5433-5817-b104-ea52b8aabaf9",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 292.0
+      },
+      {
+        "id": "d9e86e32-958b-530b-a804-92fbb5dc6d1d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 392.0
+      },
+      {
+        "id": "281c86e1-c03b-5fad-8211-6a30620870d7",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 552.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "98f2c86d-f669-5227-a27d-8cedc836a28e",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "9fc486db-6618-5d2b-a9f4-425a0ec2126d",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -8.1118,
+    "longitude": -79.0288,
+    "description": "Hospedaje en Trujillo, Perú."
+  },
+  {
+    "id": "9c72a782-2cbc-561b-b20d-ea0843815136",
+    "nombre": "Trujillo Business \u0026 Stay",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Trujillo",
+    "direccion": "Av. Principal 120, Trujillo",
+    "rating": 4.0,
+    "reviews": 1595,
+    "habitaciones": [
+      {
+        "id": "5e5a9897-ca00-588c-ac12-9105492ba38a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 310.0
+      },
+      {
+        "id": "4ea20b25-c8fe-51bc-a626-924447356465",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 410.0
+      },
+      {
+        "id": "335b2101-cfb6-5421-b9c7-56bb38f9bdac",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 570.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "38c0265f-9f04-597a-971b-ecaf53b76a58",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f253a9ce-7777-5e06-a002-d51690b40bde",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -8.1118,
+    "longitude": -79.0288,
+    "description": "Hospedaje en Trujillo, Perú."
+  },
+  {
+    "id": "faede504-4625-5e88-9faf-64258defa27d",
+    "nombre": "Casa Colonial Trujillo",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Trujillo",
+    "direccion": "Av. Principal 121, Trujillo",
+    "rating": 4.1,
+    "reviews": 1690,
+    "habitaciones": [
+      {
+        "id": "61ec8d1e-b233-5238-8203-2632840005b9",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 328.0
+      },
+      {
+        "id": "b7d5d4fb-aef7-58a2-9904-06cd5cba2cc6",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 428.0
+      },
+      {
+        "id": "1ea9a9d9-49d1-5edc-baf7-01b2a22ec7d6",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 588.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "3065ee35-2f1e-5780-b5fa-1712741c7b2b",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f49b7ea1-44c7-5570-8a4e-ff4828b61a8c",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -8.1118,
+    "longitude": -79.0288,
+    "description": "Hospedaje en Trujillo, Perú."
+  },
+  {
+    "id": "b254d629-3c31-53d0-89bb-7ffe536d61c5",
+    "nombre": "Hotel Costa Trujillo",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Trujillo",
+    "direccion": "Av. Principal 122, Trujillo",
+    "rating": 4.2,
+    "reviews": 1785,
+    "habitaciones": [
+      {
+        "id": "039c1abc-256a-5a0f-a1ed-f797a6f136bf",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 346.0
+      },
+      {
+        "id": "116bc486-b2e0-5c98-bd6b-09d67572f01a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 446.0
+      },
+      {
+        "id": "ba8166e5-9f5c-5c73-b6b7-d20d048320ea",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 606.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ffa77da3-eb03-5133-8f0b-4545c31a5f5b",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "923262a4-9c02-5216-a34c-8ab4abb6d402",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -8.1118,
+    "longitude": -79.0288,
+    "description": "Hospedaje en Trujillo, Perú."
+  },
+  {
+    "id": "e348751a-a714-56cd-82f9-0c515d344da8",
+    "nombre": "Máncora Grand Hotel",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Máncora",
+    "direccion": "Av. Principal 119, Máncora",
+    "rating": 4.7,
+    "reviews": 1395,
+    "habitaciones": [
+      {
+        "id": "2c46877e-adc2-5fb5-85f4-ee92bf25fda1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 250.0
+      },
+      {
+        "id": "83fbf42f-4698-5df5-9b5a-0f1966a5d67a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 350.0
+      },
+      {
+        "id": "8584a8a2-5ac4-519a-824b-44b0fe7661ba",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 510.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "f5ba3493-f234-5aa4-84a2-26dadb36b301",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "30c664e2-f7f3-500d-a56c-d3e777896611",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -4.105,
+    "longitude": -81.047,
+    "description": "Hospedaje en Máncora, Perú."
+  },
+  {
+    "id": "d4cd5e0a-59cb-534e-9ebb-8aeeb690bf99",
+    "nombre": "Hotel Boutique Máncora",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Máncora",
+    "direccion": "Av. Principal 120, Máncora",
+    "rating": 4.8,
+    "reviews": 1490,
+    "habitaciones": [
+      {
+        "id": "991918bd-8e7b-5c22-9532-3954f7cdaf3f",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 268.0
+      },
+      {
+        "id": "037d9d34-2c8e-5c25-a76c-867e0b142d56",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 368.0
+      },
+      {
+        "id": "bc43d878-26f8-5a09-8e6f-71e98cabdb3b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 528.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "0f6af047-1d12-53e3-90b4-deee0e16fea1",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "be613916-5191-549b-8ca5-2bb64216a8ef",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -4.105,
+    "longitude": -81.047,
+    "description": "Hospedaje en Máncora, Perú."
+  },
+  {
+    "id": "7d521fc4-a71e-54d5-bdec-688633a285b0",
+    "nombre": "Máncora Plaza Suites",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Máncora",
+    "direccion": "Av. Principal 121, Máncora",
+    "rating": 4.9,
+    "reviews": 1585,
+    "habitaciones": [
+      {
+        "id": "12bd215d-fd21-52de-9397-74a08a299865",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 286.0
+      },
+      {
+        "id": "a24a4a4a-20d6-5dbb-b1f0-2c30aa49850b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 386.0
+      },
+      {
+        "id": "6c8c56f0-6029-5ab8-8c9b-f71d38da6606",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 546.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a5051775-30df-50d3-8f7b-15d2ce7c19aa",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c8ad454a-7246-5550-9c0b-712be697a8e1",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -4.105,
+    "longitude": -81.047,
+    "description": "Hospedaje en Máncora, Perú."
+  },
+  {
+    "id": "1a6acf3e-e830-5205-be83-ec2ce92e7f45",
+    "nombre": "Hotel Mirador de Máncora",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Máncora",
+    "direccion": "Av. Principal 122, Máncora",
+    "rating": 4.0,
+    "reviews": 1680,
+    "habitaciones": [
+      {
+        "id": "14fbe8bf-b801-5ff1-82e6-8737d414c3c3",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 304.0
+      },
+      {
+        "id": "7061d294-afc7-561c-8cb7-6db3ba7b401c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 404.0
+      },
+      {
+        "id": "e8b1d19f-b057-5497-aef8-4cd67e3bbfb2",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 564.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "4b2c5fa5-51c4-5666-9938-9c3ef987af65",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3ca9ee67-ec04-5ac8-95c6-4304f27ebbb5",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -4.105,
+    "longitude": -81.047,
+    "description": "Hospedaje en Máncora, Perú."
+  },
+  {
+    "id": "c4878ba7-448f-5ec4-9457-5d1155bc6a16",
+    "nombre": "Máncora Business \u0026 Stay",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Máncora",
+    "direccion": "Av. Principal 123, Máncora",
+    "rating": 4.1,
+    "reviews": 1775,
+    "habitaciones": [
+      {
+        "id": "3dab00b5-2d9a-5acb-9955-2f4ff9d6a906",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 322.0
+      },
+      {
+        "id": "f666766a-337f-517d-b25f-822ef4f95ac6",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 422.0
+      },
+      {
+        "id": "ca8d13b2-1567-5830-9ac2-bb5d19f93eaf",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 582.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "22ea2d78-bfa0-53ee-a8f2-3c1c715d53e8",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "aede3e98-cce6-5128-8302-5dfc74f3a3e7",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -4.105,
+    "longitude": -81.047,
+    "description": "Hospedaje en Máncora, Perú."
+  },
+  {
+    "id": "d253cf07-037f-5241-9590-16b09aba672d",
+    "nombre": "Casa Colonial Máncora",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Máncora",
+    "direccion": "Av. Principal 124, Máncora",
+    "rating": 4.2,
+    "reviews": 1870,
+    "habitaciones": [
+      {
+        "id": "3e634bce-06f8-5ee9-ae49-b8cdf1134211",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 340.0
+      },
+      {
+        "id": "cfd8669f-d521-5edb-a38a-517e2b233b04",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 440.0
+      },
+      {
+        "id": "c0a33f3a-ea7e-5db4-8bba-223b2ef99ece",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 600.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a2d7648e-b79b-52ca-9eaa-2fa4cf22a7b9",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3a54257f-22d4-5947-8310-a35eedd49f1d",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -4.105,
+    "longitude": -81.047,
+    "description": "Hospedaje en Máncora, Perú."
+  },
+  {
+    "id": "472b8d71-2bc5-5495-91de-03c0325793b7",
+    "nombre": "Hotel Costa Máncora",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Máncora",
+    "direccion": "Av. Principal 125, Máncora",
+    "rating": 4.3,
+    "reviews": 1965,
+    "habitaciones": [
+      {
+        "id": "5edf36cc-815a-5596-931d-2807b3f93abb",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 358.0
+      },
+      {
+        "id": "9bbd075d-a2fc-55a6-a89b-cbd983ef1b9a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 458.0
+      },
+      {
+        "id": "0a0c8e22-8fed-5666-b9fa-886b4ab9aec7",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 618.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ba9b9bde-932e-5732-a45f-0a29a54c4858",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4bac4d90-c0b2-5ab9-914c-23a943f3db44",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -4.105,
+    "longitude": -81.047,
+    "description": "Hospedaje en Máncora, Perú."
+  },
+  {
+    "id": "5286cabb-5e5b-5f98-9598-dd6be7d4ba7f",
+    "nombre": "Paracas Grand Hotel",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Paracas",
+    "direccion": "Av. Principal 122, Paracas",
+    "rating": 4.8,
+    "reviews": 1575,
+    "habitaciones": [
+      {
+        "id": "50f02bc7-f721-5ba0-9005-45dfc265246c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 262.0
+      },
+      {
+        "id": "e5e02adc-14df-5bd7-a4b2-d37a693dd08c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 362.0
+      },
+      {
+        "id": "99dc5e30-f0bf-551b-b3e2-98f9cf8f73f2",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 522.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "b5e2fc84-bccd-534c-af42-fb7bdabafb69",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "42f6c586-aa94-52c1-b56d-3a8da8deeca0",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.8333,
+    "longitude": -76.25,
+    "description": "Hospedaje en Paracas, Perú."
+  },
+  {
+    "id": "b57bcb96-88f1-5a8f-98e0-f8b4b0e0ca47",
+    "nombre": "Hotel Boutique Paracas",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Paracas",
+    "direccion": "Av. Principal 123, Paracas",
+    "rating": 4.9,
+    "reviews": 1670,
+    "habitaciones": [
+      {
+        "id": "e5715343-069f-5e05-8bbf-6be76abf3071",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 280.0
+      },
+      {
+        "id": "bc4727d0-5bc8-5693-bc22-6764d14042d5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 380.0
+      },
+      {
+        "id": "d1893cf0-3d0f-5c59-ba3e-4eb43b639523",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 540.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "cd651bc3-82c0-5fae-80f1-f6d4ec541a04",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "8712a7b0-78ae-5268-bc68-8b0b89e82190",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.8333,
+    "longitude": -76.25,
+    "description": "Hospedaje en Paracas, Perú."
+  },
+  {
+    "id": "25be4e42-f424-514c-a791-f604d6b7bda8",
+    "nombre": "Paracas Plaza Suites",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Paracas",
+    "direccion": "Av. Principal 124, Paracas",
+    "rating": 4.0,
+    "reviews": 1765,
+    "habitaciones": [
+      {
+        "id": "cd23eb8f-31dd-5119-80fa-c513ea1f9222",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 298.0
+      },
+      {
+        "id": "7ffc7986-a0bc-521e-930f-fd4c435d3d3e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 398.0
+      },
+      {
+        "id": "2f2d9fc7-95cf-52c8-b0c0-d8a772dd31ad",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 558.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5c1556d2-f689-5ef9-937a-433e25624aa9",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f657cd43-eeb6-561d-a8e7-7298f725c8be",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.8333,
+    "longitude": -76.25,
+    "description": "Hospedaje en Paracas, Perú."
+  },
+  {
+    "id": "36d11ffc-11ae-5024-aded-9eb01656c14b",
+    "nombre": "Hotel Mirador de Paracas",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Paracas",
+    "direccion": "Av. Principal 125, Paracas",
+    "rating": 4.1,
+    "reviews": 1860,
+    "habitaciones": [
+      {
+        "id": "5a9752ae-efc4-58ce-9ef7-4f24f8f9e24e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 316.0
+      },
+      {
+        "id": "36c9f542-2b61-5214-8a43-8346b30d1f4e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 416.0
+      },
+      {
+        "id": "02a8ee85-05da-5628-b142-dbbf75534cdc",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 576.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "61cbb7f0-4553-5c27-8c31-ab856ffab40a",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "69d2d5ea-641d-59a3-9754-7349bcd44346",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.8333,
+    "longitude": -76.25,
+    "description": "Hospedaje en Paracas, Perú."
+  },
+  {
+    "id": "43b1f3d5-5e87-5bf6-b55c-7bfb4121ab2b",
+    "nombre": "Paracas Business \u0026 Stay",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Paracas",
+    "direccion": "Av. Principal 126, Paracas",
+    "rating": 4.2,
+    "reviews": 1955,
+    "habitaciones": [
+      {
+        "id": "28a9e2b8-a986-5fe4-b0c5-42fe5f67aca2",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 334.0
+      },
+      {
+        "id": "613644e2-c54f-539a-ab8f-a0ffd9cdfbc0",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 434.0
+      },
+      {
+        "id": "f54cda1f-0b48-5b33-9ecc-130010876ce2",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 594.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d0d4a253-bba3-58cc-a9bb-b99da36efd85",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "56287b66-1c97-5b78-8673-08a0da4c3f85",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.8333,
+    "longitude": -76.25,
+    "description": "Hospedaje en Paracas, Perú."
+  },
+  {
+    "id": "86ee0c1c-df94-5e37-afc3-b211e10b803b",
+    "nombre": "Casa Colonial Paracas",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Paracas",
+    "direccion": "Av. Principal 127, Paracas",
+    "rating": 4.3,
+    "reviews": 2050,
+    "habitaciones": [
+      {
+        "id": "3b8f0310-8ff4-5536-bbc8-74c8c9c6a072",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 352.0
+      },
+      {
+        "id": "a55717a3-1665-5b1c-95b2-651fc98c41f2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 452.0
+      },
+      {
+        "id": "733195b3-28b1-588b-adc7-1f9eb15a292a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 612.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "352605b4-29e0-5998-8efb-db8a7791cf15",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a7289e09-8bbd-58ca-9ec1-d86b65190c42",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.8333,
+    "longitude": -76.25,
+    "description": "Hospedaje en Paracas, Perú."
+  },
+  {
+    "id": "e99c90da-68e7-501f-80a4-e89ea34318c4",
+    "nombre": "Hotel Costa Paracas",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Paracas",
+    "direccion": "Av. Principal 128, Paracas",
+    "rating": 4.4,
+    "reviews": 2145,
+    "habitaciones": [
+      {
+        "id": "7edbef42-30fe-525d-8a1a-179b01d0a36e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 370.0
+      },
+      {
+        "id": "ef2debfa-8a57-59f1-8f7a-153b75ba97d4",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 470.0
+      },
+      {
+        "id": "51ff2e31-44a9-53b1-bffc-ed0319485698",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 630.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "791f6c46-4d59-5d36-9dac-10c3904aa8a6",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "17a31c8f-b506-5127-a11e-d4a8795b9a39",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -13.8333,
+    "longitude": -76.25,
+    "description": "Hospedaje en Paracas, Perú."
+  },
+  {
+    "id": "4a4d3d65-5c1a-5c15-8d1c-adddc67fadfd",
+    "nombre": "Iquitos Grand Hotel",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Iquitos",
+    "direccion": "Av. Principal 125, Iquitos",
+    "rating": 4.9,
+    "reviews": 1755,
+    "habitaciones": [
+      {
+        "id": "ef301689-9b8d-5ba4-ac23-317c242906b1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 274.0
+      },
+      {
+        "id": "23742fa3-25e7-58b9-920a-d0ef0d895cfc",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 374.0
+      },
+      {
+        "id": "e2b536f1-e922-5025-a708-4d694eea3c21",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 534.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "181fdcb2-c0e4-5a79-a037-f29f4f0a4aea",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "344d2c99-5df9-57ed-b67c-30414ff74e31",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -3.7437,
+    "longitude": -73.2516,
+    "description": "Hospedaje en Iquitos, Perú."
+  },
+  {
+    "id": "ceb41856-cd25-59ac-9546-a165da759b14",
+    "nombre": "Hotel Boutique Iquitos",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Iquitos",
+    "direccion": "Av. Principal 126, Iquitos",
+    "rating": 4.0,
+    "reviews": 1850,
+    "habitaciones": [
+      {
+        "id": "fc21615d-49b6-5013-bc1c-27bbeac087f8",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 292.0
+      },
+      {
+        "id": "6d21a2a1-00f8-5257-93db-8e528510fe4f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 392.0
+      },
+      {
+        "id": "12305152-31a8-5898-92eb-41ade536a1d7",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 552.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "76e3a192-08b6-5e55-8115-9688095a3410",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "30848985-252c-5d37-b85e-4904e7e291f8",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -3.7437,
+    "longitude": -73.2516,
+    "description": "Hospedaje en Iquitos, Perú."
+  },
+  {
+    "id": "a4c44c5f-b17d-5eed-a388-37cf96e3e431",
+    "nombre": "Iquitos Plaza Suites",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Iquitos",
+    "direccion": "Av. Principal 127, Iquitos",
+    "rating": 4.1,
+    "reviews": 1945,
+    "habitaciones": [
+      {
+        "id": "71ff332b-b767-5338-924e-ce75f7c2bad5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 310.0
+      },
+      {
+        "id": "d1fcf297-72d9-5e97-a666-3ab1207adb08",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 410.0
+      },
+      {
+        "id": "c046fcd9-8d33-5426-bee4-818f79859861",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 570.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "867c38c5-64ee-59d1-9969-be366442c717",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "84d9c7a6-0811-5095-8e25-44e35641e939",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -3.7437,
+    "longitude": -73.2516,
+    "description": "Hospedaje en Iquitos, Perú."
+  },
+  {
+    "id": "ed22f54a-425f-5634-80d1-cbbfbe82431c",
+    "nombre": "Hotel Mirador de Iquitos",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Iquitos",
+    "direccion": "Av. Principal 128, Iquitos",
+    "rating": 4.2,
+    "reviews": 2040,
+    "habitaciones": [
+      {
+        "id": "e223db73-c800-52c7-ae7e-f2da39154e29",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 328.0
+      },
+      {
+        "id": "ad93bdfd-ffd9-5584-b03e-81973713e8a9",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 428.0
+      },
+      {
+        "id": "f48a43c1-1474-52d3-bb06-d5dc438159ec",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 588.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c8664330-6dde-5565-bdd5-816b77d89410",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a2762c1a-7ba5-5d54-bcf3-b00c6067dff0",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -3.7437,
+    "longitude": -73.2516,
+    "description": "Hospedaje en Iquitos, Perú."
+  },
+  {
+    "id": "a1f7fc40-957a-58a4-ae72-992c29eadcaf",
+    "nombre": "Iquitos Business \u0026 Stay",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Iquitos",
+    "direccion": "Av. Principal 129, Iquitos",
+    "rating": 4.3,
+    "reviews": 2135,
+    "habitaciones": [
+      {
+        "id": "3a6ab157-17bf-54a0-ac34-04c684238c8a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 346.0
+      },
+      {
+        "id": "ba9c984e-ba2d-582e-9027-42645908e747",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 446.0
+      },
+      {
+        "id": "3998b464-0993-5f36-a235-65b6cc076ace",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 606.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5b4eb7d4-040d-5486-8134-644f55b9a34f",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "fd1e289d-a31b-5702-8185-419097b61a4f",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -3.7437,
+    "longitude": -73.2516,
+    "description": "Hospedaje en Iquitos, Perú."
+  },
+  {
+    "id": "64463e28-f3eb-56cd-99a1-01fd5f8cc88c",
+    "nombre": "Casa Colonial Iquitos",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Iquitos",
+    "direccion": "Av. Principal 130, Iquitos",
+    "rating": 4.4,
+    "reviews": 2230,
+    "habitaciones": [
+      {
+        "id": "1d1a4eea-2447-5bde-a899-379ab28ee26a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 364.0
+      },
+      {
+        "id": "d96c5636-6a9b-5d4f-948e-400151169215",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 464.0
+      },
+      {
+        "id": "4139a8d0-fbb6-539c-b083-caef9ee4af17",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 624.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a0aaa6cc-f276-50f2-8752-6511ab1bf7e1",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "82dcc677-875d-5a93-bf1c-59435c79c9e9",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -3.7437,
+    "longitude": -73.2516,
+    "description": "Hospedaje en Iquitos, Perú."
+  },
+  {
+    "id": "33cd7ac9-1cb7-5ad2-8fea-cec49c728a96",
+    "nombre": "Hotel Costa Iquitos",
+    "pais": "Perú",
+    "countryCode": "PE",
+    "ciudad": "Iquitos",
+    "direccion": "Av. Principal 131, Iquitos",
+    "rating": 4.5,
+    "reviews": 2325,
+    "habitaciones": [
+      {
+        "id": "0db8fc8f-0f54-504e-a0cb-d7552e2f35d8",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 382.0
+      },
+      {
+        "id": "9417cdec-4c9a-55b3-a0e9-05daf1031f4c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 482.0
+      },
+      {
+        "id": "c824d6a2-4ba9-5710-997e-89c867f8ce7e",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 642.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "75a4b32e-9141-5737-bada-940b9a6995e8",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "daa344ff-0ea8-53e7-ac4b-48f7502c6922",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -3.7437,
+    "longitude": -73.2516,
+    "description": "Hospedaje en Iquitos, Perú."
+  }
+]

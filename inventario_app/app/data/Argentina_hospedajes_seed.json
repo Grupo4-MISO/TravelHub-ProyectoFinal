@@ -1,0 +1,2578 @@
+[
+  {
+    "id": "5faba8d7-0bc9-5bc7-bd6e-ca1d8b72882d",
+    "nombre": "Buenos Aires Grand Hotel",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Buenos Aires",
+    "direccion": "Av. Principal 104, Buenos Aires",
+    "rating": 4.2,
+    "reviews": 495,
+    "habitaciones": [
+      {
+        "id": "0879960e-474c-5ada-8064-e89d8c7fd924",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 100000.0
+      },
+      {
+        "id": "e4541b05-438d-5741-880b-973d0f5dae0c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 160000.0
+      },
+      {
+        "id": "678a6c3a-0bba-5b67-9589-87393e439663",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 260000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "da203bb7-67cd-5c6b-95e0-cd0cfaf73a51",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "9e619de1-92ba-590d-8360-ee5a7e8cc091",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -34.6037,
+    "longitude": -58.3816,
+    "description": "Hospedaje en Buenos Aires, Argentina."
+  },
+  {
+    "id": "aa80a71d-e8d5-5837-a352-1b9fad7d960d",
+    "nombre": "Hotel Boutique Buenos Aires",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Buenos Aires",
+    "direccion": "Av. Principal 105, Buenos Aires",
+    "rating": 4.3,
+    "reviews": 590,
+    "habitaciones": [
+      {
+        "id": "a4a1de08-51a4-5ac6-b9ea-d3ee354d4c05",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 109000.0
+      },
+      {
+        "id": "24d4158f-3da1-5051-a53f-96706e617af1",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 169000.0
+      },
+      {
+        "id": "9fe09cf5-a6d4-558e-b083-23e954cd36ed",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 269000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "50178c08-a2a5-5efd-8343-a541450ed78d",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "fb32300f-76e7-562d-b949-35f3f3406c22",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -34.6037,
+    "longitude": -58.3816,
+    "description": "Hospedaje en Buenos Aires, Argentina."
+  },
+  {
+    "id": "920ae6a3-537b-576d-9a0e-c0ac74460088",
+    "nombre": "Buenos Aires Plaza Suites",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Buenos Aires",
+    "direccion": "Av. Principal 106, Buenos Aires",
+    "rating": 4.4,
+    "reviews": 685,
+    "habitaciones": [
+      {
+        "id": "dff85b84-ec52-5f09-b2c7-020eeac630dd",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 118000.0
+      },
+      {
+        "id": "51d47de0-6e91-5c38-a177-8827b4f4a76e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 178000.0
+      },
+      {
+        "id": "f6fd45c0-9b4a-5c9d-b967-0aa3f5485e83",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 278000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "7f9f49bc-35b8-5b9a-9178-bc862a4d36be",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "0667540a-d30e-59fc-a246-375532bc641e",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -34.6037,
+    "longitude": -58.3816,
+    "description": "Hospedaje en Buenos Aires, Argentina."
+  },
+  {
+    "id": "64dcb93e-0ec1-5a7b-8b78-4e8da258e0c7",
+    "nombre": "Hotel Mirador de Buenos Aires",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Buenos Aires",
+    "direccion": "Av. Principal 107, Buenos Aires",
+    "rating": 4.5,
+    "reviews": 780,
+    "habitaciones": [
+      {
+        "id": "ed3048de-61a7-5e7d-a3b0-96410b866186",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 127000.0
+      },
+      {
+        "id": "144675a5-9aee-5930-9a49-8f3e6a64dc99",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 187000.0
+      },
+      {
+        "id": "1af6c898-57dc-5363-9719-797734dd981e",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 287000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "42b6677d-1b5b-57a2-b15b-97a5c8e10aca",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "91650519-0c2f-5a1e-a98d-c811a8edb1db",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -34.6037,
+    "longitude": -58.3816,
+    "description": "Hospedaje en Buenos Aires, Argentina."
+  },
+  {
+    "id": "aad46814-8a26-5d7e-bc20-491f7b0a4d50",
+    "nombre": "Buenos Aires Business \u0026 Stay",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Buenos Aires",
+    "direccion": "Av. Principal 108, Buenos Aires",
+    "rating": 4.6,
+    "reviews": 875,
+    "habitaciones": [
+      {
+        "id": "3e4a1e2c-7cef-563a-89ae-2669865a0fff",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 136000.0
+      },
+      {
+        "id": "a9b18ecf-222f-5f17-af6d-4e832dfe280c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 196000.0
+      },
+      {
+        "id": "ae162a47-2864-5e7a-8d5e-6569eb6e6b78",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 296000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "2dd3f147-5e21-54c3-bf43-5cf1903141b5",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "40099b63-00db-5037-9469-c7dd9b931804",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -34.6037,
+    "longitude": -58.3816,
+    "description": "Hospedaje en Buenos Aires, Argentina."
+  },
+  {
+    "id": "e5691f2c-a626-589c-95eb-422de1720035",
+    "nombre": "Casa Colonial Buenos Aires",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Buenos Aires",
+    "direccion": "Av. Principal 109, Buenos Aires",
+    "rating": 4.7,
+    "reviews": 970,
+    "habitaciones": [
+      {
+        "id": "c95b22ba-becd-59f2-b881-1283993b53f4",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 145000.0
+      },
+      {
+        "id": "7cc6c0de-a023-50b5-9a74-43ce86d31002",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 205000.0
+      },
+      {
+        "id": "82a01506-c7b0-5cef-bfca-ef90a805588b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 305000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5e0c0fd2-97f7-53fe-9150-df763a5dc340",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "7b5ab87c-235e-57ef-8f0d-f1846d210fcf",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -34.6037,
+    "longitude": -58.3816,
+    "description": "Hospedaje en Buenos Aires, Argentina."
+  },
+  {
+    "id": "c2a4a7c9-2b2e-5aeb-9bef-1b3662694175",
+    "nombre": "Hotel Costa Buenos Aires",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Buenos Aires",
+    "direccion": "Av. Principal 110, Buenos Aires",
+    "rating": 4.8,
+    "reviews": 1065,
+    "habitaciones": [
+      {
+        "id": "2661d882-38a4-5a56-a203-36ba1de91f9a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 154000.0
+      },
+      {
+        "id": "0556eec6-dfe8-523a-975c-e47b57594cd2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 214000.0
+      },
+      {
+        "id": "5c874ed7-c7d0-59b5-829b-0aeccd8b8275",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 314000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "0c0a932c-db8e-5dfa-a949-a4808b4fe1d1",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "8269071a-2769-5725-85a9-836e99aec67f",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -34.6037,
+    "longitude": -58.3816,
+    "description": "Hospedaje en Buenos Aires, Argentina."
+  },
+  {
+    "id": "ed551463-f6da-5d3c-bae2-af2f589a4b56",
+    "nombre": "Mendoza Grand Hotel",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mendoza",
+    "direccion": "Av. Principal 107, Mendoza",
+    "rating": 4.3,
+    "reviews": 675,
+    "habitaciones": [
+      {
+        "id": "34f808a0-fc44-5df6-a557-b7947f52f0e6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 106000.0
+      },
+      {
+        "id": "e18523d1-a94a-5004-8d51-2651f0849ba4",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 166000.0
+      },
+      {
+        "id": "ecbefb7a-004d-5165-89eb-7931846f459b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 266000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "caedc2e6-234a-50e8-962a-844c21f5e315",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e13a7154-8084-59d9-ba77-412b62380740",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -32.8908,
+    "longitude": -68.8272,
+    "description": "Hospedaje en Mendoza, Argentina."
+  },
+  {
+    "id": "e64ff3b5-edb1-5a5b-a7eb-ec291087b433",
+    "nombre": "Hotel Boutique Mendoza",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mendoza",
+    "direccion": "Av. Principal 108, Mendoza",
+    "rating": 4.4,
+    "reviews": 770,
+    "habitaciones": [
+      {
+        "id": "251a01b7-f9dc-5636-aa76-01862711993f",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 115000.0
+      },
+      {
+        "id": "ce39adf1-3639-5222-988b-044fe619e6a8",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 175000.0
+      },
+      {
+        "id": "31df9970-9bbb-55d0-8f1a-4f65b377f56f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 275000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "642d2ff6-aa41-5cec-b5b5-8e1103e8ed6f",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ae4396e2-4a8c-5f20-a273-3698ef26fae7",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -32.8908,
+    "longitude": -68.8272,
+    "description": "Hospedaje en Mendoza, Argentina."
+  },
+  {
+    "id": "1d3e29be-4c2c-515c-84ec-c4fc382a703a",
+    "nombre": "Mendoza Plaza Suites",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mendoza",
+    "direccion": "Av. Principal 109, Mendoza",
+    "rating": 4.5,
+    "reviews": 865,
+    "habitaciones": [
+      {
+        "id": "3c995c32-d935-58f2-8b0b-2a4c4696bae5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 124000.0
+      },
+      {
+        "id": "0d84329b-a2b8-501d-bc60-59a785cda915",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 184000.0
+      },
+      {
+        "id": "34ce90a6-1e32-51b7-b2b1-2a1de4331072",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 284000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "6d79e23f-cba9-5723-8ac1-5a3d8a19d6b8",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "9ebcd1a2-ec62-51c0-bd08-4b3985bf843b",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -32.8908,
+    "longitude": -68.8272,
+    "description": "Hospedaje en Mendoza, Argentina."
+  },
+  {
+    "id": "3a071e56-4cb6-53f3-b717-fa212b047228",
+    "nombre": "Hotel Mirador de Mendoza",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mendoza",
+    "direccion": "Av. Principal 110, Mendoza",
+    "rating": 4.6,
+    "reviews": 960,
+    "habitaciones": [
+      {
+        "id": "3839cfa1-3386-5a14-b6d1-60d6cddcf99d",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 133000.0
+      },
+      {
+        "id": "0d1841d6-fdf2-556a-885e-94a6a06feed3",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 193000.0
+      },
+      {
+        "id": "34b4b339-b6a4-5f17-b9bd-9fc783c46653",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 293000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "f2579cd8-c747-597d-9a66-2844ecfaeeb1",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ccd8a125-47b8-5805-8d4f-7050fc5e6f73",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -32.8908,
+    "longitude": -68.8272,
+    "description": "Hospedaje en Mendoza, Argentina."
+  },
+  {
+    "id": "da9a1623-2b13-541e-ab38-57cdb0dde6d1",
+    "nombre": "Mendoza Business \u0026 Stay",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mendoza",
+    "direccion": "Av. Principal 111, Mendoza",
+    "rating": 4.7,
+    "reviews": 1055,
+    "habitaciones": [
+      {
+        "id": "5dfb6be4-71b5-52e1-a698-a5910b31023e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 142000.0
+      },
+      {
+        "id": "5c67afac-db4f-5c3f-86e8-7d33ad581c40",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 202000.0
+      },
+      {
+        "id": "003d1fdc-ed11-5bb5-a258-337bae07f944",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 302000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "44082251-a651-5f67-b95f-0f7270233153",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ed4d017d-8198-5ae4-9710-76950bbe64c3",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -32.8908,
+    "longitude": -68.8272,
+    "description": "Hospedaje en Mendoza, Argentina."
+  },
+  {
+    "id": "90a8389a-3a09-5fe5-b3de-a6f8e2521382",
+    "nombre": "Casa Colonial Mendoza",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mendoza",
+    "direccion": "Av. Principal 112, Mendoza",
+    "rating": 4.8,
+    "reviews": 1150,
+    "habitaciones": [
+      {
+        "id": "603b3b38-38aa-5baa-8dfe-a7dcb154e3a4",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 151000.0
+      },
+      {
+        "id": "14516fbd-5891-5450-93b4-c2e3457a895e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 211000.0
+      },
+      {
+        "id": "016dfccc-54c1-5cc4-8b14-0b3845167dfa",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 311000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d01cd071-8840-5c30-8820-4b483e9fce35",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "20c1be72-7290-578e-b96d-3a3a1d7bb42d",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -32.8908,
+    "longitude": -68.8272,
+    "description": "Hospedaje en Mendoza, Argentina."
+  },
+  {
+    "id": "9df7d24f-3ccc-54fd-a4d4-eaca5b4a4c03",
+    "nombre": "Hotel Costa Mendoza",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mendoza",
+    "direccion": "Av. Principal 113, Mendoza",
+    "rating": 4.9,
+    "reviews": 1245,
+    "habitaciones": [
+      {
+        "id": "eb7ef706-a209-5a13-8e2a-8144cab1a18d",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 160000.0
+      },
+      {
+        "id": "9fc6ba5c-c942-511f-91c9-3ca183546a73",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 220000.0
+      },
+      {
+        "id": "56fd385c-5851-5f82-a956-9c645a334fa5",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 320000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "bfd6e512-29c6-59a7-925b-1d9794aa7f69",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "8a2748ad-0053-5e7b-8ddc-f56a8d6f621d",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -32.8908,
+    "longitude": -68.8272,
+    "description": "Hospedaje en Mendoza, Argentina."
+  },
+  {
+    "id": "e142b65f-8b48-53ae-8610-2d2324c364ed",
+    "nombre": "Bariloche Grand Hotel",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Bariloche",
+    "direccion": "Av. Principal 110, Bariloche",
+    "rating": 4.4,
+    "reviews": 855,
+    "habitaciones": [
+      {
+        "id": "d2db799c-00f5-5f5f-8e6d-eecb4983dbb5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 112000.0
+      },
+      {
+        "id": "8336fb33-6844-517e-95d8-75e68fac3513",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 172000.0
+      },
+      {
+        "id": "6f4260dd-404b-5505-a6d2-ce3bbd163c6c",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 272000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "054ff3a4-b02f-5c82-95ad-f30f60489522",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "92c4afa2-d0da-57c4-a94f-88ae3f261d00",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.1335,
+    "longitude": -71.3103,
+    "description": "Hospedaje en Bariloche, Argentina."
+  },
+  {
+    "id": "a6deb7f9-e791-54a0-9258-da16b460d6f9",
+    "nombre": "Hotel Boutique Bariloche",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Bariloche",
+    "direccion": "Av. Principal 111, Bariloche",
+    "rating": 4.5,
+    "reviews": 950,
+    "habitaciones": [
+      {
+        "id": "ce5fc2c8-aab6-5052-bc22-86b1d8411a9c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 121000.0
+      },
+      {
+        "id": "1223d9c1-0aad-5629-af0b-d68e20a0de4f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 181000.0
+      },
+      {
+        "id": "de4a5d0f-e891-549a-a479-d9127054cad8",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 281000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "85b8084a-aa82-523d-9f45-08518a85daa0",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "b02d9d0f-a694-593d-aab4-598d9681a2b8",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.1335,
+    "longitude": -71.3103,
+    "description": "Hospedaje en Bariloche, Argentina."
+  },
+  {
+    "id": "d219b21c-a257-5cc6-9404-058db45f56bc",
+    "nombre": "Bariloche Plaza Suites",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Bariloche",
+    "direccion": "Av. Principal 112, Bariloche",
+    "rating": 4.6,
+    "reviews": 1045,
+    "habitaciones": [
+      {
+        "id": "3d10cfc8-e751-5a9e-a68b-118bce66ae9b",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 130000.0
+      },
+      {
+        "id": "8a6c619d-9747-548e-9d51-d67ee88db024",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 190000.0
+      },
+      {
+        "id": "cbad1a16-5fe2-53be-865d-4dbdae4a9fe4",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 290000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ae902fc8-51ef-58b3-b0b5-7b49dd984063",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "02233587-0368-569a-be08-b6e0494c2097",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.1335,
+    "longitude": -71.3103,
+    "description": "Hospedaje en Bariloche, Argentina."
+  },
+  {
+    "id": "663ddee7-e9a7-585c-a094-e08303498db7",
+    "nombre": "Hotel Mirador de Bariloche",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Bariloche",
+    "direccion": "Av. Principal 113, Bariloche",
+    "rating": 4.7,
+    "reviews": 1140,
+    "habitaciones": [
+      {
+        "id": "3cce394b-5878-5880-bb96-c2136349ae24",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 139000.0
+      },
+      {
+        "id": "7c9e2965-355a-5d13-9c14-c7f12fce869e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 199000.0
+      },
+      {
+        "id": "8bb0d87c-8e9a-57e5-8da1-06db54dd9c4a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 299000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "f86235ec-20e7-5312-aecf-fc1e45f7e4ec",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "bda3dafc-b5ff-554b-9273-aeadb31c4ce5",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.1335,
+    "longitude": -71.3103,
+    "description": "Hospedaje en Bariloche, Argentina."
+  },
+  {
+    "id": "8315d341-0744-5ad2-a642-5d1a6f39a953",
+    "nombre": "Bariloche Business \u0026 Stay",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Bariloche",
+    "direccion": "Av. Principal 114, Bariloche",
+    "rating": 4.8,
+    "reviews": 1235,
+    "habitaciones": [
+      {
+        "id": "fb3c7716-828a-544a-b126-cad1e6de05cf",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 148000.0
+      },
+      {
+        "id": "c1d30808-b9cb-58a1-9056-a3d8481f2c66",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 208000.0
+      },
+      {
+        "id": "9cf27505-1361-5b79-8635-8c1e23fdf557",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 308000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "9f5d7f56-55d0-5347-84bc-d39ade538af1",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "7f368b7f-700a-5d5b-9109-00a3d46ef7b3",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.1335,
+    "longitude": -71.3103,
+    "description": "Hospedaje en Bariloche, Argentina."
+  },
+  {
+    "id": "13645850-9948-582b-8f93-49a261e1f26d",
+    "nombre": "Casa Colonial Bariloche",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Bariloche",
+    "direccion": "Av. Principal 115, Bariloche",
+    "rating": 4.9,
+    "reviews": 1330,
+    "habitaciones": [
+      {
+        "id": "fe397aef-e25c-588e-b106-fb91e862bd65",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 157000.0
+      },
+      {
+        "id": "3da09ae4-f9c0-56b1-b4f8-ccd891f3de49",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 217000.0
+      },
+      {
+        "id": "8c312da0-578c-5ad7-b442-0ab89c49b26b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 317000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d0c6e0f3-61d9-5f89-a59f-cf7f8b1a8ccc",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "2ef15206-e161-52ec-9660-c4257c779807",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.1335,
+    "longitude": -71.3103,
+    "description": "Hospedaje en Bariloche, Argentina."
+  },
+  {
+    "id": "a7cf654f-0452-56ff-a8e4-d2a0f26a5d9d",
+    "nombre": "Hotel Costa Bariloche",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Bariloche",
+    "direccion": "Av. Principal 116, Bariloche",
+    "rating": 4.0,
+    "reviews": 1425,
+    "habitaciones": [
+      {
+        "id": "8fb29622-3fde-5525-b1a6-a9b41d1b4333",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 166000.0
+      },
+      {
+        "id": "efaa676d-76b2-5945-b367-0f679e55d25a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 226000.0
+      },
+      {
+        "id": "13312dc6-5d52-5562-a6c0-fd397db09fb4",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 326000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "06ff9bfa-ce3c-50bb-bd73-e5004efb0185",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "eb5f67d7-b2e4-5bdc-ba1e-c283b2de8dbc",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.1335,
+    "longitude": -71.3103,
+    "description": "Hospedaje en Bariloche, Argentina."
+  },
+  {
+    "id": "c72cb4b1-b7bb-5f7d-8a25-394711b1ebbd",
+    "nombre": "Córdoba Grand Hotel",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Córdoba",
+    "direccion": "Av. Principal 113, Córdoba",
+    "rating": 4.5,
+    "reviews": 1035,
+    "habitaciones": [
+      {
+        "id": "ca0fc76c-5f52-58a8-a95a-daa6b0a43464",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 118000.0
+      },
+      {
+        "id": "a8901e6a-5dad-562c-bdcf-6f832c618a89",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 178000.0
+      },
+      {
+        "id": "4a40b82b-d8fe-5736-86bb-2b488850beac",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 278000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "00965523-1b73-511b-a604-d882b246e4d5",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "60122594-d2c2-57de-bad4-67dbcb45179b",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -31.4201,
+    "longitude": -64.1888,
+    "description": "Hospedaje en Córdoba, Argentina."
+  },
+  {
+    "id": "da08c4bd-771f-54e1-8a34-2072cad86aca",
+    "nombre": "Hotel Boutique Córdoba",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Córdoba",
+    "direccion": "Av. Principal 114, Córdoba",
+    "rating": 4.6,
+    "reviews": 1130,
+    "habitaciones": [
+      {
+        "id": "6055c41e-8915-5382-9175-ae517cba83d5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 127000.0
+      },
+      {
+        "id": "5721032a-43eb-515a-ab82-ed26ba6ab0cb",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 187000.0
+      },
+      {
+        "id": "c0f2ecb7-043f-58f3-8fde-73af1b9926ae",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 287000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "19848f24-320e-5e81-a957-5299d15a5075",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a8f2e13d-7e9b-59a3-8bb6-b77915c6ea07",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -31.4201,
+    "longitude": -64.1888,
+    "description": "Hospedaje en Córdoba, Argentina."
+  },
+  {
+    "id": "97f18968-8e5c-5159-9ba4-5d205a563483",
+    "nombre": "Córdoba Plaza Suites",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Córdoba",
+    "direccion": "Av. Principal 115, Córdoba",
+    "rating": 4.7,
+    "reviews": 1225,
+    "habitaciones": [
+      {
+        "id": "4e6f98fb-68e7-5289-b121-6f158bc80650",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 136000.0
+      },
+      {
+        "id": "d1b6fa7b-cc8d-5697-b210-6fa13bab30c1",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 196000.0
+      },
+      {
+        "id": "8eeb6a4f-65e8-51ad-bdb7-d6d9cae35fc3",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 296000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "2584f881-7b0d-5627-9665-78ac8d2f7554",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4b0f069d-bfa0-534f-848f-9b43072641dd",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -31.4201,
+    "longitude": -64.1888,
+    "description": "Hospedaje en Córdoba, Argentina."
+  },
+  {
+    "id": "3eb39f8c-b29e-59a4-98ac-148dace4030a",
+    "nombre": "Hotel Mirador de Córdoba",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Córdoba",
+    "direccion": "Av. Principal 116, Córdoba",
+    "rating": 4.8,
+    "reviews": 1320,
+    "habitaciones": [
+      {
+        "id": "beba9cdd-f5d1-5b52-9cd6-676a65c95e36",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 145000.0
+      },
+      {
+        "id": "fc253729-2d40-5181-9a57-a2c6f67aa8a2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 205000.0
+      },
+      {
+        "id": "b1c73a93-cac8-51b9-8b1e-6d4b1fd0106c",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 305000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5a06f93d-eace-5ae9-a571-4e28bec99910",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a2cbc2f5-1129-58ab-9d27-b3f11f213e47",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -31.4201,
+    "longitude": -64.1888,
+    "description": "Hospedaje en Córdoba, Argentina."
+  },
+  {
+    "id": "7e838498-0738-5a7a-957c-825e3b2964c4",
+    "nombre": "Córdoba Business \u0026 Stay",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Córdoba",
+    "direccion": "Av. Principal 117, Córdoba",
+    "rating": 4.9,
+    "reviews": 1415,
+    "habitaciones": [
+      {
+        "id": "3c693938-bed8-58ac-b695-26b175ad6316",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 154000.0
+      },
+      {
+        "id": "125fe187-7bb7-5d9b-88d1-7b44cdd10f1d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 214000.0
+      },
+      {
+        "id": "7d264196-3974-58c5-b70c-33dc1082724f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 314000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "0f0537b8-925c-5930-9112-df9745e0cd80",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "34e68e39-a4d0-50df-ae24-558b2b2dcc31",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -31.4201,
+    "longitude": -64.1888,
+    "description": "Hospedaje en Córdoba, Argentina."
+  },
+  {
+    "id": "f748b228-4958-51a9-87d4-67cf7cd88d84",
+    "nombre": "Casa Colonial Córdoba",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Córdoba",
+    "direccion": "Av. Principal 118, Córdoba",
+    "rating": 4.0,
+    "reviews": 1510,
+    "habitaciones": [
+      {
+        "id": "2ac59653-a5df-5c8c-bbd4-29af11a837bd",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 163000.0
+      },
+      {
+        "id": "4ee8c463-08d9-5438-b90a-ec67c02fa77a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 223000.0
+      },
+      {
+        "id": "a380ad95-c388-5603-8d55-0211528e303a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 323000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c3aa9634-3993-5d82-ac14-f783abc071c2",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1d915a8a-9a12-5d2f-a7ea-3f18d58dbd5c",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -31.4201,
+    "longitude": -64.1888,
+    "description": "Hospedaje en Córdoba, Argentina."
+  },
+  {
+    "id": "e377f396-14b8-55b3-bf4f-ca01d6f2e810",
+    "nombre": "Hotel Costa Córdoba",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Córdoba",
+    "direccion": "Av. Principal 119, Córdoba",
+    "rating": 4.1,
+    "reviews": 1605,
+    "habitaciones": [
+      {
+        "id": "cc37ad84-4582-56fc-bf51-df1fc281c436",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 172000.0
+      },
+      {
+        "id": "23cc1056-2267-526a-929a-56f7fd452cbc",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 232000.0
+      },
+      {
+        "id": "bb4d9556-367c-545f-bcc8-634ce2141e67",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 332000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "593b36a0-c577-529a-8772-a6f6524132c6",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "7e7aaf09-a52e-50ba-af3b-2c46f26b797d",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -31.4201,
+    "longitude": -64.1888,
+    "description": "Hospedaje en Córdoba, Argentina."
+  },
+  {
+    "id": "26b22288-c48e-5fbe-a297-c08641e8a78d",
+    "nombre": "Salta Grand Hotel",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Salta",
+    "direccion": "Av. Principal 116, Salta",
+    "rating": 4.6,
+    "reviews": 1215,
+    "habitaciones": [
+      {
+        "id": "25b2d8bf-644a-50b6-9a5a-4739d1aef3e7",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 124000.0
+      },
+      {
+        "id": "d8378690-7a4a-5ad6-b8d9-e86ef9b209c0",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 184000.0
+      },
+      {
+        "id": "be208c33-4f74-5c13-817b-a043c225ae9b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 284000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "38ee8228-b552-5e35-9325-860c38d63be0",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "76ad9208-042d-546f-ab20-721a3e313b55",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -24.7821,
+    "longitude": -65.4232,
+    "description": "Hospedaje en Salta, Argentina."
+  },
+  {
+    "id": "d9540a7d-5dbd-525d-916a-6406ebed1771",
+    "nombre": "Hotel Boutique Salta",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Salta",
+    "direccion": "Av. Principal 117, Salta",
+    "rating": 4.7,
+    "reviews": 1310,
+    "habitaciones": [
+      {
+        "id": "ea999e4a-7a92-5b37-8194-e7f39e26b61a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 133000.0
+      },
+      {
+        "id": "a88b3397-5f62-51c6-bc7c-265b898a4c2f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 193000.0
+      },
+      {
+        "id": "8749cce3-5569-58af-b051-d41328524f65",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 293000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d58124f9-3a39-5afd-8f4f-36ba09745d36",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f35f4582-3577-5b40-b4d9-84e9707ca171",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -24.7821,
+    "longitude": -65.4232,
+    "description": "Hospedaje en Salta, Argentina."
+  },
+  {
+    "id": "e3cf426e-f1dd-58e2-8cd6-762e4d724481",
+    "nombre": "Salta Plaza Suites",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Salta",
+    "direccion": "Av. Principal 118, Salta",
+    "rating": 4.8,
+    "reviews": 1405,
+    "habitaciones": [
+      {
+        "id": "e3c45e90-c7e0-54ec-9bf9-f41d33500a72",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 142000.0
+      },
+      {
+        "id": "a3a686d4-1ff1-52cc-9091-cb271a268e41",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 202000.0
+      },
+      {
+        "id": "e02964a7-2997-53cf-8d9f-bc6b622b7fad",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 302000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "06a10e55-c751-584d-a8fa-0f7ef5409381",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3d79a724-3c36-5d34-9651-1affc99b2ccc",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -24.7821,
+    "longitude": -65.4232,
+    "description": "Hospedaje en Salta, Argentina."
+  },
+  {
+    "id": "01cd7aa1-05c6-5ede-8ec4-ee68a474f389",
+    "nombre": "Hotel Mirador de Salta",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Salta",
+    "direccion": "Av. Principal 119, Salta",
+    "rating": 4.9,
+    "reviews": 1500,
+    "habitaciones": [
+      {
+        "id": "5a9421e2-e733-50ea-80bb-7424a220ad77",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 151000.0
+      },
+      {
+        "id": "7d5d9fac-9390-5900-bb81-756cdc1d321c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 211000.0
+      },
+      {
+        "id": "62b17734-fad4-5c36-bbe2-6a249f0e3f23",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 311000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "81e647e2-7028-5a06-9305-f989a90c18ab",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "72307613-0ccb-5c23-bcc2-286203018ecd",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -24.7821,
+    "longitude": -65.4232,
+    "description": "Hospedaje en Salta, Argentina."
+  },
+  {
+    "id": "2da8ccf4-4c1c-5071-a42f-720f2d1f6400",
+    "nombre": "Salta Business \u0026 Stay",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Salta",
+    "direccion": "Av. Principal 120, Salta",
+    "rating": 4.0,
+    "reviews": 1595,
+    "habitaciones": [
+      {
+        "id": "3ce21757-07b9-5403-ac43-4b3a985ea8fb",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 160000.0
+      },
+      {
+        "id": "2656065c-ef6a-5dfe-badc-8814926d37c4",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 220000.0
+      },
+      {
+        "id": "adbb2a90-7273-5f1c-8cdb-f881571884f8",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 320000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "fc962757-01eb-5fcd-92bb-e2b9977b7fa6",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a5e6eae2-c84a-5e39-8570-be2cf903a374",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -24.7821,
+    "longitude": -65.4232,
+    "description": "Hospedaje en Salta, Argentina."
+  },
+  {
+    "id": "f2797b36-6b68-5a3a-a101-721a6f9f30c4",
+    "nombre": "Casa Colonial Salta",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Salta",
+    "direccion": "Av. Principal 121, Salta",
+    "rating": 4.1,
+    "reviews": 1690,
+    "habitaciones": [
+      {
+        "id": "b13bb143-da78-5b7d-8a96-53f05f230700",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 169000.0
+      },
+      {
+        "id": "861af77c-4653-52b6-9e82-dc7bea7c4732",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 229000.0
+      },
+      {
+        "id": "d740bf19-7854-5e09-a717-1317ab29c181",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 329000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "1356ab02-2e8a-53fe-a7d3-26c3b29e15c3",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e90ddcf1-98d6-5c75-966d-01d3b489b2a6",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -24.7821,
+    "longitude": -65.4232,
+    "description": "Hospedaje en Salta, Argentina."
+  },
+  {
+    "id": "b7e5c2cc-accd-54ed-8cbd-baa1f06a326c",
+    "nombre": "Hotel Costa Salta",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Salta",
+    "direccion": "Av. Principal 122, Salta",
+    "rating": 4.2,
+    "reviews": 1785,
+    "habitaciones": [
+      {
+        "id": "4c7a5aad-d9e0-5398-b853-5cc1bcc6a593",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 178000.0
+      },
+      {
+        "id": "abf73fe1-272e-5c41-9fe0-a16857ae470e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 238000.0
+      },
+      {
+        "id": "ba128bf4-a347-501e-b6dc-883d02aa03a3",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 338000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "581f5dcc-9639-5429-9e2b-7a36d8065bce",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "32dad333-b0f5-5517-a458-633b5b873a2c",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -24.7821,
+    "longitude": -65.4232,
+    "description": "Hospedaje en Salta, Argentina."
+  },
+  {
+    "id": "a7312cca-30fa-5964-9666-ad2bd1b315b1",
+    "nombre": "Puerto Madryn Grand Hotel",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Puerto Madryn",
+    "direccion": "Av. Principal 119, Puerto Madryn",
+    "rating": 4.7,
+    "reviews": 1395,
+    "habitaciones": [
+      {
+        "id": "92335c83-5656-5946-ab2e-59dd17fbeec9",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 130000.0
+      },
+      {
+        "id": "327552d4-29a6-575c-b09e-342269e8f08a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 190000.0
+      },
+      {
+        "id": "82e04b0a-1fba-5364-934f-b39d8fbe6e5e",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 290000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "68cb1d84-f815-54b4-8ce4-5c05608cd263",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a6ef31ca-dc32-5d6a-8c2b-8cbb84249252",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -42.7692,
+    "longitude": -65.0385,
+    "description": "Hospedaje en Puerto Madryn, Argentina."
+  },
+  {
+    "id": "2ec443e7-9836-552f-bcb2-593b77aa03a6",
+    "nombre": "Hotel Boutique Puerto Madryn",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Puerto Madryn",
+    "direccion": "Av. Principal 120, Puerto Madryn",
+    "rating": 4.8,
+    "reviews": 1490,
+    "habitaciones": [
+      {
+        "id": "5d34db71-82bb-548e-aa9d-4f2676e34a33",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 139000.0
+      },
+      {
+        "id": "dac96c14-0592-50ef-9062-70d37a4ab923",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 199000.0
+      },
+      {
+        "id": "22719043-e010-5ac7-bc59-830639772848",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 299000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e9e4a1b9-c792-5934-a939-f4a156d3573d",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "b33f104f-fe8a-5325-8df5-2819e180b0e7",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -42.7692,
+    "longitude": -65.0385,
+    "description": "Hospedaje en Puerto Madryn, Argentina."
+  },
+  {
+    "id": "53575567-8531-5c23-bb83-4aafd764916c",
+    "nombre": "Puerto Madryn Plaza Suites",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Puerto Madryn",
+    "direccion": "Av. Principal 121, Puerto Madryn",
+    "rating": 4.9,
+    "reviews": 1585,
+    "habitaciones": [
+      {
+        "id": "81fdc1da-a8fb-5adf-bf92-16ec290bae9b",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 148000.0
+      },
+      {
+        "id": "de1f627d-dc5d-5443-b816-61076cd38f34",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 208000.0
+      },
+      {
+        "id": "45c2527a-c888-5a85-9b33-2a3336583a63",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 308000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c7413ac7-78fa-5e0c-9e53-1dfd8fcace1d",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "15f9f2f0-a1ad-5349-ac13-c9390296c4e5",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -42.7692,
+    "longitude": -65.0385,
+    "description": "Hospedaje en Puerto Madryn, Argentina."
+  },
+  {
+    "id": "2d2c2bc1-b458-51e1-8481-1e1b335a8186",
+    "nombre": "Hotel Mirador de Puerto Madryn",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Puerto Madryn",
+    "direccion": "Av. Principal 122, Puerto Madryn",
+    "rating": 4.0,
+    "reviews": 1680,
+    "habitaciones": [
+      {
+        "id": "54b0a0ce-fb6f-5bf9-bf2b-56eb9a2867b0",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 157000.0
+      },
+      {
+        "id": "f20e4260-e2bb-5a96-bf23-9951a6c3404c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 217000.0
+      },
+      {
+        "id": "620bc11a-364c-5134-bae6-e30e09b1b036",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 317000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a192302a-40df-53e7-8bd0-a12c9c07b2f8",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "b3f85f57-1867-5ec5-8998-16a60d155900",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -42.7692,
+    "longitude": -65.0385,
+    "description": "Hospedaje en Puerto Madryn, Argentina."
+  },
+  {
+    "id": "dcb8bf6d-0c2d-5834-892f-c2d6a9224ea3",
+    "nombre": "Puerto Madryn Business \u0026 Stay",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Puerto Madryn",
+    "direccion": "Av. Principal 123, Puerto Madryn",
+    "rating": 4.1,
+    "reviews": 1775,
+    "habitaciones": [
+      {
+        "id": "5afd38e0-70cd-562d-92fd-72bf94abb790",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 166000.0
+      },
+      {
+        "id": "5a4ac8e0-38fe-54a7-9b65-f79b4ce1c4d9",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 226000.0
+      },
+      {
+        "id": "8a9be0f7-444a-54a1-9a08-07de855123c5",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 326000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "da4896fa-c84b-587b-9773-bb3716bb21c9",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d86d5124-350c-5011-afd9-a5abde510688",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -42.7692,
+    "longitude": -65.0385,
+    "description": "Hospedaje en Puerto Madryn, Argentina."
+  },
+  {
+    "id": "5f6000be-3f81-5d13-86b5-b4ce04720124",
+    "nombre": "Casa Colonial Puerto Madryn",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Puerto Madryn",
+    "direccion": "Av. Principal 124, Puerto Madryn",
+    "rating": 4.2,
+    "reviews": 1870,
+    "habitaciones": [
+      {
+        "id": "520126de-8d94-5cf4-a57a-d1a4d64bdb83",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 175000.0
+      },
+      {
+        "id": "3620008b-7b5e-559e-8b61-ca629eb78c02",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 235000.0
+      },
+      {
+        "id": "165b36e4-f7f7-5d15-8547-a1aad5ceae7b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 335000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a88644ee-899d-56c6-a711-31711c60d6b7",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "6c50d41b-7f2f-51a4-85ae-2c986d5f854d",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -42.7692,
+    "longitude": -65.0385,
+    "description": "Hospedaje en Puerto Madryn, Argentina."
+  },
+  {
+    "id": "e192c76d-d1cf-5737-8eed-2225a223382b",
+    "nombre": "Hotel Costa Puerto Madryn",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Puerto Madryn",
+    "direccion": "Av. Principal 125, Puerto Madryn",
+    "rating": 4.3,
+    "reviews": 1965,
+    "habitaciones": [
+      {
+        "id": "354d6a26-7e56-5eb3-bf97-8ed70cf5aa90",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 184000.0
+      },
+      {
+        "id": "8df8a399-e643-5362-ae83-1322a4230ea7",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 244000.0
+      },
+      {
+        "id": "f247e0d0-8235-5a90-b054-f1e54ee63e29",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 344000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "df39b243-6b0a-5a8b-ac2c-696cda01cdcc",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "cb8a2d22-a414-5c99-8fe1-c68b2584c80c",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -42.7692,
+    "longitude": -65.0385,
+    "description": "Hospedaje en Puerto Madryn, Argentina."
+  },
+  {
+    "id": "34dcefde-0420-5ce2-a66b-bce044d8a52f",
+    "nombre": "Ushuaia Grand Hotel",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Ushuaia",
+    "direccion": "Av. Principal 122, Ushuaia",
+    "rating": 4.8,
+    "reviews": 1575,
+    "habitaciones": [
+      {
+        "id": "ec9d5620-ce78-5cf4-a2fe-e0553c890b2e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 136000.0
+      },
+      {
+        "id": "4ae68260-ac28-568a-a010-1a1e9e1df77e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 196000.0
+      },
+      {
+        "id": "69cdfb94-09c8-5983-87fe-58cf7f7cbc2e",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 296000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "00964b5d-be55-5d41-b68d-e2d49a448323",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a2e890cf-b8a4-5ce6-b2f5-711c2bc695db",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -54.8019,
+    "longitude": -68.303,
+    "description": "Hospedaje en Ushuaia, Argentina."
+  },
+  {
+    "id": "1536d3e5-f5a4-5d72-8660-4f4a8f0a6f04",
+    "nombre": "Hotel Boutique Ushuaia",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Ushuaia",
+    "direccion": "Av. Principal 123, Ushuaia",
+    "rating": 4.9,
+    "reviews": 1670,
+    "habitaciones": [
+      {
+        "id": "aad9b6a2-2828-58b6-bad5-252bf3a22535",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 145000.0
+      },
+      {
+        "id": "36953980-7ed7-57f1-a9c3-01801cb1e782",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 205000.0
+      },
+      {
+        "id": "271722e4-0d7a-50a4-95af-f8e1843abacb",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 305000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "0fd371ba-fa35-5769-9d00-bf45e4f06f26",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e2b9b943-6772-5928-8c1f-c93089b2a25b",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -54.8019,
+    "longitude": -68.303,
+    "description": "Hospedaje en Ushuaia, Argentina."
+  },
+  {
+    "id": "b5e78b48-71d0-54a2-bdfb-985e46e6d064",
+    "nombre": "Ushuaia Plaza Suites",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Ushuaia",
+    "direccion": "Av. Principal 124, Ushuaia",
+    "rating": 4.0,
+    "reviews": 1765,
+    "habitaciones": [
+      {
+        "id": "0258f6cb-f90a-5c53-81f2-fc4e083b8534",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 154000.0
+      },
+      {
+        "id": "df3a1a93-ab6b-5ce9-b85b-e707911ae149",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 214000.0
+      },
+      {
+        "id": "fcb8b3db-10fb-5258-81a7-9d3395cb9952",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 314000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "372de6eb-83d7-549b-9337-37c2c57ef0b2",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "abd9d372-6964-5065-9ddc-363de63e11db",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -54.8019,
+    "longitude": -68.303,
+    "description": "Hospedaje en Ushuaia, Argentina."
+  },
+  {
+    "id": "00f75c36-4cd9-5c89-a8e2-3e0cb31605fd",
+    "nombre": "Hotel Mirador de Ushuaia",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Ushuaia",
+    "direccion": "Av. Principal 125, Ushuaia",
+    "rating": 4.1,
+    "reviews": 1860,
+    "habitaciones": [
+      {
+        "id": "78a15ea7-f0b5-5248-89eb-ea96fa716f2d",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 163000.0
+      },
+      {
+        "id": "4b094804-6ef8-58f0-a3ab-80126dc65f1c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 223000.0
+      },
+      {
+        "id": "5fea0dc7-4445-5ff8-974d-a21ba4b4bd1b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 323000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "3542cddc-32bf-59d9-ab23-f80128cb7162",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "6f400363-2298-584d-a000-cd6b3e0ff299",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -54.8019,
+    "longitude": -68.303,
+    "description": "Hospedaje en Ushuaia, Argentina."
+  },
+  {
+    "id": "93fdf41a-cd40-510f-9eea-270381ffc487",
+    "nombre": "Ushuaia Business \u0026 Stay",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Ushuaia",
+    "direccion": "Av. Principal 126, Ushuaia",
+    "rating": 4.2,
+    "reviews": 1955,
+    "habitaciones": [
+      {
+        "id": "2013c2ca-56bb-5abe-af91-3899cbef5c29",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 172000.0
+      },
+      {
+        "id": "6d946193-5b42-5baa-b7d3-7d21a94dc017",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 232000.0
+      },
+      {
+        "id": "ce104bc7-f7f2-5c5d-85e8-844bd8a72520",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 332000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c77d6c27-830a-5295-b4d3-5af8fea7917d",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ab51ce60-3ab5-582c-aa21-d45d5b0cf154",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -54.8019,
+    "longitude": -68.303,
+    "description": "Hospedaje en Ushuaia, Argentina."
+  },
+  {
+    "id": "7f50700a-d4c9-504a-b93a-29cadaac703d",
+    "nombre": "Casa Colonial Ushuaia",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Ushuaia",
+    "direccion": "Av. Principal 127, Ushuaia",
+    "rating": 4.3,
+    "reviews": 2050,
+    "habitaciones": [
+      {
+        "id": "e13aa1e8-6444-5d79-afca-27abac1e6ff2",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 181000.0
+      },
+      {
+        "id": "7d2bec4e-dfe5-5418-a1fb-06d96cd6ebe0",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 241000.0
+      },
+      {
+        "id": "8040eb6b-9e9a-510b-bde3-fbec2f4de4fd",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 341000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "f082ff40-43f4-5d23-91a9-eea552edf737",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "cb6f57c4-9be1-5660-9f97-e26ca7b5dce3",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -54.8019,
+    "longitude": -68.303,
+    "description": "Hospedaje en Ushuaia, Argentina."
+  },
+  {
+    "id": "e29eab02-07ff-5990-a2b1-4dd359bbe89e",
+    "nombre": "Hotel Costa Ushuaia",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Ushuaia",
+    "direccion": "Av. Principal 128, Ushuaia",
+    "rating": 4.4,
+    "reviews": 2145,
+    "habitaciones": [
+      {
+        "id": "fa578335-1d4f-5982-ab9d-bf689a0636bd",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 190000.0
+      },
+      {
+        "id": "a6bdfe76-2629-5651-82df-d64ea66a6c76",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 250000.0
+      },
+      {
+        "id": "eca33a05-c9df-557b-9619-3c4f9a9bb277",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 350000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d8203430-15f8-583a-b859-4730d81388c7",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "9efe425b-19fc-5c91-8af9-52d8b1309610",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -54.8019,
+    "longitude": -68.303,
+    "description": "Hospedaje en Ushuaia, Argentina."
+  },
+  {
+    "id": "1e66417c-20be-535d-9646-70a25f2ec499",
+    "nombre": "Mar del Plata Grand Hotel",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mar del Plata",
+    "direccion": "Av. Principal 125, Mar del Plata",
+    "rating": 4.9,
+    "reviews": 1755,
+    "habitaciones": [
+      {
+        "id": "838977fc-3498-560e-a999-5355374cb2e5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 142000.0
+      },
+      {
+        "id": "488b6bcd-4848-5406-9536-1810921da2e6",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 202000.0
+      },
+      {
+        "id": "eeb88d7a-88e7-59e0-96e7-0c9fe4bb913b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 302000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "4f9d49b5-fff7-54b6-b332-104c20efc82f",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "0f2135cc-92f9-5fc3-9900-2da8cb99a711",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -38.0055,
+    "longitude": -57.5426,
+    "description": "Hospedaje en Mar del Plata, Argentina."
+  },
+  {
+    "id": "0f64ebe4-f335-5fc6-a9db-19f9b01d6e90",
+    "nombre": "Hotel Boutique Mar del Plata",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mar del Plata",
+    "direccion": "Av. Principal 126, Mar del Plata",
+    "rating": 4.0,
+    "reviews": 1850,
+    "habitaciones": [
+      {
+        "id": "de38b7c2-0dc4-5fce-8223-c09aaec6e03f",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 151000.0
+      },
+      {
+        "id": "71809bb8-b533-548d-945d-09369edd6bc8",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 211000.0
+      },
+      {
+        "id": "9bd4cabb-f8ca-5c01-8e0c-47305d85f94c",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 311000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "783a66c1-77bf-5c21-84a3-82e6f4c1ad10",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c8009a94-8c6b-555a-acb2-ab5135b9c2cb",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -38.0055,
+    "longitude": -57.5426,
+    "description": "Hospedaje en Mar del Plata, Argentina."
+  },
+  {
+    "id": "9cc48fd7-aa74-58d1-a286-6cf01ff80e62",
+    "nombre": "Mar del Plata Plaza Suites",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mar del Plata",
+    "direccion": "Av. Principal 127, Mar del Plata",
+    "rating": 4.1,
+    "reviews": 1945,
+    "habitaciones": [
+      {
+        "id": "213a6197-d60d-578c-96b9-c513055d7777",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 160000.0
+      },
+      {
+        "id": "74f9d5c2-af6c-57c7-84c2-96500f970391",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 220000.0
+      },
+      {
+        "id": "6d66a430-9804-50dc-a369-f85caa799063",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 320000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "1817473e-8fc7-5cd3-9029-4e9a0fdbab71",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "93b2b41c-19f8-5b93-9d33-7e9a22017ab0",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -38.0055,
+    "longitude": -57.5426,
+    "description": "Hospedaje en Mar del Plata, Argentina."
+  },
+  {
+    "id": "17373ed7-181f-5c39-8c74-04952c7fe0cd",
+    "nombre": "Hotel Mirador de Mar del Plata",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mar del Plata",
+    "direccion": "Av. Principal 128, Mar del Plata",
+    "rating": 4.2,
+    "reviews": 2040,
+    "habitaciones": [
+      {
+        "id": "224d5668-c4ad-5b74-a5c9-e98f1d821524",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 169000.0
+      },
+      {
+        "id": "f31e30e3-de55-5041-8c55-b1fed3ca5886",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 229000.0
+      },
+      {
+        "id": "0a4bc619-f91a-531a-a33b-ba0d301f4189",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 329000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ece753c6-a3ca-538d-b756-31f1d2d3c515",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "38054147-8cae-55fc-8646-0126706cd874",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -38.0055,
+    "longitude": -57.5426,
+    "description": "Hospedaje en Mar del Plata, Argentina."
+  },
+  {
+    "id": "caa841ce-fa7b-5d73-abf9-6a7838d475fc",
+    "nombre": "Mar del Plata Business \u0026 Stay",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mar del Plata",
+    "direccion": "Av. Principal 129, Mar del Plata",
+    "rating": 4.3,
+    "reviews": 2135,
+    "habitaciones": [
+      {
+        "id": "14313ad6-6e96-578a-9726-923fcd3af653",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 178000.0
+      },
+      {
+        "id": "37224213-2aea-51cd-bef2-f14d5a1db7a2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 238000.0
+      },
+      {
+        "id": "d7c142bb-f745-5bce-bde8-581be397ee8b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 338000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "7060c407-87e8-5e11-8e5a-220a472dbdf9",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ca7b569c-c580-5456-9bae-51a5152a0409",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -38.0055,
+    "longitude": -57.5426,
+    "description": "Hospedaje en Mar del Plata, Argentina."
+  },
+  {
+    "id": "a4cacb24-4b38-577c-b293-e42c8d57f64b",
+    "nombre": "Casa Colonial Mar del Plata",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mar del Plata",
+    "direccion": "Av. Principal 130, Mar del Plata",
+    "rating": 4.4,
+    "reviews": 2230,
+    "habitaciones": [
+      {
+        "id": "e0f4dc88-b96a-55e6-a09c-0e9d24299f97",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 187000.0
+      },
+      {
+        "id": "bd2e6575-4ad7-5c14-b35e-237442322998",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 247000.0
+      },
+      {
+        "id": "9f792830-a42e-5278-a1ca-fbd97867ef78",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 347000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "14484323-b793-5995-87a3-91490776d68e",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "6c26d796-0678-52af-9abc-b01b1290bf3d",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -38.0055,
+    "longitude": -57.5426,
+    "description": "Hospedaje en Mar del Plata, Argentina."
+  },
+  {
+    "id": "b917595f-8f91-50f3-960e-92ecfd3cd775",
+    "nombre": "Hotel Costa Mar del Plata",
+    "pais": "Argentina",
+    "countryCode": "AR",
+    "ciudad": "Mar del Plata",
+    "direccion": "Av. Principal 131, Mar del Plata",
+    "rating": 4.5,
+    "reviews": 2325,
+    "habitaciones": [
+      {
+        "id": "901cadd3-b2e4-5fd2-9879-734046bd468c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 196000.0
+      },
+      {
+        "id": "d44a7702-c8e4-5274-8d24-f896a61885a5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 256000.0
+      },
+      {
+        "id": "3047cba2-beb5-57be-b955-337fd506bcc8",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 356000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "3af5182f-d0b7-58a9-b221-25fc4a0046d5",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "21efdee0-4a93-553a-9505-66fc2762aa89",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -38.0055,
+    "longitude": -57.5426,
+    "description": "Hospedaje en Mar del Plata, Argentina."
+  }
+]

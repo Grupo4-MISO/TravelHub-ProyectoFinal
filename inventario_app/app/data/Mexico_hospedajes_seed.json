@@ -1,0 +1,2578 @@
+[
+  {
+    "id": "8e4d08e8-4e33-591a-ab0e-4fcda36de874",
+    "nombre": "Ciudad de México Grand Hotel",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Ciudad de México",
+    "direccion": "Av. Principal 104, Ciudad de México",
+    "rating": 4.2,
+    "reviews": 495,
+    "habitaciones": [
+      {
+        "id": "91a70d02-94a4-508c-a26b-c049549d1b01",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1500.0
+      },
+      {
+        "id": "1f272de5-ed88-541c-8c42-615c3ae3ee06",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2400.0
+      },
+      {
+        "id": "c051fb92-cd89-523a-b17d-a04e7d50e1e6",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 3900.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5852173d-8df7-510c-9586-94cca19355f6",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a188736b-00a3-507d-acd2-32db198e1fa7",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 19.4326,
+    "longitude": -99.1332,
+    "description": "Hospedaje en Ciudad de México, México."
+  },
+  {
+    "id": "d668efd5-68ae-5e11-9d07-d3d8adbc880f",
+    "nombre": "Hotel Boutique Ciudad de México",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Ciudad de México",
+    "direccion": "Av. Principal 105, Ciudad de México",
+    "rating": 4.3,
+    "reviews": 590,
+    "habitaciones": [
+      {
+        "id": "51687372-0e31-57f1-b3c9-080dd60e2118",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1680.0
+      },
+      {
+        "id": "1cb09fa6-4b79-5116-8493-5dcad42f3069",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2580.0
+      },
+      {
+        "id": "0fbf2110-663f-56ad-9a91-18aba01e9fd3",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4080.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ced8b598-892c-5ba1-b803-93e7800c99fa",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "47bc0598-33cb-5f89-bbdc-9a44c04c55c8",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 19.4326,
+    "longitude": -99.1332,
+    "description": "Hospedaje en Ciudad de México, México."
+  },
+  {
+    "id": "afba53a6-abf6-5322-abc3-e194b83935ce",
+    "nombre": "Ciudad de México Plaza Suites",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Ciudad de México",
+    "direccion": "Av. Principal 106, Ciudad de México",
+    "rating": 4.4,
+    "reviews": 685,
+    "habitaciones": [
+      {
+        "id": "a825e0b6-948f-5fdf-b101-cf69419e15c3",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1860.0
+      },
+      {
+        "id": "6f7ed904-a8f7-56f7-9374-e4216f269bf8",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2760.0
+      },
+      {
+        "id": "6fa11d1b-9e19-5810-85a6-151c58b21294",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4260.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "aaf19926-be83-59c9-bea9-2c186d200461",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3a26a2aa-431d-5485-aecd-79e9266647f7",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 19.4326,
+    "longitude": -99.1332,
+    "description": "Hospedaje en Ciudad de México, México."
+  },
+  {
+    "id": "3b64da44-d6ef-5366-a9c2-a333f31a085f",
+    "nombre": "Hotel Mirador de Ciudad de México",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Ciudad de México",
+    "direccion": "Av. Principal 107, Ciudad de México",
+    "rating": 4.5,
+    "reviews": 780,
+    "habitaciones": [
+      {
+        "id": "de7631c0-8f19-5ab6-9db8-02bdce593181",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2040.0
+      },
+      {
+        "id": "3ba80661-7064-5d8e-98fd-680ae4a03dba",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2940.0
+      },
+      {
+        "id": "68bb14eb-fd76-5c8e-8224-2235120144c2",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4440.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d78716aa-1886-5d97-ba5a-0f75bf9377f5",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a739d59f-eb9e-5765-8853-f8d309189902",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 19.4326,
+    "longitude": -99.1332,
+    "description": "Hospedaje en Ciudad de México, México."
+  },
+  {
+    "id": "795e0bbc-04e3-5db3-894a-e7ba3cd1a87a",
+    "nombre": "Ciudad de México Business \u0026 Stay",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Ciudad de México",
+    "direccion": "Av. Principal 108, Ciudad de México",
+    "rating": 4.6,
+    "reviews": 875,
+    "habitaciones": [
+      {
+        "id": "2ca1731c-07f5-5895-b6d8-f6195b6c510a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2220.0
+      },
+      {
+        "id": "0d64c8a4-70ef-5147-b08d-4f5b7f81b775",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3120.0
+      },
+      {
+        "id": "6787d04a-48c6-5b44-b8bc-c37f45edae5e",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4620.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5f180b7c-ffc7-5f53-b381-06bef8cf8b62",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3076b2e5-faad-57bf-8f24-d068d312a347",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 19.4326,
+    "longitude": -99.1332,
+    "description": "Hospedaje en Ciudad de México, México."
+  },
+  {
+    "id": "06ce748a-ab08-54a5-adca-2dff50e1ec48",
+    "nombre": "Casa Colonial Ciudad de México",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Ciudad de México",
+    "direccion": "Av. Principal 109, Ciudad de México",
+    "rating": 4.7,
+    "reviews": 970,
+    "habitaciones": [
+      {
+        "id": "4a8730e4-af67-5b4d-be82-0f1a5541f213",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2400.0
+      },
+      {
+        "id": "c43cdc40-0cf4-5e55-b71a-8b8dfc8eb4b6",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3300.0
+      },
+      {
+        "id": "dcca5a14-4f91-5672-b19b-e0fedf6dfc7f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4800.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ad7790c9-dfce-55e4-b8a6-447013d1d880",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "edf7270b-55f5-5eb3-9e97-461c501c2146",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 19.4326,
+    "longitude": -99.1332,
+    "description": "Hospedaje en Ciudad de México, México."
+  },
+  {
+    "id": "67d2ad02-4793-54f8-b4fa-0c4ace7683b3",
+    "nombre": "Hotel Costa Ciudad de México",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Ciudad de México",
+    "direccion": "Av. Principal 110, Ciudad de México",
+    "rating": 4.8,
+    "reviews": 1065,
+    "habitaciones": [
+      {
+        "id": "0ad9b137-703f-56d5-ba88-ff0f89772847",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2580.0
+      },
+      {
+        "id": "d639d4ba-ed4f-53fa-bce3-37c371afb661",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3480.0
+      },
+      {
+        "id": "827a6c25-7d44-5606-ab4f-e44b154a9123",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4980.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a92f14f0-6292-51f0-8c73-42b97facaa7e",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e60459b6-6d20-5885-971c-f2f41b255f1b",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 19.4326,
+    "longitude": -99.1332,
+    "description": "Hospedaje en Ciudad de México, México."
+  },
+  {
+    "id": "8180f5b3-0f0d-5dcc-b659-06ff8c804ebe",
+    "nombre": "Cancún Grand Hotel",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Cancún",
+    "direccion": "Av. Principal 107, Cancún",
+    "rating": 4.3,
+    "reviews": 675,
+    "habitaciones": [
+      {
+        "id": "fc607564-0b5f-57d5-8027-bd6d84f0fdd9",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1620.0
+      },
+      {
+        "id": "776becf5-c253-5fdc-a891-a90b126c35d0",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2520.0
+      },
+      {
+        "id": "df0f27ce-ca58-5aaf-ae4a-29e42a9a5d7f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4020.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "91a20066-5c15-5a54-ae87-ccdbf7cbfb7d",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a942a3f4-7d40-587a-88cd-c386260f56ad",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 21.1619,
+    "longitude": -86.8515,
+    "description": "Hospedaje en Cancún, México."
+  },
+  {
+    "id": "9f83e7b7-cafe-535e-b5a6-12870b06f666",
+    "nombre": "Hotel Boutique Cancún",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Cancún",
+    "direccion": "Av. Principal 108, Cancún",
+    "rating": 4.4,
+    "reviews": 770,
+    "habitaciones": [
+      {
+        "id": "fd809406-a78c-5bb2-8156-197e3c150df6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1800.0
+      },
+      {
+        "id": "0f161f10-d3f4-5784-9f12-4b181b3a0ca2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2700.0
+      },
+      {
+        "id": "bef4bb2b-9f98-5068-83d9-7ad11089eb3d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4200.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "43802b4d-f82e-5c59-8c98-7ff6b8154321",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4b0ef519-ee81-5cbb-b405-8b634332fe01",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 21.1619,
+    "longitude": -86.8515,
+    "description": "Hospedaje en Cancún, México."
+  },
+  {
+    "id": "3c5cdb28-a3f4-5d6b-af35-b5506ab42b54",
+    "nombre": "Cancún Plaza Suites",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Cancún",
+    "direccion": "Av. Principal 109, Cancún",
+    "rating": 4.5,
+    "reviews": 865,
+    "habitaciones": [
+      {
+        "id": "07a93bd7-10a6-56e0-935d-97eea6fdf845",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1980.0
+      },
+      {
+        "id": "c07504ac-92b0-54e0-8b66-cfd5c94246e3",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2880.0
+      },
+      {
+        "id": "ff030c3f-f48a-521e-ac44-4da4f2fab93b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4380.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "69a6f07b-7c9e-5eb3-bbfb-4c422e689ae8",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "55f54ffa-bdb5-5247-8c5a-481e86780f3d",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 21.1619,
+    "longitude": -86.8515,
+    "description": "Hospedaje en Cancún, México."
+  },
+  {
+    "id": "7443f71f-ee93-597e-a36b-11e28038f972",
+    "nombre": "Hotel Mirador de Cancún",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Cancún",
+    "direccion": "Av. Principal 110, Cancún",
+    "rating": 4.6,
+    "reviews": 960,
+    "habitaciones": [
+      {
+        "id": "36161fea-7e14-537c-91cd-4153f617ee03",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2160.0
+      },
+      {
+        "id": "a5c033d2-8fa6-5596-87d1-e99a1337a296",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3060.0
+      },
+      {
+        "id": "80f88238-af0a-549a-936f-928cf551f902",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4560.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "0203b4e9-fc23-50ac-aead-7fb025c13e12",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "fafb24fd-8c03-5569-91b3-bd5f372035ec",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 21.1619,
+    "longitude": -86.8515,
+    "description": "Hospedaje en Cancún, México."
+  },
+  {
+    "id": "4c5c6c8d-99da-5ba4-b9ce-6f98e2e7fd88",
+    "nombre": "Cancún Business \u0026 Stay",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Cancún",
+    "direccion": "Av. Principal 111, Cancún",
+    "rating": 4.7,
+    "reviews": 1055,
+    "habitaciones": [
+      {
+        "id": "f561c8b6-a670-537f-ada8-ccc3971cb1e7",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2340.0
+      },
+      {
+        "id": "7ca77274-9f15-579b-bbe6-da65750aec4d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3240.0
+      },
+      {
+        "id": "d9bad424-da4c-5514-b22e-58d5a6f5c3bf",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4740.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "45b5c354-2e49-5b56-9fc6-b84b28b21d2a",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "0b68dcd1-42af-5dfc-942c-26315d0eb2d6",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 21.1619,
+    "longitude": -86.8515,
+    "description": "Hospedaje en Cancún, México."
+  },
+  {
+    "id": "bcd390e3-35bd-5c7f-9f02-e959ccc49f26",
+    "nombre": "Casa Colonial Cancún",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Cancún",
+    "direccion": "Av. Principal 112, Cancún",
+    "rating": 4.8,
+    "reviews": 1150,
+    "habitaciones": [
+      {
+        "id": "3561cc86-7a2a-51cf-86fe-be829fc8dd90",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2520.0
+      },
+      {
+        "id": "2c243375-2240-547e-a385-4bcb0005b177",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3420.0
+      },
+      {
+        "id": "218f3978-e690-5b54-a0e0-526929148d4a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4920.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ef56da5f-0d90-594b-989c-8f9e10802892",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e72f49ba-430e-5557-9c73-ca8e74e7b3ab",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 21.1619,
+    "longitude": -86.8515,
+    "description": "Hospedaje en Cancún, México."
+  },
+  {
+    "id": "bd13426d-8af6-512d-b37f-e71e7f1dedd5",
+    "nombre": "Hotel Costa Cancún",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Cancún",
+    "direccion": "Av. Principal 113, Cancún",
+    "rating": 4.9,
+    "reviews": 1245,
+    "habitaciones": [
+      {
+        "id": "4955554d-c4d1-5770-99a7-611ac1bf0c94",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2700.0
+      },
+      {
+        "id": "b51f4979-da0d-56d1-b7af-46f59927264f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3600.0
+      },
+      {
+        "id": "654b811a-4788-5f13-976d-54c182e1321a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5100.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a682b239-2dfe-50ea-addc-956e2e0b7167",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "6edfac2c-d2c0-5dc3-8a29-e01cf3e47dde",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 21.1619,
+    "longitude": -86.8515,
+    "description": "Hospedaje en Cancún, México."
+  },
+  {
+    "id": "e9542a3c-ee1c-5836-b532-b1f1b4baf90f",
+    "nombre": "Playa del Carmen Grand Hotel",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Playa del Carmen",
+    "direccion": "Av. Principal 110, Playa del Carmen",
+    "rating": 4.4,
+    "reviews": 855,
+    "habitaciones": [
+      {
+        "id": "88b38208-3f17-5b77-b7c7-cd2724647421",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1740.0
+      },
+      {
+        "id": "aa98bdb3-5a64-5677-940d-19f3730aac4b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2640.0
+      },
+      {
+        "id": "0ab4aa23-cba0-57da-b1f9-2e2820863d72",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4140.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "14a8543c-82f9-56f7-8404-8dd89fbd6078",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4666fb5d-cdb2-59c1-803b-e6a3e9ce3dd0",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6296,
+    "longitude": -87.0739,
+    "description": "Hospedaje en Playa del Carmen, México."
+  },
+  {
+    "id": "46aa9a78-3e6f-5234-92b1-e3182c2de6b5",
+    "nombre": "Hotel Boutique Playa del Carmen",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Playa del Carmen",
+    "direccion": "Av. Principal 111, Playa del Carmen",
+    "rating": 4.5,
+    "reviews": 950,
+    "habitaciones": [
+      {
+        "id": "c83672d7-e66c-54c5-895a-9c05079ea587",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1920.0
+      },
+      {
+        "id": "db93e488-e00c-5394-958d-a4774adb1fbb",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2820.0
+      },
+      {
+        "id": "ce34a9b6-0192-53fa-9e4f-a0a01c440cd3",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4320.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "94fa3909-e959-5310-9019-181f6924fb3c",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ba2ede7e-34e7-5a34-89d0-a6438a7bfc7c",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6296,
+    "longitude": -87.0739,
+    "description": "Hospedaje en Playa del Carmen, México."
+  },
+  {
+    "id": "3606a24d-99c3-5f43-894f-a69db4f1b017",
+    "nombre": "Playa del Carmen Plaza Suites",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Playa del Carmen",
+    "direccion": "Av. Principal 112, Playa del Carmen",
+    "rating": 4.6,
+    "reviews": 1045,
+    "habitaciones": [
+      {
+        "id": "75d1c2bc-3103-5645-807d-713b73f048b2",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2100.0
+      },
+      {
+        "id": "20ae40d2-c965-5bdc-a24e-3eee3ff562e3",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3000.0
+      },
+      {
+        "id": "34399e81-85ac-550b-aa0f-9023b5ae41cb",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "77e98499-090e-5b90-a032-a59014245dcb",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3ab5e604-6b8f-5457-afd0-2f29618f1ba8",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6296,
+    "longitude": -87.0739,
+    "description": "Hospedaje en Playa del Carmen, México."
+  },
+  {
+    "id": "f942aa9d-0ce1-50a6-8c4b-5f94764fcfc4",
+    "nombre": "Hotel Mirador de Playa del Carmen",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Playa del Carmen",
+    "direccion": "Av. Principal 113, Playa del Carmen",
+    "rating": 4.7,
+    "reviews": 1140,
+    "habitaciones": [
+      {
+        "id": "2c012346-7fe4-5011-97d8-43a8515a004c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2280.0
+      },
+      {
+        "id": "76c593f5-549b-5ba3-b333-ee546b8fd6ee",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3180.0
+      },
+      {
+        "id": "bcf71912-cdea-58a7-8418-cb7e85b57fe4",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4680.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "b1ef2bdc-b45d-580b-a395-d4514cf42a7a",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1e226dde-d452-5d00-b88f-fdaa14f08828",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6296,
+    "longitude": -87.0739,
+    "description": "Hospedaje en Playa del Carmen, México."
+  },
+  {
+    "id": "98cd9134-6bff-56f9-9b06-d48af5597006",
+    "nombre": "Playa del Carmen Business \u0026 Stay",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Playa del Carmen",
+    "direccion": "Av. Principal 114, Playa del Carmen",
+    "rating": 4.8,
+    "reviews": 1235,
+    "habitaciones": [
+      {
+        "id": "6c916cea-086d-5be9-81e0-d8aac2e4a74d",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2460.0
+      },
+      {
+        "id": "80678955-a9f0-5a9d-9dd5-8058875b1c87",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3360.0
+      },
+      {
+        "id": "663047c5-670b-5d26-bc0d-44404eb5b19b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4860.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "6a065ae4-2403-5039-a579-d9ab0d529d49",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "7fad9952-751d-545e-882a-ddb63f21a3e2",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6296,
+    "longitude": -87.0739,
+    "description": "Hospedaje en Playa del Carmen, México."
+  },
+  {
+    "id": "fc26c75e-8289-5338-85be-e76a7234505a",
+    "nombre": "Casa Colonial Playa del Carmen",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Playa del Carmen",
+    "direccion": "Av. Principal 115, Playa del Carmen",
+    "rating": 4.9,
+    "reviews": 1330,
+    "habitaciones": [
+      {
+        "id": "02b36628-5564-55d3-9da6-93224fedb58c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2640.0
+      },
+      {
+        "id": "2dbdebd6-9681-53e7-b66d-09d6e3b1245c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3540.0
+      },
+      {
+        "id": "5de6b234-7632-5973-863f-d25164df3a55",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5040.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "dcdd7a85-c225-5096-9c08-e288b3ffb49d",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ff9d3796-cfa2-587d-b277-7e8a5ce1cb1b",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6296,
+    "longitude": -87.0739,
+    "description": "Hospedaje en Playa del Carmen, México."
+  },
+  {
+    "id": "4546d3a6-edb0-56b3-a82b-1b96bbdebf20",
+    "nombre": "Hotel Costa Playa del Carmen",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Playa del Carmen",
+    "direccion": "Av. Principal 116, Playa del Carmen",
+    "rating": 4.0,
+    "reviews": 1425,
+    "habitaciones": [
+      {
+        "id": "8057288a-1060-5165-a868-b33905845303",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2820.0
+      },
+      {
+        "id": "b53350d4-d9bb-5812-8bd6-f725afe4cbe5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3720.0
+      },
+      {
+        "id": "6921103f-1e79-594e-b2bb-2eb138557f21",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5220.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "4463cc1c-8a7d-591e-ae72-58ab13813b8e",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "9d50cf7f-04fd-5d94-b5e9-775d53ac29df",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6296,
+    "longitude": -87.0739,
+    "description": "Hospedaje en Playa del Carmen, México."
+  },
+  {
+    "id": "62325df4-8d1f-5af7-a4ca-b19c4d4c661f",
+    "nombre": "Guadalajara Grand Hotel",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Guadalajara",
+    "direccion": "Av. Principal 113, Guadalajara",
+    "rating": 4.5,
+    "reviews": 1035,
+    "habitaciones": [
+      {
+        "id": "f6fc28a6-e8f4-5719-b72b-85c835e945b4",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1860.0
+      },
+      {
+        "id": "430066c6-8c17-594b-aff2-637a573bc29d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2760.0
+      },
+      {
+        "id": "4ff3e3ac-2f70-584e-bee6-c1df8b0fd5f6",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4260.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "21b0bb87-ce45-5c7e-b7cf-edecbc692798",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "0fb2dd05-7906-5eea-a88d-6504e31f7eed",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6597,
+    "longitude": -103.3496,
+    "description": "Hospedaje en Guadalajara, México."
+  },
+  {
+    "id": "63e63c23-1463-5fd9-8375-f48443663a2f",
+    "nombre": "Hotel Boutique Guadalajara",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Guadalajara",
+    "direccion": "Av. Principal 114, Guadalajara",
+    "rating": 4.6,
+    "reviews": 1130,
+    "habitaciones": [
+      {
+        "id": "3becfb70-4a56-51c4-ba89-dc0e9b63bf73",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2040.0
+      },
+      {
+        "id": "f97504b3-e5cc-5a6e-9216-05e22ef95c82",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2940.0
+      },
+      {
+        "id": "63fde664-267c-5ecc-9602-7bf504f1f2d7",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4440.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ed5487aa-f6d3-5020-a951-88f70138a837",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "2cc3023c-2517-5d58-9c2d-ff77f8158c4b",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6597,
+    "longitude": -103.3496,
+    "description": "Hospedaje en Guadalajara, México."
+  },
+  {
+    "id": "a82cc371-6e98-5101-bb0f-ac026d9d3bc3",
+    "nombre": "Guadalajara Plaza Suites",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Guadalajara",
+    "direccion": "Av. Principal 115, Guadalajara",
+    "rating": 4.7,
+    "reviews": 1225,
+    "habitaciones": [
+      {
+        "id": "6614661f-de92-5d23-9d21-a5de3e06d12e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2220.0
+      },
+      {
+        "id": "ed07e3fd-a74e-59f8-a6ef-292cb6b5bc59",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3120.0
+      },
+      {
+        "id": "034a7edf-1fdf-5d1a-b7c7-ea031af95830",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4620.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "83ed2cfd-83c3-5900-a567-3059c8d72146",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "bd2998ee-cbc3-51f8-a37d-6422ce911517",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6597,
+    "longitude": -103.3496,
+    "description": "Hospedaje en Guadalajara, México."
+  },
+  {
+    "id": "179c900e-3563-5377-99d7-55965e0a34d6",
+    "nombre": "Hotel Mirador de Guadalajara",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Guadalajara",
+    "direccion": "Av. Principal 116, Guadalajara",
+    "rating": 4.8,
+    "reviews": 1320,
+    "habitaciones": [
+      {
+        "id": "82c50231-236e-5519-9175-f20012141370",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2400.0
+      },
+      {
+        "id": "e2d6dc79-6642-523c-9514-659319771bc9",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3300.0
+      },
+      {
+        "id": "91e9bab3-8665-59c9-8199-d692690d7f58",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4800.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "7e2f04ec-570b-507b-9421-467864439306",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f89cb09e-3c54-5581-9e3c-874228c7633a",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6597,
+    "longitude": -103.3496,
+    "description": "Hospedaje en Guadalajara, México."
+  },
+  {
+    "id": "3ed4c182-6851-57b6-9043-a839c11679e3",
+    "nombre": "Guadalajara Business \u0026 Stay",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Guadalajara",
+    "direccion": "Av. Principal 117, Guadalajara",
+    "rating": 4.9,
+    "reviews": 1415,
+    "habitaciones": [
+      {
+        "id": "dbd1d90e-8fa5-5c46-a690-d3af780c09ac",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2580.0
+      },
+      {
+        "id": "dddb938f-3a13-5669-997e-516b8764c640",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3480.0
+      },
+      {
+        "id": "dbe5499e-0c11-5b1c-b3cb-57d19a8ede4f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4980.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "3fafcfbc-1227-5c6c-9dbb-63cc8d54b940",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "5d9a1d7e-011d-56bc-9e64-124d5c5287e8",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6597,
+    "longitude": -103.3496,
+    "description": "Hospedaje en Guadalajara, México."
+  },
+  {
+    "id": "b7f22cb0-1ec3-5599-b24a-36d61183fc7d",
+    "nombre": "Casa Colonial Guadalajara",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Guadalajara",
+    "direccion": "Av. Principal 118, Guadalajara",
+    "rating": 4.0,
+    "reviews": 1510,
+    "habitaciones": [
+      {
+        "id": "a9d5569e-5f3c-5ac6-ba4a-2e5762473a37",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2760.0
+      },
+      {
+        "id": "422ab95b-df7e-56f3-a964-0cf0bc870562",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3660.0
+      },
+      {
+        "id": "88e1d61e-fd76-526c-8d1c-59c1cf08d72d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5160.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "208fe8f1-fcfe-524b-a1b3-3a4eae0cb87b",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "218715bd-2582-5afb-aee2-78d65db77d96",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6597,
+    "longitude": -103.3496,
+    "description": "Hospedaje en Guadalajara, México."
+  },
+  {
+    "id": "88f4cef9-39c0-526a-8684-1290f6f79676",
+    "nombre": "Hotel Costa Guadalajara",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Guadalajara",
+    "direccion": "Av. Principal 119, Guadalajara",
+    "rating": 4.1,
+    "reviews": 1605,
+    "habitaciones": [
+      {
+        "id": "3bea8d38-d877-5c8f-9237-af8e4834f669",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2940.0
+      },
+      {
+        "id": "47dbc38c-9dab-57d4-9523-1cf2bad4592c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3840.0
+      },
+      {
+        "id": "68bb1f24-80fc-5a7f-85a5-c8c488171441",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5340.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ebe84377-1ed3-5930-837a-4e24fb577bdd",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e9ade4d8-69b5-5130-ba7d-e359e135fec9",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6597,
+    "longitude": -103.3496,
+    "description": "Hospedaje en Guadalajara, México."
+  },
+  {
+    "id": "3cb0b3a2-2ce3-5081-99fd-7d788bf14327",
+    "nombre": "Puerto Vallarta Grand Hotel",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Puerto Vallarta",
+    "direccion": "Av. Principal 116, Puerto Vallarta",
+    "rating": 4.6,
+    "reviews": 1215,
+    "habitaciones": [
+      {
+        "id": "fbd2f8d8-4846-5c66-905c-d23b5bf77262",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 1980.0
+      },
+      {
+        "id": "44bf07d1-e4ca-590f-b284-0e4c70b09b89",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 2880.0
+      },
+      {
+        "id": "d1b0624e-687c-5227-9005-dc5113287214",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4380.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "533e4add-05b8-53d6-a518-87a252fb0b0f",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ae66745e-7c5e-559a-b64d-66dddbe703cd",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6534,
+    "longitude": -105.2253,
+    "description": "Hospedaje en Puerto Vallarta, México."
+  },
+  {
+    "id": "7ac6bd05-421d-5fda-8f0d-044289ab265f",
+    "nombre": "Hotel Boutique Puerto Vallarta",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Puerto Vallarta",
+    "direccion": "Av. Principal 117, Puerto Vallarta",
+    "rating": 4.7,
+    "reviews": 1310,
+    "habitaciones": [
+      {
+        "id": "d4bc5e46-bb18-5b25-9369-9ba4abf3efb0",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2160.0
+      },
+      {
+        "id": "17b28f1b-2ce4-564b-b355-7799b87eac6d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3060.0
+      },
+      {
+        "id": "a699c6f4-1480-5bca-b149-79bbbe74c453",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4560.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "1d48cf78-f34e-5a09-afae-45456f4faf5d",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f4b3686d-ef05-54ea-a37b-e9a522357bde",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6534,
+    "longitude": -105.2253,
+    "description": "Hospedaje en Puerto Vallarta, México."
+  },
+  {
+    "id": "395ff099-d347-5913-bcc4-e75f60f1485e",
+    "nombre": "Puerto Vallarta Plaza Suites",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Puerto Vallarta",
+    "direccion": "Av. Principal 118, Puerto Vallarta",
+    "rating": 4.8,
+    "reviews": 1405,
+    "habitaciones": [
+      {
+        "id": "f2903691-353c-5de7-a29d-10edfb2eb9bd",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2340.0
+      },
+      {
+        "id": "cb687bd8-f836-53b5-9991-78730e22ecb5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3240.0
+      },
+      {
+        "id": "260a16ef-3a27-52ae-962b-d921653d74c2",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4740.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "46bf35a3-245d-5e9e-a8b5-7d54e2c59925",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3a604629-5cb8-59a4-9fb2-3397ed960e13",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6534,
+    "longitude": -105.2253,
+    "description": "Hospedaje en Puerto Vallarta, México."
+  },
+  {
+    "id": "a78dbc7a-76d4-582c-81f5-f6d5f9c4b2f8",
+    "nombre": "Hotel Mirador de Puerto Vallarta",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Puerto Vallarta",
+    "direccion": "Av. Principal 119, Puerto Vallarta",
+    "rating": 4.9,
+    "reviews": 1500,
+    "habitaciones": [
+      {
+        "id": "fad3b4b2-46e3-5041-845c-0f609725814c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2520.0
+      },
+      {
+        "id": "fe8fba73-93ae-552e-9bd6-c284ed9a01fc",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3420.0
+      },
+      {
+        "id": "bab48cb7-3c0e-58bb-b37f-b0cc0707f96b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4920.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a4f25b4b-fcb8-52c4-b0dd-6641cbaa1da3",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "5197a188-14a7-57cc-a2cd-d09826d12b56",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6534,
+    "longitude": -105.2253,
+    "description": "Hospedaje en Puerto Vallarta, México."
+  },
+  {
+    "id": "99e8b3dd-b5eb-5e62-9bb9-fbc53e2c4136",
+    "nombre": "Puerto Vallarta Business \u0026 Stay",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Puerto Vallarta",
+    "direccion": "Av. Principal 120, Puerto Vallarta",
+    "rating": 4.0,
+    "reviews": 1595,
+    "habitaciones": [
+      {
+        "id": "ef4323e1-308c-57e1-b101-36c52d9db0c2",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2700.0
+      },
+      {
+        "id": "6666493e-4dd0-5e53-bef2-afc877be8a63",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3600.0
+      },
+      {
+        "id": "97367bf4-7ae2-59cf-9388-050c58481dde",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5100.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "2f1dc5fa-d32b-5fb2-a3eb-ce5da175fe25",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3f8608ff-6a9e-5ccd-acba-8e64146fe82b",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6534,
+    "longitude": -105.2253,
+    "description": "Hospedaje en Puerto Vallarta, México."
+  },
+  {
+    "id": "f89195af-4c12-536f-8ae0-a21104878798",
+    "nombre": "Casa Colonial Puerto Vallarta",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Puerto Vallarta",
+    "direccion": "Av. Principal 121, Puerto Vallarta",
+    "rating": 4.1,
+    "reviews": 1690,
+    "habitaciones": [
+      {
+        "id": "c8a1fd7c-1e31-50f3-ab2f-040f4f109101",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2880.0
+      },
+      {
+        "id": "0e707b7f-dc5e-5203-b5e6-c2e8bd12cb2d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3780.0
+      },
+      {
+        "id": "35b61dd2-01e6-59a5-829f-859c0c0e3c9d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5280.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "4f6abed5-2efd-5316-be63-a6c7aa6b740b",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f2fd29f9-aacb-5d44-bb61-57ae0cdc395c",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6534,
+    "longitude": -105.2253,
+    "description": "Hospedaje en Puerto Vallarta, México."
+  },
+  {
+    "id": "dc9cddc6-aff7-549e-8c2c-e1693f96ad48",
+    "nombre": "Hotel Costa Puerto Vallarta",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Puerto Vallarta",
+    "direccion": "Av. Principal 122, Puerto Vallarta",
+    "rating": 4.2,
+    "reviews": 1785,
+    "habitaciones": [
+      {
+        "id": "0aaa2108-1213-538b-8552-37c98166e880",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 3060.0
+      },
+      {
+        "id": "55ed22dc-8d82-567d-ac10-89ebc032685b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3960.0
+      },
+      {
+        "id": "1433f1b3-ca09-5893-94e3-5ffa47cf12e1",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5460.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d0db2531-8f23-5f70-bcf5-dc7867eda209",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "79480c00-3d26-5065-8c7a-ced20bd434e2",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.6534,
+    "longitude": -105.2253,
+    "description": "Hospedaje en Puerto Vallarta, México."
+  },
+  {
+    "id": "266756de-ae78-572b-ab3e-a77a87fd97df",
+    "nombre": "Oaxaca Grand Hotel",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Oaxaca",
+    "direccion": "Av. Principal 119, Oaxaca",
+    "rating": 4.7,
+    "reviews": 1395,
+    "habitaciones": [
+      {
+        "id": "d65a940b-8b3f-57a1-b0bd-822aabf47bc6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2100.0
+      },
+      {
+        "id": "f39c2356-c81f-56da-add7-99418912de47",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3000.0
+      },
+      {
+        "id": "c9465f7b-99b3-55e5-9fa6-dc3733371402",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "06342779-25a6-58fa-9844-6ff933cc782d",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c230ab35-82ad-5b10-982a-22bb6aa9207e",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 17.0732,
+    "longitude": -96.7266,
+    "description": "Hospedaje en Oaxaca, México."
+  },
+  {
+    "id": "05cebc75-64b0-5cf0-9720-4dd683551ccc",
+    "nombre": "Hotel Boutique Oaxaca",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Oaxaca",
+    "direccion": "Av. Principal 120, Oaxaca",
+    "rating": 4.8,
+    "reviews": 1490,
+    "habitaciones": [
+      {
+        "id": "9b44aecd-8afb-5aaa-99c2-c23300513f35",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2280.0
+      },
+      {
+        "id": "69737da5-4005-5ee2-b2c9-6f622be7fc87",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3180.0
+      },
+      {
+        "id": "82b5b7cf-7e92-51b7-afc8-00c2d49b0e91",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4680.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "60517300-2b44-5c37-9057-53630be26b02",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d26cdb22-d423-5121-985e-568c8452e7d1",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 17.0732,
+    "longitude": -96.7266,
+    "description": "Hospedaje en Oaxaca, México."
+  },
+  {
+    "id": "16229651-711f-5553-a677-1d6ef4df9e1b",
+    "nombre": "Oaxaca Plaza Suites",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Oaxaca",
+    "direccion": "Av. Principal 121, Oaxaca",
+    "rating": 4.9,
+    "reviews": 1585,
+    "habitaciones": [
+      {
+        "id": "7c1b0f0d-426a-5180-8eb0-c9e53558f5db",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2460.0
+      },
+      {
+        "id": "913549c4-0b91-504f-aef4-3396fd294272",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3360.0
+      },
+      {
+        "id": "0727f66c-43a4-5b65-bc68-000d6bf1ad1e",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4860.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5b16b2dd-2def-568a-a99c-922feb5cfa2e",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "322ee98f-8dcd-57ce-902e-70745e99ab29",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 17.0732,
+    "longitude": -96.7266,
+    "description": "Hospedaje en Oaxaca, México."
+  },
+  {
+    "id": "71e15194-5ea9-57c8-84dc-9ac6a72cd018",
+    "nombre": "Hotel Mirador de Oaxaca",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Oaxaca",
+    "direccion": "Av. Principal 122, Oaxaca",
+    "rating": 4.0,
+    "reviews": 1680,
+    "habitaciones": [
+      {
+        "id": "4c9a911e-aa1a-5f7a-8f84-88c519951417",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2640.0
+      },
+      {
+        "id": "682b9160-0ab0-52a4-9dbe-e6c3f8e71b30",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3540.0
+      },
+      {
+        "id": "15bc53c7-f50d-5176-82b5-bf25c47f5a70",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5040.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "64bde925-7deb-56cb-b92b-ef7ec8314ba7",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "2ffb77f8-5be5-5da4-8c6e-722b7cd6dfe0",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 17.0732,
+    "longitude": -96.7266,
+    "description": "Hospedaje en Oaxaca, México."
+  },
+  {
+    "id": "cc913bb3-51f6-5bcc-b9a2-7b2f9eac7492",
+    "nombre": "Oaxaca Business \u0026 Stay",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Oaxaca",
+    "direccion": "Av. Principal 123, Oaxaca",
+    "rating": 4.1,
+    "reviews": 1775,
+    "habitaciones": [
+      {
+        "id": "67bf79f7-0eee-5827-b829-7776bf4d1979",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2820.0
+      },
+      {
+        "id": "83479424-3b4f-512f-9cad-871a489c3d8e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3720.0
+      },
+      {
+        "id": "4f5db27f-928b-595e-b42f-fcab810a6caf",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5220.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "da5ef194-44ec-5ae3-8cd8-4786215b1246",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "66e2b1b8-443c-506e-b6b7-444921a76bd6",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 17.0732,
+    "longitude": -96.7266,
+    "description": "Hospedaje en Oaxaca, México."
+  },
+  {
+    "id": "41fb0a0c-001d-5d73-a6c6-7d8e5c14c7bf",
+    "nombre": "Casa Colonial Oaxaca",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Oaxaca",
+    "direccion": "Av. Principal 124, Oaxaca",
+    "rating": 4.2,
+    "reviews": 1870,
+    "habitaciones": [
+      {
+        "id": "e72c8960-6757-513a-b650-6705bbc206df",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 3000.0
+      },
+      {
+        "id": "98564d4f-229b-5bd3-9a24-54a2f4a90d11",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3900.0
+      },
+      {
+        "id": "15f4f350-62e8-5633-9658-d96af867919d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5400.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "31c4097c-f409-5045-8390-cc2c22373851",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a4e60903-2239-57a0-9b01-4ee3ea7a80cd",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 17.0732,
+    "longitude": -96.7266,
+    "description": "Hospedaje en Oaxaca, México."
+  },
+  {
+    "id": "91166f05-398d-5087-8be1-e3e1b7a003ad",
+    "nombre": "Hotel Costa Oaxaca",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Oaxaca",
+    "direccion": "Av. Principal 125, Oaxaca",
+    "rating": 4.3,
+    "reviews": 1965,
+    "habitaciones": [
+      {
+        "id": "622a1108-e566-54f9-a197-6f8c43bd1b89",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 3180.0
+      },
+      {
+        "id": "a31eaa37-bd57-5c92-a874-332d66b1f9b4",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 4080.0
+      },
+      {
+        "id": "3a4210ed-a28e-5fc6-b253-7b37768fb593",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5580.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "79494ad9-10db-5487-b9e5-1a3724c5541a",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a2c96bdd-5c95-5078-b760-fc94cca852f2",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 17.0732,
+    "longitude": -96.7266,
+    "description": "Hospedaje en Oaxaca, México."
+  },
+  {
+    "id": "4bfcc14c-8db6-50f2-ac99-9a86710ab010",
+    "nombre": "Tulum Grand Hotel",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Tulum",
+    "direccion": "Av. Principal 122, Tulum",
+    "rating": 4.8,
+    "reviews": 1575,
+    "habitaciones": [
+      {
+        "id": "ac338290-bab5-51f0-9da5-3c814c0454f9",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2220.0
+      },
+      {
+        "id": "90b1d2e7-4f15-57f5-a3db-bb26409bcec5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3120.0
+      },
+      {
+        "id": "719c19e3-f64b-5e95-b612-e4228b0ce29d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4620.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "2684de85-0739-5b36-83a4-f230f4881e07",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4ac9d68a-ae82-578d-9d72-2876d3cb7bc1",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.2114,
+    "longitude": -87.4654,
+    "description": "Hospedaje en Tulum, México."
+  },
+  {
+    "id": "9741ec43-9c0d-5ee8-9897-a7d4a6fb5360",
+    "nombre": "Hotel Boutique Tulum",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Tulum",
+    "direccion": "Av. Principal 123, Tulum",
+    "rating": 4.9,
+    "reviews": 1670,
+    "habitaciones": [
+      {
+        "id": "f05a7e3f-1d0b-55a7-8934-49e7c1833f53",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2400.0
+      },
+      {
+        "id": "abb934d0-91b4-5bfe-8e7a-8bad564a9404",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3300.0
+      },
+      {
+        "id": "d71970a1-5349-5d81-bfda-b6b9d2688e93",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4800.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c9f39d39-6bd8-5830-b528-ccdb250587f0",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "7628fd2e-b815-59ae-83b4-d2a4b5952dbb",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.2114,
+    "longitude": -87.4654,
+    "description": "Hospedaje en Tulum, México."
+  },
+  {
+    "id": "3749f0db-5476-5ac4-970c-98a2e6af4111",
+    "nombre": "Tulum Plaza Suites",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Tulum",
+    "direccion": "Av. Principal 124, Tulum",
+    "rating": 4.0,
+    "reviews": 1765,
+    "habitaciones": [
+      {
+        "id": "276eb91c-c1c8-5009-810c-3ee4a3080816",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2580.0
+      },
+      {
+        "id": "3786ad08-a8ab-5373-9a3e-bcd228d6697e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3480.0
+      },
+      {
+        "id": "e30611cb-adb8-5a8c-ba08-072b1bcdef91",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4980.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "cf3be7a4-cf1b-5773-bae3-309a31b18600",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3b4fea74-7b04-50f0-aff1-35721d414823",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.2114,
+    "longitude": -87.4654,
+    "description": "Hospedaje en Tulum, México."
+  },
+  {
+    "id": "ad7c9dba-13ea-56d3-b254-4b54cccefa64",
+    "nombre": "Hotel Mirador de Tulum",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Tulum",
+    "direccion": "Av. Principal 125, Tulum",
+    "rating": 4.1,
+    "reviews": 1860,
+    "habitaciones": [
+      {
+        "id": "d41b9145-4dce-584b-825a-d4d898acefa9",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2760.0
+      },
+      {
+        "id": "e22c42b3-9676-5e27-977e-8f95161f58a0",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3660.0
+      },
+      {
+        "id": "430c1e9a-e5e3-5cdd-b01e-c1666a71036a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5160.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "f8924a8c-f880-59a5-9400-04a858cc0833",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "00dbfd86-c48e-5920-b855-2d80ddfca9d2",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.2114,
+    "longitude": -87.4654,
+    "description": "Hospedaje en Tulum, México."
+  },
+  {
+    "id": "9f7d8765-a6fd-5dac-a93d-d855cd369390",
+    "nombre": "Tulum Business \u0026 Stay",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Tulum",
+    "direccion": "Av. Principal 126, Tulum",
+    "rating": 4.2,
+    "reviews": 1955,
+    "habitaciones": [
+      {
+        "id": "f6682fd1-ffc4-5686-81cd-aedad55976a8",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2940.0
+      },
+      {
+        "id": "38fcf9e7-c5c3-549e-9e74-ac413561c953",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3840.0
+      },
+      {
+        "id": "00d51c37-edb3-5e6a-999d-4c5d9c5f5184",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5340.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d33bd5b5-596b-5dce-82e0-129bf01d2977",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "37b65710-9478-598d-a63a-7fcc9914fe8b",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.2114,
+    "longitude": -87.4654,
+    "description": "Hospedaje en Tulum, México."
+  },
+  {
+    "id": "5b9f83a3-f94d-5341-ba2e-399d44c5a56b",
+    "nombre": "Casa Colonial Tulum",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Tulum",
+    "direccion": "Av. Principal 127, Tulum",
+    "rating": 4.3,
+    "reviews": 2050,
+    "habitaciones": [
+      {
+        "id": "08b31837-963f-5d3a-8b9d-fb8ed72ef486",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 3120.0
+      },
+      {
+        "id": "fd5ea960-7447-5fb7-b318-806266d6d41c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 4020.0
+      },
+      {
+        "id": "e9377c51-4334-50a1-99e3-391fd254e505",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5520.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "44e13ba9-f63b-5111-a862-a98ae6a6bfac",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "0398c023-5d7f-5ef3-9670-490aeb70c0e1",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.2114,
+    "longitude": -87.4654,
+    "description": "Hospedaje en Tulum, México."
+  },
+  {
+    "id": "631462bf-eedb-565a-bde7-93b142794f9f",
+    "nombre": "Hotel Costa Tulum",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Tulum",
+    "direccion": "Av. Principal 128, Tulum",
+    "rating": 4.4,
+    "reviews": 2145,
+    "habitaciones": [
+      {
+        "id": "e1736424-0c7c-59ab-ba3a-f9f7fcf04e57",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 3300.0
+      },
+      {
+        "id": "78653335-2315-5a89-b207-d5b4f7395a21",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 4200.0
+      },
+      {
+        "id": "34ed2d58-acb4-57a9-a873-3f19edb2634e",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5700.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "82a82004-7d2c-59c0-9a11-b17f635fd5fb",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e9c035da-2c31-5aee-b258-bdd64551e053",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 20.2114,
+    "longitude": -87.4654,
+    "description": "Hospedaje en Tulum, México."
+  },
+  {
+    "id": "8cafb7c1-3de3-5d49-9446-7e2ff4259d5f",
+    "nombre": "Los Cabos Grand Hotel",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Los Cabos",
+    "direccion": "Av. Principal 125, Los Cabos",
+    "rating": 4.9,
+    "reviews": 1755,
+    "habitaciones": [
+      {
+        "id": "41330bb1-41de-5968-84c1-a8ed7f0d4a3d",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2340.0
+      },
+      {
+        "id": "10626c86-c38d-5d83-b27e-6c526ded0c4e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3240.0
+      },
+      {
+        "id": "ed6071ec-f183-523d-9b75-665b710bc36f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4740.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a3585123-5ce5-58cd-8947-7febb15f2e4f",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4f707337-40d5-562b-9f05-79c855ed0424",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 22.8905,
+    "longitude": -109.9167,
+    "description": "Hospedaje en Los Cabos, México."
+  },
+  {
+    "id": "409eb336-f357-52f8-a061-7449994ac2ec",
+    "nombre": "Hotel Boutique Los Cabos",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Los Cabos",
+    "direccion": "Av. Principal 126, Los Cabos",
+    "rating": 4.0,
+    "reviews": 1850,
+    "habitaciones": [
+      {
+        "id": "56f924a6-efbc-5699-8f65-a1e10ade92ba",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2520.0
+      },
+      {
+        "id": "b3723c66-0d35-5117-845b-80f19b68149f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3420.0
+      },
+      {
+        "id": "50e381e6-e8c4-5307-ae1d-eb8f782b98b6",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 4920.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "acdc1644-72b7-5135-b5bc-f79b5f842c8e",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "11e55be0-5d4e-5153-8406-ff6bee55d1ae",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 22.8905,
+    "longitude": -109.9167,
+    "description": "Hospedaje en Los Cabos, México."
+  },
+  {
+    "id": "77611c98-9484-581d-ae9d-116c9bead2f0",
+    "nombre": "Los Cabos Plaza Suites",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Los Cabos",
+    "direccion": "Av. Principal 127, Los Cabos",
+    "rating": 4.1,
+    "reviews": 1945,
+    "habitaciones": [
+      {
+        "id": "923c3a77-7316-5b18-8086-c12b18465cac",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2700.0
+      },
+      {
+        "id": "b5b594da-b955-5242-aac8-b70ddd90bf73",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3600.0
+      },
+      {
+        "id": "8198c81f-4fd1-5c07-afad-770c910fbacc",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5100.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ad9e7888-a555-560e-a3dc-bb813a0e2fd3",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "bddf5dc7-b2e7-535a-9375-30213eb252d4",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 22.8905,
+    "longitude": -109.9167,
+    "description": "Hospedaje en Los Cabos, México."
+  },
+  {
+    "id": "04e672fd-4221-50fc-b978-73397c7563f9",
+    "nombre": "Hotel Mirador de Los Cabos",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Los Cabos",
+    "direccion": "Av. Principal 128, Los Cabos",
+    "rating": 4.2,
+    "reviews": 2040,
+    "habitaciones": [
+      {
+        "id": "857c941a-e4dc-588b-bdd3-9d10083b8745",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 2880.0
+      },
+      {
+        "id": "a2916e9e-aec7-5833-ba59-754f233df9e6",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3780.0
+      },
+      {
+        "id": "e85c932f-f09d-5964-9e4b-1bb6547a1c6d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5280.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "8c64cc2d-e772-5dce-979d-5d7fa10b75c8",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "2efcf2cb-8649-581e-9f81-7756af91a034",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 22.8905,
+    "longitude": -109.9167,
+    "description": "Hospedaje en Los Cabos, México."
+  },
+  {
+    "id": "5561f27f-1399-523b-85b0-522fcd37cbc9",
+    "nombre": "Los Cabos Business \u0026 Stay",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Los Cabos",
+    "direccion": "Av. Principal 129, Los Cabos",
+    "rating": 4.3,
+    "reviews": 2135,
+    "habitaciones": [
+      {
+        "id": "1109a421-757e-5d9d-b611-561ea0919bc1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 3060.0
+      },
+      {
+        "id": "c8aea892-abb3-5b1f-888f-fbbb2e0c2bd2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 3960.0
+      },
+      {
+        "id": "2a5d62af-0daa-5536-bed0-5ffb86d92304",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5460.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "187f3e18-307c-5fce-b526-82a3e6e03637",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "62f0bc22-93ee-5227-bdb7-22c2a6f5cbca",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 22.8905,
+    "longitude": -109.9167,
+    "description": "Hospedaje en Los Cabos, México."
+  },
+  {
+    "id": "9418cd55-caf2-5709-af20-1195bd3fd82c",
+    "nombre": "Casa Colonial Los Cabos",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Los Cabos",
+    "direccion": "Av. Principal 130, Los Cabos",
+    "rating": 4.4,
+    "reviews": 2230,
+    "habitaciones": [
+      {
+        "id": "aa3517dd-cdda-5d86-88e6-5527afd5d982",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 3240.0
+      },
+      {
+        "id": "c6dcf1a4-0de4-5b1e-b872-d0965a7e031b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 4140.0
+      },
+      {
+        "id": "079492d3-ac66-5766-9fb0-86a03ea6299f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5640.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "eccb8223-38c4-5f15-b738-6b64c1dc5b04",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "84d279e1-404c-5668-98b5-736ee01ea0f9",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 22.8905,
+    "longitude": -109.9167,
+    "description": "Hospedaje en Los Cabos, México."
+  },
+  {
+    "id": "5c628e89-3541-5152-98b8-b720d139f38a",
+    "nombre": "Hotel Costa Los Cabos",
+    "pais": "México",
+    "countryCode": "MX",
+    "ciudad": "Los Cabos",
+    "direccion": "Av. Principal 131, Los Cabos",
+    "rating": 4.5,
+    "reviews": 2325,
+    "habitaciones": [
+      {
+        "id": "da0a7989-e1f5-52f2-a218-743d2ef30cc1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 3420.0
+      },
+      {
+        "id": "bc0d70c8-e15b-5cfc-aa4d-a3760dc220e1",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 4320.0
+      },
+      {
+        "id": "45a83895-532e-58ef-bec7-06cff4821da2",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 5820.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "69a118a8-d144-5fa4-b4b7-be4686391646",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "01e199ad-e510-59fd-8e4f-0e9d5f55953b",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 22.8905,
+    "longitude": -109.9167,
+    "description": "Hospedaje en Los Cabos, México."
+  }
+]

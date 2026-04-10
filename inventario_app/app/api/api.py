@@ -10,15 +10,6 @@ from flasgger import swag_from
 inventario_CRUD = InventarioCRUD()
 countries_CRUD = CountriesCRUD()
 
-POPULAR_CITIES_BY_COUNTRY = {
-        "CO": ["Cartagena", "Bogotá", "Medellín", "Cali", "Santa Marta", "San Andrés", "Eje Cafetero", "Villa de Leyva"],
-        "PE": ["Lima", "Cusco", "Arequipa", "Puno", "Trujillo", "Máncora", "Paracas", "Iquitos"],
-        "EC": ["Quito", "Guayaquil", "Cuenca", "Galápagos", "Montañita", "Baños", "Manta", "Otavalo"],
-        "MX": ["Ciudad de México", "Cancún", "Playa del Carmen", "Guadalajara", "Puerto Vallarta", "Oaxaca", "Tulum", "Los Cabos"],
-        "CL": ["Santiago", "Valparaíso", "Viña del Mar", "Puerto Varas", "San Pedro de Atacama", "Punta Arenas", "La Serena", "Concepción"],
-        "AR": ["Buenos Aires", "Mendoza", "Bariloche", "Córdoba", "Salta", "Puerto Madryn", "Ushuaia", "Mar del Plata"],
-}
-
 class CountryList(Resource):
         @swag_from({
                 'tags': ['Countries'],
@@ -81,10 +72,14 @@ class PopularCitiesByCountry(Resource):
                 if not country_code:
                         return {'msg': 'El parámetro code es requerido en la URL'}, 400
 
-                cities = POPULAR_CITIES_BY_COUNTRY.get(country_code)
-                if cities is None:
+                cities = countries_CRUD.obtener_ciudades_por_codigo(country_code)
+
+                if isinstance(cities, DatababaseError):
+                        return {'msg': cities.message}, 500
+
+                if not cities:
                         return {
-                                'msg': f'No hay ciudades configuradas para el código de país {country_code}'
+                                'msg': f'No hay ciudades registradas para el código de país {country_code}'
                         }, 400
 
                 return cities, 200
@@ -196,13 +191,16 @@ class HospedajeCollection(Resource):
                                 'required': True,
                                 'schema': {
                                         'type': 'object',
-                                        'required': ['nombre', 'countryCode', 'pais', 'ciudad', 'direccion', 'rating', 'reviews'],
+                                        'required': ['nombre', 'descripcion', 'countryCode', 'pais', 'ciudad', 'direccion', 'latitude', 'longitude', 'rating', 'reviews'],
                                         'properties': {
                                                 'nombre': {'type': 'string', 'example': 'Hotel Andino'},
+                                                'descripcion': {'type': 'string', 'example': 'Hotel céntrico con diseño moderno y excelente conectividad.'},
                                                 'countryCode': {'type': 'string', 'example': 'CO'},
                                                 'pais': {'type': 'string', 'example': 'Colombia'},
                                                 'ciudad': {'type': 'string', 'example': 'Bogotá'},
                                                 'direccion': {'type': 'string', 'example': 'Calle 123 #45-67'},
+                                                'latitude': {'type': 'number', 'format': 'float', 'example': 4.7110},
+                                                'longitude': {'type': 'number', 'format': 'float', 'example': -74.0721},
                                                 'rating': {'type': 'number', 'format': 'float', 'example': 4.5},
                                                 'reviews': {'type': 'integer', 'example': 120},
                                         }
@@ -219,16 +217,24 @@ class HospedajeCollection(Resource):
                 """Crear un hospedaje."""
                 payload = request.get_json() or {}
 
-                required_fields = ['nombre', 'countryCode', 'pais', 'ciudad', 'direccion', 'rating', 'reviews']
+                required_fields = ['nombre', 'descripcion', 'countryCode', 'pais', 'ciudad', 'direccion', 'latitude', 'longitude', 'rating', 'reviews']
                 missing_fields = [field for field in required_fields if payload.get(field) in [None, '']]
                 if missing_fields:
                         raise BadRequestError(f"Faltan campos requeridos: {', '.join(missing_fields)}")
 
                 try:
+                        latitude = float(payload.get('latitude'))
+                        longitude = float(payload.get('longitude'))
                         rating = float(payload.get('rating'))
                         reviews = int(payload.get('reviews'))
                 except (TypeError, ValueError):
-                        raise BadRequestError('Los campos rating y reviews deben ser numéricos válidos')
+                        raise BadRequestError('Los campos latitude, longitude, rating y reviews deben ser numéricos válidos')
+
+                if latitude < -90 or latitude > 90:
+                        raise BadRequestError('El campo latitude debe estar entre -90 y 90')
+
+                if longitude < -180 or longitude > 180:
+                        raise BadRequestError('El campo longitude debe estar entre -180 y 180')
 
                 if rating < 0 or rating > 5:
                         raise BadRequestError('El campo rating debe estar entre 0 y 5')
@@ -237,6 +243,8 @@ class HospedajeCollection(Resource):
                         raise BadRequestError('El campo reviews debe ser un número entero mayor o igual a 0')
 
                 payload['countryCode'] = str(payload.get('countryCode')).upper().strip()
+                payload['latitude'] = latitude
+                payload['longitude'] = longitude
                 payload['rating'] = rating
                 payload['reviews'] = reviews
 
@@ -246,4 +254,39 @@ class HospedajeCollection(Resource):
                         return {'msg': created.message}, 500
 
                 return created, 201
+
+
+class HospedajeById(Resource):
+        @swag_from({
+                'tags': ['Hospedajes'],
+                'parameters': [
+                        {
+                                'name': 'hospedaje_id',
+                                'in': 'path',
+                                'type': 'string',
+                                'required': True,
+                                'description': 'Id UUID del hospedaje',
+                        },
+                ],
+                'responses': {
+                        200: {'description': 'Hospedaje consultado exitosamente'},
+                        400: {'description': 'Id inválido'},
+                        404: {'description': 'Hospedaje no encontrado'},
+                        500: {'description': 'Error en la base de datos'}
+                }
+        })
+        def get(self, hospedaje_id):
+                """Obtener un hospedaje por su id."""
+                hospedaje = inventario_CRUD.obtener_hospedaje_por_id(hospedaje_id)
+
+                if isinstance(hospedaje, DatababaseError):
+                        message = (hospedaje.message or '').lower()
+                        if 'uuid' in message:
+                                return {'msg': hospedaje.message}, 400
+                        return {'msg': hospedaje.message}, 500
+
+                if hospedaje is None:
+                        return {'msg': f'Hospedaje no encontrado para id {hospedaje_id}'}, 404
+
+                return hospedaje, 200
 

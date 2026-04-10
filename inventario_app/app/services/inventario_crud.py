@@ -1,3 +1,5 @@
+import uuid
+
 from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM
 from app.errors.exceptions import DatababaseError
 
@@ -9,10 +11,13 @@ class InventarioCRUD:
         try:
             hospedaje = HospedajeORM(
                 nombre=data.get('nombre'),
+                descripcion=data.get('descripcion') or f"Hospedaje en {data.get('ciudad', 'destino turístico')}",
                 countryCode=data.get('countryCode'),
                 pais=data.get('pais'),
                 ciudad=data.get('ciudad'),
                 direccion=data.get('direccion'),
+                latitude=float(data.get('latitude', 0.0)),
+                longitude=float(data.get('longitude', 0.0)),
                 rating=float(data.get('rating')),
                 reviews=int(data.get('reviews')),
             )
@@ -23,16 +28,67 @@ class InventarioCRUD:
             return {
                 'id': str(hospedaje.id),
                 'nombre': hospedaje.nombre,
+                'descripcion': hospedaje.descripcion,
                 'countryCode': hospedaje.countryCode,
                 'pais': hospedaje.pais,
                 'ciudad': hospedaje.ciudad,
                 'direccion': hospedaje.direccion,
+                'latitude': hospedaje.latitude,
+                'longitude': hospedaje.longitude,
                 'rating': hospedaje.rating,
                 'reviews': hospedaje.reviews,
                 'created_at': hospedaje.created_at.isoformat() if hasattr(hospedaje.created_at, 'isoformat') else hospedaje.created_at,
                 'updated_at': hospedaje.updated_at.isoformat() if hasattr(hospedaje.updated_at, 'isoformat') else hospedaje.updated_at,
             }
 
+        except Exception as e:
+            self.db.rollback()
+            return DatababaseError(f"Error en la base de datos: {str(e)}")
+
+    def obtener_hospedaje_por_id(self, hospedaje_id):
+        try:
+            hospedaje_uuid = uuid.UUID(str(hospedaje_id))
+            hospedaje = self.db.query(HospedajeORM).filter(HospedajeORM.id == hospedaje_uuid).first()
+
+            if not hospedaje:
+                return None
+
+            return {
+                'id': str(hospedaje.id),
+                'nombre': hospedaje.nombre,
+                'descripcion': hospedaje.descripcion,
+                'countryCode': hospedaje.countryCode,
+                'pais': hospedaje.pais,
+                'ciudad': hospedaje.ciudad,
+                'direccion': hospedaje.direccion,
+                'latitude': hospedaje.latitude,
+                'longitude': hospedaje.longitude,
+                'rating': hospedaje.rating,
+                'reviews': hospedaje.reviews,
+                'habitaciones': [
+                    {
+                        'id': str(h.id),
+                        'code': h.code,
+                        'descripcion': h.descripcion,
+                        'capacidad': h.capacidad,
+                        'precio': h.precio,
+                        'imageUrl': h.imageUrl,
+                    }
+                    for h in hospedaje.habitaciones
+                ],
+                'imagenes': [
+                    {
+                        'id': str(img.id),
+                        'url': img.url,
+                    }
+                    for img in hospedaje.imagenes
+                ],
+                'created_at': hospedaje.created_at.isoformat() if hasattr(hospedaje.created_at, 'isoformat') else hospedaje.created_at,
+                'updated_at': hospedaje.updated_at.isoformat() if hasattr(hospedaje.updated_at, 'isoformat') else hospedaje.updated_at,
+            }
+
+        except ValueError:
+            return DatababaseError("El id del hospedaje no tiene un formato UUID válido")
         except Exception as e:
             self.db.rollback()
             return DatababaseError(f"Error en la base de datos: {str(e)}")
@@ -113,6 +169,26 @@ class CountriesCRUD:
             ]
 
             return response
+
+        except Exception as e:
+            self.db.rollback()
+            return DatababaseError(f"Error en la base de datos: {str(e)}")
+
+    def obtener_ciudades_por_codigo(self, country_code):
+        try:
+            code = (country_code or '').upper().strip()
+            if not code:
+                return []
+
+            ciudades = (
+                self.db.query(HospedajeORM.ciudad)
+                .filter(HospedajeORM.countryCode == code)
+                .group_by(HospedajeORM.countryCode, HospedajeORM.pais, HospedajeORM.ciudad)
+                .order_by(HospedajeORM.ciudad.asc())
+                .all()
+            )
+
+            return [row.ciudad for row in ciudades]
 
         except Exception as e:
             self.db.rollback()

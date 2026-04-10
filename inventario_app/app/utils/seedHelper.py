@@ -9,6 +9,7 @@ from app.db.models import (
     HabitacionORM,
     HospedajeORM,
     Hospedaje_AmenidadORM,
+    Hospedaje_ImagenORM,
     CountryORM,
 )
 from sqlalchemy import text
@@ -94,23 +95,166 @@ AMENIDADES_SEED = [
     { "id" : "e118d9f7-31a5-49d7-fa97-3b3b29a842ed", "name" : "Senderismo", "icon" : "IconSenderismo" }
 ]
 
-# Función para cargar HOSPEDAJES_SEED desde JSON
-def _load_hospedajes_seed():
-    """Carga los datos de hospedajes desde un archivo JSON externo."""
+IMG_HABITACIONES_SEED = [
+    { "code" : "101", "url": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600"},
+    { "code" : "102", "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600"},
+    { "code" : "103", "url": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600"}
+]
+
+CITY_COORDINATES = {
+    "bogota": (4.7110, -74.0721),
+    "medellin": (6.2442, -75.5812),
+    "cartagena": (10.3910, -75.4794),
+    "cali": (3.4516, -76.5320),
+    "santa marta": (11.2408, -74.1990),
+    "san andres": (12.5847, -81.7006),
+    "manizales": (5.0703, -75.5138),
+    "villa de leyva": (5.6349, -73.5248),
+    "barranquilla": (10.9685, -74.7813),
+    "lima": (-12.0464, -77.0428),
+    "cusco": (-13.5319, -71.9675),
+    "arequipa": (-16.4090, -71.5375),
+    "puno": (-15.8402, -70.0219),
+    "trujillo": (-8.1118, -79.0288),
+    "mancora": (-4.1050, -81.0470),
+    "paracas": (-13.8333, -76.2500),
+    "iquitos": (-3.7437, -73.2516),
+    "quito": (-0.1807, -78.4678),
+    "guayaquil": (-2.1709, -79.9224),
+    "cuenca": (-2.9001, -79.0059),
+    "galapagos": (-0.9538, -90.9656),
+    "montanita": (-1.8262, -80.7528),
+    "banos": (-1.3967, -78.4229),
+    "manta": (-0.9677, -80.7089),
+    "otavalo": (0.2346, -78.2620),
+    "ciudad de mexico": (19.4326, -99.1332),
+    "cancun": (21.1619, -86.8515),
+    "playa del carmen": (20.6296, -87.0739),
+    "guadalajara": (20.6597, -103.3496),
+    "puerto vallarta": (20.6534, -105.2253),
+    "oaxaca": (17.0732, -96.7266),
+    "tulum": (20.2114, -87.4654),
+    "los cabos": (22.8905, -109.9167),
+    "santiago": (-33.4489, -70.6693),
+    "valparaiso": (-33.0472, -71.6127),
+    "vina del mar": (-33.0245, -71.5518),
+    "puerto varas": (-41.3175, -72.9850),
+    "san pedro de atacama": (-22.9087, -68.1997),
+    "punta arenas": (-53.1638, -70.9171),
+    "la serena": (-29.9045, -71.2489),
+    "concepcion": (-36.8201, -73.0444),
+    "buenos aires": (-34.6037, -58.3816),
+    "mendoza": (-32.8908, -68.8272),
+    "bariloche": (-41.1335, -71.3103),
+    "cordoba": (-31.4201, -64.1888),
+    "salta": (-24.7821, -65.4232),
+    "puerto madryn": (-42.7692, -65.0385),
+    "ushuaia": (-54.8019, -68.3030),
+    "mar del plata": (-38.0055, -57.5426),
+}
+
+
+def _normalize_city(city):
+    if not city:
+        return ""
+
+    replacements = {
+        "á": "a",
+        "é": "e",
+        "í": "i",
+        "ó": "o",
+        "ú": "u",
+        "Á": "a",
+        "É": "e",
+        "Í": "i",
+        "Ó": "o",
+        "Ú": "u",
+        "ñ": "n",
+        "Ñ": "n",
+    }
+    normalized = str(city)
+    for source, target in replacements.items():
+        normalized = normalized.replace(source, target)
+
+    return normalized.lower().strip()
+
+
+def _resolve_coordinates(data):
+    latitude = data.get("latitude")
+    longitude = data.get("longitude")
+
+    if latitude is not None and longitude is not None:
+        return float(latitude), float(longitude)
+
+    city_key = _normalize_city(data.get("ciudad"))
+    return CITY_COORDINATES.get(city_key, (0.0, 0.0))
+
+
+def _resolve_description(data):
+    description = data.get("description") or data.get("Description") or data.get("descripcion")
+    if description:
+        return str(description)
+    return f"Hospedaje en {data.get('ciudad', 'destino turístico')}"
+
+# Funciones para cargar HOSPEDAJES_SEED desde archivos JSON por país/ciudad
+def _data_file_path(file_name):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(current_dir, '..', 'data', file_name)
+
+
+def _load_json_file(file_name):
+    json_path = _data_file_path(file_name)
     try:
-        # Obtener la ruta del directorio actual y construir la ruta del JSON
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        json_path = os.path.join(current_dir, '..', 'data', 'hospedajes_seed.json')
-        
         with open(json_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
-        raise FileNotFoundError(f"No se encontró el archivo hospedajes_seed.json en {json_path}")
+        raise FileNotFoundError(f"No se encontró el archivo {file_name} en {json_path}")
     except json.JSONDecodeError as e:
-        raise ValueError(f"Error al parsear el archivo hospedajes_seed.json: {str(e)}")
+        raise ValueError(f"Error al parsear el archivo {file_name}: {str(e)}")
 
 
-# #sym:HOSPEDAJES_SEED - Cargado desde archivo JSON
+def _load_hospedajes_catalog():
+    """Carga el catálogo de seeds por país y ciudad."""
+    catalog = _load_json_file('hospedajes_por_pais_ciudad.json')
+    if not isinstance(catalog, dict) or 'countries' not in catalog:
+        raise ValueError("El archivo hospedajes_por_pais_ciudad.json debe contener la clave 'countries'.")
+
+    seed_country_codes = {country['code'] for country in COUNTRIES_SEED}
+    catalog_country_codes = {
+        country.get('countryCode') for country in catalog.get('countries', [])
+    }
+    missing_country_codes = seed_country_codes - catalog_country_codes
+
+    if missing_country_codes:
+        missing = ", ".join(sorted(missing_country_codes))
+        raise ValueError(
+            f"Faltan países en el catálogo de hospedajes_por_pais_ciudad.json: {missing}"
+        )
+
+    return catalog
+
+
+def _load_hospedajes_seed():
+    """Carga y anexa los hospedajes desde todas las fuentes definidas en el catálogo."""
+    catalog = _load_hospedajes_catalog()
+    hospedajes = []
+
+    for country in catalog.get('countries', []):
+        for source in country.get('sources', []):
+            file_name = source.get('file')
+            if not file_name:
+                continue
+
+            source_data = _load_json_file(file_name)
+            if not isinstance(source_data, list):
+                raise ValueError(f"El archivo {file_name} debe contener una lista de hospedajes.")
+
+            hospedajes.extend(source_data)
+
+    return hospedajes
+
+
+# #sym:HOSPEDAJES_SEED - Cargado desde catálogo JSON por país/ciudad
 HOSPEDAJES_SEED = _load_hospedajes_seed()
 
 
@@ -158,6 +302,37 @@ class SeedHelper:
             db.session.commit()
 
     @staticmethod
+    def _ensure_hospedajes_extended_columns():
+        """
+        Asegura columnas adicionales de hospedajes en SQLite (descripcion, latitude, longitude).
+        Esto corrige bases locales creadas con un esquema anterior.
+        """
+        uri = str(db.engine.url)
+
+        if not uri.startswith("sqlite"):
+            return
+
+        columns = db.session.execute(text("PRAGMA table_info(hospedajes)"))
+        column_names = {row[1] for row in columns}
+
+        if "descripcion" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE hospedajes ADD COLUMN descripcion VARCHAR(255) NOT NULL DEFAULT ''")
+            )
+
+        if "latitude" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE hospedajes ADD COLUMN latitude FLOAT NOT NULL DEFAULT 0")
+            )
+
+        if "longitude" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE hospedajes ADD COLUMN longitude FLOAT NOT NULL DEFAULT 0")
+            )
+
+        db.session.commit()
+
+    @staticmethod
     def reset_and_seed():   
         """
         Elimina todos los registros existentes de habitaciones, hospedajes,
@@ -169,10 +344,12 @@ class SeedHelper:
         try:
             SeedHelper._ensure_habitaciones_code_column()
             SeedHelper._ensure_hospedajes_country_code_column()
+            SeedHelper._ensure_hospedajes_extended_columns()
             CountryORM.__table__.create(bind=db.engine, checkfirst=True)
 
             # Primero borramos habitaciones por la FK
             HabitacionORM.query.delete()
+            Hospedaje_ImagenORM.query.delete()
             Hospedaje_AmenidadORM.query.delete()
             HospedajeORM.query.delete()
             AmenidadORM.query.delete()
@@ -212,12 +389,17 @@ class SeedHelper:
             db.session.flush()
 
             for data in HOSPEDAJES_SEED:
+                latitude, longitude = _resolve_coordinates(data)
                 hospedaje = HospedajeORM(
+                    id=uuid.UUID(data["id"]),
                     nombre=data["nombre"],
+                    descripcion=_resolve_description(data),
                     countryCode = data["countryCode"],
                     pais=data["pais"],
                     ciudad=data["ciudad"],
                     direccion=data["direccion"],
+                    latitude=latitude,
+                    longitude=longitude,
                     rating=data["rating"],
                     reviews=data["reviews"],
                 )
@@ -236,9 +418,18 @@ class SeedHelper:
                         descripcion=hab["descripcion"],
                         capacidad=hab["capacidad"],
                         precio=hab["precio"],
+                        imageUrl=next((img["url"] for img in IMG_HABITACIONES_SEED if img["code"] == hab["code"]), None)
                     )
                     db.session.add(habitacion)
                     habitaciones_insertadas += 1
+
+                for img in data["imagenes"]:
+                    imagen = Hospedaje_ImagenORM(
+                        id=uuid.UUID(img["id"]),
+                        hospedaje_id=hospedaje.id,
+                        url=img["url"]
+                    )
+                    db.session.add(imagen)    
 
                 hospedajes_insertados += 1
 

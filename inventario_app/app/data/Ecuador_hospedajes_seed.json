@@ -1,0 +1,2578 @@
+[
+  {
+    "id": "09e1229e-7832-5cb5-a9e7-e39f32c5d31b",
+    "nombre": "Quito Grand Hotel",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Quito",
+    "direccion": "Calle Principal 104, Quito",
+    "rating": 4.2,
+    "reviews": 495,
+    "habitaciones": [
+      {
+        "id": "aee846a4-b540-5ab1-83be-aea569053393",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 65.0
+      },
+      {
+        "id": "930c3fab-34a2-56de-be9f-defcef0c1ee5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 95.0
+      },
+      {
+        "id": "011db853-35f6-5891-af51-688c01727518",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 150.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "8c2c7aec-405d-526d-9c42-d16b18ff91c0",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "46b618c8-b872-558a-8d9f-f212afb87b98",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.1807,
+    "longitude": -78.4678,
+    "description": "Hospedaje en Quito, Ecuador."
+  },
+  {
+    "id": "d9500ab2-9996-50fe-bdce-5dd37fa644e4",
+    "nombre": "Hotel Boutique Quito",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Quito",
+    "direccion": "Calle Principal 105, Quito",
+    "rating": 4.3,
+    "reviews": 590,
+    "habitaciones": [
+      {
+        "id": "48986ba3-7edd-5f77-881f-f95f28d14145",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 77.0
+      },
+      {
+        "id": "0687786e-da2c-5c9a-af54-d1c1e519c7f6",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 107.0
+      },
+      {
+        "id": "266a0e99-b8c4-5d36-9686-4d4c98a644be",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 162.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "039b522e-30d0-5b86-8ad7-20996531c0d4",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1c24bb5a-8130-53e7-8064-e84d1cac86ab",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.1807,
+    "longitude": -78.4678,
+    "description": "Hospedaje en Quito, Ecuador."
+  },
+  {
+    "id": "9da921be-1081-53b2-8bb6-4021ca5fe531",
+    "nombre": "Quito Plaza Suites",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Quito",
+    "direccion": "Calle Principal 106, Quito",
+    "rating": 4.4,
+    "reviews": 685,
+    "habitaciones": [
+      {
+        "id": "c1f0787c-c24e-58ef-8a7f-94d39020910e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 89.0
+      },
+      {
+        "id": "e335fe1d-d257-584e-a2fe-9c2d4faf1e10",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 119.0
+      },
+      {
+        "id": "41318658-98de-5193-b413-963694db95e5",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 174.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e25a4174-4744-5c9c-bbce-553e0d53c30a",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "5e9fe506-bcee-5b77-984b-8715c06025bc",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.1807,
+    "longitude": -78.4678,
+    "description": "Hospedaje en Quito, Ecuador."
+  },
+  {
+    "id": "0bd19130-8292-5abf-ac39-39895cc76563",
+    "nombre": "Hotel Mirador de Quito",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Quito",
+    "direccion": "Calle Principal 107, Quito",
+    "rating": 4.5,
+    "reviews": 780,
+    "habitaciones": [
+      {
+        "id": "7b5381e8-f92b-5123-a1ba-9170d1fd98ea",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 101.0
+      },
+      {
+        "id": "b4300f16-daad-5f60-a564-e0d10444d3cd",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 131.0
+      },
+      {
+        "id": "3b15481d-5bc5-5ca4-94ea-965567f210cb",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 186.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "656f69cb-e5d4-5886-93b2-09853b596d98",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c4c77d74-f2bc-5c14-b6aa-2aa301355c35",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.1807,
+    "longitude": -78.4678,
+    "description": "Hospedaje en Quito, Ecuador."
+  },
+  {
+    "id": "0370d083-9c14-5efc-bdab-6f1be5860f4f",
+    "nombre": "Quito Business \u0026 Stay",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Quito",
+    "direccion": "Calle Principal 108, Quito",
+    "rating": 4.6,
+    "reviews": 875,
+    "habitaciones": [
+      {
+        "id": "0162adde-a52e-5322-a773-e175d8f6eb84",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 113.0
+      },
+      {
+        "id": "555fb5ec-8e3c-52ed-bfbf-a62ea23d2a4a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 143.0
+      },
+      {
+        "id": "a5236231-6bba-5d8e-8773-665839fd4fa2",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 198.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e4a5e128-a282-58c6-b249-eb07a24b18dc",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "11a6af92-ebae-50ce-9b2e-5365171d7f9a",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.1807,
+    "longitude": -78.4678,
+    "description": "Hospedaje en Quito, Ecuador."
+  },
+  {
+    "id": "21a6fa2e-6ee7-5d59-858a-9caf263ff011",
+    "nombre": "Casa Colonial Quito",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Quito",
+    "direccion": "Calle Principal 109, Quito",
+    "rating": 4.7,
+    "reviews": 970,
+    "habitaciones": [
+      {
+        "id": "4ed12c04-a90a-5f21-add3-28185114d7cb",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 125.0
+      },
+      {
+        "id": "3a63d9b7-515e-57c3-ace8-4344e7e134bc",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 155.0
+      },
+      {
+        "id": "e42e4656-b178-50cd-896f-9b5c8446596b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 210.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "2be742d3-7999-508f-ba48-82dd8bf7d022",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "856543a8-a123-5de9-be0e-03f2f1dfe4eb",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.1807,
+    "longitude": -78.4678,
+    "description": "Hospedaje en Quito, Ecuador."
+  },
+  {
+    "id": "03c40344-dd18-5c93-8b84-a95acad87135",
+    "nombre": "Hotel Costa Quito",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Quito",
+    "direccion": "Calle Principal 110, Quito",
+    "rating": 4.8,
+    "reviews": 1065,
+    "habitaciones": [
+      {
+        "id": "b4786253-7745-524d-a029-3f1f826dba7e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 137.0
+      },
+      {
+        "id": "864d1303-85e3-5ac2-a330-542f2e5b81dc",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 167.0
+      },
+      {
+        "id": "b3f2b172-9728-503b-bfc4-965d4aab3f9d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 222.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "9de12c7c-53eb-5f1b-acbd-b79976adedcc",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "0150b1d6-c7ca-5d4e-927a-11399b1de874",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.1807,
+    "longitude": -78.4678,
+    "description": "Hospedaje en Quito, Ecuador."
+  },
+  {
+    "id": "311675f3-8950-5eb7-9afa-6c5e850e07b3",
+    "nombre": "Guayaquil Grand Hotel",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Guayaquil",
+    "direccion": "Calle Principal 107, Guayaquil",
+    "rating": 4.3,
+    "reviews": 675,
+    "habitaciones": [
+      {
+        "id": "e8aca038-b5f8-57d7-a604-115e99127c43",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 73.0
+      },
+      {
+        "id": "e3936059-808c-5cfa-9d6d-60952d883d50",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 103.0
+      },
+      {
+        "id": "f7f220c2-4cfb-5fbd-a8ce-994b81b348ce",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 158.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "7eef9506-f2bd-5db3-941a-8ee2d18bf68f",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e338e155-e4e7-55b8-a107-c2ed2f477af4",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.1709,
+    "longitude": -79.9224,
+    "description": "Hospedaje en Guayaquil, Ecuador."
+  },
+  {
+    "id": "286c7159-2e57-595c-ae72-094772c88bc6",
+    "nombre": "Hotel Boutique Guayaquil",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Guayaquil",
+    "direccion": "Calle Principal 108, Guayaquil",
+    "rating": 4.4,
+    "reviews": 770,
+    "habitaciones": [
+      {
+        "id": "f03b6889-443f-5d1b-b101-af14a11095d6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 85.0
+      },
+      {
+        "id": "cd818041-b021-5a23-93f7-d31cf4ea784b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 115.0
+      },
+      {
+        "id": "81471e49-54d5-5f85-8b38-4e329bdd94ed",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 170.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "33927789-29f9-56eb-9aa6-9e0a2f1e8814",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c3714dab-a0d0-5645-b101-34b35dead30c",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.1709,
+    "longitude": -79.9224,
+    "description": "Hospedaje en Guayaquil, Ecuador."
+  },
+  {
+    "id": "5e25a5f9-62ad-5851-b417-6e26bec5a0a7",
+    "nombre": "Guayaquil Plaza Suites",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Guayaquil",
+    "direccion": "Calle Principal 109, Guayaquil",
+    "rating": 4.5,
+    "reviews": 865,
+    "habitaciones": [
+      {
+        "id": "48a8dcbf-dff3-5892-a2bf-54d72a82c6a0",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 97.0
+      },
+      {
+        "id": "5188ee3a-427f-59f0-85ba-100ad00ea9af",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 127.0
+      },
+      {
+        "id": "406d976b-63ad-55e0-b03e-e367d9d62f7a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 182.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "eee0fb2f-b1e7-533e-a5e1-2bf747d894f4",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1536c13f-2b64-5cb8-b752-dfa4aff627b0",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.1709,
+    "longitude": -79.9224,
+    "description": "Hospedaje en Guayaquil, Ecuador."
+  },
+  {
+    "id": "b76e1150-b140-5429-85b0-43f4e4f8a201",
+    "nombre": "Hotel Mirador de Guayaquil",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Guayaquil",
+    "direccion": "Calle Principal 110, Guayaquil",
+    "rating": 4.6,
+    "reviews": 960,
+    "habitaciones": [
+      {
+        "id": "4456c3fd-8ba9-54f7-a5e8-2de83ece6fb4",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 109.0
+      },
+      {
+        "id": "aa83ab47-560f-5d32-8154-8304215090a1",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 139.0
+      },
+      {
+        "id": "b75cfb4d-d83e-5a9f-b31c-1129bdf963d9",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 194.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "599dd066-9a83-5c54-8c43-72c7470725bb",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "8dde6028-2b27-5c58-a677-143c84d71017",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.1709,
+    "longitude": -79.9224,
+    "description": "Hospedaje en Guayaquil, Ecuador."
+  },
+  {
+    "id": "f13a48a7-6b47-5c77-85a4-a36fd0e27573",
+    "nombre": "Guayaquil Business \u0026 Stay",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Guayaquil",
+    "direccion": "Calle Principal 111, Guayaquil",
+    "rating": 4.7,
+    "reviews": 1055,
+    "habitaciones": [
+      {
+        "id": "660d2c45-4864-526b-946f-0e62383d160d",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 121.0
+      },
+      {
+        "id": "cb1bda68-87fc-5758-b7ea-3a3a219b5c23",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 151.0
+      },
+      {
+        "id": "6a2cca7c-adb8-537a-b83f-6221a9264978",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 206.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "8d7062b4-390a-5efd-a973-a5a1d2ffec1c",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "44c3ad86-8014-539b-9a56-4b78d0425e1d",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.1709,
+    "longitude": -79.9224,
+    "description": "Hospedaje en Guayaquil, Ecuador."
+  },
+  {
+    "id": "0c76ca01-e8f4-552d-88de-c413e90f79da",
+    "nombre": "Casa Colonial Guayaquil",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Guayaquil",
+    "direccion": "Calle Principal 112, Guayaquil",
+    "rating": 4.8,
+    "reviews": 1150,
+    "habitaciones": [
+      {
+        "id": "650dab50-016a-5229-8a12-43a39b0c4da1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 133.0
+      },
+      {
+        "id": "f7988e09-48f2-5a38-a6c6-5f5ba5b24172",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 163.0
+      },
+      {
+        "id": "b7d902b0-158c-5fff-b08c-a47681ce981f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 218.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "dadef94e-54b2-57e2-9326-03a0e0288025",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4b1673eb-22f0-5515-8353-4ffa3865ffe9",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.1709,
+    "longitude": -79.9224,
+    "description": "Hospedaje en Guayaquil, Ecuador."
+  },
+  {
+    "id": "26ce2595-d9cf-526b-ada9-19d28521aad2",
+    "nombre": "Hotel Costa Guayaquil",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Guayaquil",
+    "direccion": "Calle Principal 113, Guayaquil",
+    "rating": 4.9,
+    "reviews": 1245,
+    "habitaciones": [
+      {
+        "id": "028cd938-0f66-5f0b-86fd-f71a4f47dc76",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 145.0
+      },
+      {
+        "id": "1d6aae23-de58-5307-909a-48aaccf13405",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 175.0
+      },
+      {
+        "id": "fdecd701-9e01-59fa-9af3-11764b99af10",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 230.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "917a7393-0e8c-51b8-9794-0531f4e211af",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "453bf46d-50b2-5ce2-9bda-e213ce3aeeb6",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.1709,
+    "longitude": -79.9224,
+    "description": "Hospedaje en Guayaquil, Ecuador."
+  },
+  {
+    "id": "65a4430c-a125-51f7-872a-e0619206e408",
+    "nombre": "Cuenca Grand Hotel",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Cuenca",
+    "direccion": "Calle Principal 110, Cuenca",
+    "rating": 4.4,
+    "reviews": 855,
+    "habitaciones": [
+      {
+        "id": "b2e13262-dcf1-5805-a4e7-cb8919e87a07",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 81.0
+      },
+      {
+        "id": "5563b41e-3436-52c4-94ab-4a03642767c7",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 111.0
+      },
+      {
+        "id": "d842bd45-4c26-5b30-8e91-9bf4e66c3985",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 166.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "91c0ec72-494b-581b-8ae5-718f81995102",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "eddd7561-9421-5e0d-a5db-d5f51816b54c",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.9001,
+    "longitude": -79.0059,
+    "description": "Hospedaje en Cuenca, Ecuador."
+  },
+  {
+    "id": "8aba5bbc-9dd7-5309-80a9-c5cbd295081b",
+    "nombre": "Hotel Boutique Cuenca",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Cuenca",
+    "direccion": "Calle Principal 111, Cuenca",
+    "rating": 4.5,
+    "reviews": 950,
+    "habitaciones": [
+      {
+        "id": "108f6ef0-5f5d-5809-bebf-7fbb7c4fd6a1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 93.0
+      },
+      {
+        "id": "6aec8fd4-2e4a-56f7-8cd3-abb1f24f405a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 123.0
+      },
+      {
+        "id": "4166384c-e5c5-5bc3-8127-c77bffe86cb2",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 178.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "250b6d37-1789-5def-aefd-50a6c2df270e",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c7e983ba-1324-521f-a19d-bfe21ec37911",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.9001,
+    "longitude": -79.0059,
+    "description": "Hospedaje en Cuenca, Ecuador."
+  },
+  {
+    "id": "ddd6a710-d131-513b-a02a-62de4a35a829",
+    "nombre": "Cuenca Plaza Suites",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Cuenca",
+    "direccion": "Calle Principal 112, Cuenca",
+    "rating": 4.6,
+    "reviews": 1045,
+    "habitaciones": [
+      {
+        "id": "f9d2ab66-83d1-5494-ac47-8ee2f2cfb6a3",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 105.0
+      },
+      {
+        "id": "d735b6f3-09f4-5767-b789-72c9e90410b5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 135.0
+      },
+      {
+        "id": "87d58ad4-d139-5fe5-b645-20584db7225b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 190.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "195a3e61-5ea1-508f-982d-5757a59fb633",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a6ec01f2-2763-52f0-8382-daf8d1f7f4e2",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.9001,
+    "longitude": -79.0059,
+    "description": "Hospedaje en Cuenca, Ecuador."
+  },
+  {
+    "id": "e6b7f682-57e0-59bf-ac22-1b0302526e90",
+    "nombre": "Hotel Mirador de Cuenca",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Cuenca",
+    "direccion": "Calle Principal 113, Cuenca",
+    "rating": 4.7,
+    "reviews": 1140,
+    "habitaciones": [
+      {
+        "id": "9753d000-135f-5105-8c1d-e552f5c10b8c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 117.0
+      },
+      {
+        "id": "3b327564-3da9-56ca-abae-530d75aab9e5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 147.0
+      },
+      {
+        "id": "6af68d57-01cf-5c10-bb48-3148f102d6c0",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 202.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d2fcac5a-0992-5dce-a53f-913d5de33311",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f7656257-a4e9-549d-b20f-e288a593e670",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.9001,
+    "longitude": -79.0059,
+    "description": "Hospedaje en Cuenca, Ecuador."
+  },
+  {
+    "id": "2dba9bcd-0ee8-52c2-8377-b54a251e3a72",
+    "nombre": "Cuenca Business \u0026 Stay",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Cuenca",
+    "direccion": "Calle Principal 114, Cuenca",
+    "rating": 4.8,
+    "reviews": 1235,
+    "habitaciones": [
+      {
+        "id": "5560b6f0-d3c0-5f52-b13b-2597832e03bc",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 129.0
+      },
+      {
+        "id": "7d0e7535-c7ed-5862-81a1-17bf863e3897",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 159.0
+      },
+      {
+        "id": "a1150757-28f2-502e-943d-0df57bca3897",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 214.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "54bbc27c-eca2-5ebd-a7ba-55818fef9602",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ae1b86e2-10a7-5bd6-8e70-b1c5658d6a02",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.9001,
+    "longitude": -79.0059,
+    "description": "Hospedaje en Cuenca, Ecuador."
+  },
+  {
+    "id": "04e93f09-13a8-5c1d-9f94-1cff7a15ce02",
+    "nombre": "Casa Colonial Cuenca",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Cuenca",
+    "direccion": "Calle Principal 115, Cuenca",
+    "rating": 4.9,
+    "reviews": 1330,
+    "habitaciones": [
+      {
+        "id": "8f65ae1e-efbc-5726-973d-80ca90908fda",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 141.0
+      },
+      {
+        "id": "65c04db7-6adf-5326-9931-caf813601a7b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 171.0
+      },
+      {
+        "id": "edc696b7-31f8-5f91-9430-6c44eb533513",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 226.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "8a3f5247-ce8a-580b-9561-60b658933cda",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1c32b5d8-f648-5959-922f-0e95a812dfb8",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.9001,
+    "longitude": -79.0059,
+    "description": "Hospedaje en Cuenca, Ecuador."
+  },
+  {
+    "id": "04117ad7-d2dc-5cd3-aaec-c887b85a710e",
+    "nombre": "Hotel Costa Cuenca",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Cuenca",
+    "direccion": "Calle Principal 116, Cuenca",
+    "rating": 4.0,
+    "reviews": 1425,
+    "habitaciones": [
+      {
+        "id": "b81c84dc-1757-5652-ad6d-26ec7b580b3c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 153.0
+      },
+      {
+        "id": "f150afea-5e2b-5e66-b1be-c30e786baa9a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 183.0
+      },
+      {
+        "id": "2d6daf38-f45b-52e1-84ec-1088fc1da9ef",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 238.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "eb80e630-c037-509f-8c28-13458eddd2ee",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "b9fb9e31-02ea-50f4-8019-91202271ad95",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -2.9001,
+    "longitude": -79.0059,
+    "description": "Hospedaje en Cuenca, Ecuador."
+  },
+  {
+    "id": "d2efd97a-733f-578d-bd93-ebddd5350928",
+    "nombre": "Galápagos Grand Hotel",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Galápagos",
+    "direccion": "Calle Principal 113, Galápagos",
+    "rating": 4.5,
+    "reviews": 1035,
+    "habitaciones": [
+      {
+        "id": "01347e2f-2780-566e-8b73-1151758e50e1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 89.0
+      },
+      {
+        "id": "a854306b-24d4-52e0-a668-8abf55ac07d7",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 119.0
+      },
+      {
+        "id": "f5494017-458c-54b6-bfec-255a34eea5cd",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 174.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "77185a93-1d90-5a7b-8455-91a7b6149694",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "9aba091b-e41e-57e9-9922-aeaedbbf33be",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9538,
+    "longitude": -90.9656,
+    "description": "Hospedaje en Galápagos, Ecuador."
+  },
+  {
+    "id": "6e1a4435-d518-579d-89a9-c1795f019145",
+    "nombre": "Hotel Boutique Galápagos",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Galápagos",
+    "direccion": "Calle Principal 114, Galápagos",
+    "rating": 4.6,
+    "reviews": 1130,
+    "habitaciones": [
+      {
+        "id": "63af3ef4-6f69-5d59-8fce-f4dd36415d71",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 101.0
+      },
+      {
+        "id": "851ff8d0-2b41-517c-a602-9e31596a3bdf",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 131.0
+      },
+      {
+        "id": "75bdcc33-80e1-5a87-a5af-af6556cec721",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 186.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "19fa08e5-3b93-52a0-960e-c565a0664a2e",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "5a83150e-89e0-551e-9805-12ca20d678cc",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9538,
+    "longitude": -90.9656,
+    "description": "Hospedaje en Galápagos, Ecuador."
+  },
+  {
+    "id": "fc955666-1f93-51b6-b980-6d743cafedb7",
+    "nombre": "Galápagos Plaza Suites",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Galápagos",
+    "direccion": "Calle Principal 115, Galápagos",
+    "rating": 4.7,
+    "reviews": 1225,
+    "habitaciones": [
+      {
+        "id": "dc6edd51-a694-5c54-b663-e323c2ef3af6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 113.0
+      },
+      {
+        "id": "74992f03-5c2a-5ed9-9499-3d90b8a071cd",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 143.0
+      },
+      {
+        "id": "5a65ed85-a57b-5f86-9b44-cb26f6573845",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 198.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e26f6ded-347e-59c5-99bd-50f819722fd5",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f3c043a4-edfd-5cec-9105-dd438e36aa95",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9538,
+    "longitude": -90.9656,
+    "description": "Hospedaje en Galápagos, Ecuador."
+  },
+  {
+    "id": "59b4dee7-917b-5802-a34a-89764ad3ccce",
+    "nombre": "Hotel Mirador de Galápagos",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Galápagos",
+    "direccion": "Calle Principal 116, Galápagos",
+    "rating": 4.8,
+    "reviews": 1320,
+    "habitaciones": [
+      {
+        "id": "786cdf31-03c9-5cbd-9ade-c049a9ccf7c2",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 125.0
+      },
+      {
+        "id": "b73b407f-df7c-57b1-973d-ce802b53eb88",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 155.0
+      },
+      {
+        "id": "4e2383d5-285e-51fb-82c9-b8f8b7ff7285",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 210.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e829089f-7d8b-5487-978f-24f30668a52f",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e9052a91-c9f9-5115-90b7-73291ef96db5",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9538,
+    "longitude": -90.9656,
+    "description": "Hospedaje en Galápagos, Ecuador."
+  },
+  {
+    "id": "571c86cb-ff7e-5612-a0ae-3d98d72cd03f",
+    "nombre": "Galápagos Business \u0026 Stay",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Galápagos",
+    "direccion": "Calle Principal 117, Galápagos",
+    "rating": 4.9,
+    "reviews": 1415,
+    "habitaciones": [
+      {
+        "id": "3aaad8e7-e4ef-5bbb-b55e-686cfc1cf642",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 137.0
+      },
+      {
+        "id": "2516f86c-2310-5eb5-b3aa-728dfa05aa9c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 167.0
+      },
+      {
+        "id": "6e5e0032-a38f-5496-b63a-951de4d59e2a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 222.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e119683e-0005-5d95-9d6f-66594d3e4cb5",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "65e3744b-bbca-5e62-89ea-6bbd7ddf226e",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9538,
+    "longitude": -90.9656,
+    "description": "Hospedaje en Galápagos, Ecuador."
+  },
+  {
+    "id": "e0c43069-a4ff-57b0-8f14-c7443f55d43d",
+    "nombre": "Casa Colonial Galápagos",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Galápagos",
+    "direccion": "Calle Principal 118, Galápagos",
+    "rating": 4.0,
+    "reviews": 1510,
+    "habitaciones": [
+      {
+        "id": "8b119602-adcc-5a46-8832-85780931ef33",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 149.0
+      },
+      {
+        "id": "2df09136-56e4-5878-a04e-1e61547e689b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 179.0
+      },
+      {
+        "id": "b2e63fd9-d3b8-5f66-b75c-4264b23a1304",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 234.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e69c84a4-26d8-55f9-aeb3-dc74dc1f844f",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "cc6d14ba-3e87-56ee-8dc0-d75f2aef1752",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9538,
+    "longitude": -90.9656,
+    "description": "Hospedaje en Galápagos, Ecuador."
+  },
+  {
+    "id": "68349ff5-255e-5293-ab19-913befde25ed",
+    "nombre": "Hotel Costa Galápagos",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Galápagos",
+    "direccion": "Calle Principal 119, Galápagos",
+    "rating": 4.1,
+    "reviews": 1605,
+    "habitaciones": [
+      {
+        "id": "719309be-196b-58d8-8b4a-f5b6fe581651",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 161.0
+      },
+      {
+        "id": "0eb52159-4323-59cd-8da6-8ed758df401f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 191.0
+      },
+      {
+        "id": "be99f5e4-092d-5468-b318-51faf7a6134f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 246.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "33c8666b-2350-5669-b254-7597f08933c4",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "95100e31-06f5-5761-802e-fe35f4e8df76",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9538,
+    "longitude": -90.9656,
+    "description": "Hospedaje en Galápagos, Ecuador."
+  },
+  {
+    "id": "106d8008-fec9-53eb-97fc-171be20ee643",
+    "nombre": "Montañita Grand Hotel",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Montañita",
+    "direccion": "Calle Principal 116, Montañita",
+    "rating": 4.6,
+    "reviews": 1215,
+    "habitaciones": [
+      {
+        "id": "34d227d2-b1d4-52be-854d-e37ab5d98a15",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 97.0
+      },
+      {
+        "id": "c88262a9-00d8-5fe2-a8eb-3987af45066c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 127.0
+      },
+      {
+        "id": "7e26a9d7-4d15-5dce-bd1e-beba4149d7fe",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 182.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "bfad2714-51a9-5997-b5cf-c37f5a13b73f",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f8657112-e270-5c75-8940-5e2c77e9d8dd",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.8262,
+    "longitude": -80.7528,
+    "description": "Hospedaje en Montañita, Ecuador."
+  },
+  {
+    "id": "8f4b4216-7234-5b4a-a1d9-54e802bc0212",
+    "nombre": "Hotel Boutique Montañita",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Montañita",
+    "direccion": "Calle Principal 117, Montañita",
+    "rating": 4.7,
+    "reviews": 1310,
+    "habitaciones": [
+      {
+        "id": "071e37d9-7713-5192-b49e-bf8c64c01612",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 109.0
+      },
+      {
+        "id": "4db1b5a2-5a8e-597a-a172-15146303a9eb",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 139.0
+      },
+      {
+        "id": "2be51618-d701-572f-a429-1c593ddc4e7f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 194.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e62b44e1-76db-5816-80cf-ac27e41e9b34",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1c1248f9-9b54-5d0e-8d0f-db1683d4c428",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.8262,
+    "longitude": -80.7528,
+    "description": "Hospedaje en Montañita, Ecuador."
+  },
+  {
+    "id": "cfc0f73c-bcea-5f05-a2a8-0c60d729ad50",
+    "nombre": "Montañita Plaza Suites",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Montañita",
+    "direccion": "Calle Principal 118, Montañita",
+    "rating": 4.8,
+    "reviews": 1405,
+    "habitaciones": [
+      {
+        "id": "937bec31-5bae-57d2-aeea-1633753edcdf",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 121.0
+      },
+      {
+        "id": "bcb2304e-a024-5ecd-91aa-e7259f61fbb3",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 151.0
+      },
+      {
+        "id": "a956402f-8303-55d2-92b6-b6a5fa319ef5",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 206.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "edbbf8eb-13e5-54ca-aadd-314b5eea46a6",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "bac9158c-9530-57c4-86e7-f12bb422e210",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.8262,
+    "longitude": -80.7528,
+    "description": "Hospedaje en Montañita, Ecuador."
+  },
+  {
+    "id": "9e25c1a1-db4a-5888-855d-3ed4b8e9113e",
+    "nombre": "Hotel Mirador de Montañita",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Montañita",
+    "direccion": "Calle Principal 119, Montañita",
+    "rating": 4.9,
+    "reviews": 1500,
+    "habitaciones": [
+      {
+        "id": "1cedf596-444e-5b17-ac49-be209443620b",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 133.0
+      },
+      {
+        "id": "ec86e744-860f-52b9-b07e-2dc211cf445c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 163.0
+      },
+      {
+        "id": "7ef53fc4-8613-5813-9613-1ecc0098c29d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 218.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "4b7dd372-79e2-5e43-8fb9-f4b235b137c7",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "bbee2718-4889-5aab-b59e-eae5090a4e8f",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.8262,
+    "longitude": -80.7528,
+    "description": "Hospedaje en Montañita, Ecuador."
+  },
+  {
+    "id": "c8afbc9d-c307-5688-9a8f-5d567856ff76",
+    "nombre": "Montañita Business \u0026 Stay",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Montañita",
+    "direccion": "Calle Principal 120, Montañita",
+    "rating": 4.0,
+    "reviews": 1595,
+    "habitaciones": [
+      {
+        "id": "7ca87184-b10b-5f57-bcb5-aa31012a1da5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 145.0
+      },
+      {
+        "id": "c56ea446-49e5-5cda-a7de-1eb489b632c9",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 175.0
+      },
+      {
+        "id": "357ce7d3-aa87-5574-bd2d-5f48d7afa639",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 230.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "3b8a8741-bc10-5543-b7c3-8f18f765a432",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "66ecb3be-cdc1-5f73-a356-e7c97a34f8bf",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.8262,
+    "longitude": -80.7528,
+    "description": "Hospedaje en Montañita, Ecuador."
+  },
+  {
+    "id": "308cac08-1972-552e-b747-f869569e72e3",
+    "nombre": "Casa Colonial Montañita",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Montañita",
+    "direccion": "Calle Principal 121, Montañita",
+    "rating": 4.1,
+    "reviews": 1690,
+    "habitaciones": [
+      {
+        "id": "fdb89fc7-440b-5ed7-b404-2ff36b09cef6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 157.0
+      },
+      {
+        "id": "a75e85af-688d-5b02-8941-2c7930297fc5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 187.0
+      },
+      {
+        "id": "a233f86c-03ad-574b-9324-3da953f780c5",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 242.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "1c90fd99-46b1-56b3-b625-230c3e25daca",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "9f71dbf0-4770-5a00-bd0a-95682ee9b990",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.8262,
+    "longitude": -80.7528,
+    "description": "Hospedaje en Montañita, Ecuador."
+  },
+  {
+    "id": "dcc1eda7-93e8-57c0-a7e1-616ced80004d",
+    "nombre": "Hotel Costa Montañita",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Montañita",
+    "direccion": "Calle Principal 122, Montañita",
+    "rating": 4.2,
+    "reviews": 1785,
+    "habitaciones": [
+      {
+        "id": "ecad5502-e811-5820-9615-e8d2cb19fd7a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 169.0
+      },
+      {
+        "id": "5ec6537a-696f-5e88-a23d-c46dfe09b715",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 199.0
+      },
+      {
+        "id": "142bfbcf-6818-576c-bca1-f9b5e091595b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 254.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "433491d1-fd50-555e-887a-015d23144c5c",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d9ac1963-b5be-5bca-84f2-2a85dcaab6d7",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.8262,
+    "longitude": -80.7528,
+    "description": "Hospedaje en Montañita, Ecuador."
+  },
+  {
+    "id": "191df84f-9d3c-50b9-a44c-d14700f1177d",
+    "nombre": "Baños Grand Hotel",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Baños",
+    "direccion": "Calle Principal 119, Baños",
+    "rating": 4.7,
+    "reviews": 1395,
+    "habitaciones": [
+      {
+        "id": "7bcfa166-3c9c-54de-9259-b93353e5c551",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 105.0
+      },
+      {
+        "id": "30a83c47-66ce-5503-876d-5b5b74a6c355",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 135.0
+      },
+      {
+        "id": "16654279-be0c-530f-9a37-d9b378946f4a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 190.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "98771263-47c4-593d-8667-254f20639a1c",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c176f7fa-29f1-5d0b-a846-d5c5d575a05c",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.3967,
+    "longitude": -78.4229,
+    "description": "Hospedaje en Baños, Ecuador."
+  },
+  {
+    "id": "2e39d946-394a-58fc-bad0-2ff0431d3e1d",
+    "nombre": "Hotel Boutique Baños",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Baños",
+    "direccion": "Calle Principal 120, Baños",
+    "rating": 4.8,
+    "reviews": 1490,
+    "habitaciones": [
+      {
+        "id": "d6e69300-d976-5d42-be4c-4ac0b9b48d00",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 117.0
+      },
+      {
+        "id": "0dabf310-2317-5466-8fdd-bee139d5ea87",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 147.0
+      },
+      {
+        "id": "f9357ef5-3732-5f94-a4cd-7540e28a4950",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 202.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a314edf4-de20-5e37-8b6e-33d83d8bbed5",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "aa0f229d-acd9-5954-afd3-6bf74543dee7",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.3967,
+    "longitude": -78.4229,
+    "description": "Hospedaje en Baños, Ecuador."
+  },
+  {
+    "id": "542ab3c1-6e27-53db-8400-0f3609274c63",
+    "nombre": "Baños Plaza Suites",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Baños",
+    "direccion": "Calle Principal 121, Baños",
+    "rating": 4.9,
+    "reviews": 1585,
+    "habitaciones": [
+      {
+        "id": "b3351878-201e-548c-b2be-b12475307cb1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 129.0
+      },
+      {
+        "id": "a0429f9b-9b9d-52a6-9fa1-89bd157f1ba9",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 159.0
+      },
+      {
+        "id": "b6ea4ec4-0532-54dc-96ca-788dfbaa2691",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 214.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "3f582a60-24ab-5e51-909a-94fa79112279",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "80138148-5696-5370-a504-3a00a6d59cff",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.3967,
+    "longitude": -78.4229,
+    "description": "Hospedaje en Baños, Ecuador."
+  },
+  {
+    "id": "8a90d902-c253-50ea-aec5-c8433d755e14",
+    "nombre": "Hotel Mirador de Baños",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Baños",
+    "direccion": "Calle Principal 122, Baños",
+    "rating": 4.0,
+    "reviews": 1680,
+    "habitaciones": [
+      {
+        "id": "45192282-3219-539d-a823-9b478bb5c96c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 141.0
+      },
+      {
+        "id": "d653993f-beed-5194-9b5f-69ac1cf44da4",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 171.0
+      },
+      {
+        "id": "d1e6acb8-4f8b-5a70-8556-2c10ba9d9590",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 226.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "257880d9-28ca-51ae-a3b6-256916c4729e",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a103c68e-2fc6-5a17-8e20-ae6be556229f",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.3967,
+    "longitude": -78.4229,
+    "description": "Hospedaje en Baños, Ecuador."
+  },
+  {
+    "id": "8adcd3a4-c01c-5812-a6d3-c4852ddac4b9",
+    "nombre": "Baños Business \u0026 Stay",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Baños",
+    "direccion": "Calle Principal 123, Baños",
+    "rating": 4.1,
+    "reviews": 1775,
+    "habitaciones": [
+      {
+        "id": "5a1e02b5-3502-5e4d-a14e-c4b57e1c00d3",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 153.0
+      },
+      {
+        "id": "c3b51ebf-ce72-544f-b08b-a947377a029f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 183.0
+      },
+      {
+        "id": "5c67f0b0-dbaa-53f5-adf8-539ec332f5c3",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 238.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5b4d584b-265c-5ae0-acf0-8cf0dc91e896",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3ed3430d-1db4-50f5-951b-b9acdb3f7d6e",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.3967,
+    "longitude": -78.4229,
+    "description": "Hospedaje en Baños, Ecuador."
+  },
+  {
+    "id": "789344f0-352f-5c2a-ba4c-a7d2d38cf261",
+    "nombre": "Casa Colonial Baños",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Baños",
+    "direccion": "Calle Principal 124, Baños",
+    "rating": 4.2,
+    "reviews": 1870,
+    "habitaciones": [
+      {
+        "id": "047cf28b-36ce-53c3-8f6f-5e00ebc2c238",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 165.0
+      },
+      {
+        "id": "379e5f40-d1c9-52bf-82ac-9212bf992049",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 195.0
+      },
+      {
+        "id": "c22e876b-8c51-52b5-a815-eb513023d714",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 250.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e2fb3419-3a87-5e11-a756-d843cb25059a",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d5a90a55-4f84-50ed-86e3-e2352bd681da",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.3967,
+    "longitude": -78.4229,
+    "description": "Hospedaje en Baños, Ecuador."
+  },
+  {
+    "id": "38ddf2ce-e344-56e4-8a71-05408e432cb4",
+    "nombre": "Hotel Costa Baños",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Baños",
+    "direccion": "Calle Principal 125, Baños",
+    "rating": 4.3,
+    "reviews": 1965,
+    "habitaciones": [
+      {
+        "id": "4001be4e-0c2d-5b29-a9b4-2b3972915c27",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 177.0
+      },
+      {
+        "id": "e31c365c-b1e9-525b-9037-cca4203407b4",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 207.0
+      },
+      {
+        "id": "5bdea1b2-54fd-5ba8-ab86-30ebe8916956",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 262.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e6488ae0-2ac9-5470-b658-c6921959c9c1",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c0e7d87e-aeeb-5b81-85b0-0ac2091730ca",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -1.3967,
+    "longitude": -78.4229,
+    "description": "Hospedaje en Baños, Ecuador."
+  },
+  {
+    "id": "a4c473d6-c4a6-57f8-a365-634ffdac077d",
+    "nombre": "Manta Grand Hotel",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Manta",
+    "direccion": "Calle Principal 122, Manta",
+    "rating": 4.8,
+    "reviews": 1575,
+    "habitaciones": [
+      {
+        "id": "7ed71226-1f04-52f3-84f4-cd19859d2221",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 113.0
+      },
+      {
+        "id": "b55e03ce-f3e8-5a71-b074-c53c73e939cc",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 143.0
+      },
+      {
+        "id": "7cd524ee-6225-5c91-975c-0a9e132aced1",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 198.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "59685b91-2a47-5adb-9771-a3c1fad3cc75",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "5e217814-e9ad-5c8f-8105-d6c24a23a60c",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9677,
+    "longitude": -80.7089,
+    "description": "Hospedaje en Manta, Ecuador."
+  },
+  {
+    "id": "4801e58a-9052-5d19-8953-b4761c0d2208",
+    "nombre": "Hotel Boutique Manta",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Manta",
+    "direccion": "Calle Principal 123, Manta",
+    "rating": 4.9,
+    "reviews": 1670,
+    "habitaciones": [
+      {
+        "id": "02734d73-b20b-5c73-8227-c5e43e13a89c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 125.0
+      },
+      {
+        "id": "4b97a8d6-41f2-5309-b173-68afcea61992",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 155.0
+      },
+      {
+        "id": "bf1cfd06-4476-5ea0-aed4-048d3fffac09",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 210.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "2d03ab72-fee4-56f8-ad1e-a8001a908b73",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "034ed424-e3ff-5858-8ddb-80231a1b87ce",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9677,
+    "longitude": -80.7089,
+    "description": "Hospedaje en Manta, Ecuador."
+  },
+  {
+    "id": "0e373bae-a8f1-5cec-a0d6-71f9b2bfb822",
+    "nombre": "Manta Plaza Suites",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Manta",
+    "direccion": "Calle Principal 124, Manta",
+    "rating": 4.0,
+    "reviews": 1765,
+    "habitaciones": [
+      {
+        "id": "82eba3c3-84e4-5675-bf79-97b0ef1d3443",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 137.0
+      },
+      {
+        "id": "0fdf76dc-d91a-5a09-a739-5a71dab6280a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 167.0
+      },
+      {
+        "id": "03f60e93-e4fd-5f9c-846b-408c8e2292d5",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 222.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "201ce095-e4e1-5b3d-86c3-951392175ca6",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "56f68d49-8784-567d-8704-49b5eead668a",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9677,
+    "longitude": -80.7089,
+    "description": "Hospedaje en Manta, Ecuador."
+  },
+  {
+    "id": "d2f0606e-4c5e-5039-9375-b9f1a1870a8b",
+    "nombre": "Hotel Mirador de Manta",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Manta",
+    "direccion": "Calle Principal 125, Manta",
+    "rating": 4.1,
+    "reviews": 1860,
+    "habitaciones": [
+      {
+        "id": "92d18a09-50a9-514e-9f01-0434240eb32c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 149.0
+      },
+      {
+        "id": "ee9756d5-d2b7-52f3-a3ab-e2869c740fba",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 179.0
+      },
+      {
+        "id": "837b50c2-5ae0-5212-8b8a-5fd821cd4f90",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 234.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c33135a0-bb48-550b-a894-8c000ddd0dda",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "8003de49-e2e3-5927-8fc5-822f9d5c99d2",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9677,
+    "longitude": -80.7089,
+    "description": "Hospedaje en Manta, Ecuador."
+  },
+  {
+    "id": "ce05147f-8474-5441-bfcd-245e751cbb6c",
+    "nombre": "Manta Business \u0026 Stay",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Manta",
+    "direccion": "Calle Principal 126, Manta",
+    "rating": 4.2,
+    "reviews": 1955,
+    "habitaciones": [
+      {
+        "id": "4c9784e0-045b-5990-a679-d13110888bb2",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 161.0
+      },
+      {
+        "id": "2347d128-0c49-5bf7-908b-2795f2b76cd2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 191.0
+      },
+      {
+        "id": "c5c26e3c-d54e-5472-924a-e62111480004",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 246.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "2196ddec-d003-5770-9ee0-b296633029ba",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "25e79f77-4bcf-561a-896c-e60cec3c1be4",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9677,
+    "longitude": -80.7089,
+    "description": "Hospedaje en Manta, Ecuador."
+  },
+  {
+    "id": "cd16005e-50c4-560b-8a4f-add36e268fe6",
+    "nombre": "Casa Colonial Manta",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Manta",
+    "direccion": "Calle Principal 127, Manta",
+    "rating": 4.3,
+    "reviews": 2050,
+    "habitaciones": [
+      {
+        "id": "f2f418d7-9054-5d42-a422-c3cc5259dfce",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 173.0
+      },
+      {
+        "id": "f05055b7-f6c8-5ebe-9736-b66e56f5f308",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 203.0
+      },
+      {
+        "id": "bc949392-2ae8-593b-8366-83c0529969e0",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 258.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "7b613485-c0fd-5e46-bf95-92b0ff8beb4a",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d6ca9b5a-1a7d-5dba-8c43-c5f53b98a048",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9677,
+    "longitude": -80.7089,
+    "description": "Hospedaje en Manta, Ecuador."
+  },
+  {
+    "id": "bf6d2a11-88e6-5a19-89d0-1c08b0d52bfe",
+    "nombre": "Hotel Costa Manta",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Manta",
+    "direccion": "Calle Principal 128, Manta",
+    "rating": 4.4,
+    "reviews": 2145,
+    "habitaciones": [
+      {
+        "id": "f541a948-ddad-54de-b596-fa96f250c9a4",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 185.0
+      },
+      {
+        "id": "b0eb6980-a2f7-5d03-8d2f-0da8ef465bdb",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 215.0
+      },
+      {
+        "id": "4e63c24c-26b0-5589-82ce-a931e6a6e187",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 270.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "7e5a8a10-c5f7-5029-b045-cc910a9952e8",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f2c1e175-a2d9-50cc-8c10-66e6be6b2819",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -0.9677,
+    "longitude": -80.7089,
+    "description": "Hospedaje en Manta, Ecuador."
+  },
+  {
+    "id": "47b87906-d3ff-5489-a4a4-9f9f491848f1",
+    "nombre": "Otavalo Grand Hotel",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Otavalo",
+    "direccion": "Calle Principal 125, Otavalo",
+    "rating": 4.9,
+    "reviews": 1755,
+    "habitaciones": [
+      {
+        "id": "b7bdb47d-bb03-51d7-bbba-98e5e4df4672",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 121.0
+      },
+      {
+        "id": "8393fada-0d1b-5507-8fcc-f40ff2433d42",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 151.0
+      },
+      {
+        "id": "c3a46967-2643-5ce9-ae04-eed1f73f7f0f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 206.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "dae40da3-229f-5f7b-a65e-332a184cb76c",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "59eb7c42-f09a-5177-b1f8-419e2979041f",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 0.2346,
+    "longitude": -78.262,
+    "description": "Hospedaje en Otavalo, Ecuador."
+  },
+  {
+    "id": "f5773ded-9d96-5759-91ef-2383c4ff5dba",
+    "nombre": "Hotel Boutique Otavalo",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Otavalo",
+    "direccion": "Calle Principal 126, Otavalo",
+    "rating": 4.0,
+    "reviews": 1850,
+    "habitaciones": [
+      {
+        "id": "769ac305-41e9-5fb7-9929-ea1aab8a58da",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 133.0
+      },
+      {
+        "id": "1e8178fa-0294-5c58-89c1-6185f1fe7510",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 163.0
+      },
+      {
+        "id": "b3306fe7-ddd1-547c-8624-e349a7eea164",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 218.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c8c5d86b-40d0-53c5-a525-fdc8a8bd9f0c",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f65e3e2f-d2af-5502-89f2-f2228e838468",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 0.2346,
+    "longitude": -78.262,
+    "description": "Hospedaje en Otavalo, Ecuador."
+  },
+  {
+    "id": "91bc82ed-3629-5655-99d2-593b31ef3fa7",
+    "nombre": "Otavalo Plaza Suites",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Otavalo",
+    "direccion": "Calle Principal 127, Otavalo",
+    "rating": 4.1,
+    "reviews": 1945,
+    "habitaciones": [
+      {
+        "id": "74a55bd1-ca2f-5733-b801-554e182032fd",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 145.0
+      },
+      {
+        "id": "58b4da17-78fe-52be-8685-8eb437225355",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 175.0
+      },
+      {
+        "id": "a90ad035-232e-5093-ba2b-a36a51f0772c",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 230.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "2ed3ea7b-8d83-5019-8b72-7a85b40c02a8",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "b6378beb-7707-53b2-b439-dcd922327181",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 0.2346,
+    "longitude": -78.262,
+    "description": "Hospedaje en Otavalo, Ecuador."
+  },
+  {
+    "id": "b62e204f-2736-5119-8516-5c8ddfe27b85",
+    "nombre": "Hotel Mirador de Otavalo",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Otavalo",
+    "direccion": "Calle Principal 128, Otavalo",
+    "rating": 4.2,
+    "reviews": 2040,
+    "habitaciones": [
+      {
+        "id": "ceb81c31-3e2e-5459-b9a4-820983eaadd6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 157.0
+      },
+      {
+        "id": "40b69195-be0c-51e0-8e8b-4aaecd144f3b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 187.0
+      },
+      {
+        "id": "184bf0a1-5e09-559f-8720-6f634934dd2b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 242.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "3249a950-5a50-5da5-8458-13bf405020f6",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4fbd2571-20ac-570f-9511-b543d7bf1e67",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 0.2346,
+    "longitude": -78.262,
+    "description": "Hospedaje en Otavalo, Ecuador."
+  },
+  {
+    "id": "ef463567-4bbe-588f-ab94-b83d22f2e7b6",
+    "nombre": "Otavalo Business \u0026 Stay",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Otavalo",
+    "direccion": "Calle Principal 129, Otavalo",
+    "rating": 4.3,
+    "reviews": 2135,
+    "habitaciones": [
+      {
+        "id": "ca204562-b35d-54bb-a4a2-c0d4426fcd58",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 169.0
+      },
+      {
+        "id": "1df85583-da6d-5c21-b3d5-d83811cc9c74",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 199.0
+      },
+      {
+        "id": "43fd58a5-fc6e-555a-81d4-bcaa97715b8a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 254.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "7e195e8c-9c7e-51f4-adf3-b2748df0143d",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "8989fa45-9a8e-5725-bc0f-01defd71e445",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 0.2346,
+    "longitude": -78.262,
+    "description": "Hospedaje en Otavalo, Ecuador."
+  },
+  {
+    "id": "a2d49ee6-ba10-5dc5-b748-5622cfd7b99b",
+    "nombre": "Casa Colonial Otavalo",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Otavalo",
+    "direccion": "Calle Principal 130, Otavalo",
+    "rating": 4.4,
+    "reviews": 2230,
+    "habitaciones": [
+      {
+        "id": "718b0c9b-297d-5091-80a2-be6559d67f20",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 181.0
+      },
+      {
+        "id": "9b57641d-9e7e-5051-bf72-254beeeffc05",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 211.0
+      },
+      {
+        "id": "ca6c4db7-33de-5ef8-ad70-39baadde01ee",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 266.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "26c28ec9-1246-5e9b-9e84-ec001ecc06a1",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a577e325-a084-55e7-bd30-7a7971139aaf",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 0.2346,
+    "longitude": -78.262,
+    "description": "Hospedaje en Otavalo, Ecuador."
+  },
+  {
+    "id": "128f7866-db28-52fd-82e8-a2548a8cd6c6",
+    "nombre": "Hotel Costa Otavalo",
+    "pais": "Ecuador",
+    "countryCode": "EC",
+    "ciudad": "Otavalo",
+    "direccion": "Calle Principal 131, Otavalo",
+    "rating": 4.5,
+    "reviews": 2325,
+    "habitaciones": [
+      {
+        "id": "f8bd47ae-16a5-56cf-88e2-3502560a5b5a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 193.0
+      },
+      {
+        "id": "fa62122c-f716-528e-8021-633779dc27f5",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 223.0
+      },
+      {
+        "id": "e08e7b95-3166-5a64-a776-adc37002d63f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 278.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ef3a7665-3128-5178-ab2c-f21d5444771b",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3e56c15a-81d9-5ae5-a433-8d8b79702e57",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": 0.2346,
+    "longitude": -78.262,
+    "description": "Hospedaje en Otavalo, Ecuador."
+  }
+]
