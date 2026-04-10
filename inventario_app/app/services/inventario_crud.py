@@ -7,6 +7,41 @@ class InventarioCRUD:
     def __init__(self):
         self.db = db.session
 
+    def obtener_hospedajes(self, country_code=None, ciudad=None):
+        try:
+            query = self.db.query(HospedajeORM)
+
+            if country_code:
+                query = query.filter(HospedajeORM.countryCode == country_code)
+
+            if ciudad:
+                query = query.filter(HospedajeORM.ciudad == ciudad)
+
+            hospedajes = query.order_by(HospedajeORM.nombre.asc()).all()
+
+            return [
+                {
+                    'id': str(hospedaje.id),
+                    'nombre': hospedaje.nombre,
+                    'descripcion': hospedaje.descripcion,
+                    'countryCode': hospedaje.countryCode,
+                    'pais': hospedaje.pais,
+                    'ciudad': hospedaje.ciudad,
+                    'direccion': hospedaje.direccion,
+                    'latitude': hospedaje.latitude,
+                    'longitude': hospedaje.longitude,
+                    'rating': hospedaje.rating,
+                    'reviews': hospedaje.reviews,
+                    'created_at': hospedaje.created_at.isoformat() if hasattr(hospedaje.created_at, 'isoformat') else hospedaje.created_at,
+                    'updated_at': hospedaje.updated_at.isoformat() if hasattr(hospedaje.updated_at, 'isoformat') else hospedaje.updated_at,
+                }
+                for hospedaje in hospedajes
+            ]
+
+        except Exception as e:
+            self.db.rollback()
+            return DatababaseError(f"Error en la base de datos: {str(e)}")
+
     def crear_hospedaje(self, data):
         try:
             hospedaje = HospedajeORM(

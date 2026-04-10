@@ -208,11 +208,27 @@ class HospedajeCollection(Resource):
                         }
                 ],
                 'responses': {
+                        200: {'description': 'Listado de hospedajes'},
                         201: {'description': 'Hospedaje creado exitosamente'},
                         400: {'description': 'Datos inválidos'},
                         500: {'description': 'Error en la base de datos'}
                 }
         })
+        def get(self):
+                """Listar hospedajes, opcionalmente filtrados por país y ciudad."""
+                country_code = (request.args.get('countryCode') or '').upper().strip()
+                ciudad = (request.args.get('ciudad') or '').strip()
+
+                hospedajes = inventario_CRUD.obtener_hospedajes(
+                        country_code=country_code or None,
+                        ciudad=ciudad or None,
+                )
+
+                if isinstance(hospedajes, DatababaseError):
+                        return {'msg': hospedajes.message}, 500
+
+                return hospedajes, 200
+
         def post(self):
                 """Crear un hospedaje."""
                 payload = request.get_json() or {}
