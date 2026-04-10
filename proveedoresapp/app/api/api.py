@@ -4,10 +4,12 @@ from uuid import UUID
 
 from app.utils import token_helper
 from app.services.manager_crud import ManagerCrud
+from app.services.async_user_service import AsyncUserService
 from app.utils.seedHelper import SeedHelper
 from app.utils.token_helper import token_required, roles_required
 
 manager_crud = ManagerCrud()
+async_user_service = AsyncUserService()
 
 
 def _serialize_manager(manager):
@@ -46,7 +48,7 @@ class ManagerResource(Resource):
     @token_required
     def post(current_user, self):
         """
-        Crear manager
+        Crear manager con usuario en autenticadorapp
         ---
         tags:
           - Managers
@@ -63,32 +65,95 @@ class ManagerResource(Resource):
                   format: uuid
                 first_name:
                   type: string
+                  example: Juan
                 last_name:
                   type: string
+                  example: Pérez
                 email:
                   type: string
                   format: email
+                  example: juan.perez@example.com
         security:
           - Bearer: []
         responses:
           201:
-            description: Manager creado
+            description: Manager y usuario creados exitosamente
+            schema:
+              type: object
+              properties:
+                manager:
+                  type: object
+                user:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    username:
+                      type: string
+                    email:
+                      type: string
           400:
-            description: Datos inválidos
+            description: Datos inválidos o faltantes
+          409:
+            description: Email duplicado en el sistema de autenticación
+          500:
+            description: Error al conectar con autenticadorapp
         """
         payload = request.get_json()
-        userId = token_helper.get_userId_from_token()
-        userName = token_helper.get_userName_from_token()
-
-        payload["userName"] = userName
-        payload["userId"] = userId
-
-        manager = manager_crud.create_manager(payload)
-
+        
+        # Validar datos requeridos
+        required_fields = ["hospedajeId", "first_name", "last_name", "email"]
+        missing_fields = [field for field in required_fields if not payload.get(field)]
+        
+        if missing_fields:
+            return {
+                "message": f"Faltan campos requeridos: {', '.join(missing_fields)}"
+            }, 400
+        
+        # Validar datos del usuario
+        is_valid, validation_error = AsyncUserService.validate_user_creation_data(
+            email=payload.get("email"),
+            first_name=payload.get("first_name"),
+            last_name=payload.get("last_name")
+        )
+        
+        if not is_valid:
+            return {"message": validation_error}, 400
+        
+        # Crear usuario en autenticadorapp de forma asincrónica
+        user_data, user_error = AsyncUserService.create_user_in_auth_service(
+            email=payload.get("email"),
+            first_name=payload.get("first_name"),
+            last_name=payload.get("last_name"),
+            role="Manager"
+        )
+        
+        if user_error:
+            # Retornar error del servicio de autenticación
+            return {"message": user_error}, 409 if "duplicado" in user_error.lower() else 500
+        
+        # Si la creación del usuario fue exitosa, crear el Manager
+        manager_payload = {
+            "hospedajeId": payload.get("hospedajeId"),
+            "userId": user_data["id"],
+            "userName": user_data["username"],
+            "email": user_data["email"],
+            "first_name": payload.get("first_name"),
+            "last_name": payload.get("last_name")
+        }
+        
+        manager = manager_crud.create_manager(manager_payload)
+        
         if not manager:
-            return {"message": "Error creating manager (duplicate?)"}, 409
-
-        return _serialize_manager(manager), 201
+            return {
+                "message": "Error creating manager (duplicate email in providers?)"
+            }, 409
+        
+        return {
+            "message": "Manager y usuario creados exitosamente",
+            "manager": _serialize_manager(manager),
+            "user": user_data
+        }, 201
 
 
 class ManagerResourceById(Resource):
