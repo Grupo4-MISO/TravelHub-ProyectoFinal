@@ -1,0 +1,2578 @@
+[
+  {
+    "id": "ee176040-960a-50d2-87e8-67d7b789b266",
+    "nombre": "Santiago Grand Hotel",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Santiago",
+    "direccion": "Av. Principal 104, Santiago",
+    "rating": 4.2,
+    "reviews": 495,
+    "habitaciones": [
+      {
+        "id": "0827d202-6811-5a4b-9cc0-d32c01e29577",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 48000.0
+      },
+      {
+        "id": "9154bcb9-4c71-57a6-95f9-25cb9c073f7e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 75000.0
+      },
+      {
+        "id": "1c8c9f73-6528-534a-aa6d-b317052e013f",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 124000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "b702a083-b79c-52b8-bc48-73cd71738004",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "62bf343f-f22e-5f77-a231-f9238fcd53b8",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.4489,
+    "longitude": -70.6693,
+    "description": "Hospedaje en Santiago, Chile."
+  },
+  {
+    "id": "a875d943-3fc4-53f2-adce-b2c760d18d79",
+    "nombre": "Hotel Boutique Santiago",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Santiago",
+    "direccion": "Av. Principal 105, Santiago",
+    "rating": 4.3,
+    "reviews": 590,
+    "habitaciones": [
+      {
+        "id": "f4d97608-5a73-56ca-a48a-3131e656d298",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 51500.0
+      },
+      {
+        "id": "c37ad2ca-d293-512c-8245-4d01f57e210b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 78500.0
+      },
+      {
+        "id": "494c0de6-286f-5646-b872-7b5ceab4657d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 127500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5afd86a4-b1fb-5e17-9821-59e8636d7376",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c38c8d97-6247-59de-9ba6-3978bc574a32",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.4489,
+    "longitude": -70.6693,
+    "description": "Hospedaje en Santiago, Chile."
+  },
+  {
+    "id": "04c561e7-3266-508a-8e99-587affc42ead",
+    "nombre": "Santiago Plaza Suites",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Santiago",
+    "direccion": "Av. Principal 106, Santiago",
+    "rating": 4.4,
+    "reviews": 685,
+    "habitaciones": [
+      {
+        "id": "a1294c02-0b7e-54f2-814e-9e669d4fd9eb",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 55000.0
+      },
+      {
+        "id": "7eebe457-870e-5d25-b1f4-62b108ddda80",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 82000.0
+      },
+      {
+        "id": "05772f97-9ab8-5220-8cee-e9ac2feabd3d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 131000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "6e54b3d4-f13e-55e5-b51e-127e7ca1b02c",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3d694d48-2c14-5053-a818-0ba34fb24855",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.4489,
+    "longitude": -70.6693,
+    "description": "Hospedaje en Santiago, Chile."
+  },
+  {
+    "id": "2ce261be-5c7b-5bd8-96f2-e229c4804215",
+    "nombre": "Hotel Mirador de Santiago",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Santiago",
+    "direccion": "Av. Principal 107, Santiago",
+    "rating": 4.5,
+    "reviews": 780,
+    "habitaciones": [
+      {
+        "id": "aa38831d-1bcd-530f-b271-f5a4724b778b",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 58500.0
+      },
+      {
+        "id": "9d88ba06-da9f-5b15-9745-a43d134f69f1",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 85500.0
+      },
+      {
+        "id": "acb4a7ca-da92-5009-92b9-379a0c02f3d6",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 134500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "7622a85b-91d6-5ac1-9ee5-c27e9a55fd7d",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "cf481466-e7cb-55e5-9ec8-2354d58fc03f",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.4489,
+    "longitude": -70.6693,
+    "description": "Hospedaje en Santiago, Chile."
+  },
+  {
+    "id": "6baca615-7f44-5c95-acfe-4f6e7075713c",
+    "nombre": "Santiago Business \u0026 Stay",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Santiago",
+    "direccion": "Av. Principal 108, Santiago",
+    "rating": 4.6,
+    "reviews": 875,
+    "habitaciones": [
+      {
+        "id": "244ff6e1-285f-5501-ba91-33a50d09adc3",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 62000.0
+      },
+      {
+        "id": "ac154bdd-419f-5760-a801-a2ef5cda2ae2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 89000.0
+      },
+      {
+        "id": "517ccdbb-89cf-54d0-b07f-e3563678dc7d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 138000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "4998e5e3-1ce8-5d64-bb30-de4282643246",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "591bf6f3-22de-538b-a3ff-d623aa941cd5",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.4489,
+    "longitude": -70.6693,
+    "description": "Hospedaje en Santiago, Chile."
+  },
+  {
+    "id": "a2e1a167-cef9-590c-a558-5129c3d0bf78",
+    "nombre": "Casa Colonial Santiago",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Santiago",
+    "direccion": "Av. Principal 109, Santiago",
+    "rating": 4.7,
+    "reviews": 970,
+    "habitaciones": [
+      {
+        "id": "0c7a67f7-d345-56b4-b748-40c2e581d1d3",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 65500.0
+      },
+      {
+        "id": "7cb16e27-362f-5c28-8984-62ae913741fa",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 92500.0
+      },
+      {
+        "id": "31dc8218-dedb-5fe7-ae26-2a2e5dd8c057",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 141500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d94afac7-bcca-5770-8efe-bd648560e3bd",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3d24e690-01eb-5ca0-beb0-39b63abe8e31",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.4489,
+    "longitude": -70.6693,
+    "description": "Hospedaje en Santiago, Chile."
+  },
+  {
+    "id": "0c80176f-e167-5c07-8c55-39260afd64f0",
+    "nombre": "Hotel Costa Santiago",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Santiago",
+    "direccion": "Av. Principal 110, Santiago",
+    "rating": 4.8,
+    "reviews": 1065,
+    "habitaciones": [
+      {
+        "id": "17f0d39f-cff5-5cfd-a98a-323bc627636e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 69000.0
+      },
+      {
+        "id": "666add4d-70ea-5bca-890c-fdde3e936a25",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 96000.0
+      },
+      {
+        "id": "67fa876b-03a6-5e54-921a-3e7ef17b6e00",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 145000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "03b0cb5a-6676-50d8-9b94-6ff821c9c6b2",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a2e23d86-af4d-5c0f-afd4-563bbcef2a83",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.4489,
+    "longitude": -70.6693,
+    "description": "Hospedaje en Santiago, Chile."
+  },
+  {
+    "id": "46e253fc-c84b-5827-bf49-5bb3f8f31ebc",
+    "nombre": "Valparaíso Grand Hotel",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Valparaíso",
+    "direccion": "Av. Principal 107, Valparaíso",
+    "rating": 4.3,
+    "reviews": 675,
+    "habitaciones": [
+      {
+        "id": "3372c904-7ec2-590d-b928-d53404a82420",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 50500.0
+      },
+      {
+        "id": "a07ff6c7-74cc-5dc2-a7d8-da54ded9dc41",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 77500.0
+      },
+      {
+        "id": "1801f4b5-b9c9-5a9a-a70e-c0c44b093d80",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 126500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "87daf3c5-52c1-5220-839c-55ec4ea8ced6",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e064275c-3afc-5a80-83a5-19fbb17fd059",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0472,
+    "longitude": -71.6127,
+    "description": "Hospedaje en Valparaíso, Chile."
+  },
+  {
+    "id": "0021c7f7-322f-56d6-b1ff-7799d5266c7f",
+    "nombre": "Hotel Boutique Valparaíso",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Valparaíso",
+    "direccion": "Av. Principal 108, Valparaíso",
+    "rating": 4.4,
+    "reviews": 770,
+    "habitaciones": [
+      {
+        "id": "6a59018f-9b84-55fa-a919-5f90d73b8d72",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 54000.0
+      },
+      {
+        "id": "5eb2cf9e-bea3-5fa6-922b-6692e37576eb",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 81000.0
+      },
+      {
+        "id": "2d6a456b-d5ca-574d-95a3-4d6d695edf46",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 130000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "b88418db-ddbc-5fce-9db7-210cee30a1c5",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4c2f6c46-b864-5f82-ab9c-8d4f6162d51a",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0472,
+    "longitude": -71.6127,
+    "description": "Hospedaje en Valparaíso, Chile."
+  },
+  {
+    "id": "8d865293-d4b6-5523-b53d-da1a7893d49b",
+    "nombre": "Valparaíso Plaza Suites",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Valparaíso",
+    "direccion": "Av. Principal 109, Valparaíso",
+    "rating": 4.5,
+    "reviews": 865,
+    "habitaciones": [
+      {
+        "id": "331ae284-85a3-577f-8a69-b8a69c76b1ce",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 57500.0
+      },
+      {
+        "id": "c64f07b6-f1f9-5707-812a-2881a1ef5c49",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 84500.0
+      },
+      {
+        "id": "9a63b43c-2872-532c-ac4c-c76305487ee9",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 133500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "256ac41d-d21c-52f3-9f60-04b03ea8c3e2",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "09a1ae4c-6362-5c15-ab6f-e9d673bef3b3",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0472,
+    "longitude": -71.6127,
+    "description": "Hospedaje en Valparaíso, Chile."
+  },
+  {
+    "id": "6d350755-fc82-557c-9e09-a9d88ad7bf01",
+    "nombre": "Hotel Mirador de Valparaíso",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Valparaíso",
+    "direccion": "Av. Principal 110, Valparaíso",
+    "rating": 4.6,
+    "reviews": 960,
+    "habitaciones": [
+      {
+        "id": "123b67e5-4c70-58e3-ae45-7bd33b3bd675",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 61000.0
+      },
+      {
+        "id": "dbde0bf9-40b4-5b80-af74-fb3397892adf",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 88000.0
+      },
+      {
+        "id": "92a15cb7-b3ef-5a40-b544-adce6c1cd7d8",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 137000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c045f55d-1e05-593f-ab0d-614140b824b5",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ab4e1f50-41fe-51cb-a1a4-ccab0c874902",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0472,
+    "longitude": -71.6127,
+    "description": "Hospedaje en Valparaíso, Chile."
+  },
+  {
+    "id": "d67179c8-cb34-57a4-b2e9-8628db41dfe1",
+    "nombre": "Valparaíso Business \u0026 Stay",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Valparaíso",
+    "direccion": "Av. Principal 111, Valparaíso",
+    "rating": 4.7,
+    "reviews": 1055,
+    "habitaciones": [
+      {
+        "id": "a4fbf19b-21de-57b1-b015-1f54d9fdf247",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 64500.0
+      },
+      {
+        "id": "bc3b0598-e5dc-58fb-a435-f7cbac32d333",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 91500.0
+      },
+      {
+        "id": "d3c1ba60-c18e-59cd-8b96-cae77fb08124",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 140500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "fe4d8d93-3bad-506e-a0d9-0aadf269c147",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f0123013-39ea-58c4-ae56-f4f7864e7d9b",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0472,
+    "longitude": -71.6127,
+    "description": "Hospedaje en Valparaíso, Chile."
+  },
+  {
+    "id": "8bf7c984-e47b-554f-92ac-460daa17b32b",
+    "nombre": "Casa Colonial Valparaíso",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Valparaíso",
+    "direccion": "Av. Principal 112, Valparaíso",
+    "rating": 4.8,
+    "reviews": 1150,
+    "habitaciones": [
+      {
+        "id": "71128e91-70d2-557e-8153-1d4625ae6203",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 68000.0
+      },
+      {
+        "id": "b08daf94-f317-59b6-a935-677fecd3cdcf",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 95000.0
+      },
+      {
+        "id": "20129615-e761-581b-bf5d-b4f5f8acc4bb",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 144000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "1e1a8b60-07d0-539f-aee0-9fa2d6a12b3a",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "b419f794-34c7-50f3-b52a-123c5c4678c3",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0472,
+    "longitude": -71.6127,
+    "description": "Hospedaje en Valparaíso, Chile."
+  },
+  {
+    "id": "6a51360b-4e1c-5cce-9e3d-e557a4c14b9a",
+    "nombre": "Hotel Costa Valparaíso",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Valparaíso",
+    "direccion": "Av. Principal 113, Valparaíso",
+    "rating": 4.9,
+    "reviews": 1245,
+    "habitaciones": [
+      {
+        "id": "45ba7df7-e6f7-57eb-96b3-4d3237a76372",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 71500.0
+      },
+      {
+        "id": "1d6d45b1-8808-53bb-ad35-2153442df1ae",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 98500.0
+      },
+      {
+        "id": "e16c841b-aeaa-594e-a6af-9be9daba6292",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 147500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "4658dbc1-e85c-51a2-a8dc-aebe99af2d08",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "031c087b-6136-539d-ae05-3b3b1339e153",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0472,
+    "longitude": -71.6127,
+    "description": "Hospedaje en Valparaíso, Chile."
+  },
+  {
+    "id": "7edbabc9-cc83-5393-b257-39957fc146a7",
+    "nombre": "Viña del Mar Grand Hotel",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Viña del Mar",
+    "direccion": "Av. Principal 110, Viña del Mar",
+    "rating": 4.4,
+    "reviews": 855,
+    "habitaciones": [
+      {
+        "id": "361a020c-f1d0-5174-8e0e-b3eef12cfc15",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 53000.0
+      },
+      {
+        "id": "8d6b2f70-ce45-51e5-bf44-5d18b45a5aa9",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 80000.0
+      },
+      {
+        "id": "76164b03-0999-5769-993c-509d250800df",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 129000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "f5bedbdc-c9c0-557e-b253-657226921af2",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ba347cf5-d47b-5217-8167-c2ad30765271",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0245,
+    "longitude": -71.5518,
+    "description": "Hospedaje en Viña del Mar, Chile."
+  },
+  {
+    "id": "9ff3cf67-ed5a-5317-8911-3bf9e25bb6fd",
+    "nombre": "Hotel Boutique Viña del Mar",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Viña del Mar",
+    "direccion": "Av. Principal 111, Viña del Mar",
+    "rating": 4.5,
+    "reviews": 950,
+    "habitaciones": [
+      {
+        "id": "59af5353-df20-5885-8cc9-fe51acdb364d",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 56500.0
+      },
+      {
+        "id": "1a5feefe-39f5-5bfa-9d54-ccc80670bb59",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 83500.0
+      },
+      {
+        "id": "082ec712-93ab-50ab-8d54-155722ff773d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 132500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "9370df50-b03d-5b57-a898-e0e1e5a69703",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "2df85dd4-4d94-5bad-8a2e-cacb90bce1d5",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0245,
+    "longitude": -71.5518,
+    "description": "Hospedaje en Viña del Mar, Chile."
+  },
+  {
+    "id": "bf2936c8-33b5-53a8-80b8-03af356d82b5",
+    "nombre": "Viña del Mar Plaza Suites",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Viña del Mar",
+    "direccion": "Av. Principal 112, Viña del Mar",
+    "rating": 4.6,
+    "reviews": 1045,
+    "habitaciones": [
+      {
+        "id": "dfb04cb5-fc54-5759-9f3e-657da1e4f502",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 60000.0
+      },
+      {
+        "id": "22b9c923-09df-5771-9e60-d011e8287310",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 87000.0
+      },
+      {
+        "id": "df89572b-6662-5b45-b0ec-e95881eeed3d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 136000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "717729bb-4bfe-5e5f-9e2c-e2bda60da36a",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4082890f-3b34-5607-b57a-8be328e059f2",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0245,
+    "longitude": -71.5518,
+    "description": "Hospedaje en Viña del Mar, Chile."
+  },
+  {
+    "id": "bdb04fbf-7db4-5426-bf17-af063f5d7b45",
+    "nombre": "Hotel Mirador de Viña del Mar",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Viña del Mar",
+    "direccion": "Av. Principal 113, Viña del Mar",
+    "rating": 4.7,
+    "reviews": 1140,
+    "habitaciones": [
+      {
+        "id": "bd6064a7-4718-553c-8137-cfe460d2c4d5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 63500.0
+      },
+      {
+        "id": "3ff420c9-1bcf-54dd-8e86-feb542a952be",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 90500.0
+      },
+      {
+        "id": "bd751af0-8773-557d-be73-d760faf6c965",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 139500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "fa7d6b9e-4746-52fc-8f9f-c2868a67d97b",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "8725547f-8880-5beb-9e7f-5331d59dc386",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0245,
+    "longitude": -71.5518,
+    "description": "Hospedaje en Viña del Mar, Chile."
+  },
+  {
+    "id": "fa8ec248-21a6-5120-aa44-0cd631e09e0b",
+    "nombre": "Viña del Mar Business \u0026 Stay",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Viña del Mar",
+    "direccion": "Av. Principal 114, Viña del Mar",
+    "rating": 4.8,
+    "reviews": 1235,
+    "habitaciones": [
+      {
+        "id": "fe15f80a-ccf1-5073-8140-191e937a2fb6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 67000.0
+      },
+      {
+        "id": "f5e68f78-6835-56d1-a4f2-56871c2bf7e0",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 94000.0
+      },
+      {
+        "id": "489ee9f7-5013-5bf9-a74d-49bc7010e868",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 143000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "00462f91-b9f9-5950-b754-64fba7a8e2f8",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c8aaa5c0-110d-5705-91de-11b7b1bd6bd8",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0245,
+    "longitude": -71.5518,
+    "description": "Hospedaje en Viña del Mar, Chile."
+  },
+  {
+    "id": "e33a9e01-dcf7-553b-a83a-feaa7fcd3e1e",
+    "nombre": "Casa Colonial Viña del Mar",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Viña del Mar",
+    "direccion": "Av. Principal 115, Viña del Mar",
+    "rating": 4.9,
+    "reviews": 1330,
+    "habitaciones": [
+      {
+        "id": "80dd1069-ff84-5040-8a5a-ac8e95aee222",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 70500.0
+      },
+      {
+        "id": "ceb58d1d-f1a7-5c52-a806-1cdcfbd609cf",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 97500.0
+      },
+      {
+        "id": "26effd08-6d0f-5776-9a9f-8daea17ec105",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 146500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "bb8afaa6-a69a-584e-9810-00d441f7ebf2",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "f9ecf843-27cc-549e-bc48-52bbdc7e35ae",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0245,
+    "longitude": -71.5518,
+    "description": "Hospedaje en Viña del Mar, Chile."
+  },
+  {
+    "id": "a0887858-57dc-5e1b-8b94-a1bcdbb9d716",
+    "nombre": "Hotel Costa Viña del Mar",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Viña del Mar",
+    "direccion": "Av. Principal 116, Viña del Mar",
+    "rating": 4.0,
+    "reviews": 1425,
+    "habitaciones": [
+      {
+        "id": "a25ab0c8-ac9b-5df8-bdf6-62bc7e33d958",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 74000.0
+      },
+      {
+        "id": "2980ef0b-247c-5d34-964d-3da3e5eb984f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 101000.0
+      },
+      {
+        "id": "5ec3066f-6d88-5e23-9de9-68dfb6de3300",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 150000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "91d18b79-067f-5f49-ac77-c49f467d04b1",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "ea3c157d-9d5b-5720-a1a9-f385e14e0ac9",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -33.0245,
+    "longitude": -71.5518,
+    "description": "Hospedaje en Viña del Mar, Chile."
+  },
+  {
+    "id": "36f37400-9794-55e6-bcf3-dbc3f15c1b5c",
+    "nombre": "Puerto Varas Grand Hotel",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Puerto Varas",
+    "direccion": "Av. Principal 113, Puerto Varas",
+    "rating": 4.5,
+    "reviews": 1035,
+    "habitaciones": [
+      {
+        "id": "2c8f370f-9126-55bc-b1cf-63ef9e884fa5",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 55500.0
+      },
+      {
+        "id": "d295a1bb-aae1-5fd2-a58b-c94246855519",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 82500.0
+      },
+      {
+        "id": "6be305b2-5bba-5214-af2e-af678459771c",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 131500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "82540e27-912f-521c-96cd-c7acc94e0212",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c2d1fc14-27f0-5cdd-bdb4-bd5a2b232162",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.3175,
+    "longitude": -72.985,
+    "description": "Hospedaje en Puerto Varas, Chile."
+  },
+  {
+    "id": "0ad7daca-cc36-5204-b9d5-9f199808b47c",
+    "nombre": "Hotel Boutique Puerto Varas",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Puerto Varas",
+    "direccion": "Av. Principal 114, Puerto Varas",
+    "rating": 4.6,
+    "reviews": 1130,
+    "habitaciones": [
+      {
+        "id": "aae5f9a0-2e51-55b8-8521-58f17915f7d6",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 59000.0
+      },
+      {
+        "id": "91d9ddae-1e0e-5edd-9bcc-a742266b9f20",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 86000.0
+      },
+      {
+        "id": "27e40ee8-0282-5204-bf03-a08d5791cef2",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 135000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "9eed8eff-4af4-5ee5-839b-182b32504d98",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "79cb6b3b-8d5d-58c4-bcec-5f962190bd43",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.3175,
+    "longitude": -72.985,
+    "description": "Hospedaje en Puerto Varas, Chile."
+  },
+  {
+    "id": "378e79d1-875d-5d8d-8319-6f6bac9a3107",
+    "nombre": "Puerto Varas Plaza Suites",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Puerto Varas",
+    "direccion": "Av. Principal 115, Puerto Varas",
+    "rating": 4.7,
+    "reviews": 1225,
+    "habitaciones": [
+      {
+        "id": "93520ce5-fe48-5e02-86b4-58e04b299056",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 62500.0
+      },
+      {
+        "id": "f7a6f65d-57ae-5d81-bb3f-beb34b69b4ae",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 89500.0
+      },
+      {
+        "id": "395dbc39-3f55-576d-8f0a-ca66a4fa8c54",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 138500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "6c41d870-0a2e-5685-a959-fd856f024aeb",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e62f2068-5d44-5778-9df7-4e6f3b25a842",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.3175,
+    "longitude": -72.985,
+    "description": "Hospedaje en Puerto Varas, Chile."
+  },
+  {
+    "id": "784fdcd5-4e3d-53a4-b671-b1e5decb9e86",
+    "nombre": "Hotel Mirador de Puerto Varas",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Puerto Varas",
+    "direccion": "Av. Principal 116, Puerto Varas",
+    "rating": 4.8,
+    "reviews": 1320,
+    "habitaciones": [
+      {
+        "id": "ffbafaa7-fa0b-5e7d-85bc-d964cd815463",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 66000.0
+      },
+      {
+        "id": "7768b349-75ab-5dbc-a01a-2033da320b7f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 93000.0
+      },
+      {
+        "id": "862c0c60-7526-54f7-b2c1-4dac783850b7",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 142000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "127faf32-1523-513c-adb3-106dd3d31efa",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4204fa6f-465e-5ce4-8abd-4633e6e93c05",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.3175,
+    "longitude": -72.985,
+    "description": "Hospedaje en Puerto Varas, Chile."
+  },
+  {
+    "id": "18bda460-c299-52b2-af23-b878b489fbb4",
+    "nombre": "Puerto Varas Business \u0026 Stay",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Puerto Varas",
+    "direccion": "Av. Principal 117, Puerto Varas",
+    "rating": 4.9,
+    "reviews": 1415,
+    "habitaciones": [
+      {
+        "id": "01624472-c6eb-5487-a4d2-728bbb6a506e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 69500.0
+      },
+      {
+        "id": "24369fdc-fdad-5802-a12d-ebcca001593e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 96500.0
+      },
+      {
+        "id": "cd805f5e-79d8-5f50-92bd-9b1c7aec4b22",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 145500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "377dc8d7-112f-5824-9510-3f64480ac865",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4c7cc55e-091c-5671-a12f-0e16bcd678f8",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.3175,
+    "longitude": -72.985,
+    "description": "Hospedaje en Puerto Varas, Chile."
+  },
+  {
+    "id": "185c9751-c7f4-5df9-ad89-c07e5a2e6ea9",
+    "nombre": "Casa Colonial Puerto Varas",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Puerto Varas",
+    "direccion": "Av. Principal 118, Puerto Varas",
+    "rating": 4.0,
+    "reviews": 1510,
+    "habitaciones": [
+      {
+        "id": "c89e1512-c407-5c60-9b91-c689e7cb3540",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 73000.0
+      },
+      {
+        "id": "30e0fd45-5660-5b1f-8a70-5501445f9eab",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 100000.0
+      },
+      {
+        "id": "98b945e4-89cc-516a-85eb-2ff06daa4a46",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 149000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "1610ac5d-15f0-54d0-8b67-cc81a06f9b6c",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a64f13d5-2e6c-5496-a0d4-7147403c0443",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.3175,
+    "longitude": -72.985,
+    "description": "Hospedaje en Puerto Varas, Chile."
+  },
+  {
+    "id": "bdeaeede-791b-563b-893c-ae2dbc8a2a71",
+    "nombre": "Hotel Costa Puerto Varas",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Puerto Varas",
+    "direccion": "Av. Principal 119, Puerto Varas",
+    "rating": 4.1,
+    "reviews": 1605,
+    "habitaciones": [
+      {
+        "id": "88eb2b00-795e-536b-ae0d-8af25c05af66",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 76500.0
+      },
+      {
+        "id": "649130f1-5b12-5df2-baf5-496921a76fb7",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 103500.0
+      },
+      {
+        "id": "e5610217-34c9-558d-b3ce-63be969b4f87",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 152500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "92a68df1-21b1-5144-96bf-aed2d9d6f06b",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "4c110d8e-f4b6-5874-b5ba-fc712143339e",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -41.3175,
+    "longitude": -72.985,
+    "description": "Hospedaje en Puerto Varas, Chile."
+  },
+  {
+    "id": "ed7ec2a0-d5e4-52be-b44a-47bac767368c",
+    "nombre": "San Pedro de Atacama Grand Hotel",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "San Pedro de Atacama",
+    "direccion": "Av. Principal 116, San Pedro de Atacama",
+    "rating": 4.6,
+    "reviews": 1215,
+    "habitaciones": [
+      {
+        "id": "de07c22e-7b18-5dda-bec8-86cd666b10c4",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 58000.0
+      },
+      {
+        "id": "03380f9f-02e7-544a-890b-a2d99f5d373a",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 85000.0
+      },
+      {
+        "id": "ff9e8c13-5ffa-5a4b-bdac-8f852fc45361",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 134000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "43071666-7809-5aa6-9352-f8fecbf23737",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "76fff67b-177b-50c9-946c-65e5b709fd2d",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -22.9087,
+    "longitude": -68.1997,
+    "description": "Hospedaje en San Pedro de Atacama, Chile."
+  },
+  {
+    "id": "0762751b-8acd-59d2-b3ad-ab0c4f7c80a7",
+    "nombre": "Hotel Boutique San Pedro de Atacama",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "San Pedro de Atacama",
+    "direccion": "Av. Principal 117, San Pedro de Atacama",
+    "rating": 4.7,
+    "reviews": 1310,
+    "habitaciones": [
+      {
+        "id": "18e9af5f-91ad-56c4-8511-559ef7efca12",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 61500.0
+      },
+      {
+        "id": "686114f7-31f1-5d9a-a13a-890c484d6599",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 88500.0
+      },
+      {
+        "id": "bdf2b36d-0a6a-5f8a-bea7-33640dc76208",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 137500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "6653e4c2-b1f8-5dbe-b32c-eab252159595",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "b36a4f62-c639-5810-b5fd-5bd898b65dc4",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -22.9087,
+    "longitude": -68.1997,
+    "description": "Hospedaje en San Pedro de Atacama, Chile."
+  },
+  {
+    "id": "dfcad581-3643-502a-8e17-60cc0b8724e2",
+    "nombre": "San Pedro de Atacama Plaza Suites",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "San Pedro de Atacama",
+    "direccion": "Av. Principal 118, San Pedro de Atacama",
+    "rating": 4.8,
+    "reviews": 1405,
+    "habitaciones": [
+      {
+        "id": "c5c17b4e-969a-58a4-aed5-889ac19d870d",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 65000.0
+      },
+      {
+        "id": "c06d47c0-aa37-559f-b2e8-155f1401d4c4",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 92000.0
+      },
+      {
+        "id": "bc5188e6-caa5-5ea5-a1af-0425baa372a9",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 141000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "143d4b9f-e368-5fa6-97a1-7018d32fd1b2",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c34cfd40-1cb2-5178-9a6c-7410da8d7834",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -22.9087,
+    "longitude": -68.1997,
+    "description": "Hospedaje en San Pedro de Atacama, Chile."
+  },
+  {
+    "id": "473e1151-c692-5d36-a131-753a78d674aa",
+    "nombre": "Hotel Mirador de San Pedro de Atacama",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "San Pedro de Atacama",
+    "direccion": "Av. Principal 119, San Pedro de Atacama",
+    "rating": 4.9,
+    "reviews": 1500,
+    "habitaciones": [
+      {
+        "id": "5be2de63-3e16-5bf9-bb4b-cb908ead6b6a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 68500.0
+      },
+      {
+        "id": "3f6373f8-1fb1-542e-8272-f8ef21380f8d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 95500.0
+      },
+      {
+        "id": "3e8275b8-3ec4-59b1-9691-45727d2d18b0",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 144500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "12ded502-46ab-549c-bf09-958b0682ca9a",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "c754d364-b54c-5a7f-b1d0-2ebf6df3f781",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -22.9087,
+    "longitude": -68.1997,
+    "description": "Hospedaje en San Pedro de Atacama, Chile."
+  },
+  {
+    "id": "c66096df-d332-5758-9507-64706987d959",
+    "nombre": "San Pedro de Atacama Business \u0026 Stay",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "San Pedro de Atacama",
+    "direccion": "Av. Principal 120, San Pedro de Atacama",
+    "rating": 4.0,
+    "reviews": 1595,
+    "habitaciones": [
+      {
+        "id": "e42b7f6f-7df7-5603-9361-d1df0a808cfb",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 72000.0
+      },
+      {
+        "id": "cc921b70-a867-5c62-a5d1-78da3dbee63b",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 99000.0
+      },
+      {
+        "id": "b0ee6303-2ed5-5411-af8a-0f09bd7cb495",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 148000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e894094e-421f-5642-aa35-c88a362837a8",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "40b4fbf3-be47-5e7d-8a75-85c66ba912eb",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -22.9087,
+    "longitude": -68.1997,
+    "description": "Hospedaje en San Pedro de Atacama, Chile."
+  },
+  {
+    "id": "bda23f29-1229-52e4-bfee-dbf9380f242c",
+    "nombre": "Casa Colonial San Pedro de Atacama",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "San Pedro de Atacama",
+    "direccion": "Av. Principal 121, San Pedro de Atacama",
+    "rating": 4.1,
+    "reviews": 1690,
+    "habitaciones": [
+      {
+        "id": "c2e5ffee-1d35-570f-8c70-1354102c9a4e",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 75500.0
+      },
+      {
+        "id": "deb50391-0a94-5d76-a1d7-7792715a84e6",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 102500.0
+      },
+      {
+        "id": "e4f854d4-4f17-57d7-8fd6-7a57336f63e3",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 151500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c2ec14c1-c9e2-52e3-8628-cb5285ce1173",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "1c229d85-ea05-5b99-b61f-24290b1a27c8",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -22.9087,
+    "longitude": -68.1997,
+    "description": "Hospedaje en San Pedro de Atacama, Chile."
+  },
+  {
+    "id": "f5b70963-1608-5d43-a75b-2acdabed9ada",
+    "nombre": "Hotel Costa San Pedro de Atacama",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "San Pedro de Atacama",
+    "direccion": "Av. Principal 122, San Pedro de Atacama",
+    "rating": 4.2,
+    "reviews": 1785,
+    "habitaciones": [
+      {
+        "id": "cba2bba8-c3be-5e5a-a312-6bfbe81a1f80",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 79000.0
+      },
+      {
+        "id": "9bd76544-1166-5220-a6c7-954ac0e00452",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 106000.0
+      },
+      {
+        "id": "366af0b1-4305-5118-aa15-a3c6fe989214",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 155000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5de00eef-2d30-5118-a0cc-330f9bd656e7",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "01a70d69-fac8-5d62-89e2-afb54570620d",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -22.9087,
+    "longitude": -68.1997,
+    "description": "Hospedaje en San Pedro de Atacama, Chile."
+  },
+  {
+    "id": "a4e340ec-8060-55fe-a81f-8fe7ad350f63",
+    "nombre": "Punta Arenas Grand Hotel",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Punta Arenas",
+    "direccion": "Av. Principal 119, Punta Arenas",
+    "rating": 4.7,
+    "reviews": 1395,
+    "habitaciones": [
+      {
+        "id": "b744a1ae-995d-53d7-ab2c-08b46bcd736b",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 60500.0
+      },
+      {
+        "id": "94954de0-61eb-5f0d-a8ec-12288db20926",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 87500.0
+      },
+      {
+        "id": "ab1fca3e-8f77-5e3b-a271-350e2c6f5476",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 136500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "9ba25af1-80bb-53c6-a503-973d347517c2",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3d349655-4168-58be-b02c-9a41585f3bc1",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -53.1638,
+    "longitude": -70.9171,
+    "description": "Hospedaje en Punta Arenas, Chile."
+  },
+  {
+    "id": "064209ba-15b6-5179-9640-758e909d2d7c",
+    "nombre": "Hotel Boutique Punta Arenas",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Punta Arenas",
+    "direccion": "Av. Principal 120, Punta Arenas",
+    "rating": 4.8,
+    "reviews": 1490,
+    "habitaciones": [
+      {
+        "id": "73ea8d11-0c54-5c54-aac2-a310c9eeba5b",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 64000.0
+      },
+      {
+        "id": "66c28ebb-da6d-5315-9734-5c236a812d66",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 91000.0
+      },
+      {
+        "id": "bf5f89ac-142b-5797-b799-a5ecdf9bef94",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 140000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e2a5e335-ac97-5710-80c0-1a08af8906f2",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3e24be2d-dc75-5a74-b9c3-d687096bcae5",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -53.1638,
+    "longitude": -70.9171,
+    "description": "Hospedaje en Punta Arenas, Chile."
+  },
+  {
+    "id": "218f33d8-35b2-5867-99ef-f1742bb63eea",
+    "nombre": "Punta Arenas Plaza Suites",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Punta Arenas",
+    "direccion": "Av. Principal 121, Punta Arenas",
+    "rating": 4.9,
+    "reviews": 1585,
+    "habitaciones": [
+      {
+        "id": "fc719f5e-3c23-517a-a75a-675ebebb6183",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 67500.0
+      },
+      {
+        "id": "4d4c2d40-a5ce-5afa-9238-0d389b76d40c",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 94500.0
+      },
+      {
+        "id": "835300c7-d309-5fe5-a3e2-91f00eeb5cbd",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 143500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "020b450c-e352-56b3-986f-dfc9941d072d",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "905fe3d2-e296-5ace-a8db-4922efa8688a",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -53.1638,
+    "longitude": -70.9171,
+    "description": "Hospedaje en Punta Arenas, Chile."
+  },
+  {
+    "id": "abc29e63-6691-509c-ae27-54194015534b",
+    "nombre": "Hotel Mirador de Punta Arenas",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Punta Arenas",
+    "direccion": "Av. Principal 122, Punta Arenas",
+    "rating": 4.0,
+    "reviews": 1680,
+    "habitaciones": [
+      {
+        "id": "9d8ab9eb-c3da-5b30-b38f-d6269d1920d3",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 71000.0
+      },
+      {
+        "id": "18e56100-d3ad-5d9c-91f5-2fb4d895135e",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 98000.0
+      },
+      {
+        "id": "8753ba2d-594d-55f9-8dca-330f8ab4cb39",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 147000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "d15f67c6-9f12-55d4-b61b-59e8f9f55437",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "6ddcf502-b419-5b4e-be28-bd8f20497a9e",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -53.1638,
+    "longitude": -70.9171,
+    "description": "Hospedaje en Punta Arenas, Chile."
+  },
+  {
+    "id": "3e8ca682-8ca1-5b02-8397-160405883341",
+    "nombre": "Punta Arenas Business \u0026 Stay",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Punta Arenas",
+    "direccion": "Av. Principal 123, Punta Arenas",
+    "rating": 4.1,
+    "reviews": 1775,
+    "habitaciones": [
+      {
+        "id": "8591c074-571a-5782-8701-0cbec616b678",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 74500.0
+      },
+      {
+        "id": "f4983c1a-f1e4-5359-b584-666667aa4701",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 101500.0
+      },
+      {
+        "id": "a6a11c9c-b1d7-52b2-b4ab-d8258030c7e5",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 150500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "162aca05-ad1d-57ab-8c44-6a30db3a50ee",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "b9c91cdd-e19b-5882-8692-97b3cc7109e0",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -53.1638,
+    "longitude": -70.9171,
+    "description": "Hospedaje en Punta Arenas, Chile."
+  },
+  {
+    "id": "d9467e4e-6f33-5f4b-a81c-1a5b28310d5c",
+    "nombre": "Casa Colonial Punta Arenas",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Punta Arenas",
+    "direccion": "Av. Principal 124, Punta Arenas",
+    "rating": 4.2,
+    "reviews": 1870,
+    "habitaciones": [
+      {
+        "id": "09b37c36-b6e2-5ba9-98c7-ad6d0d60630c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 78000.0
+      },
+      {
+        "id": "cc138f00-e865-55cd-9512-771531c510fe",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 105000.0
+      },
+      {
+        "id": "47944c30-d4c2-5ecd-aa3d-f98c21a511ca",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 154000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "a8a39e6f-dd0a-5701-86b7-44cbc705841e",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "59d271eb-9a0a-5066-9df7-8969ee762758",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -53.1638,
+    "longitude": -70.9171,
+    "description": "Hospedaje en Punta Arenas, Chile."
+  },
+  {
+    "id": "f45a4d40-31b9-5375-a1be-8109a97438b3",
+    "nombre": "Hotel Costa Punta Arenas",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Punta Arenas",
+    "direccion": "Av. Principal 125, Punta Arenas",
+    "rating": 4.3,
+    "reviews": 1965,
+    "habitaciones": [
+      {
+        "id": "9d29d103-94a0-59e0-adfc-1df674d7475c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 81500.0
+      },
+      {
+        "id": "7761e3b1-9fb5-5227-846f-b1a1858be5e8",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 108500.0
+      },
+      {
+        "id": "0b4e4bed-8c44-50f4-9979-b12b0d1b5aca",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 157500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "e0ed287d-13e9-59b5-9f52-78ecefbfb9d1",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "2ec1bac3-a09e-5869-a0e0-01e48aea7ba1",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -53.1638,
+    "longitude": -70.9171,
+    "description": "Hospedaje en Punta Arenas, Chile."
+  },
+  {
+    "id": "956728ba-9975-5564-83c5-80e3df278935",
+    "nombre": "La Serena Grand Hotel",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "La Serena",
+    "direccion": "Av. Principal 122, La Serena",
+    "rating": 4.8,
+    "reviews": 1575,
+    "habitaciones": [
+      {
+        "id": "2e16704e-8ca6-57b7-9db7-9d3021ec0ef2",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 63000.0
+      },
+      {
+        "id": "7f0f1acc-3d6d-5d31-8b3e-c5d41661e334",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 90000.0
+      },
+      {
+        "id": "82d6706e-d985-5c75-8485-35713cbf8cdd",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 139000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "596a115e-d3e0-581c-95cf-5c2fcdfe378b",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "653d905d-872f-58c5-8f03-b4800b15c63a",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -29.9045,
+    "longitude": -71.2489,
+    "description": "Hospedaje en La Serena, Chile."
+  },
+  {
+    "id": "4cc16f2e-94df-5cb9-b256-d6de8a075e1e",
+    "nombre": "Hotel Boutique La Serena",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "La Serena",
+    "direccion": "Av. Principal 123, La Serena",
+    "rating": 4.9,
+    "reviews": 1670,
+    "habitaciones": [
+      {
+        "id": "b7dd50fc-1944-50f0-9c70-e3054ea21f36",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 66500.0
+      },
+      {
+        "id": "ce1627ee-659e-5f55-8d63-8d870e60c4a2",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 93500.0
+      },
+      {
+        "id": "dfb8ce6f-6fee-5f56-81e0-e6ccd5874199",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 142500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "1252240c-bb9a-524f-a590-545ac362d463",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "caaf7f8b-9ce8-5cf8-9ee7-fc9c0dc849f4",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -29.9045,
+    "longitude": -71.2489,
+    "description": "Hospedaje en La Serena, Chile."
+  },
+  {
+    "id": "59658588-13a7-52cd-a380-13adbd1dba30",
+    "nombre": "La Serena Plaza Suites",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "La Serena",
+    "direccion": "Av. Principal 124, La Serena",
+    "rating": 4.0,
+    "reviews": 1765,
+    "habitaciones": [
+      {
+        "id": "efa7548a-4367-560e-8709-7e3cd49a14ea",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 70000.0
+      },
+      {
+        "id": "5d365417-6746-5f9b-a70d-687c627c7afe",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 97000.0
+      },
+      {
+        "id": "72273ec0-d713-5d5a-a691-efd91addca53",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 146000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "b5c04721-418c-59e8-9267-1f24d7391757",
+        "url": "https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "181ca615-4e2e-5901-8570-6b6509334b3c",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -29.9045,
+    "longitude": -71.2489,
+    "description": "Hospedaje en La Serena, Chile."
+  },
+  {
+    "id": "24ae831e-3e47-5644-81f6-40e044b20d0e",
+    "nombre": "Hotel Mirador de La Serena",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "La Serena",
+    "direccion": "Av. Principal 125, La Serena",
+    "rating": 4.1,
+    "reviews": 1860,
+    "habitaciones": [
+      {
+        "id": "60a98f37-61de-5845-bd54-688e51e46018",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 73500.0
+      },
+      {
+        "id": "7d22366f-0620-5d6d-9e79-a17e81a2c701",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 100500.0
+      },
+      {
+        "id": "4ec6f601-9554-56ea-86aa-2c2ff208d28d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 149500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "0a6cf79d-f4fb-5383-8d90-41725aaf9d2b",
+        "url": "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "60c0242f-13c2-550c-90b4-4dc61c001a6f",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -29.9045,
+    "longitude": -71.2489,
+    "description": "Hospedaje en La Serena, Chile."
+  },
+  {
+    "id": "aff38968-7e8b-538d-b8ef-b9e0b08d3955",
+    "nombre": "La Serena Business \u0026 Stay",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "La Serena",
+    "direccion": "Av. Principal 126, La Serena",
+    "rating": 4.2,
+    "reviews": 1955,
+    "habitaciones": [
+      {
+        "id": "cf32a8c1-8f5a-5fd6-8bfb-c3989be1a751",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 77000.0
+      },
+      {
+        "id": "99154223-210a-5c30-aba6-0162ac674d44",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 104000.0
+      },
+      {
+        "id": "c24fd8af-ed5f-5619-8c5c-e4f3bbcadc6d",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 153000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "9049a301-42b1-55fe-a339-e38737c4c997",
+        "url": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "6da5b55e-809e-5ccb-af23-23a8c2372853",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -29.9045,
+    "longitude": -71.2489,
+    "description": "Hospedaje en La Serena, Chile."
+  },
+  {
+    "id": "5e0b2759-268b-5d3f-9ef9-7ee549edc2f9",
+    "nombre": "Casa Colonial La Serena",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "La Serena",
+    "direccion": "Av. Principal 127, La Serena",
+    "rating": 4.3,
+    "reviews": 2050,
+    "habitaciones": [
+      {
+        "id": "ef6796b0-65d4-5c7f-8b95-44713f1721db",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 80500.0
+      },
+      {
+        "id": "d4a41691-d6e5-5cea-8567-a725b1c72d81",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 107500.0
+      },
+      {
+        "id": "8f36dd35-81f9-5187-b006-9004ce128b82",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 156500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5b218b7f-b3d5-55d0-b100-e7ca555f7872",
+        "url": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "3a6fb2d6-eb32-504c-b86f-d4077206e6bc",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -29.9045,
+    "longitude": -71.2489,
+    "description": "Hospedaje en La Serena, Chile."
+  },
+  {
+    "id": "f9b8e912-30f5-5d79-a99f-960c3cff06de",
+    "nombre": "Hotel Costa La Serena",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "La Serena",
+    "direccion": "Av. Principal 128, La Serena",
+    "rating": 4.4,
+    "reviews": 2145,
+    "habitaciones": [
+      {
+        "id": "0367a285-ff60-53ad-b58f-303e954694a1",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 84000.0
+      },
+      {
+        "id": "28396d12-6df9-5262-a65a-6af694d6162d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 111000.0
+      },
+      {
+        "id": "39bf4c17-49de-50b4-86d3-91cb2c685330",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 160000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "5d64a22d-8122-5f16-89e1-346042f0ba27",
+        "url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "49ab31e3-3dac-56b6-bc93-2658ab9f6f73",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -29.9045,
+    "longitude": -71.2489,
+    "description": "Hospedaje en La Serena, Chile."
+  },
+  {
+    "id": "dab155ea-0f33-5199-8b70-89facea5ba30",
+    "nombre": "Concepción Grand Hotel",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Concepción",
+    "direccion": "Av. Principal 125, Concepción",
+    "rating": 4.9,
+    "reviews": 1755,
+    "habitaciones": [
+      {
+        "id": "870ccf36-479d-5890-b485-23dcadde1b7c",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 65500.0
+      },
+      {
+        "id": "590e666b-f4a8-5b6c-9a4f-b354958bc06f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 92500.0
+      },
+      {
+        "id": "71601485-ba07-5c98-9555-463ee457e589",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 141500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "cdb296e0-c10f-5e30-9d9f-565752ef3bdb",
+        "url": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "290bf26b-d708-598f-9ca2-421bc5c607bc",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -36.8201,
+    "longitude": -73.0444,
+    "description": "Hospedaje en Concepción, Chile."
+  },
+  {
+    "id": "c92dfdb4-fde2-5c0e-8653-d3d6ab472a32",
+    "nombre": "Hotel Boutique Concepción",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Concepción",
+    "direccion": "Av. Principal 126, Concepción",
+    "rating": 4.0,
+    "reviews": 1850,
+    "habitaciones": [
+      {
+        "id": "87858d80-422f-56cb-9fe0-a305e003f6f4",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 69000.0
+      },
+      {
+        "id": "7d31afc7-ff9f-59e2-9320-4e0534fe1061",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 96000.0
+      },
+      {
+        "id": "8ef6776c-8ffd-5cd6-8a2b-60712b28d223",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 145000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "b79d27a7-cd26-5575-be73-c93a5fa2231e",
+        "url": "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "a876c245-a0ed-540d-bbb3-e16763b0f66d",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -36.8201,
+    "longitude": -73.0444,
+    "description": "Hospedaje en Concepción, Chile."
+  },
+  {
+    "id": "39663878-8c85-5bcb-9183-e8b2ce5fd98f",
+    "nombre": "Concepción Plaza Suites",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Concepción",
+    "direccion": "Av. Principal 127, Concepción",
+    "rating": 4.1,
+    "reviews": 1945,
+    "habitaciones": [
+      {
+        "id": "53d6ebf0-f91a-5cb0-9b57-2d2910f9c097",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 72500.0
+      },
+      {
+        "id": "641a0d0d-262c-53cb-a700-83696e63fd81",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 99500.0
+      },
+      {
+        "id": "4b3984fc-9d09-52af-a409-2e97e33401a0",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 148500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "ec3e98f6-e374-5411-883d-dc73653beb72",
+        "url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "5a554f47-a0c9-5518-91c3-362f6e554705",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -36.8201,
+    "longitude": -73.0444,
+    "description": "Hospedaje en Concepción, Chile."
+  },
+  {
+    "id": "b1e59f86-14a2-5bc2-8d27-4ae18abe0007",
+    "nombre": "Hotel Mirador de Concepción",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Concepción",
+    "direccion": "Av. Principal 128, Concepción",
+    "rating": 4.2,
+    "reviews": 2040,
+    "habitaciones": [
+      {
+        "id": "5cab6838-601d-57a3-9d8d-f7f2d0619b62",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 76000.0
+      },
+      {
+        "id": "f199298f-8125-50bc-af49-f5b3d4327378",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 103000.0
+      },
+      {
+        "id": "907eda26-12e5-5981-9a0b-098b1346180a",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 152000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "43712892-2abb-5e52-bea2-90311d0cb15a",
+        "url": "https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "d720dbbf-7595-594d-874b-3131679c21b2",
+        "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -36.8201,
+    "longitude": -73.0444,
+    "description": "Hospedaje en Concepción, Chile."
+  },
+  {
+    "id": "02aeacf4-b76e-5584-aaf2-7827dd6208ee",
+    "nombre": "Concepción Business \u0026 Stay",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Concepción",
+    "direccion": "Av. Principal 129, Concepción",
+    "rating": 4.3,
+    "reviews": 2135,
+    "habitaciones": [
+      {
+        "id": "a6404b6b-819b-57d0-af05-2895cd11974a",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 79500.0
+      },
+      {
+        "id": "49b7e327-79bf-5e38-89fa-a9e66903144f",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 106500.0
+      },
+      {
+        "id": "94f4cf3b-91cf-503a-87c9-adc50ad272df",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 155500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "c9db8de1-2bcc-53e9-93df-c5697c4a3094",
+        "url": "https://images.unsplash.com/photo-1519449556851-5720b33024e7?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "18894953-936b-54a0-9573-5886bef692aa",
+        "url": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -36.8201,
+    "longitude": -73.0444,
+    "description": "Hospedaje en Concepción, Chile."
+  },
+  {
+    "id": "dad3a4ef-5383-51a3-befb-64b84eef600a",
+    "nombre": "Casa Colonial Concepción",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Concepción",
+    "direccion": "Av. Principal 130, Concepción",
+    "rating": 4.4,
+    "reviews": 2230,
+    "habitaciones": [
+      {
+        "id": "f2018fe7-5e14-50d0-8c23-38af914c6366",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 83000.0
+      },
+      {
+        "id": "ead23f2d-4277-597a-a11d-756fef47359d",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 110000.0
+      },
+      {
+        "id": "477ca09e-03bf-5d49-b939-84b362fff26b",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 159000.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "f3c2b917-609a-5810-83e8-63b4da6d70d9",
+        "url": "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "6b89aa93-ba54-5fd3-90bf-bdbd26027ce4",
+        "url": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -36.8201,
+    "longitude": -73.0444,
+    "description": "Hospedaje en Concepción, Chile."
+  },
+  {
+    "id": "7a83a12b-0244-5651-ae75-e1f07bb5a4a2",
+    "nombre": "Hotel Costa Concepción",
+    "pais": "Chile",
+    "countryCode": "CL",
+    "ciudad": "Concepción",
+    "direccion": "Av. Principal 131, Concepción",
+    "rating": 4.5,
+    "reviews": 2325,
+    "habitaciones": [
+      {
+        "id": "36c0d62c-90e7-55e3-9e17-d9b0f84db5fc",
+        "code": "101",
+        "descripcion": "Habitación Estándar",
+        "capacidad": 2,
+        "precio": 86500.0
+      },
+      {
+        "id": "a9a48009-eda0-5089-a856-b71ab513a6cd",
+        "code": "102",
+        "descripcion": "Habitación Deluxe",
+        "capacidad": 3,
+        "precio": 113500.0
+      },
+      {
+        "id": "8587c214-0b77-5fe3-b3c3-9fccf3bc9081",
+        "code": "103",
+        "descripcion": "Suite Familiar",
+        "capacidad": 4,
+        "precio": 162500.0
+      }
+    ],
+    "imagenes": [
+      {
+        "id": "667cc694-849e-55e5-b066-62e7450e629b",
+        "url": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      },
+      {
+        "id": "e71c5c0b-9806-5cf8-85d3-d59e86b621b5",
+        "url": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format\u0026fit=crop\u0026w=800\u0026h=640\u0026q=80"
+      }
+    ],
+    "latitude": -36.8201,
+    "longitude": -73.0444,
+    "description": "Hospedaje en Concepción, Chile."
+  }
+]

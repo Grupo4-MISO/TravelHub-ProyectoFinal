@@ -1,0 +1,125 @@
+{
+  "countries": [
+    {
+      "countryCode": "CO",
+      "country": "Colombia",
+      "cities": [
+        "Barranquilla",
+        "Bogota",
+        "Cali",
+        "Cartagena",
+        "Manizales",
+        "Medellin",
+        "San Andres",
+        "Santa Marta",
+        "Villa de Leyva"
+      ],
+      "sources": [
+        {
+          "city": "*",
+          "file": "Colombia_hospedajes_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "PE",
+      "country": "Perú",
+      "cities": [
+        "Lima",
+        "Cusco",
+        "Arequipa",
+        "Puno",
+        "Trujillo",
+        "Máncora",
+        "Paracas",
+        "Iquitos"
+      ],
+      "sources": [
+        {
+          "city": "*",
+          "file": "Peru_hospedajes_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "EC",
+      "country": "Ecuador",
+      "cities": [
+        "Quito",
+        "Guayaquil",
+        "Cuenca",
+        "Galápagos",
+        "Montañita",
+        "Baños",
+        "Manta",
+        "Otavalo"
+      ],
+      "sources": [
+        {
+          "city": "*",
+          "file": "Ecuador_hospedajes_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "MX",
+      "country": "México",
+      "cities": [
+        "Ciudad de México",
+        "Cancún",
+        "Playa del Carmen",
+        "Guadalajara",
+        "Puerto Vallarta",
+        "Oaxaca",
+        "Tulum",
+        "Los Cabos"
+      ],
+      "sources": [
+        {
+          "city": "*",
+          "file": "Mexico_hospedajes_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "CL",
+      "country": "Chile",
+      "cities": [
+        "Santiago",
+        "Valparaíso",
+        "Viña del Mar",
+        "Puerto Varas",
+        "San Pedro de Atacama",
+        "Punta Arenas",
+        "La Serena",
+        "Concepción"
+      ],
+      "sources": [
+        {
+          "city": "*",
+          "file": "Chile_hospedajes_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "AR",
+      "country": "Argentina",
+      "cities": [
+        "Buenos Aires",
+        "Mendoza",
+        "Bariloche",
+        "Córdoba",
+        "Salta",
+        "Puerto Madryn",
+        "Ushuaia",
+        "Mar del Plata"
+      ],
+      "sources": [
+        {
+          "city": "*",
+          "file": "Argentina_hospedajes_seed.json"
+        }
+      ]
+    }
+  ]
+}
