@@ -122,5 +122,32 @@ class darReservas(Resource):
             return reservas, 200
         except Exception as e:
             return {'msg': 'Error al obtener las reservas', 'error': str(e)}, 500
+
+class TarifaReserva(Resource):
+    def post(self):
+        #Obtenemos payload del request
+        data = request.get_json()
+
+        #Parametros requeridos
+        check_in = data.get('check_in')
+        check_out = data.get('check_out')
+        precio_noche = data.get('precio')
+        descuento = data.get('descuento', 0)
+        pais = data.get('pais')
+
+        #Validamos parametros del request
+        check_in, check_out = ReservaHelper.validacionCampoFechas(check_in, check_out)
+        precio_noche = ReservaHelper.validacionCampoPrecio(precio_noche)
+        descuento = ReservaHelper.validacionCampoDescuento(descuento)
+        ReservaHelper.validacionCampoPais(pais)
+
+        #Calculamos tarifa total
+        calculo_tarifa = ReservaHelper.calcularTarifaTotal(check_in, check_out, precio_noche, descuento, pais)
+        
+        return calculo_tarifa, 200
+
+
+
+
         
 
