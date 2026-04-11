@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reservas-app
+  name: comentarios-app
   labels:
-    app: reservas-app
+    app: comentarios-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: reservas-app
+      app: comentarios-app
   template:
     metadata:
       labels:
-        app: reservas-app
+        app: comentarios-app
     spec:
       containers:
-      - name: reservas-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/reservas-app:v2.0.0
+      - name: comentarios-api
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/comentarios-app:v2.0.0
         ports:
-        - containerPort: 3001
+        - containerPort: 3003
         env:
         - name: DATABASE_URL
           value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260411151211056300000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
         readinessProbe:
           httpGet:
-            path: api/v1/reservas/health
-            port: 3001
+            path: api/v1/health
+            port: 3003
         livenessProbe:
           httpGet:
-            path: api/v1/reservas/health
-            port: 3001
+            path: api/v1/health
+            port: 3003
           initialDelaySeconds: 5 
           periodSeconds: 30
           failureThreshold: 3

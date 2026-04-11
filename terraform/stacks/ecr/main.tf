@@ -16,3 +16,15 @@ module "busquedas_repository_name" {
   keep_tags_number = var.keep_tags_number
   repository_name  = var.busquedas_repository_name
 }
+
+module "comentarios_repository_name" {
+  source = "../../modules/ecr"
+  keep_tags_number = var.keep_tags_number
+  repository_name  = var.comentarios_repository_name
+}
+
+module "auth_repository_name" {
+  source = "../../modules/ecr"
+  keep_tags_number = var.keep_tags_number
+  repository_name  = var.auth_repository_name
+}
