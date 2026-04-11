@@ -32,3 +32,15 @@ variable "busquedas_repository_name" {
   type        = string
   nullable    = false
 }
+
+variable "comentarios_repository_name" {
+  description = "Name of the repository to apps"
+  type        = string
+  nullable    = false
+}
+
+variable "auth_repository_name" {
+  description = "Name of the repository to apps"
+  type        = string
+  nullable    = false
+}

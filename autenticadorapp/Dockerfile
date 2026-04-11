@@ -25,4 +25,4 @@ COPY . .
 EXPOSE 3003
 
 # Ejecutar con Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:3003", "main:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:3004", "main:app"]
