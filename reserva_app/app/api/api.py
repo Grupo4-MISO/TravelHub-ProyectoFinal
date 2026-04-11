@@ -34,7 +34,12 @@ class SeedReservas(Resource):
         if cantidad <= 0:
             return {'msg': 'La cantidad debe ser un entero positivo'}, 400
 
-        result = SeedHelper.reset_and_seed(cantidad)
+        try:
+            habitaciones = request.get_json().get('habitacion_ids')
+        except Exception as e:
+            return {'msg': 'Error al procesar el request body, se esperaba un JSON con un campo habitacion_ids que sea una lista de IDs de habitaciones', 'error': str(e)}, 400
+
+        result = SeedHelper.reset_and_seed(cantidad, habitaciones)
 
         if not result.get('ok'):
             return {'msg': 'Error al ejecutar el seed', 'error': result.get('error')}, 500
@@ -99,3 +104,17 @@ class HoldReserva(Resource):
             return {'msg': resultado.get('motivo', 'La habitación no está disponible')}, 409
 
         return resultado, 201
+    
+class darReservas(Resource):
+    def post(self):
+        try:
+            data = request.get_json()
+            habitaciones = data.get('habitaciones')
+            reservas = []
+            for idHabitacion in habitaciones:
+                reservas.extend(reservas_crud.obtenerReservasPorHabitacion(idHabitacion))
+            return reservas, 200
+        except Exception as e:
+            return {'msg': 'Error al obtener las reservas', 'error': str(e)}, 500
+        
+

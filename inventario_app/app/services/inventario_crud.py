@@ -62,4 +62,3 @@ class InventarioCRUD:
     def habitacionesporIdHotel(self, hotel_id):
         habitaciones = self.db.query(HabitacionORM).filter_by(propiedad_id=hotel_id).all()
         return habitaciones
-

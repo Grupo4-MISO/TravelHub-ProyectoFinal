@@ -47,7 +47,7 @@ class buscarHotel(Resource):
         return response, 200
 
 class HabitacionesporId(Resource):
-    #Retorna las habitaciones, para el dashboard
+    #Retorna los datos de una habitación a partir de su id, para el dashboard
     def get(self):
         id_hotel = request.args.get('id')
 
@@ -79,3 +79,8 @@ class SeedDB(Resource):
             'habitaciones_insertadas': result['habitaciones_insertadas'],
         }, 200
 
+class SeedReservations(Resource):
+    #Proporciona un listado de Id's para seeding de reservas.
+    def get(self):
+        result = SeedHelper.seed_reservations()
+        return result, 200

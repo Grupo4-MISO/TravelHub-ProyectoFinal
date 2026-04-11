@@ -25,3 +25,13 @@ class InventarioHelper:
 
         except requests.exceptions.RequestException as e:
             raise ExternalServiceError(f"Error al consultar el microservicio de inventario: {str(e)}")
+        
+    @staticmethod
+    def seed_reservas_ids(inventario_url):
+        try:
+            response = requests.get(f"{inventario_url}/api/v1/inventarios/seed-reservas")
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            raise ExternalServiceError(f"Error al ejecutar el seed de reservas: {str(e)}")
+        
