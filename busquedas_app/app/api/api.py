@@ -24,6 +24,15 @@ redis_client = redis.Redis(
 class SearchHealth(Resource):
     def get(self):
         return {'status': 'healthy'}, 200
+    
+class SeedDB(Resource):
+    def post(self):
+        try:
+            habitaciones = InventarioHelper.seed_reservas_ids(INVENTARIOS_URL)
+            result = ReservaHelper.seedReservas(RESERVAS_URL, 5, habitaciones)
+            return result, 200
+        except Exception as e:
+            return {"ok": False, "error": str(e)}, 500
 
 class Search(Resource):
     def get(self):

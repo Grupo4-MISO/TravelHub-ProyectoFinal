@@ -48,3 +48,6 @@ htmlcov/
 # Archivos del sistema
 .DS_Store
 Thumbs.db
+
+#Compose para pruebas locales
+docker-compose.yml

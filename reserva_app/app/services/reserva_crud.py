@@ -2,6 +2,7 @@ from app.errors.exceptions import DatababaseError
 from app.db.models import ReservaORM, db
 from sqlalchemy import not_
 from datetime import date
+from uuid import UUID
 
 class ReservaCRUD:
     def __init__(self) -> None:
@@ -55,4 +56,23 @@ class ReservaCRUD:
             return habitaciones_ids_ocupadas
 
         return str(habitacion_id) not in habitaciones_ids_ocupadas
+    
+    def obtenerReservasPorHabitacion(self, habitacion_id: int | str) -> list[ReservaORM] | str:
+        try: 
+            habitacion_uuid = UUID(str(habitacion_id))
+            reservas = self.db.query(ReservaORM).filter_by(habitacion_id=habitacion_uuid).all()
+            return [
+                {
+                    "id": str(reserva.id),
+                    "habitacion_id": str(reserva.habitacion_id),
+                    "check_in": reserva.check_in.isoformat(),
+                    "check_out": reserva.check_out.isoformat(),
+                    "estado": reserva.estado,
+                    "created_at": reserva.created_at.isoformat() if reserva.created_at else None,
+                    "updated_at": reserva.updated_at.isoformat() if reserva.updated_at else None,
+                }
+                for reserva in reservas
+            ]
+        except Exception as e:
+            return str(e)
         

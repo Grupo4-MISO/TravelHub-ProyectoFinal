@@ -7,15 +7,23 @@ class CacheHelper:
 
     @staticmethod
     def obtenerCache(redis_client, key):
-        #Data cacheada en Redis
-        data_cacheada = redis_client.get(key)
+        try:
+            #Data cacheada en Redis
+            data_cacheada = redis_client.get(key)
 
-        return json.loads(data_cacheada) if data_cacheada else None
-
+            return json.loads(data_cacheada) if data_cacheada else None
+        
+        except Exception:
+            return None
+        
     @staticmethod
     def guardarCache(redis_client, key, value, ttl):
-        redis_client.setex(
-            key,
-            ttl,
-            json.dumps(value)
-        )
+        try:
+            redis_client.setex(
+                key,
+                ttl,
+                json.dumps(value)
+            )
+        
+        except Exception:
+            return None
