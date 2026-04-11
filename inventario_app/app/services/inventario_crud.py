@@ -139,6 +139,14 @@ class InventarioCRUD:
                     }
                     for h in hospedaje.habitaciones
                 ],
+                'amenidades': [
+                    {
+                        'id': str(a.id),
+                        'name': a.name,
+                        'icon': a.icon,
+                    }
+                    for a in hospedaje.amenidades
+                ],
                 'imagenes': [
                     {
                         'id': str(img.id),
