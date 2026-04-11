@@ -324,7 +324,6 @@ class HospedajeCollection(Resource):
 
                 return created, 201
 
-
 class HospedajeById(Resource):
         @swag_from({
                 'tags': ['Hospedajes'],
