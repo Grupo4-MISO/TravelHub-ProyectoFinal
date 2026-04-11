@@ -96,9 +96,9 @@ def test_validacion_campo_fechas_check_out_menor_fecha_actual():
     assert str(exc_info.value) == 'La fecha de check-out debe ser una fecha futura'
 
 def test_construir_cache_key():
-    resultado = CacheHelper.construirCacheKey('Bogota', '2', '2024-12-01', '2024-12-31')
+    resultado = CacheHelper.construirCacheKey('Bogota', '2', '2024-12-01', '2024-12-31', 'CO', 'COP')
 
-    assert resultado == 'search:Bogota:2:2024-12-01:2024-12-31'
+    assert resultado == 'search:Bogota:2:2024-12-01:2024-12-31:CO:COP'
 
 def test_obtener_inventario_error(mocker):
     error = 'Error al consultar el microservicio de inventario: Error de conexión'
@@ -107,7 +107,7 @@ def test_obtener_inventario_error(mocker):
     mocker.patch('app.utils.inventario_helper.requests.get', side_effect = Exception(error))
 
     try:
-        InventarioHelper.getInventario('http://inventarios', 'Bogota', '2')
+        InventarioHelper.getInventario('http://inventarios', 'Bogota', '2', 'COP')
 
     except Exception as e:
         assert str(e) == error
@@ -135,7 +135,7 @@ def test_obtener_inventario_exitoso(mocker):
     #Mockeamos la respuesta del microservicio de inventario
     mocker.patch('app.utils.inventario_helper.requests.get', return_value = mock_response)
 
-    resultado = InventarioHelper.getInventario('http://inventarios', 'Bogota', '2')
+    resultado = InventarioHelper.getInventario('http://inventarios', 'Bogota', '2', 'COP')
 
     assert resultado == mock_response.json.return_value
 
