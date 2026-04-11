@@ -83,3 +83,27 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t ${{ matrix.service.name }}:pr-${{ github.sha }} ${{ matrix.service.path }}
+
+  required-checks:
+    name: Required Checks
+    runs-on: ubuntu-latest
+    needs:
+      - python-validate-and-test
+      - docker-build
+    if: always()
+
+    steps:
+      - name: Verify upstream jobs
+        env:
+          PYTHON_VALIDATE_RESULT: ${{ needs.python-validate-and-test.result }}
+          DOCKER_BUILD_RESULT: ${{ needs.docker-build.result }}
+        run: |
+          echo "python-validate-and-test => ${PYTHON_VALIDATE_RESULT}"
+          echo "docker-build => ${DOCKER_BUILD_RESULT}"
+
+          if [ "${PYTHON_VALIDATE_RESULT}" != "success" ] || [ "${DOCKER_BUILD_RESULT}" != "success" ]; then
+            echo "One or more required jobs failed."
+            exit 1
+          fi
+
+          echo "All required jobs passed."
