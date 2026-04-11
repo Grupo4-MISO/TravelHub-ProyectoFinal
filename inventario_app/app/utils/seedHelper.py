@@ -447,3 +447,9 @@ class SeedHelper:
         except Exception as e:
             db.session.rollback()
             return {"ok": False, "error": str(e)}
+    
+    @staticmethod
+    def seed_reservations():
+       habitaciones = HabitacionORM.query.all()
+       restuldado = [str(habitacion.id) for habitacion in habitaciones]
+       return {"habitacion_ids": restuldado}

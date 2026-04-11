@@ -1,4 +1,4 @@
-from app.api.api import Health, Login, SeedDB, UserCollectionResource, UserDetailResource
+from app.api.api import Health, Login, SeedDB, UserCollectionResource, UserDetailResource, UserResource, SeedUsers
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -70,7 +70,6 @@ CORS(app)
 
 #Registramos la API RESTful
 api = Api(app)
-
 api.add_resource(Health, '/api/v1/auth/health')
 api.add_resource(Login, '/api/v1/auth/login')
 api.add_resource(UserCollectionResource, '/api/v1/auth/users')

@@ -139,6 +139,14 @@ class InventarioCRUD:
                     }
                     for h in hospedaje.habitaciones
                 ],
+                'amenidades': [
+                    {
+                        'id': str(a.id),
+                        'name': a.name,
+                        'icon': a.icon,
+                    }
+                    for a in hospedaje.amenidades
+                ],
                 'imagenes': [
                     {
                         'id': str(img.id),
@@ -267,3 +275,10 @@ class CountriesCRUD:
             return DatababaseError(f"Error en la base de datos: {str(e)}")
 
 
+    def buscarHotel(self, nombre_hotel):
+        hotel = self.db.query(HospedajeORM).filter_by(nombre=nombre_hotel).first()
+        return hotel
+
+    def habitacionesporIdHotel(self, hotel_id):
+        habitaciones = self.db.query(HabitacionORM).filter_by(propiedad_id=hotel_id).all()
+        return habitaciones

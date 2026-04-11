@@ -154,6 +154,44 @@ class ListadoPaises(Resource):
 
         return paises, 200
 
+class buscarHotel(Resource):
+    #Endpoint para identificar un hotel en inventario(por ahora busca por nombre) 
+    def get(self):
+        nombre_hotel = request.args.get('nombre')
+        hotel = inventario_CRUD.buscarHotel(nombre_hotel)
+        if hotel is None:
+            return {'msg': 'Hotel no encontrado'}, 404
+        
+        response = {
+            'id': str(hotel.id),
+            'nombre': hotel.nombre,
+            'pais': hotel.pais,
+            'ciudad': hotel.ciudad,
+            'direccion': hotel.direccion,
+            'rating': hotel.rating
+        }
+        return response, 200
+
+class HabitacionesporId(Resource):
+    #Retorna los datos de una habitación a partir de su id, para el dashboard
+    def get(self):
+        id_hotel = request.args.get('id')
+
+        habitaciones = inventario_CRUD.habitacionesporIdHotel(id_hotel)
+        if habitaciones is None:
+            response = []
+        else:
+            response = [
+                {
+                    'habitacion_id': str(habitacion.id),
+                    'precio': habitacion.precio,
+                    'capacidad': habitacion.capacidad,
+                    'descripcion': habitacion.descripcion
+                }
+                for habitacion in habitaciones
+            ]
+        return response, 200
+
 class SeedDB(Resource):
         @swag_from({
                 'tags': ['Seed'],
@@ -286,7 +324,6 @@ class HospedajeCollection(Resource):
 
                 return created, 201
 
-
 class HospedajeById(Resource):
         @swag_from({
                 'tags': ['Hospedajes'],
@@ -321,3 +358,8 @@ class HospedajeById(Resource):
 
                 return hospedaje, 200
 
+class SeedReservations(Resource):
+    #Proporciona un listado de Id's para seeding de reservas.
+    def get(self):
+        result = SeedHelper.seed_reservations()
+        return result, 200
