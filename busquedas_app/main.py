@@ -1,4 +1,4 @@
-from app.api.api import Search, SearchHealth
+from app.api.api import Search, SearchHealth, SeedDB
 from app.errors.handlers import ErrorHandler
 from flask_restful import Api
 from flask_cors import CORS
@@ -26,3 +26,4 @@ CORS(app)
 api = Api(app)
 api.add_resource(SearchHealth, '/api/v1/busquedas/health')
 api.add_resource(Search, '/api/v1/busquedas/search')
+api.add_resource(SeedDB, '/api/v1/busquedas/seed')
