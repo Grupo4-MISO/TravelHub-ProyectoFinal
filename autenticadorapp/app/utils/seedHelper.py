@@ -331,7 +331,7 @@ class SeedHelper:
                 "password_hash": generate_password_hash("alojamiento"),
                 "first_name": "Nombre del Admin",
                 "last_name": "Apellido del Admin",
-                "role": "ACCOMODATION",
+                "role": UserRole.ACCOMODATION,
                 "is_active": True,
                 "is_verified": True
             },
@@ -341,7 +341,7 @@ class SeedHelper:
                 "password_hash": generate_password_hash("usuario"),
                 "first_name": "Maria",
                 "last_name": "Garcia",
-                "role": "TRAVELER",
+                "role": UserRole.TRAVELER,
                 "is_active": True,
                 "is_verified": True
             }]

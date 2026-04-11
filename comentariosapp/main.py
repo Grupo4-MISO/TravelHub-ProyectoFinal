@@ -72,11 +72,11 @@ CORS(app)
 #Registramos la API RESTful
 api = Api(app)
 
-api.add_resource(Health, '/api/v1/health')
+api.add_resource(Health, '/api/v1/reviews/health')
 api.add_resource(ReviewResource, '/api/v1/reviews')
 api.add_resource(ReviewResourceById, '/api/v1/reviews/<string:id>')
 api.add_resource(
     ReviewByHospedajeResource,
     '/api/v1/reviews/hospedajes/<string:id>'
 )
-api.add_resource(SeedDB, '/api/v1/seed')
+api.add_resource(SeedDB, '/api/v1/reviews/seed')
