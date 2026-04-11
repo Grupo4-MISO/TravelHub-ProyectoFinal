@@ -7,13 +7,14 @@ ENDPOINT_INVENTARIO = os.getenv('ENDPOINT_INVENTARIO')
 
 class InventarioHelper:
     @staticmethod
-    def getInventario(inventario_url, ciudad, capacidad, currency_code):
+    def getInventario(inventario_url, ciudad, capacidad, currency_code=None):
         #Definimos los parametros de consulta
         params = {
             "ciudad": ciudad,
             "capacidad": capacidad,
-            "currency_code": currency_code
         }
+        if currency_code:
+            params["currency_code"] = currency_code
 
         try:
             #Hacemos la consulta al microservicio de inventario
