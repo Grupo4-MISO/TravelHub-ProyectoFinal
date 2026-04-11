@@ -10,6 +10,8 @@ db = SQLAlchemy()
 class UserRole(enum.Enum):
     ACCOMODATION = "Accomodation"
     TRAVELER = "Traveler"
+    ADMIN = "Admin"
+    MANAGER = "Manager"
 
 class User(db.Model):
     __tablename__ = "users"

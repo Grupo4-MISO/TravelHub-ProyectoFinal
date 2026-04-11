@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/auth-app:v2.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/auth-app:v10.0.0
         ports:
         - containerPort: 3004
         env:

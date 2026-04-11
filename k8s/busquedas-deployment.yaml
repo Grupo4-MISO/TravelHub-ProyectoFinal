@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: busquedas-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/busquedas-app:v2.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/busquedas-app:v9.0.0
         ports:
         - containerPort: 3002
         env:
