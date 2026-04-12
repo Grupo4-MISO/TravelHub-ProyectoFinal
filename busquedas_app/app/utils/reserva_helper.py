@@ -26,3 +26,12 @@ class ReservaHelper:
         
         except requests.exceptions.RequestException as e:
             return ExternalServiceError(f"Error al consultar el microservicio de reservas: {str(e)}")
+        
+    @staticmethod
+    def seedReservas(reservas_url, cantidad, payload):
+        try:
+            response = requests.post(f"{reservas_url}/api/v1/reservas/seed/{cantidad}", json = payload)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            return ExternalServiceError(f"Error al ejecutar el seed en el microservicio de reservas: {str(e)}")

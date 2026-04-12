@@ -1,847 +1,435 @@
-from app.db.models import db, HospedajeORM, HabitacionORM
+import uuid
+import random
+import json
+import os
 
-# ---------------------------------------------------------------------------
-# Datos de hoteles representativos en Colombia — 7 hoteles por ciudad
-# Ciudades: Bogota, Medellin, Cartagena, Cali, Santa Marta,
-#           Barranquilla, San Andres, Manizales, Villa de Leyva
-# ---------------------------------------------------------------------------
-HOSPEDAJES_SEED = [
+from app.db.models import (
+    db,
+    AmenidadORM,
+    HabitacionORM,
+    HospedajeORM,
+    Hospedaje_AmenidadORM,
+    Hospedaje_ImagenORM,
+    CountryORM,
+)
+from sqlalchemy import text
 
-    # ════════════════════════════════════════════════════════════════════════
-    # Bogota  (7 hoteles)
-    # ════════════════════════════════════════════════════════════════════════
-    {
-        "nombre": "Hotel Casa Medina",
-        "pais": "Colombia",
-        "ciudad": "Bogota",
-        "direccion": "Carrera 7 # 69A-22, Chapinero, Bogota",
-        "rating": 4.8,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar Doble", "capacidad": 2, "precio": 380000.0},
-            {"descripcion": "Suite Junior",              "capacidad": 2, "precio": 620000.0},
-            {"descripcion": "Suite Presidencial",        "capacidad": 4, "precio": 1200000.0},
-        ],
+COUNTRIES_SEED = [
+    { 
+        "id" : "a3d59338-df76-4b27-92b9-d8d188a1a34a", 
+        "name" : "Colombia", 
+        "code" : "CO", 
+        "currencyCode" : "COP", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇨🇴",
+        "phoneCode" : "+57"
     },
-    {
-        "nombre": "Sofitel Bogota Victoria Regia",
-        "pais": "Colombia",
-        "ciudad": "Bogota",
-        "direccion": "Calle 98 # 9A-03, Chicó, Bogota",
-        "rating": 4.7,
-        "habitaciones": [
-            {"descripcion": "Habitación Clásica",  "capacidad": 2, "precio": 450000.0},
-            {"descripcion": "Habitación Superior", "capacidad": 2, "precio": 550000.0},
-            {"descripcion": "Suite Luxury",         "capacidad": 3, "precio": 980000.0},
-        ],
+    { 
+        "id" : "83cfaba7-7c63-4943-a984-34e2613f5300", 
+        "name" : "Perú", 
+        "code" : "PE", 
+        "currencyCode" : "PEN", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇵🇪",
+        "phoneCode" : "+51"
     },
-    {
-        "nombre": "Hotel Tequendama",
-        "pais": "Colombia",
-        "ciudad": "Bogota",
-        "direccion": "Carrera 10 # 26-21, Centro, Bogota",
-        "rating": 4.2,
-        "habitaciones": [
-            {"descripcion": "Habitación Sencilla",        "capacidad": 1, "precio": 180000.0},
-            {"descripcion": "Habitación Doble Estándar",  "capacidad": 2, "precio": 260000.0},
-            {"descripcion": "Suite Ejecutiva",            "capacidad": 2, "precio": 520000.0},
-        ],
+    { 
+        "id" : "82ee7241-0e45-4e74-ab37-d590e3e3ba96", 
+        "name" : "Ecuador", 
+        "code" : "EC", 
+        "currencyCode" : "USD", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇪🇨",
+        "phoneCode" : "+593"
     },
-    {
-        "nombre": "Hotel B.O.G",
-        "pais": "Colombia",
-        "ciudad": "Bogota",
-        "direccion": "Calle 11 # 4-16, La Candelaria, Bogota",
-        "rating": 4.6,
-        "habitaciones": [
-            {"descripcion": "Habitación Urban",      "capacidad": 2, "precio": 410000.0},
-            {"descripcion": "Habitación Deluxe",     "capacidad": 2, "precio": 530000.0},
-            {"descripcion": "Suite Rooftop",         "capacidad": 3, "precio": 950000.0},
-        ],
+    { 
+        "id" : "cecf374a-c329-4bca-b113-2fa2ad0ccf53", 
+        "name" : "México", 
+        "code" : "MX", 
+        "currencyCode" : "MXN", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇲🇽",
+        "phoneCode" : "+52"
     },
-    {
-        "nombre": "W Bogota",
-        "pais": "Colombia",
-        "ciudad": "Bogota",
-        "direccion": "Calle 100 # 8A-01, Chicó, Bogota",
-        "rating": 4.7,
-        "habitaciones": [
-            {"descripcion": "Wonderful Room",         "capacidad": 2, "precio": 600000.0},
-            {"descripcion": "Spectacular Suite",      "capacidad": 2, "precio": 900000.0},
-            {"descripcion": "WOW Suite",              "capacidad": 4, "precio": 1800000.0},
-        ],
+    { 
+        "id" : "79bde85e-343c-4d8f-8688-9518fcb15504", 
+        "name" : "Chile", 
+        "code" : "CL", 
+        "currencyCode" : "CLP", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇨🇱",
+        "phoneCode" : "+56"
     },
-    {
-        "nombre": "Hyatt Regency Bogota",
-        "pais": "Colombia",
-        "ciudad": "Bogota",
-        "direccion": "Calle 24 # 57A-60, Salitre, Bogota",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación King Estándar",  "capacidad": 2, "precio": 390000.0},
-            {"descripcion": "Habitación Club",           "capacidad": 2, "precio": 520000.0},
-            {"descripcion": "Suite Regency",             "capacidad": 3, "precio": 870000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Click Clack Bogota",
-        "pais": "Colombia",
-        "ciudad": "Bogota",
-        "direccion": "Carrera 11 # 93-77, Chicó, Bogota",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Habitación Pequeña",    "capacidad": 1, "precio": 220000.0},
-            {"descripcion": "Habitación Mediana",    "capacidad": 2, "precio": 310000.0},
-            {"descripcion": "Habitación Grande",     "capacidad": 3, "precio": 460000.0},
-        ],
-    },
-
-    # ════════════════════════════════════════════════════════════════════════
-    # Medellin  (7 hoteles)
-    # ════════════════════════════════════════════════════════════════════════
-    {
-        "nombre": "Hotel Dann Carlton Medellin",
-        "pais": "Colombia",
-        "ciudad": "Medellin",
-        "direccion": "Calle 1A Sur # 43A-83, El Poblado, Medellin",
-        "rating": 4.6,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar",  "capacidad": 2, "precio": 320000.0},
-            {"descripcion": "Habitación Deluxe",    "capacidad": 2, "precio": 430000.0},
-            {"descripcion": "Suite Ejecutiva",      "capacidad": 3, "precio": 750000.0},
-        ],
-    },
-    {
-        "nombre": "Intercontinental Medellin",
-        "pais": "Colombia",
-        "ciudad": "Medellin",
-        "direccion": "Calle 16 # 28-51, Laureles, Medellin",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Club",  "capacidad": 2, "precio": 490000.0},
-            {"descripcion": "Suite Junior",     "capacidad": 2, "precio": 680000.0},
-            {"descripcion": "Penthouse",        "capacidad": 4, "precio": 1500000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Park 10 Medellin",
-        "pais": "Colombia",
-        "ciudad": "Medellin",
-        "direccion": "Carrera 36D # 10A-22, El Poblado, Medellin",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Habitación Sencilla", "capacidad": 1, "precio": 200000.0},
-            {"descripcion": "Habitación Doble",    "capacidad": 2, "precio": 290000.0},
-            {"descripcion": "Habitación Triple",   "capacidad": 3, "precio": 370000.0},
-        ],
-    },
-    {
-        "nombre": "The Charlee Hotel Medellin",
-        "pais": "Colombia",
-        "ciudad": "Medellin",
-        "direccion": "Carrera 43B # 11-50, El Poblado, Medellin",
-        "rating": 4.7,
-        "habitaciones": [
-            {"descripcion": "Habitación Lifestyle",   "capacidad": 2, "precio": 480000.0},
-            {"descripcion": "Suite Rooftop Pool",     "capacidad": 2, "precio": 780000.0},
-            {"descripcion": "Suite Presidencial",     "capacidad": 4, "precio": 1600000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Diez Categoría Colombia",
-        "pais": "Colombia",
-        "ciudad": "Medellin",
-        "direccion": "Calle 11A # 32-65, El Poblado, Medellin",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar",  "capacidad": 2, "precio": 350000.0},
-            {"descripcion": "Habitación Superior",  "capacidad": 2, "precio": 460000.0},
-            {"descripcion": "Suite Diez",           "capacidad": 3, "precio": 820000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Nutibara Medellin",
-        "pais": "Colombia",
-        "ciudad": "Medellin",
-        "direccion": "Carrera 50 # 52A-28, Centro, Medellin",
-        "rating": 4.1,
-        "habitaciones": [
-            {"descripcion": "Habitación Sencilla",     "capacidad": 1, "precio": 150000.0},
-            {"descripcion": "Habitación Doble",        "capacidad": 2, "precio": 210000.0},
-            {"descripcion": "Habitación Ejecutiva",    "capacidad": 2, "precio": 320000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Estelar Milla de Oro",
-        "pais": "Colombia",
-        "ciudad": "Medellin",
-        "direccion": "Carrera 43A # 6 Sur-15, El Poblado, Medellin",
-        "rating": 4.6,
-        "habitaciones": [
-            {"descripcion": "Habitación Confort",   "capacidad": 2, "precio": 370000.0},
-            {"descripcion": "Habitación Deluxe",    "capacidad": 2, "precio": 500000.0},
-            {"descripcion": "Suite Estelar",        "capacidad": 4, "precio": 900000.0},
-        ],
-    },
-
-    # ════════════════════════════════════════════════════════════════════════
-    # CARTAGENA  (7 hoteles)
-    # ════════════════════════════════════════════════════════════════════════
-    {
-        "nombre": "Hotel Charleston Santa Teresa",
-        "pais": "Colombia",
-        "ciudad": "Cartagena",
-        "direccion": "Plaza de Santa Teresa, Centro Histórico, Cartagena",
-        "rating": 4.9,
-        "habitaciones": [
-            {"descripcion": "Habitación Colonial",      "capacidad": 2, "precio": 650000.0},
-            {"descripcion": "Suite Panorámica Mar",     "capacidad": 2, "precio": 1100000.0},
-            {"descripcion": "Suite Real",               "capacidad": 4, "precio": 2200000.0},
-        ],
-    },
-    {
-        "nombre": "Sofitel Legend Santa Clara",
-        "pais": "Colombia",
-        "ciudad": "Cartagena",
-        "direccion": "Calle del Torno # 39-29, Centro Histórico, Cartagena",
-        "rating": 4.9,
-        "habitaciones": [
-            {"descripcion": "Habitación Clásica Patio",   "capacidad": 2, "precio": 720000.0},
-            {"descripcion": "Habitación Deluxe Piscina",  "capacidad": 2, "precio": 950000.0},
-            {"descripcion": "Suite Legend",               "capacidad": 3, "precio": 1800000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Movich Cartagena de Indias",
-        "pais": "Colombia",
-        "ciudad": "Cartagena",
-        "direccion": "Bocagrande, Carrera 3 # 8-129, Cartagena",
-        "rating": 4.3,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar",    "capacidad": 2, "precio": 310000.0},
-            {"descripcion": "Habitación Vista al Mar","capacidad": 2, "precio": 480000.0},
-            {"descripcion": "Suite Familiar",         "capacidad": 5, "precio": 820000.0},
-        ],
-    },
-    {
-        "nombre": "Bastión Luxury Hotel",
-        "pais": "Colombia",
-        "ciudad": "Cartagena",
-        "direccion": "Calle del Guerrero # 29-10, Centro Histórico, Cartagena",
-        "rating": 4.8,
-        "habitaciones": [
-            {"descripcion": "Habitación Deluxe Patio",  "capacidad": 2, "precio": 680000.0},
-            {"descripcion": "Suite Bastión",            "capacidad": 2, "precio": 1050000.0},
-            {"descripcion": "Suite Gran Bastión",       "capacidad": 4, "precio": 2000000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Caribe by Faranda",
-        "pais": "Colombia",
-        "ciudad": "Cartagena",
-        "direccion": "Carrera 1 # 2-87, Bocagrande, Cartagena",
-        "rating": 4.2,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar Jardín", "capacidad": 2, "precio": 270000.0},
-            {"descripcion": "Habitación Vista al Mar",    "capacidad": 2, "precio": 380000.0},
-            {"descripcion": "Suite Caribe",               "capacidad": 4, "precio": 750000.0},
-        ],
-    },
-    {
-        "nombre": "Almirante Cartagena Hotel",
-        "pais": "Colombia",
-        "ciudad": "Cartagena",
-        "direccion": "Av. San Martín # 4-33, Bocagrande, Cartagena",
-        "rating": 4.1,
-        "habitaciones": [
-            {"descripcion": "Habitación Sencilla",   "capacidad": 1, "precio": 210000.0},
-            {"descripcion": "Habitación Doble",      "capacidad": 2, "precio": 300000.0},
-            {"descripcion": "Suite Superior",        "capacidad": 3, "precio": 580000.0},
-        ],
-    },
-    {
-        "nombre": "El Marqués Hotel Boutique",
-        "pais": "Colombia",
-        "ciudad": "Cartagena",
-        "direccion": "Calle 33 # 3-67, Getsemaní, Cartagena",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Getsemaní",  "capacidad": 2, "precio": 340000.0},
-            {"descripcion": "Suite Marqués",         "capacidad": 2, "precio": 560000.0},
-            {"descripcion": "Suite Familiar",        "capacidad": 4, "precio": 920000.0},
-        ],
-    },
-
-    # ════════════════════════════════════════════════════════════════════════
-    # CALI  (7 hoteles)
-    # ════════════════════════════════════════════════════════════════════════
-    {
-        "nombre": "Hotel Dann Carlton Cali",
-        "pais": "Colombia",
-        "ciudad": "Cali",
-        "direccion": "Avenida Colombia # 2-72, Cali",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar Sencilla", "capacidad": 1, "precio": 190000.0},
-            {"descripcion": "Habitación Estándar Doble",    "capacidad": 2, "precio": 280000.0},
-            {"descripcion": "Suite Ejecutiva",              "capacidad": 2, "precio": 560000.0},
-        ],
-    },
-    {
-        "nombre": "GHL Hotel Collection Palma Real",
-        "pais": "Colombia",
-        "ciudad": "Cali",
-        "direccion": "Calle 19A Norte # 8N-40, Cali",
-        "rating": 4.3,
-        "habitaciones": [
-            {"descripcion": "Habitación Business",  "capacidad": 2, "precio": 240000.0},
-            {"descripcion": "Habitación Deluxe",    "capacidad": 2, "precio": 360000.0},
-            {"descripcion": "Suite Junior",         "capacidad": 3, "precio": 620000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Spiwak Chipichape",
-        "pais": "Colombia",
-        "ciudad": "Cali",
-        "direccion": "Carrera 1B # 66-200, Chipichape, Cali",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Superior",  "capacidad": 2, "precio": 310000.0},
-            {"descripcion": "Habitación Deluxe",    "capacidad": 2, "precio": 420000.0},
-            {"descripcion": "Suite Spiwak",         "capacidad": 4, "precio": 780000.0},
-        ],
-    },
-    {
-        "nombre": "Estelar Belmonte Cali",
-        "pais": "Colombia",
-        "ciudad": "Cali",
-        "direccion": "Calle 16A Norte # 4N-62, Normandía, Cali",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Habitación Confort",   "capacidad": 2, "precio": 270000.0},
-            {"descripcion": "Habitación Superior",  "capacidad": 2, "precio": 370000.0},
-            {"descripcion": "Suite Estelar",        "capacidad": 3, "precio": 650000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Camino Real Cali",
-        "pais": "Colombia",
-        "ciudad": "Cali",
-        "direccion": "Av. Colombia # 7-38, Granada, Cali",
-        "rating": 4.0,
-        "habitaciones": [
-            {"descripcion": "Habitación Sencilla",       "capacidad": 1, "precio": 160000.0},
-            {"descripcion": "Habitación Doble Estándar", "capacidad": 2, "precio": 230000.0},
-            {"descripcion": "Habitación Familiar",       "capacidad": 4, "precio": 390000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Boutique Bello Horizonte Cali",
-        "pais": "Colombia",
-        "ciudad": "Cali",
-        "direccion": "Calle 5B # 36A-27, San Fernando, Cali",
-        "rating": 4.6,
-        "habitaciones": [
-            {"descripcion": "Habitación Jardín",     "capacidad": 2, "precio": 290000.0},
-            {"descripcion": "Habitación Piscina",    "capacidad": 2, "precio": 380000.0},
-            {"descripcion": "Suite Bello Horizonte", "capacidad": 3, "precio": 680000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Casa Republicana Cali",
-        "pais": "Colombia",
-        "ciudad": "Cali",
-        "direccion": "Carrera 6 # 8-13, Centro Histórico, Cali",
-        "rating": 4.2,
-        "habitaciones": [
-            {"descripcion": "Habitación Colonial",   "capacidad": 2, "precio": 220000.0},
-            {"descripcion": "Suite Colonial",        "capacidad": 3, "precio": 420000.0},
-            {"descripcion": "Suite Presidencial",    "capacidad": 4, "precio": 750000.0},
-        ],
-    },
-
-    # ════════════════════════════════════════════════════════════════════════
-    # SANTA MARTA  (7 hoteles)
-    # ════════════════════════════════════════════════════════════════════════
-    {
-        "nombre": "Hotel Zuana Beach Resort",
-        "pais": "Colombia",
-        "ciudad": "Santa Marta",
-        "direccion": "Carrera 2 # 6-10, El Rodadero, Santa Marta",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar",    "capacidad": 2, "precio": 350000.0},
-            {"descripcion": "Suite Frente al Mar",    "capacidad": 2, "precio": 600000.0},
-            {"descripcion": "Suite Familiar",         "capacidad": 5, "precio": 900000.0},
-        ],
-    },
-    {
-        "nombre": "Casa Loma Hotel Boutique",
-        "pais": "Colombia",
-        "ciudad": "Santa Marta",
-        "direccion": "Carrera 20 # 3-69, Centro Histórico, Santa Marta",
-        "rating": 4.6,
-        "habitaciones": [
-            {"descripcion": "Habitación Jardín",      "capacidad": 2, "precio": 280000.0},
-            {"descripcion": "Habitación Vista Ciudad","capacidad": 2, "precio": 340000.0},
-            {"descripcion": "Suite Penthouse",        "capacidad": 3, "precio": 780000.0},
-        ],
-    },
-    {
-        "nombre": "Irotama Resort Santa Marta",
-        "pais": "Colombia",
-        "ciudad": "Santa Marta",
-        "direccion": "Km 14 vía Santa Marta-Barranquilla, Santa Marta",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Cabaña Estándar",        "capacidad": 2, "precio": 400000.0},
-            {"descripcion": "Cabaña Frente al Mar",   "capacidad": 4, "precio": 680000.0},
-            {"descripcion": "Suite VIP Playa",        "capacidad": 4, "precio": 1100000.0},
-        ],
-    },
-    {
-        "nombre": "La Sierra Hotel El Rodadero",
-        "pais": "Colombia",
-        "ciudad": "Santa Marta",
-        "direccion": "Carrera 1A # 9-47, El Rodadero, Santa Marta",
-        "rating": 4.3,
-        "habitaciones": [
-            {"descripcion": "Habitación Sencilla",     "capacidad": 1, "precio": 190000.0},
-            {"descripcion": "Habitación Vista Mar",    "capacidad": 2, "precio": 320000.0},
-            {"descripcion": "Suite Familiar",          "capacidad": 5, "precio": 620000.0},
-        ],
-    },
-    {
-        "nombre": "Tamacá Beach Resort Hotel",
-        "pais": "Colombia",
-        "ciudad": "Santa Marta",
-        "direccion": "Carrera 2 # 11A-98, El Rodadero, Santa Marta",
-        "rating": 4.2,
-        "habitaciones": [
-            {"descripcion": "Habitación Playa",        "capacidad": 2, "precio": 310000.0},
-            {"descripcion": "Suite Coral",             "capacidad": 3, "precio": 520000.0},
-            {"descripcion": "Suite Presidencial Mar",  "capacidad": 4, "precio": 850000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Bello Horizonte Santa Marta",
-        "pais": "Colombia",
-        "ciudad": "Santa Marta",
-        "direccion": "Carrera 2 # 11-24, El Rodadero, Santa Marta",
-        "rating": 4.1,
-        "habitaciones": [
-            {"descripcion": "Habitación Económica",   "capacidad": 2, "precio": 180000.0},
-            {"descripcion": "Habitación Doble",       "capacidad": 2, "precio": 260000.0},
-            {"descripcion": "Habitación Triple",      "capacidad": 3, "precio": 350000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Boutique La Tortuga",
-        "pais": "Colombia",
-        "ciudad": "Santa Marta",
-        "direccion": "Calle 18 # 3-26, Centro Histórico, Santa Marta",
-        "rating": 4.7,
-        "habitaciones": [
-            {"descripcion": "Habitación Deluxe",      "capacidad": 2, "precio": 360000.0},
-            {"descripcion": "Suite Caribe",           "capacidad": 2, "precio": 580000.0},
-            {"descripcion": "Suite La Tortuga",       "capacidad": 4, "precio": 960000.0},
-        ],
-    },
-
-    # ════════════════════════════════════════════════════════════════════════
-    # BARRANQUILLA  (7 hoteles)
-    # ════════════════════════════════════════════════════════════════════════
-    {
-        "nombre": "Hotel El Prado",
-        "pais": "Colombia",
-        "ciudad": "Barranquilla",
-        "direccion": "Carrera 54 # 70-10, El Prado, Barranquilla",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Habitación Clásica",    "capacidad": 2, "precio": 220000.0},
-            {"descripcion": "Habitación Superior",   "capacidad": 2, "precio": 320000.0},
-            {"descripcion": "Suite Gran Prado",      "capacidad": 4, "precio": 700000.0},
-        ],
-    },
-    {
-        "nombre": "GHL Hotel Barranquilla",
-        "pais": "Colombia",
-        "ciudad": "Barranquilla",
-        "direccion": "Carrera 52 # 75-30, Barranquilla",
-        "rating": 4.2,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar",   "capacidad": 2, "precio": 200000.0},
-            {"descripcion": "Habitación Ejecutiva",  "capacidad": 2, "precio": 300000.0},
-            {"descripcion": "Suite Ejecutiva",       "capacidad": 3, "precio": 550000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Dann Carlton Barranquilla",
-        "pais": "Colombia",
-        "ciudad": "Barranquilla",
-        "direccion": "Carrera 50 # 80-41, El Nogal, Barranquilla",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Confort",    "capacidad": 2, "precio": 260000.0},
-            {"descripcion": "Habitación Deluxe",     "capacidad": 2, "precio": 370000.0},
-            {"descripcion": "Suite Carlton",         "capacidad": 3, "precio": 720000.0},
-        ],
-    },
-    {
-        "nombre": "Sonesta Hotel Barranquilla",
-        "pais": "Colombia",
-        "ciudad": "Barranquilla",
-        "direccion": "Calle 106 # 50-48, Barranquilla",
-        "rating": 4.3,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar",   "capacidad": 2, "precio": 240000.0},
-            {"descripcion": "Habitación Superior",   "capacidad": 2, "precio": 340000.0},
-            {"descripcion": "Suite Sonesta",         "capacidad": 4, "precio": 680000.0},
-        ],
-    },
-    {
-        "nombre": "Holiday Inn Barranquilla",
-        "pais": "Colombia",
-        "ciudad": "Barranquilla",
-        "direccion": "Carrera 54 # 59-45, Barranquilla",
-        "rating": 4.1,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar",      "capacidad": 2, "precio": 210000.0},
-            {"descripcion": "Habitación Ejecutiva",     "capacidad": 2, "precio": 290000.0},
-            {"descripcion": "Suite Familiar",           "capacidad": 4, "precio": 500000.0},
-        ],
-    },
-    {
-        "nombre": "Estelar Barranquilla Hotel",
-        "pais": "Colombia",
-        "ciudad": "Barranquilla",
-        "direccion": "Carrera 53 # 98-228, Barranquilla",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Habitación Confort",    "capacidad": 2, "precio": 250000.0},
-            {"descripcion": "Habitación Deluxe",     "capacidad": 2, "precio": 360000.0},
-            {"descripcion": "Suite Estelar",         "capacidad": 3, "precio": 640000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Movich Buró 26 Barranquilla",
-        "pais": "Colombia",
-        "ciudad": "Barranquilla",
-        "direccion": "Carrera 53B # 26-21, Barranquilla",
-        "rating": 4.3,
-        "habitaciones": [
-            {"descripcion": "Habitación Smart",      "capacidad": 1, "precio": 180000.0},
-            {"descripcion": "Habitación Business",   "capacidad": 2, "precio": 280000.0},
-            {"descripcion": "Suite Movich",          "capacidad": 3, "precio": 530000.0},
-        ],
-    },
-
-    # ════════════════════════════════════════════════════════════════════════
-    # San Andres  (7 hoteles)
-    # ════════════════════════════════════════════════════════════════════════
-    {
-        "nombre": "Hotel Decameron San Luis",
-        "pais": "Colombia",
-        "ciudad": "San Andres",
-        "direccion": "Km 13 vía San Luis, San Andres Isla",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar Todo Incluido",  "capacidad": 2, "precio": 580000.0},
-            {"descripcion": "Habitación Superior Vista al Mar",   "capacidad": 2, "precio": 780000.0},
-            {"descripcion": "Suite Caribe",                       "capacidad": 4, "precio": 1400000.0},
-        ],
-    },
-    {
-        "nombre": "Casa Harb Hotel Boutique",
-        "pais": "Colombia",
-        "ciudad": "San Andres",
-        "direccion": "Av. Colombia # 3-59, San Andres Isla",
-        "rating": 4.6,
-        "habitaciones": [
-            {"descripcion": "Habitación Coral",               "capacidad": 2, "precio": 420000.0},
-            {"descripcion": "Habitación Mar de Siete Colores","capacidad": 2, "precio": 600000.0},
-            {"descripcion": "Suite Isla",                     "capacidad": 3, "precio": 950000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Sunrise Beach San Andres",
-        "pais": "Colombia",
-        "ciudad": "San Andres",
-        "direccion": "Av. Colombia # 1A-104, San Andres Isla",
-        "rating": 4.3,
-        "habitaciones": [
-            {"descripcion": "Habitación Playa",         "capacidad": 2, "precio": 360000.0},
-            {"descripcion": "Suite Amanecer Mar",       "capacidad": 2, "precio": 560000.0},
-            {"descripcion": "Suite Familiar Sunrise",   "capacidad": 5, "precio": 920000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Lord Pierre San Andres",
-        "pais": "Colombia",
-        "ciudad": "San Andres",
-        "direccion": "Av. 20 de Julio # 3-88, San Andres Isla",
-        "rating": 4.0,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar",       "capacidad": 2, "precio": 290000.0},
-            {"descripcion": "Habitación Vista al Mar",   "capacidad": 2, "precio": 400000.0},
-            {"descripcion": "Suite Lord Pierre",         "capacidad": 3, "precio": 680000.0},
-        ],
-    },
-    {
-        "nombre": "Portobelo Hotel San Andres",
-        "pais": "Colombia",
-        "ciudad": "San Andres",
-        "direccion": "Carretera Circunvalar Km 2, San Andres Isla",
-        "rating": 4.2,
-        "habitaciones": [
-            {"descripcion": "Habitación Jardín Tropical","capacidad": 2, "precio": 310000.0},
-            {"descripcion": "Habitación Piscina",        "capacidad": 2, "precio": 440000.0},
-            {"descripcion": "Suite Portobelo",           "capacidad": 4, "precio": 780000.0},
-        ],
-    },
-    {
-        "nombre": "Cocoplum Beach Hotel",
-        "pais": "Colombia",
-        "ciudad": "San Andres",
-        "direccion": "North End, San Andres Isla",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Habitación Coconut",       "capacidad": 2, "precio": 380000.0},
-            {"descripcion": "Suite Ocean View",         "capacidad": 2, "precio": 620000.0},
-            {"descripcion": "Villa Playa",              "capacidad": 6, "precio": 1300000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Decameron Isleño",
-        "pais": "Colombia",
-        "ciudad": "San Andres",
-        "direccion": "Km 3 vía Sound Bay, San Andres Isla",
-        "rating": 4.3,
-        "habitaciones": [
-            {"descripcion": "Habitación Todo Incluido",     "capacidad": 2, "precio": 530000.0},
-            {"descripcion": "Habitación Deluxe T.I.",       "capacidad": 2, "precio": 700000.0},
-            {"descripcion": "Suite Isleño",                 "capacidad": 4, "precio": 1200000.0},
-        ],
-    },
-
-    # ════════════════════════════════════════════════════════════════════════
-    # MANIZALES  (7 hoteles)
-    # ════════════════════════════════════════════════════════════════════════
-    {
-        "nombre": "Hotel Recinto del Pensamiento",
-        "pais": "Colombia",
-        "ciudad": "Manizales",
-        "direccion": "Km 11 vía al Magdalena, Manizales",
-        "rating": 4.3,
-        "habitaciones": [
-            {"descripcion": "Cabaña Sencilla",   "capacidad": 2, "precio": 250000.0},
-            {"descripcion": "Cabaña Doble",      "capacidad": 4, "precio": 400000.0},
-            {"descripcion": "Suite Cafetal",     "capacidad": 4, "precio": 650000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Varuna Manizales",
-        "pais": "Colombia",
-        "ciudad": "Manizales",
-        "direccion": "Carrera 23 # 66-87, Manizales",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Habitación Estándar",   "capacidad": 2, "precio": 220000.0},
-            {"descripcion": "Habitación Superior",   "capacidad": 2, "precio": 310000.0},
-            {"descripcion": "Suite Varuna",          "capacidad": 3, "precio": 560000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Carretero Manizales",
-        "pais": "Colombia",
-        "ciudad": "Manizales",
-        "direccion": "Av. Santander # 11-51, Manizales",
-        "rating": 4.0,
-        "habitaciones": [
-            {"descripcion": "Habitación Sencilla",        "capacidad": 1, "precio": 140000.0},
-            {"descripcion": "Habitación Doble",           "capacidad": 2, "precio": 200000.0},
-            {"descripcion": "Habitación Ejecutiva",       "capacidad": 2, "precio": 310000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Estelar El Cable Manizales",
-        "pais": "Colombia",
-        "ciudad": "Manizales",
-        "direccion": "Carrera 23 # 66-23, El Cable, Manizales",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Confort",    "capacidad": 2, "precio": 280000.0},
-            {"descripcion": "Habitación Deluxe",     "capacidad": 2, "precio": 380000.0},
-            {"descripcion": "Suite Estelar",         "capacidad": 4, "precio": 690000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Termales del Ruiz",
-        "pais": "Colombia",
-        "ciudad": "Manizales",
-        "direccion": "Carretera al Nevado del Ruiz Km 22, Manizales",
-        "rating": 4.6,
-        "habitaciones": [
-            {"descripcion": "Cabaña Termal Sencilla",  "capacidad": 2, "precio": 320000.0},
-            {"descripcion": "Cabaña Termal Doble",     "capacidad": 4, "precio": 500000.0},
-            {"descripcion": "Suite Volcán",            "capacidad": 4, "precio": 850000.0},
-        ],
-    },
-    {
-        "nombre": "GHL Hotel Manizales",
-        "pais": "Colombia",
-        "ciudad": "Manizales",
-        "direccion": "Carrera 22 # 20-20, Manizales",
-        "rating": 4.2,
-        "habitaciones": [
-            {"descripcion": "Habitación Business",   "capacidad": 2, "precio": 230000.0},
-            {"descripcion": "Habitación Deluxe",     "capacidad": 2, "precio": 340000.0},
-            {"descripcion": "Suite GHL",             "capacidad": 3, "precio": 600000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Las Colinas Manizales",
-        "pais": "Colombia",
-        "ciudad": "Manizales",
-        "direccion": "Calle 22 # 20-20, Centro, Manizales",
-        "rating": 4.1,
-        "habitaciones": [
-            {"descripcion": "Habitación Sencilla",    "capacidad": 1, "precio": 150000.0},
-            {"descripcion": "Habitación Doble",       "capacidad": 2, "precio": 230000.0},
-            {"descripcion": "Habitación Familiar",    "capacidad": 4, "precio": 380000.0},
-        ],
-    },
-
-    # ════════════════════════════════════════════════════════════════════════
-    # VILLA DE LEYVA  (7 hoteles)
-    # ════════════════════════════════════════════════════════════════════════
-    {
-        "nombre": "Hotel Mesón de los Virreyes",
-        "pais": "Colombia",
-        "ciudad": "Villa de Leyva",
-        "direccion": "Carrera 9 # 9-35, Plaza Mayor, Villa de Leyva",
-        "rating": 4.7,
-        "habitaciones": [
-            {"descripcion": "Habitación Colonial Sencilla", "capacidad": 1, "precio": 180000.0},
-            {"descripcion": "Habitación Colonial Doble",    "capacidad": 2, "precio": 290000.0},
-            {"descripcion": "Suite Colonial",              "capacidad": 3, "precio": 520000.0},
-        ],
-    },
-    {
-        "nombre": "Posada de San Antonio Villa de Leyva",
-        "pais": "Colombia",
-        "ciudad": "Villa de Leyva",
-        "direccion": "Calle 13 # 8-53, Villa de Leyva",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Patio",       "capacidad": 2, "precio": 220000.0},
-            {"descripcion": "Habitación Jardín",      "capacidad": 2, "precio": 300000.0},
-            {"descripcion": "Suite San Antonio",      "capacidad": 3, "precio": 500000.0},
-        ],
-    },
-    {
-        "nombre": "La Posada de San Jorge",
-        "pais": "Colombia",
-        "ciudad": "Villa de Leyva",
-        "direccion": "Carrera 9 # 11-34, Villa de Leyva",
-        "rating": 4.6,
-        "habitaciones": [
-            {"descripcion": "Habitación Colonial",    "capacidad": 2, "precio": 240000.0},
-            {"descripcion": "Suite Hacienda",         "capacidad": 3, "precio": 420000.0},
-            {"descripcion": "Suite Presidencial",     "capacidad": 4, "precio": 750000.0},
-        ],
-    },
-    {
-        "nombre": "Hospedería Renacer",
-        "pais": "Colombia",
-        "ciudad": "Villa de Leyva",
-        "direccion": "Calle 12 # 9-21, Villa de Leyva",
-        "rating": 4.3,
-        "habitaciones": [
-            {"descripcion": "Habitación Renacer",     "capacidad": 2, "precio": 200000.0},
-            {"descripcion": "Habitación Superior",    "capacidad": 2, "precio": 280000.0},
-            {"descripcion": "Suite Renacer",          "capacidad": 4, "precio": 480000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Boutique Plaza Mayor Villa de Leyva",
-        "pais": "Colombia",
-        "ciudad": "Villa de Leyva",
-        "direccion": "Calle 13 # 7-58, Plaza Mayor, Villa de Leyva",
-        "rating": 4.8,
-        "habitaciones": [
-            {"descripcion": "Habitación Plaza",           "capacidad": 2, "precio": 310000.0},
-            {"descripcion": "Suite Vista a la Plaza",     "capacidad": 2, "precio": 520000.0},
-            {"descripcion": "Suite Presidencial Plaza",   "capacidad": 4, "precio": 900000.0},
-        ],
-    },
-    {
-        "nombre": "Posada Campanario Villa de Leyva",
-        "pais": "Colombia",
-        "ciudad": "Villa de Leyva",
-        "direccion": "Vereda Sachica Km 2, Villa de Leyva",
-        "rating": 4.4,
-        "habitaciones": [
-            {"descripcion": "Cabaña Campo Sencilla",  "capacidad": 2, "precio": 190000.0},
-            {"descripcion": "Cabaña Campo Doble",     "capacidad": 4, "precio": 330000.0},
-            {"descripcion": "Suite Campanario",       "capacidad": 4, "precio": 580000.0},
-        ],
-    },
-    {
-        "nombre": "Hotel Casa de los Pájaros",
-        "pais": "Colombia",
-        "ciudad": "Villa de Leyva",
-        "direccion": "Carrera 10 # 13-20, Villa de Leyva",
-        "rating": 4.5,
-        "habitaciones": [
-            {"descripcion": "Habitación Nido",         "capacidad": 2, "precio": 250000.0},
-            {"descripcion": "Habitación Jardín",       "capacidad": 2, "precio": 340000.0},
-            {"descripcion": "Suite Pájaros",           "capacidad": 3, "precio": 560000.0},
-        ],
-    },
+    { 
+        "id" : "2a1572bf-1ad7-4bf0-b8ae-000c067cbd45", 
+        "name" : "Argentina", 
+        "code" : "AR", 
+        "currencyCode" : "ARS", 
+        "currencySymbol" : "$",
+        "flagEmoji" : "🇦🇷",
+        "phoneCode" : "+54"
+    }
 ]
 
 
+AMENIDADES_SEED = [
+    { "id" : "d329c0e8-42e6-40c8-8cf7-4e4e309f537c", "name" : "WiFi", "icon" : "IconWiFi" },
+    { "id" : "e430d1f9-53f7-41d9-9d98-5f5f41a0648d", "name" : "Desayuno", "icon" : "IconDesayuno" },
+    { "id" : "f541e2a0-64b8-42e0-aa20-6c6c52b1759e", "name" : "Estacionamiento", "icon" : "IconEstacionamiento" },
+    { "id" : "a652f3b1-75c9-43f1-ba31-7d7d63c286af", "name" : "Piscina", "icon" : "IconPiscina" },
+    { "id" : "b763a4c2-86d0-44a2-ca42-8e8e74d397ba", "name" : "Gimnasio", "icon" : "IconGimnasio" },
+    { "id" : "c874b5d3-97e1-45b3-da53-9f9f85e408cb", "name" : "Room Service", "icon" : "IconRoomService" },
+    { "id" : "d985c6e4-08f2-46c4-ea64-0a0a96f519dc", "name" : "Spa", "icon" : "IconSpa" },
+    { "id" : "e096d7f5-19a3-47d5-fa75-1b1b07a620ed", "name" : "Restaurante", "icon" : "IconRestaurante" },
+    { "id" : "f107e8a6-20b4-48e6-ab86-2c2c18b731fe", "name" : "Playa Privada", "icon" : "IconPlayaPrivada" },
+    { "id" : "a218f9b7-31c5-49f7-bc97-3d3d29c842af", "name" : "Bar", "icon" : "IconBar" },
+    { "id" : "b329a0c8-42d6-40a8-cd08-4e4e30d953ba", "name" : "Terraza", "icon" : "IconTerraza" },
+    { "id" : "c430b1d9-53e7-41b9-de19-5f5f41e064cb", "name" : "Todo Incluido", "icon" : "IconTodoIncluido" },
+    { "id" : "d541c2e0-64f8-42c0-ef20-6a6a52f175dc", "name" : "Kids Club", "icon" :"IconKidsClub" },
+    { "id" : "e652d3f1-75a9-43d1-fa31-7b7b63a286ed", "name" : "Playa", "icon" : "IconPlaya" },
+    { "id" : "f763e4a2-86b0-44e2-ab42-8c8c74b397fe", "name" : "Snorkel", "icon" : "IconSnorkel" },
+    { "id" : "a874f5b3-97c1-45f3-bc53-9d9d85c408af", "name" : "Business Center", "icon" : "IconBusinessCenter" },
+    { "id" : "b985a6c4-08d2-46a4-cd64-0e0e96d519ba", "name" : "Chimenea", "icon" : "IconChimenea" },
+    { "id" : "c096b7d5-19e3-47b5-de75-1f1f07e620cb", "name" : "Jardín", "icon" : "IconJardin" },
+    { "id" : "d107c8e6-20f4-48c6-ef86-2a2a18f731dc", "name" : "Tour Cafetero", "icon" : "IconTourCafetero" },
+    { "id" : "e118d9f7-31a5-49d7-fa97-3b3b29a842ed", "name" : "Senderismo", "icon" : "IconSenderismo" }
+]
+
+IMG_HABITACIONES_SEED = [
+    { "code" : "101", "url": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600"},
+    { "code" : "102", "url": "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600"},
+    { "code" : "103", "url": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600"}
+]
+
+CITY_COORDINATES = {
+    "bogota": (4.7110, -74.0721),
+    "medellin": (6.2442, -75.5812),
+    "cartagena": (10.3910, -75.4794),
+    "cali": (3.4516, -76.5320),
+    "santa marta": (11.2408, -74.1990),
+    "san andres": (12.5847, -81.7006),
+    "manizales": (5.0703, -75.5138),
+    "villa de leyva": (5.6349, -73.5248),
+    "barranquilla": (10.9685, -74.7813),
+    "lima": (-12.0464, -77.0428),
+    "cusco": (-13.5319, -71.9675),
+    "arequipa": (-16.4090, -71.5375),
+    "puno": (-15.8402, -70.0219),
+    "trujillo": (-8.1118, -79.0288),
+    "mancora": (-4.1050, -81.0470),
+    "paracas": (-13.8333, -76.2500),
+    "iquitos": (-3.7437, -73.2516),
+    "quito": (-0.1807, -78.4678),
+    "guayaquil": (-2.1709, -79.9224),
+    "cuenca": (-2.9001, -79.0059),
+    "galapagos": (-0.9538, -90.9656),
+    "montanita": (-1.8262, -80.7528),
+    "banos": (-1.3967, -78.4229),
+    "manta": (-0.9677, -80.7089),
+    "otavalo": (0.2346, -78.2620),
+    "ciudad de mexico": (19.4326, -99.1332),
+    "cancun": (21.1619, -86.8515),
+    "playa del carmen": (20.6296, -87.0739),
+    "guadalajara": (20.6597, -103.3496),
+    "puerto vallarta": (20.6534, -105.2253),
+    "oaxaca": (17.0732, -96.7266),
+    "tulum": (20.2114, -87.4654),
+    "los cabos": (22.8905, -109.9167),
+    "santiago": (-33.4489, -70.6693),
+    "valparaiso": (-33.0472, -71.6127),
+    "vina del mar": (-33.0245, -71.5518),
+    "puerto varas": (-41.3175, -72.9850),
+    "san pedro de atacama": (-22.9087, -68.1997),
+    "punta arenas": (-53.1638, -70.9171),
+    "la serena": (-29.9045, -71.2489),
+    "concepcion": (-36.8201, -73.0444),
+    "buenos aires": (-34.6037, -58.3816),
+    "mendoza": (-32.8908, -68.8272),
+    "bariloche": (-41.1335, -71.3103),
+    "cordoba": (-31.4201, -64.1888),
+    "salta": (-24.7821, -65.4232),
+    "puerto madryn": (-42.7692, -65.0385),
+    "ushuaia": (-54.8019, -68.3030),
+    "mar del plata": (-38.0055, -57.5426),
+}
+
+
+def _normalize_city(city):
+    if not city:
+        return ""
+
+    replacements = {
+        "á": "a",
+        "é": "e",
+        "í": "i",
+        "ó": "o",
+        "ú": "u",
+        "Á": "a",
+        "É": "e",
+        "Í": "i",
+        "Ó": "o",
+        "Ú": "u",
+        "ñ": "n",
+        "Ñ": "n",
+    }
+    normalized = str(city)
+    for source, target in replacements.items():
+        normalized = normalized.replace(source, target)
+
+    return normalized.lower().strip()
+
+
+def _resolve_coordinates(data):
+    latitude = data.get("latitude")
+    longitude = data.get("longitude")
+
+    if latitude is not None and longitude is not None:
+        return float(latitude), float(longitude)
+
+    city_key = _normalize_city(data.get("ciudad"))
+    return CITY_COORDINATES.get(city_key, (0.0, 0.0))
+
+
+def _resolve_description(data):
+    description = data.get("description") or data.get("Description") or data.get("descripcion")
+    if description:
+        return str(description)
+    return f"Hospedaje en {data.get('ciudad', 'destino turístico')}"
+
+# Funciones para cargar HOSPEDAJES_SEED desde archivos JSON por país/ciudad
+def _data_file_path(file_name):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(current_dir, '..', 'data', file_name)
+
+
+def _load_json_file(file_name):
+    json_path = _data_file_path(file_name)
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"No se encontró el archivo {file_name} en {json_path}")
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Error al parsear el archivo {file_name}: {str(e)}")
+
+
+def _load_hospedajes_catalog():
+    """Carga el catálogo de seeds por país y ciudad."""
+    catalog = _load_json_file('hospedajes_por_pais_ciudad.json')
+    if not isinstance(catalog, dict) or 'countries' not in catalog:
+        raise ValueError("El archivo hospedajes_por_pais_ciudad.json debe contener la clave 'countries'.")
+
+    seed_country_codes = {country['code'] for country in COUNTRIES_SEED}
+    catalog_country_codes = {
+        country.get('countryCode') for country in catalog.get('countries', [])
+    }
+    missing_country_codes = seed_country_codes - catalog_country_codes
+
+    if missing_country_codes:
+        missing = ", ".join(sorted(missing_country_codes))
+        raise ValueError(
+            f"Faltan países en el catálogo de hospedajes_por_pais_ciudad.json: {missing}"
+        )
+
+    return catalog
+
+
+def _load_hospedajes_seed():
+    """Carga y anexa los hospedajes desde todas las fuentes definidas en el catálogo."""
+    catalog = _load_hospedajes_catalog()
+    hospedajes = []
+
+    for country in catalog.get('countries', []):
+        for source in country.get('sources', []):
+            file_name = source.get('file')
+            if not file_name:
+                continue
+
+            source_data = _load_json_file(file_name)
+            if not isinstance(source_data, list):
+                raise ValueError(f"El archivo {file_name} debe contener una lista de hospedajes.")
+
+            hospedajes.extend(source_data)
+
+    return hospedajes
+
+
+# #sym:HOSPEDAJES_SEED - Cargado desde catálogo JSON por país/ciudad
+HOSPEDAJES_SEED = _load_hospedajes_seed()
+
+
 class SeedHelper:
-    """Herramienta para poblar y restablecer las tablas de hospedajes y habitaciones."""
+    """Herramienta para poblar y restablecer las tablas de hospedajes, habitaciones y amenidades."""
 
     @staticmethod
-    def reset_and_seed():
+    def _ensure_habitaciones_code_column():
         """
-        Elimina todos los registros existentes de habitaciones y hospedajes,
-        luego inserta los datos de seed definidos en HOSPEDAJES_SEED.
+        Asegura que la columna code exista en SQLite antes del seed.
+        Esto corrige bases locales creadas con un esquema anterior.
+        """
+        uri = str(db.engine.url)
+
+        if not uri.startswith("sqlite"):
+            return
+
+        columns = db.session.execute(text("PRAGMA table_info(habitaciones)"))
+        column_names = {row[1] for row in columns}
+
+        if "code" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE habitaciones ADD COLUMN code VARCHAR(50) NOT NULL DEFAULT ''")
+            )
+            db.session.commit()
+
+    @staticmethod
+    def _ensure_hospedajes_country_code_column():
+        """
+        Asegura que la columna countryCode exista en SQLite antes del seed.
+        Esto corrige bases locales creadas con un esquema anterior.
+        """
+        uri = str(db.engine.url)
+
+        if not uri.startswith("sqlite"):
+            return
+
+        columns = db.session.execute(text("PRAGMA table_info(hospedajes)"))
+        column_names = {row[1] for row in columns}
+
+        if "countryCode" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE hospedajes ADD COLUMN \"countryCode\" VARCHAR(10) NOT NULL DEFAULT ''")
+            )
+            db.session.commit()
+
+    @staticmethod
+    def _ensure_hospedajes_extended_columns():
+        """
+        Asegura columnas adicionales de hospedajes en SQLite (descripcion, latitude, longitude).
+        Esto corrige bases locales creadas con un esquema anterior.
+        """
+        uri = str(db.engine.url)
+
+        if not uri.startswith("sqlite"):
+            return
+
+        columns = db.session.execute(text("PRAGMA table_info(hospedajes)"))
+        column_names = {row[1] for row in columns}
+
+        if "descripcion" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE hospedajes ADD COLUMN descripcion VARCHAR(255) NOT NULL DEFAULT ''")
+            )
+
+        if "latitude" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE hospedajes ADD COLUMN latitude FLOAT NOT NULL DEFAULT 0")
+            )
+
+        if "longitude" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE hospedajes ADD COLUMN longitude FLOAT NOT NULL DEFAULT 0")
+            )
+
+        db.session.commit()
+
+    @staticmethod
+    def reset_and_seed():   
+        """
+        Elimina todos los registros existentes de habitaciones, hospedajes,
+        amenidades y tabla pivote, luego inserta los datos de seed definidos.
 
         Returns:
             dict con el resumen de registros insertados o un mensaje de error.
         """
         try:
+            SeedHelper._ensure_habitaciones_code_column()
+            SeedHelper._ensure_hospedajes_country_code_column()
+            SeedHelper._ensure_hospedajes_extended_columns()
+            CountryORM.__table__.create(bind=db.engine, checkfirst=True)
+
             # Primero borramos habitaciones por la FK
             HabitacionORM.query.delete()
+            Hospedaje_ImagenORM.query.delete()
+            Hospedaje_AmenidadORM.query.delete()
             HospedajeORM.query.delete()
+            AmenidadORM.query.delete()
+            CountryORM.query.delete()
             db.session.flush()
 
             hospedajes_insertados = 0
             habitaciones_insertadas = 0
+            amenidades_insertadas = 0
+            amenidades_asignadas = 0
+            countries_insertados = 0
+            amenidades_creadas = []
+
+            for country_data in COUNTRIES_SEED:
+                country = CountryORM(
+                    id=uuid.UUID(country_data["id"]),
+                    name=country_data["name"],
+                    code=country_data["code"],
+                    CurrencyCode=country_data["currencyCode"],
+                    CurrencySymbol=country_data["currencySymbol"],
+                    FlagEmoji=country_data["flagEmoji"],
+                    PhoneCode=country_data["phoneCode"],
+                )
+                db.session.add(country)
+                countries_insertados += 1
+
+            for amenidad_data in AMENIDADES_SEED:
+                amenidad = AmenidadORM(
+                    id=uuid.UUID(amenidad_data["id"]),
+                    name=amenidad_data["name"],
+                    icon=amenidad_data["icon"],
+                )
+                db.session.add(amenidad)
+                amenidades_creadas.append(amenidad)
+                amenidades_insertadas += 1
+
+            db.session.flush()
 
             for data in HOSPEDAJES_SEED:
+                latitude, longitude = _resolve_coordinates(data)
                 hospedaje = HospedajeORM(
+                    id=uuid.UUID(data["id"]),
                     nombre=data["nombre"],
+                    descripcion=_resolve_description(data),
+                    countryCode = data["countryCode"],
                     pais=data["pais"],
                     ciudad=data["ciudad"],
                     direccion=data["direccion"],
+                    latitude=latitude,
+                    longitude=longitude,
                     rating=data["rating"],
+                    reviews=data["reviews"],
                 )
                 db.session.add(hospedaje)
                 db.session.flush()  # Obtenemos el id antes del commit
 
+                # Asignamos entre 3 y 7 amenidades aleatorias por hospedaje.
+                cantidad = random.randint(3, min(7, len(amenidades_creadas)))
+                hospedaje.amenidades = random.sample(amenidades_creadas, k=cantidad)
+                amenidades_asignadas += cantidad
+
                 for hab in data["habitaciones"]:
                     habitacion = HabitacionORM(
                         propiedad_id=hospedaje.id,
+                        code=hab["code"],
                         descripcion=hab["descripcion"],
                         capacidad=hab["capacidad"],
                         precio=hab["precio"],
+                        imageUrl=next((img["url"] for img in IMG_HABITACIONES_SEED if img["code"] == hab["code"]), None)
                     )
                     db.session.add(habitacion)
                     habitaciones_insertadas += 1
+
+                for img in data["imagenes"]:
+                    imagen = Hospedaje_ImagenORM(
+                        id=uuid.UUID(img["id"]),
+                        hospedaje_id=hospedaje.id,
+                        url=img["url"]
+                    )
+                    db.session.add(imagen)    
 
                 hospedajes_insertados += 1
 
@@ -849,6 +437,9 @@ class SeedHelper:
 
             return {
                 "ok": True,
+                "countries_insertados": countries_insertados,
+                "amenidades_insertadas": amenidades_insertadas,
+                "amenidades_asignadas": amenidades_asignadas,
                 "hospedajes_insertados": hospedajes_insertados,
                 "habitaciones_insertadas": habitaciones_insertadas,
             }
@@ -856,3 +447,9 @@ class SeedHelper:
         except Exception as e:
             db.session.rollback()
             return {"ok": False, "error": str(e)}
+    
+    @staticmethod
+    def seed_reservations():
+       habitaciones = HabitacionORM.query.all()
+       restuldado = [str(habitacion.id) for habitacion in habitaciones]
+       return {"habitacion_ids": restuldado}

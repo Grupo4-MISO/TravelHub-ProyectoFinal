@@ -3,6 +3,7 @@
 .coverage
 .pytest_cache/
 __pycache__/
+
 # Terraform
 .terraform/
 .terraform.lock.hcl
@@ -19,3 +20,35 @@ override.tf.json
 *_override.tf.json
 .terraform/modules
 .terraform/plugins
+
+# Entorno virtual
+venv/
+env/
+
+# Variables de entorno
+.env
+
+# Archivos de base de datos
+*.db
+*.sqlite3
+
+# Cache de Python
+__pycache__/
+*.pyc
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+#Compose para pruebas locales
+docker-compose.yml

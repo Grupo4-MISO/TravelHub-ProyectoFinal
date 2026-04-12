@@ -24,6 +24,15 @@ redis_client = redis.Redis(
 class SearchHealth(Resource):
     def get(self):
         return {'status': 'healthy'}, 200
+    
+class SeedDB(Resource):
+    def post(self):
+        try:
+            habitaciones = InventarioHelper.seed_reservas_ids(INVENTARIOS_URL)
+            result = ReservaHelper.seedReservas(RESERVAS_URL, 5, habitaciones)
+            return result, 200
+        except Exception as e:
+            return {"ok": False, "error": str(e)}, 500
 
 class Search(Resource):
     def get(self):
@@ -32,6 +41,8 @@ class Search(Resource):
         capacidad = request.args.get('capacidad')
         check_in = request.args.get('check_in')
         check_out = request.args.get('check_out')
+        country_code = request.args.get('country_code')
+        currency_code = request.args.get('currency_code')
 
         #Validamos parametros de busqueda
         BusquedasHelper.validacionCampoCiudad(ciudad)
@@ -44,14 +55,14 @@ class Search(Resource):
         ciudad = BusquedasHelper.limpiarCampoCiudad(ciudad)
 
         #Construimos la clave de cache
-        cache_key = CacheHelper.construirCacheKey(ciudad, capacidad, check_in, check_out)
+        cache_key = CacheHelper.construirCacheKey(ciudad, capacidad, check_in, check_out, country_code, currency_code)
 
         #Intentamos obtener resultados de cache
         disponibles = CacheHelper.obtenerCache(redis_client, cache_key)
 
         if not disponibles:
             #Consulta al microservicio de inventario
-            hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad)
+            hospedajes_habitaciones = InventarioHelper.getInventario(INVENTARIOS_URL, ciudad, capacidad, currency_code)
 
             #Validamos que existan hospedajes para la ciudad y capacidad especificada
             if not hospedajes_habitaciones:

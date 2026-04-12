@@ -10,7 +10,7 @@ _VENTANA_DIAS = 180
 _DURACION_MIN = 1
 _DURACION_MAX = 14
 # Intentos máximos por reserva antes de abandonar (evita bucle infinito)
-_MAX_INTENTOS_FACTOR = 10
+_MAX_INTENTOS_FACTOR = 300
 
 
 def _obtener_habitacion_ids():
@@ -22,13 +22,13 @@ def _obtener_habitacion_ids():
     return [str(fila[0]) for fila in resultado.fetchall()]
 
 
-def _hay_solapamiento(ocupaciones, habitacion_id, nuevo_ci, nuevo_co):
+def _hay_solapamiento(ocupaciones, nuevo_ci, nuevo_co):
     """
     Retorna True si [nuevo_ci, nuevo_co) se solapa con alguna reserva
     ya registrada para esa habitación.
     Condición de solapamiento: nuevo_ci < co_existente AND nuevo_co > ci_existente
     """
-    for (ci, co) in ocupaciones.get(habitacion_id, []):
+    for (ci, co) in ocupaciones:
         if nuevo_ci < co and nuevo_co > ci:
             return True
     return False
@@ -50,6 +50,7 @@ class SeedHelper:
 
         Args:
             cantidad (int): Número de reservas a generar.
+            habitacion_ids (list[str]): Lista de IDs de habitaciones válidas.
 
         Returns:
             dict con ok, reservas_insertadas, solicitadas y, si aplica, advertencia.
@@ -73,56 +74,46 @@ class SeedHelper:
             hoy = date.today()
             fecha_fin = hoy + timedelta(days=_VENTANA_DIAS)
 
-            # Registro de ocupación por habitación: {habitacion_id: [(ci, co), ...]}
-            ocupaciones: dict[str, list[tuple[date, date]]] = {
-                hid: [] for hid in habitacion_ids
-            }
+            for habitacion in habitacion_ids:
+                reservas_insertadas = 0
+                intentos = 0
+                ocupaciones = []
+                while reservas_insertadas < cantidad and intentos < _MAX_INTENTOS_FACTOR:
+                    intentos += 1
+                    # check_in aleatorio dentro de la ventana (dejando al menos 1 noche)
+                    margen_dias = (fecha_fin - hoy).days - _DURACION_MIN
+                    if margen_dias <= 0:
+                        continue
 
-            reservas_insertadas = 0
-            intentos = 0
-            max_intentos = cantidad * _MAX_INTENTOS_FACTOR
+                    offset_ci = random.randint(0, margen_dias)
+                    check_in = hoy + timedelta(days=offset_ci)
 
-            # ── 4. Generar reservas ──────────────────────────────────────────
-            while reservas_insertadas < cantidad and intentos < max_intentos:
-                intentos += 1
+                    # Duración aleatoria sin salir de la ventana
+                    max_duracion = min(_DURACION_MAX, (fecha_fin - check_in).days)
+                    if max_duracion < _DURACION_MIN:
+                        continue
 
-                # Habitación aleatoria
-                hid = random.choice(habitacion_ids)
+                    duracion = random.randint(_DURACION_MIN, max_duracion)
+                    check_out = check_in + timedelta(days=duracion)
 
-                # check_in aleatorio dentro de la ventana (dejando al menos 1 noche)
-                margen_dias = (fecha_fin - hoy).days - _DURACION_MIN
-                if margen_dias <= 0:
-                    continue
+                    # Verificar solapamiento
+                    if _hay_solapamiento(ocupaciones, check_in, check_out):
+                        continue
 
-                offset_ci = random.randint(0, margen_dias)
-                check_in = hoy + timedelta(days=offset_ci)
+                    # Registrar ocupación
+                    ocupaciones.append((check_in, check_out))
 
-                # Duración aleatoria sin salir de la ventana
-                max_duracion = min(_DURACION_MAX, (fecha_fin - check_in).days)
-                if max_duracion < _DURACION_MIN:
-                    continue
+                    # Estado aleatorio
+                    estado = random.choice(["confirmada", "pendiente"])
 
-                duracion = random.randint(_DURACION_MIN, max_duracion)
-                check_out = check_in + timedelta(days=duracion)
-
-                # Verificar solapamiento
-                if _hay_solapamiento(ocupaciones, hid, check_in, check_out):
-                    continue
-
-                # Registrar ocupación
-                ocupaciones[hid].append((check_in, check_out))
-
-                # Estado aleatorio
-                estado = random.choice(["confirmada", "pendiente"])
-
-                reserva = ReservaORM(
-                    habitacion_id=uuid.UUID(hid),
-                    check_in=check_in,
-                    check_out=check_out,
-                    estado=estado,
-                )
-                db.session.add(reserva)
-                reservas_insertadas += 1
+                    reserva = ReservaORM(
+                        habitacion_id=uuid.UUID(habitacion),
+                        check_in=check_in,
+                        check_out=check_out,
+                        estado=estado,
+                    )
+                    db.session.add(reserva)
+                    reservas_insertadas += 1
 
             db.session.commit()
 
@@ -131,14 +122,6 @@ class SeedHelper:
                 "solicitadas": cantidad,
                 "reservas_insertadas": reservas_insertadas,
             }
-
-            # Advertir si no se alcanzó la cantidad solicitada
-            if reservas_insertadas < cantidad:
-                result["advertencia"] = (
-                    f"Solo se pudieron generar {reservas_insertadas} reservas "
-                    f"de las {cantidad} solicitadas. Considera reducir la cantidad "
-                    f"o ampliar el número de habitaciones disponibles."
-                )
 
             return result
 

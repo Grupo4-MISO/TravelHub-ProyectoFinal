@@ -28,3 +28,17 @@ spec:
                 name: busquedas-app-service
                 port:
                   number: 80
+          - path: /api/v1/auth
+            pathType: Prefix
+            backend:
+              service:
+                name: auth-app-service
+                port:
+                  number: 80
+          - path: /api/v1/reviews
+            pathType: Prefix
+            backend:
+              service:
+                name: comentarios-app-service
+                port:
+                  number: 80

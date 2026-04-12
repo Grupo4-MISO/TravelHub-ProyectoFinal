@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comentarios-app
+  labels:
+    app: comentarios-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comentarios-app
+  template:
+    metadata:
+      labels:
+        app: comentarios-app
+    spec:
+      containers:
+      - name: comentarios-api
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/comentarios-app:v1.0.0
+        ports:
+        - containerPort: 3003
+        env:
+        - name: DATABASE_URL
+          value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260412200751105600000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
+        readinessProbe:
+          httpGet:
+            path: api/v1/reviews/health
+            port: 3003
+        livenessProbe:
+          httpGet:
+            path: api/v1/reviews/health
+            port: 3003
+          initialDelaySeconds: 5 
+          periodSeconds: 30
+          failureThreshold: 3
