@@ -108,7 +108,7 @@ class InventarioCRUD:
             self.db.rollback()
             return DatababaseError(f"Error en la base de datos: {str(e)}")
 
-    def obtener_hospedaje_por_id(self, hospedaje_id):
+    def obtener_hospedaje_por_id(self, hospedaje_id, currency_code_destino):
         try:
             hospedaje_uuid = uuid.UUID(str(hospedaje_id))
             hospedaje = self.db.query(HospedajeORM).filter(HospedajeORM.id == hospedaje_uuid).first()
@@ -116,6 +116,30 @@ class InventarioCRUD:
             if not hospedaje:
                 return None
 
+            # Obtenemos la moneda del pais del hospedaje para convertir precios.
+            country = self.db.query(CountryORM).filter(CountryORM.code == hospedaje.countryCode).first()
+            currency_code_origen = country.CurrencyCode if country else None
+
+            habitaciones_base = [
+                {
+                    'id': str(h.id),
+                    'code': h.code,
+                    'descripcion': h.descripcion,
+                    'capacidad': h.capacidad,
+                    'precio': h.precio,
+                    'imageUrl': h.imageUrl,
+                    'currency_code': currency_code_origen,
+                }
+                for h in hospedaje.habitaciones
+            ]
+
+            # Construimos respuesta con precios convertidos.
+            habitaciones_convertida = InventarioHelper.convertirPrecios(
+                habitaciones_base,
+                (currency_code_destino or '').upper()
+            )
+
+        
             return {
                 'id': str(hospedaje.id),
                 'nombre': hospedaje.nombre,
@@ -130,14 +154,14 @@ class InventarioCRUD:
                 'reviews': hospedaje.reviews,
                 'habitaciones': [
                     {
-                        'id': str(h.id),
-                        'code': h.code,
-                        'descripcion': h.descripcion,
-                        'capacidad': h.capacidad,
-                        'precio': h.precio,
-                        'imageUrl': h.imageUrl,
+                        'id': h['id'],
+                        'code': h['code'],
+                        'descripcion': h['descripcion'],
+                        'capacidad': h['capacidad'],
+                        'precio': h['precio'],
+                        'imageUrl': h['imageUrl'],
                     }
-                    for h in hospedaje.habitaciones
+                    for h in habitaciones_convertida
                 ],
                 'amenidades': [
                     {
