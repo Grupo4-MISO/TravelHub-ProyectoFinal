@@ -92,9 +92,9 @@ def test_get_reviews_by_hospedaje_ok(client, monkeypatch):
 
     assert resp.status_code == 200
     body = resp.get_json()
-    assert len(body["comments"]) == 2
-    assert body["comments"][0]["userName"] == "ana"
-    assert body["comments"][1]["userName"] == "luis"
+    assert len(body) == 2
+    assert body[0]["userName"] == "ana"
+    assert body[1]["userName"] == "luis"
 
 
 def test_get_reviews_by_hospedaje_not_found(client, monkeypatch):
