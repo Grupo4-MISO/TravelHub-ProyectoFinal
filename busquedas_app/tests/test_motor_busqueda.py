@@ -1,12 +1,14 @@
+from main import app as busquedas_app
 from app.utils.inventario_helper import InventarioHelper
 from app.utils.busquedas_helper import BusquedasHelper
 from app.utils.reserva_helper import ReservaHelper
 from app.errors.exceptions import BadRequestError
 from app.utils.cache_helper import CacheHelper
-from app.api.api import Search
+from app.api.api import Search, SearchHealth, SeedDB
 from flask_restful import Api
 from flask import Flask
 import pytest
+
 
 def test_validacion_campo_ciudad_vacio():
     with pytest.raises(BadRequestError) as exc_info:
@@ -284,3 +286,52 @@ def test_busqueda_completa(mocker):
     assert response.json[0]['habitacion_id'] == '1'
     assert len(response.json) == 1
 
+def test_health_check():
+    app = Flask(__name__)
+    api = Api(app)
+    api.add_resource(SearchHealth, "/api/v1/busquedas/health")
+
+    client = app.test_client()
+    response = client.get('/api/v1/busquedas/health')
+
+    assert response.status_code == 200
+    assert response.json == {'status': 'healthy'}
+
+def test_seed_db(mocker):
+    #Creamos app
+    app = Flask(__name__)
+    api = Api(app)
+    api.add_resource(SeedDB, "/seed-db")
+    client = app.test_client()
+
+    #Mockeamos la función de seed de inventarios y reservas
+    mocker.patch('app.utils.inventario_helper.InventarioHelper.seed_reservas_ids', return_value = ['1', '2', '3', '4', '5'])
+    mocker.patch('app.utils.reserva_helper.ReservaHelper.seedReservas', return_value = {"ok": True, "message": "Base de datos de reservas poblada exitosamente"})
+
+    response = client.post('/seed-db')
+
+    assert response.status_code == 200
+    assert response.json == {"ok": True, "message": "Base de datos de reservas poblada exitosamente"}
+
+def test_seed_db_error(mocker):
+    #Creamos app
+    app = Flask(__name__)
+    api = Api(app)
+    api.add_resource(SeedDB, "/seed-db")
+    client = app.test_client()
+
+    error = 'Error al poblar la base de datos de reservas: Error de conexión'
+
+    #Mockeamos una excepción al hacer la consulta al microservicio de inventario
+    mocker.patch('app.utils.inventario_helper.InventarioHelper.seed_reservas_ids', side_effect = Exception(error))
+
+    response = client.post('/seed-db')
+
+    assert response.status_code == 500
+    assert response.json == {"ok": False, "error": error}
+
+def test_rutas_main():
+    rules = [str(rule) for rule in busquedas_app.url_map.iter_rules()]
+    assert '/api/v1/busquedas/health' in rules
+    assert '/api/v1/busquedas/search' in rules
+    assert '/api/v1/busquedas/seed' in rules
