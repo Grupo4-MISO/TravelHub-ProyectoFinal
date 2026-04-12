@@ -3,6 +3,8 @@ from types import SimpleNamespace
 from uuid import uuid4
 import sys
 from pathlib import Path
+from app.services.comment_crud import ReviewCrud
+from sqlalchemy.exc import IntegrityError
 
 import jwt
 
@@ -179,3 +181,70 @@ def test_delete_review_ok(client, monkeypatch):
     assert resp.status_code == 200
     assert resp.get_json() == {"message": "Comment deleted"}
 
+
+def test_create_review(monkeypatch):
+    review_crud = ReviewCrud()
+
+    reviews = []
+    review_data = {
+        "hospedajeId": uuid4(),
+        "userId": uuid4(),
+        "userName": "testuser",
+        "rating": 5,
+        "comment": "Excelente estadia",
+    }
+
+    def fake_add(review):
+        reviews.append(review)
+
+    monkeypatch.setattr("app.services.comment_crud.db.session.add", fake_add)
+    monkeypatch.setattr("app.services.comment_crud.db.session.commit", lambda: None)
+
+    review = review_crud.create_review(review_data)
+
+    assert reviews == [review]
+
+def test_create_review_integrity_error(monkeypatch):
+    review_crud = ReviewCrud()
+
+    review_data = {
+        "hospedajeId": uuid4(),
+        "userId": uuid4(),
+        "userName": "testuser",
+        "rating": 5,
+        "comment": "Excelente estadia",
+    }
+
+    def fake_add(review):
+        raise IntegrityError("Integrity error", None, None)
+
+    monkeypatch.setattr("app.services.comment_crud.db.session.add", fake_add)
+    monkeypatch.setattr("app.services.comment_crud.db.session.rollback", lambda: None)
+
+    review = review_crud.create_review(review_data)
+
+    assert review is None
+
+def test_get_review_by_id(monkeypatch):
+    review_crud = ReviewCrud()
+    review = SimpleNamespace(id=uuid4(), hospedaje_id=uuid4())
+    reviews = [review]
+
+    def fake_get(review_id):
+        for r in reviews:
+            if r.id == review_id:
+                return r
+        return None
+
+    def fake_filter(*args, **kwargs):
+        for r in reviews:
+            if r.hospedaje_id == kwargs.get("hospedajeId"):
+                return [r]
+        return []
+    
+    mock_review_bd = SimpleNamespace(query=SimpleNamespace(get=fake_get),filter=SimpleNamespace(all=fake_filter))
+    
+    monkeypatch.setattr("app.services.comment_crud.Review", mock_review_bd)
+
+    assert review_crud.get_review_by_id(review.id) == review
+    assert review_crud.get_review_by_id(uuid4()) is None

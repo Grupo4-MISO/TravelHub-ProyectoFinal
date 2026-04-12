@@ -58,15 +58,6 @@ class UserCrud:
             return None
 
 
-    def update_last_login(self, user_id: UUID):
-        user = self.get_user_by_id(user_id)
-        if not user:
-            return None
-
-        user.last_login = db.func.now()
-        db.session.commit()
-        return user
-
     def delete_user(self, user_id: UUID):
         user = self.get_user_by_id(user_id)
         if not user:

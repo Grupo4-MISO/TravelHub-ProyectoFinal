@@ -22,9 +22,6 @@ class ReviewCrud:
             db.session.rollback()
             return None
 
-        except IntegrityError:
-            db.session.rollback()
-            return None
 
     def get_review_by_id(self, review_id: UUID):
         return Review.query.get(review_id)
