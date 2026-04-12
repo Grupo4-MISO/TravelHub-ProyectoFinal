@@ -337,18 +337,18 @@ def test_hospedaje_collection_success(mocker):
 
 def test_hospedaje_by_id_variants(mocker):
     app, api = build_app()
-    api.add_resource(HospedajeById, '/hospedajes/<string:hospedaje_id>')
+    api.add_resource(HospedajeById, '/hospedajes/<string:hospedaje_id>/<string:currency_code>')
 
     mocker.patch('app.api.api.inventario_CRUD.obtener_hospedaje_por_id', return_value=DatababaseError('uuid inválido'))
-    invalid = HospedajeById().get('abc')
+    invalid = HospedajeById().get('abc', 'COP')
     assert invalid == ({'msg': 'uuid inválido'}, 400)
 
     mocker.patch('app.api.api.inventario_CRUD.obtener_hospedaje_por_id', return_value=DatababaseError('fallo db'))
-    server_error = HospedajeById().get('abc')
+    server_error = HospedajeById().get('abc', 'COP')
     assert server_error == ({'msg': 'fallo db'}, 500)
 
     mocker.patch('app.api.api.inventario_CRUD.obtener_hospedaje_por_id', return_value=None)
-    not_found = HospedajeById().get('abc')
+    not_found = HospedajeById().get('abc', 'COP')
     assert not_found == ({'msg': 'Hospedaje no encontrado para id abc'}, 404)
 
     hospedaje = {
@@ -358,7 +358,7 @@ def test_hospedaje_by_id_variants(mocker):
         'ciudad': 'Bogota',
     }
     mocker.patch('app.api.api.inventario_CRUD.obtener_hospedaje_por_id', return_value=hospedaje)
-    ok = HospedajeById().get('123e4567-e89b-12d3-a456-426614174000')
+    ok = HospedajeById().get('123e4567-e89b-12d3-a456-426614174000', 'COP')
     assert ok == (hospedaje, 200)
 
 
@@ -658,12 +658,16 @@ def test_inventario_crud_hospedajes_and_detail(monkeypatch):
         monkeypatch.setattr(
             crud_module.db.session,
             'query',
-            lambda *args: FakeQuery(result=fake_hospedaje),
+            lambda *args: (
+                FakeQuery(result=SimpleNamespace(CurrencyCode='COP'))
+                if args and args[0] is crud_module.CountryORM
+                else FakeQuery(result=fake_hospedaje)
+            ),
         )
-        hospedaje = crud.obtener_hospedaje_por_id(str(uuid4()))
+        hospedaje = crud.obtener_hospedaje_por_id(str(uuid4()), 'COP')
         assert hospedaje['nombre'] == 'Hotel Uno'
 
-        assert crud.obtener_hospedaje_por_id('no-es-uuid').message == 'El id del hospedaje no tiene un formato UUID válido'
+        assert crud.obtener_hospedaje_por_id('no-es-uuid', 'COP').message == 'El id del hospedaje no tiene un formato UUID válido'
 
         monkeypatch.setattr(
             crud_module.db.session,
