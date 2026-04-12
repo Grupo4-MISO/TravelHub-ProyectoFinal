@@ -250,6 +250,14 @@ class InventarioCRUD:
             self.db.rollback()
             raise DatababaseError(f"Error en la base de datos: {str(e)}")
 
+    def buscarHotelByName(self, nombre_hotel):
+        hotel = self.db.query(HospedajeORM).filter_by(nombre=nombre_hotel).first()
+        return hotel
+
+    def habitacionesporIdHotel(self, hotel_id):
+        habitaciones = self.db.query(HabitacionORM).filter_by(propiedad_id=hotel_id).all()
+        return habitaciones
+
 
 class CountriesCRUD:
     def __init__(self):
@@ -297,12 +305,3 @@ class CountriesCRUD:
         except Exception as e:
             self.db.rollback()
             return DatababaseError(f"Error en la base de datos: {str(e)}")
-
-
-    def buscarHotel(self, nombre_hotel):
-        hotel = self.db.query(HospedajeORM).filter_by(nombre=nombre_hotel).first()
-        return hotel
-
-    def habitacionesporIdHotel(self, hotel_id):
-        habitaciones = self.db.query(HabitacionORM).filter_by(propiedad_id=hotel_id).all()
-        return habitaciones

@@ -38,7 +38,7 @@ class SeedHelper:
     """Genera reservas aleatorias respetando la no-superposición de fechas."""
 
     @staticmethod
-    def reset_and_seed(cantidad: int, habitacion_ids: list[str]):
+    def reset_and_seed(cantidad: int):
         """
         Borra todas las reservas existentes e inserta `cantidad` reservas
         aleatorias distribuidas en una ventana de 6 meses desde hoy.
@@ -56,6 +56,9 @@ class SeedHelper:
             dict con ok, reservas_insertadas, solicitadas y, si aplica, advertencia.
         """
         try:
+            # ── 1. Obtener habitaciones válidas ──────────────────────────────
+            habitacion_ids = _obtener_habitacion_ids()
+
             if not habitacion_ids:
                 return {
                     "ok": False,

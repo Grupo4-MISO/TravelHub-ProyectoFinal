@@ -176,7 +176,7 @@ def test_buscar_hotel_ok_and_not_found(mocker):
         direccion='Calle 1',
         rating=4.7,
     )
-    mocker.patch('app.api.api.inventario_CRUD.buscarHotel', return_value=hotel, create=True)
+    mocker.patch('app.api.api.inventario_CRUD.buscarHotelByName', return_value=hotel, create=True)
 
     response = client.get('/hotel?nombre=Hotel Andino')
 
@@ -184,7 +184,7 @@ def test_buscar_hotel_ok_and_not_found(mocker):
     assert response.get_json()['nombre'] == 'Hotel Andino'
     assert response.get_json()['pais'] == 'Colombia'
 
-    mocker.patch('app.api.api.inventario_CRUD.buscarHotel', return_value=None, create=True)
+    mocker.patch('app.api.api.inventario_CRUD.buscarHotelByName', return_value=None, create=True)
     not_found = client.get('/hotel?nombre=NoExiste')
 
     assert not_found.status_code == 404
@@ -838,14 +838,14 @@ def test_inventario_crud_habitaciones_and_countries(monkeypatch):
             'query',
             lambda *args: FakeQuery(result=hotel_detail),
         )
-        assert countries_crud.buscarHotel('Hotel').nombre == 'Hotel'
+        assert crud.buscarHotelByName('Hotel').nombre == 'Hotel'
 
         monkeypatch.setattr(
             crud_module.db.session,
             'query',
             lambda *args: FakeQuery(result=[room]),
         )
-        assert countries_crud.habitacionesporIdHotel('hotel-id') == [room]
+        assert crud.habitacionesporIdHotel('hotel-id') == [room]
 
 
 def test_seed_helper_error_branches(monkeypatch):

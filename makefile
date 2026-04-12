@@ -14,9 +14,9 @@ FOLDERS=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
-SERVICES_NEW=busquedas-app inventarios-app reservas-app comentarios-app auth-app
-FOLDERS_NEW=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp
-IMAGE_TAG_NEW=v15.0.0
+SERVICES_NEW=inventarios-app
+FOLDERS_NEW=inventario_app
+IMAGE_TAG_NEW=v2.0.0
 
 export AWS_REGION
 
