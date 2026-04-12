@@ -158,7 +158,7 @@ class buscarHotel(Resource):
     #Endpoint para identificar un hotel en inventario(por ahora busca por nombre) 
     def get(self):
         nombre_hotel = request.args.get('nombre')
-        hotel = inventario_CRUD.buscarHotel(nombre_hotel)
+        hotel = inventario_CRUD.buscarHotelByName(nombre_hotel)
         if hotel is None:
             return {'msg': 'Hotel no encontrado'}, 404
         

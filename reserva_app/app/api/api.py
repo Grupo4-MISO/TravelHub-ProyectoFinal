@@ -34,12 +34,12 @@ class SeedReservas(Resource):
         if cantidad <= 0:
             return {'msg': 'La cantidad debe ser un entero positivo'}, 400
 
-        try:
-            habitaciones = request.get_json().get('habitacion_ids')
-        except Exception as e:
-            return {'msg': 'Error al procesar el request body, se esperaba un JSON con un campo habitacion_ids que sea una lista de IDs de habitaciones', 'error': str(e)}, 400
+        # try:
+        #     habitaciones = request.get_json().get('habitacion_ids')
+        # except Exception as e:
+        #     return {'msg': 'Error al procesar el request body, se esperaba un JSON con un campo habitacion_ids que sea una lista de IDs de habitaciones', 'error': str(e)}, 400
 
-        result = SeedHelper.reset_and_seed(cantidad, habitaciones)
+        result = SeedHelper.reset_and_seed(cantidad)
 
         if not result.get('ok'):
             return {'msg': 'Error al ejecutar el seed', 'error': result.get('error')}, 500
