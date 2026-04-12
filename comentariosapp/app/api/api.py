@@ -192,8 +192,7 @@ class ReviewResourceById(Resource):
         return {"message": "Comment deleted"}, 200
 
 class ReviewByHospedajeResource(Resource):
-    @token_required
-    def get(current_user, self, id):
+  def get(self, id):
         """
         Obtener reviews por ID de hospedaje
         ---
@@ -205,8 +204,6 @@ class ReviewByHospedajeResource(Resource):
             required: true
             type: string
             format: uuid
-        security:
-          - Bearer: []
         responses:
           200:
             description: Reviews encontrados
@@ -218,19 +215,17 @@ class ReviewByHospedajeResource(Resource):
         if not reviews:
           return {"message": "Commentarios no encontrados"}, 404
 
-        return {
-          "comments": [
-                {
-                    "id": str(review.id),
-                    "hospedajeId": str(review.hospedajeId),
-                    "userName": review.userName,
-                    "userId": str(review.userId),
-                    "comment": review.comment,
-                    "rating": review.rating,
-                }
-                for review in reviews
-            ]
-        }, 200
+        return [
+          {
+            "id": str(review.id),
+            "hospedajeId": str(review.hospedajeId),
+            "userName": review.userName,
+            "userId": str(review.userId),
+            "comment": review.comment,
+            "rating": review.rating,
+          }
+          for review in reviews
+        ], 200
 
 class SeedDB(Resource):
     def post(self):

@@ -335,6 +335,13 @@ class HospedajeById(Resource):
                                 'required': True,
                                 'description': 'Id UUID del hospedaje',
                         },
+                        {
+                                'name': 'currency_code',
+                                'in': 'query',
+                                'type': 'string',
+                                'required': True,
+                                'description': 'Código de moneda del destino',
+                        }
                 ],
                 'responses': {
                         200: {'description': 'Hospedaje consultado exitosamente'},
@@ -343,9 +350,9 @@ class HospedajeById(Resource):
                         500: {'description': 'Error en la base de datos'}
                 }
         })
-        def get(self, hospedaje_id):
+        def get(self, hospedaje_id, currency_code):
                 """Obtener un hospedaje por su id."""
-                hospedaje = inventario_CRUD.obtener_hospedaje_por_id(hospedaje_id)
+                hospedaje = inventario_CRUD.obtener_hospedaje_por_id(hospedaje_id, currency_code)
 
                 if isinstance(hospedaje, DatababaseError):
                         message = (hospedaje.message or '').lower()
