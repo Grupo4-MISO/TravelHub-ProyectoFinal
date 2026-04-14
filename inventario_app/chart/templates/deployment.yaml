@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventarios-app
+  labels:
+    app: inventarios-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventarios-app
+  template:
+    metadata:
+      labels:
+        app: inventarios-app
+    spec:
+      containers:
+      - name: inventarios-api
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DATABASE_URL
+          value: {{ .Values.database }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+          initialDelaySeconds: 5 
+          periodSeconds: 30
+          failureThreshold: 3

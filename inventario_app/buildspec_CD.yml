@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing tools...
+
+      - curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+      - curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+      - chmod +x kubectl
+      - mv kubectl /usr/local/bin/
+
+  pre_build:
+    commands:
+      - echo "Configuring kubectl for EKS..."
+      - aws eks update-kubeconfig --region us-east-1 --name proyecto-final-grupo-4
+
+      - echo "Reading image artifact..."
+      - IMAGE_URI=$(jq -r '.image_uri' inventario_app/imageDetail.json)
+      - IMAGE_REPO=$(echo $IMAGE_URI | cut -d ':' -f1)
+      - IMAGE_TAG=$(echo $IMAGE_URI | cut -d ':' -f2)
+
+  build:
+    commands:
+      - echo "Deploying with Helm..."
+      - helm upgrade --install inventarios-app ./inventario_app/chart --set image.repository=$IMAGE_REPO --set image.tag=$IMAGE_TAG
+      - kubectl apply -f k8s/gateway-ingress.yaml
