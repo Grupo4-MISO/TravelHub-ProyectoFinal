@@ -23,5 +23,5 @@ phases:
   build:
     commands:
       - echo "Deploying with Helm..."
-      - helm upgrade --install busquedas ./busquedas_app/chart --set image.repository=$IMAGE_REPO --set image.tag=$IMAGE_TAG
+      - helm upgrade --install busquedas-app ./busquedas_app/chart --set image.repository=$IMAGE_REPO --set image.tag=$IMAGE_TAG
       - kubectl apply -f k8s/gateway-ingress.yaml

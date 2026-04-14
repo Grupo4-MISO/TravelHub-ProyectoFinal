@@ -10,6 +10,6 @@ spec:
     app: reservas-app
   ports:
     - protocol: TCP
-      port: 80          # Service port
+      port: {{ .Values.service.port }}          # Service port
       targetPort: {{ .Values.port }}  # Container port
       nodePort: {{ .Values.nodePort }}  # External port (30000-32767)

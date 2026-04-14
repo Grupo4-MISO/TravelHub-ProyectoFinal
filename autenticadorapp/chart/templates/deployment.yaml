@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: auth-api
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: {{ .Values.port }}
         env:
