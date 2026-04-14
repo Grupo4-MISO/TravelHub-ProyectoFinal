@@ -1,0 +1,5 @@
+apiVersion: v2
+name: comentarios-app-chart
+description: Comentarios microservice
+version: 0.1.0
+appVersion: "1.0"

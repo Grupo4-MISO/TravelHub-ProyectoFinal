@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comentarios-app
+  labels:
+    app: comentarios-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comentarios-app
+  template:
+    metadata:
+      labels:
+        app: comentarios-app
+    spec:
+      containers:
+      - name: comentarios-api
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        ports:
+        - containerPort: {{ .Values.port }}
+        env:
+        - name: DATABASE_URL
+          value: {{ .Values.database }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+          initialDelaySeconds: 5 
+          periodSeconds: 30
+          failureThreshold: 3
