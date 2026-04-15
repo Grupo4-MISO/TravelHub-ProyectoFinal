@@ -149,7 +149,7 @@ def test_update_review_ok(client, monkeypatch):
     resp = client.put(
         f"/api/v1/reviews/{review_id}",
         json={"comment": "Comentario actualizado", "rating": 4},
-        headers=auth_headers(role="Administrator"),
+        headers=auth_headers(role="Admin"),
     )
 
     assert resp.status_code == 200
@@ -175,7 +175,7 @@ def test_delete_review_ok(client, monkeypatch):
 
     resp = client.delete(
         f"/api/v1/reviews/{review_id}",
-        headers=auth_headers(role="Administrator"),
+        headers=auth_headers(role="Admin"),
     )
 
     assert resp.status_code == 200

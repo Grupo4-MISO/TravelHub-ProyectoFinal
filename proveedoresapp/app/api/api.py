@@ -190,7 +190,7 @@ class ManagerResourceById(Resource):
         return _serialize_manager(manager), 200
 
     @token_required
-    @roles_required("Administrator")
+    @roles_required("Admin")
     def put(current_user, self, id):
         """
         Actualizar manager
@@ -234,7 +234,7 @@ class ManagerResourceById(Resource):
         return {"message": "Manager updated"}, 200
 
     @token_required
-    @roles_required("Administrator")
+    @roles_required("Admin")
     def delete(current_user, self, id):
         """
         Eliminar manager
