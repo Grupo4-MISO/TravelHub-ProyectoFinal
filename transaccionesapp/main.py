@@ -8,7 +8,6 @@ from app.api.api import (
     PaymentResourceById,
     PaymentTransactionByIdResource,
     PaymentTransactionByPaymentIdResource,
-    PaymentTransactionResource,
     SeedDB,
 )
 from flask_restful import Api
@@ -102,7 +101,6 @@ api.add_resource(PaymentResourceById, '/api/v1/Transactions/payments/<string:id>
 api.add_resource(PaymentByReservaIdResource, '/api/v1/Transactions/payments/reserva/<string:reserva_id>')
 api.add_resource(PaymentByProviderIdResource, '/api/v1/Transactions/payments/provider/<string:provider_id>')
 
-api.add_resource(PaymentTransactionResource, '/api/v1/Transactions/attempts')
 api.add_resource(PaymentTransactionByIdResource, '/api/v1/Transactions/attempts/<string:id>')
 api.add_resource(PaymentTransactionByPaymentIdResource, '/api/v1/Transactions/attempts/payment/<string:payment_id>')
 

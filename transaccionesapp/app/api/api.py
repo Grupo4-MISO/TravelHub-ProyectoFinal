@@ -63,7 +63,6 @@ def _serialize_payment_transaction(payment_transaction):
         "updated_at": payment_transaction.updated_at.isoformat() if payment_transaction.updated_at else None,
     }
 
-
 class Health(Resource):
     def get(self):
         """
@@ -328,13 +327,20 @@ class PaymentResource(Resource):
         missing_fields = [field for field in required_fields if payload.get(field) in (None, "")]
         if missing_fields:
             return {"message": f"Faltan campos requeridos: {', '.join(missing_fields)}"}, 400
+        
+        #aqui va el codigo para hacer la solicitud de pago al proveedor http,
+        #el proveedor debe retornar un provider_payment_id y una url (si aplica)
+        #para redirigir al usuario a completar el pago
+        #Si la solicitud al proveedor falla, se almacena el pago con status "failed" y url null,
+        #y se puede retornar un error 400 con un mensaje indicando que no fue posible crear el pago
+        #Si la solicitud al proveedor es exitosa, se almacena el pago con el provider_payment_id y la url
+        #con estado "pending" y se retorna el pago creado con un status 201
 
         payment = payment_crud.create_payment(payload)
         if not payment:
             return {"message": "No fue posible crear el pago"}, 400
 
         return _serialize_payment(payment), 201
-
 
 class PaymentResourceById(Resource):
     @token_required
@@ -372,89 +378,6 @@ class PaymentResourceById(Resource):
 
         return _serialize_payment(payment), 200
 
-    @token_required
-    @roles_required("Admin")
-    def put(current_user, self, id):
-        """
-        Actualizar pago
-        ---
-        tags:
-          - Payments
-        security:
-          - Bearer: []
-        parameters:
-          - in: path
-            name: id
-            type: string
-            required: true
-          - in: body
-            name: body
-            required: true
-            schema:
-              type: object
-        responses:
-          200:
-            description: Pago actualizado
-          400:
-            description: Error de validacion o actualizacion
-          401:
-            description: Token faltante o invalido
-          403:
-            description: Rol no autorizado
-          404:
-            description: No encontrado
-        """
-        try:
-            payment_id = _parse_uuid(id)
-        except ValueError:
-            return {"message": "payment_id invalido"}, 400
-
-        payload = request.get_json() or {}
-        payment = payment_crud.update_payment(payment_id, payload)
-        if not payment:
-            return {"message": "No fue posible actualizar el pago"}, 400
-
-        return _serialize_payment(payment), 200
-
-    @token_required
-    @roles_required("Admin")
-    def delete(current_user, self, id):
-        """
-        Eliminar pago
-        ---
-        tags:
-          - Payments
-        security:
-          - Bearer: []
-        parameters:
-          - in: path
-            name: id
-            type: string
-            required: true
-        responses:
-          200:
-            description: Pago eliminado
-          400:
-            description: Id invalido
-          401:
-            description: Token faltante o invalido
-          403:
-            description: Rol no autorizado
-          404:
-            description: No encontrado
-        """
-        try:
-            payment_id = _parse_uuid(id)
-        except ValueError:
-            return {"message": "payment_id invalido"}, 400
-
-        deleted = payment_crud.delete_payment(payment_id)
-        if not deleted:
-            return {"message": "Pago no encontrado"}, 404
-
-        return {"message": "Pago eliminado"}, 200
-
-
 class PaymentByReservaIdResource(Resource):
     @token_required
     def get(current_user, self, reserva_id):
@@ -486,7 +409,6 @@ class PaymentByReservaIdResource(Resource):
         payments = payment_crud.get_all_payments_by_reserva_id(reserva_uuid)
         return [_serialize_payment(payment) for payment in payments], 200
 
-
 class PaymentByProviderIdResource(Resource):
     @token_required
     def get(current_user, self, provider_id):
@@ -517,58 +439,6 @@ class PaymentByProviderIdResource(Resource):
 
         payments = payment_crud.get_all_payments_by_provider_id(provider_uuid)
         return [_serialize_payment(payment) for payment in payments], 200
-
-
-class PaymentTransactionResource(Resource):
-    @token_required
-    @roles_required("Admin")
-    def post(current_user, self):
-        """
-        Crear intento de transaccion
-        ---
-        tags:
-          - PaymentTransactions
-        security:
-          - Bearer: []
-        parameters:
-          - in: body
-            name: body
-            required: true
-            schema:
-              type: object
-              required: [payment_id, provider_transaction_id]
-              properties:
-                payment_id:
-                  type: string
-                status:
-                  type: string
-                provider_transaction_id:
-                  type: string
-                response:
-                  type: object
-        responses:
-          201:
-            description: Intento creado
-          400:
-            description: Datos invalidos
-          401:
-            description: Token faltante o invalido
-          403:
-            description: Rol no autorizado
-        """
-        payload = request.get_json() or {}
-
-        required_fields = ["payment_id", "provider_transaction_id"]
-        missing_fields = [field for field in required_fields if payload.get(field) in (None, "")]
-        if missing_fields:
-            return {"message": f"Faltan campos requeridos: {', '.join(missing_fields)}"}, 400
-
-        transaction = payment_transaction_crud.create_payment_transaction(payload)
-        if not transaction:
-            return {"message": "No fue posible crear la transaccion"}, 400
-
-        return _serialize_payment_transaction(transaction), 201
-
 
 class PaymentTransactionByIdResource(Resource):
     @token_required
@@ -606,89 +476,6 @@ class PaymentTransactionByIdResource(Resource):
 
         return _serialize_payment_transaction(transaction), 200
 
-    @token_required
-    @roles_required("Admin")
-    def put(current_user, self, id):
-        """
-        Actualizar intento de transaccion
-        ---
-        tags:
-          - PaymentTransactions
-        security:
-          - Bearer: []
-        parameters:
-          - in: path
-            name: id
-            type: string
-            required: true
-          - in: body
-            name: body
-            required: true
-            schema:
-              type: object
-        responses:
-          200:
-            description: Intento actualizado
-          400:
-            description: Error de validacion o actualizacion
-          401:
-            description: Token faltante o invalido
-          403:
-            description: Rol no autorizado
-          404:
-            description: No encontrado
-        """
-        try:
-            transaction_id = _parse_uuid(id)
-        except ValueError:
-            return {"message": "transaction_id invalido"}, 400
-
-        payload = request.get_json() or {}
-        transaction = payment_transaction_crud.update_payment_transaction(transaction_id, payload)
-        if not transaction:
-            return {"message": "No fue posible actualizar la transaccion"}, 400
-
-        return _serialize_payment_transaction(transaction), 200
-
-    @token_required
-    @roles_required("Admin")
-    def delete(current_user, self, id):
-        """
-        Eliminar intento de transaccion
-        ---
-        tags:
-          - PaymentTransactions
-        security:
-          - Bearer: []
-        parameters:
-          - in: path
-            name: id
-            type: string
-            required: true
-        responses:
-          200:
-            description: Intento eliminado
-          400:
-            description: Id invalido
-          401:
-            description: Token faltante o invalido
-          403:
-            description: Rol no autorizado
-          404:
-            description: No encontrado
-        """
-        try:
-            transaction_id = _parse_uuid(id)
-        except ValueError:
-            return {"message": "transaction_id invalido"}, 400
-
-        deleted = payment_transaction_crud.delete_payment_transaction(transaction_id)
-        if not deleted:
-            return {"message": "Transaccion no encontrada"}, 404
-
-        return {"message": "Transaccion eliminada"}, 200
-
-
 class PaymentTransactionByPaymentIdResource(Resource):
     @token_required
     def get(current_user, self, payment_id):
@@ -719,7 +506,6 @@ class PaymentTransactionByPaymentIdResource(Resource):
 
         transactions = payment_transaction_crud.get_all_transactions_by_payment_id(payment_uuid)
         return [_serialize_payment_transaction(tx) for tx in transactions], 200
-
 
 class SeedDB(Resource):
     def post(self):
