@@ -3,14 +3,14 @@ version: 0.2
 env:
   variables:
     AWS_DEFAULT_REGION: us-east-1
-    REPOSITORY_URI: 387050840675.dkr.ecr.us-east-1.amazonaws.com/busquedas-app
+    REPOSITORY_URI: 387050840675.dkr.ecr.us-east-1.amazonaws.com/comentarios-app
 
 phases:
   pre_build:
     commands:
       - echo "Pre-build iniciado en $(date)"
 
-      - cd busquedas_app
+      - cd comentariosapp
       - echo "Instalando dependencias y ejecutando tests..."
       - export PYTHONPATH=.
       - python -m pip install --upgrade pip
@@ -28,10 +28,10 @@ phases:
     commands:
       - echo "Build iniciado en $(date)"
       - echo "Construyendo imagen Docker..."
-      - docker build -t busquedas-app:$IMAGE_TAG .
+      - docker build -t comentarios-app:$IMAGE_TAG .
 
       - echo "Taggeando imagen..."
-      - docker tag busquedas-app:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
+      - docker tag comentarios-app:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
 
   post_build:
     commands:
@@ -46,7 +46,7 @@ phases:
 artifacts:
   base-directory: .
   files:
-    - busquedas_app/imageDetail.json
-    - busquedas_app/chart/**/*
-    - busquedas_app/buildspec_CD.yml
+    - comentariosapp/imageDetail.json
+    - comentariosapp/chart/**/*
+    - comentariosapp/buildspec_CD.yml
     - k8s/gateway-ingress.yaml
