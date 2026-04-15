@@ -120,7 +120,7 @@ class ReviewResourceById(Resource):
         return _serialize_review(review), 200
 
     @token_required
-    @roles_required("Administrator")
+    @roles_required("Admin")
     def put(current_user, self, id):
         """
         Actualizar review
@@ -163,7 +163,7 @@ class ReviewResourceById(Resource):
         return {"message": "Comment updated"}, 200
 
     @token_required
-    @roles_required("Administrator")
+    @roles_required("Admin")
     def delete(current_user, self, id):
         """
         Eliminar comentario

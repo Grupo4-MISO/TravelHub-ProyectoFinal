@@ -194,7 +194,7 @@ class UserDetailResource(Resource):
         }, 200
 
     @token_required
-    @roles_required("Administrator", "Manager")
+    @roles_required("Admin", "Manager")
     def put(current_user, self, user_id):
         """
         Actualizar usuario
@@ -237,7 +237,7 @@ class UserDetailResource(Resource):
         return {"message": "User updated"}, 200
 
     @token_required
-    @roles_required("Administrator")
+    @roles_required("Admin")
     def delete(current_user, self, user_id):
         """
         Eliminar usuario
