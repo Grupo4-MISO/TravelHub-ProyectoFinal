@@ -55,6 +55,7 @@ class Payment(db.Model):
     currency = db.Column(db.String(3), nullable=False)
     status = db.Column(db.Enum(PaymentStatus), nullable=False, default=PaymentStatus.pending)
     provider_payment_id = db.Column(db.String(255), nullable=True)  # ID del proveedor para este pago
+    url = db.Column(db.String(255), nullable=True) # URL para redirigir al usuario (si aplica) puede ser null si falla la solicitud al proveedor
     description = db.Column(db.String(255), nullable=True) # Descripción del pago
     payment_metadata = db.Column("metadata", JSON_TYPE, nullable=True) # Información adicional
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
@@ -76,7 +77,6 @@ class PaymentTransaction(db.Model):
     payment_id = db.Column(Uuid(as_uuid=True), db.ForeignKey("payments.id"))
     status = db.Column(db.Enum(TransactionStatus), nullable=False, default=TransactionStatus.pending)
     provider_transaction_id = db.Column(db.String(255), nullable=False) # ID de la transacción en el proveedor
-    url = db.Column(db.String(255), nullable=True) # URL para redirigir al usuario (si aplica) puede ser null si falla la solicitud al proveedor
     response = db.Column(JSON_TYPE, nullable=True) # Respuesta completa del proveedor para auditoría
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(

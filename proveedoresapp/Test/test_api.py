@@ -180,7 +180,7 @@ def test_update_manager_ok(client, monkeypatch):
     resp = client.put(
         f"/api/v1/Managers/{manager_id}",
         json={"comment": "Comentario actualizado", "rating": 4},
-        headers=auth_headers(role="Administrator"),
+        headers=auth_headers(role="Admin"),
     )
 
     assert resp.status_code == 200
@@ -206,7 +206,7 @@ def test_delete_manager_ok(client, monkeypatch):
 
     resp = client.delete(
         f"/api/v1/Managers/{manager_id}",
-        headers=auth_headers(role="Administrator"),
+        headers=auth_headers(role="Admin"),
     )
 
     assert resp.status_code == 200

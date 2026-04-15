@@ -36,7 +36,7 @@ def test_login_invalid_credentials_wrong_password(client, monkeypatch):
         id=uuid4(),
         username="admin",
         password_hash=generate_password_hash("secret123"),
-        role=SimpleNamespace(value="Administrator"),
+        role=SimpleNamespace(value="Admin"),
     )
     monkeypatch.setattr(api_module.user_crud, "get_user_by_email", lambda email: fake_user)
     resp = client.post(
@@ -51,7 +51,7 @@ def test_login_success(client, monkeypatch):
         id=uuid4(),
         username="admin",
         password_hash=generate_password_hash("secret123"),
-        role=SimpleNamespace(value="Administrator"),
+        role=SimpleNamespace(value="Admin"),
     )
     monkeypatch.setattr(api_module.user_crud, "get_user_by_email", lambda email: fake_user)
 
@@ -64,7 +64,7 @@ def test_login_success(client, monkeypatch):
     assert resp.status_code == 200
     assert "token" in body
     assert body["user"]["username"] == "admin"
-    assert body["user"]["role"] == "Administrator"
+    assert body["user"]["role"] == "Admin"
 
 
 def test_create_user_missing_password(client):

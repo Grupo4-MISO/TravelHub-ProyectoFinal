@@ -69,6 +69,7 @@ class PaymentCrud:
                 currency=data.get("currency"),
                 status=data.get("status"),
                 provider_payment_id=data.get("provider_payment_id"),
+                url=data.get("url"),
                 description=data.get("description"),
                 payment_metadata=data.get("metadata")
             )
@@ -135,7 +136,6 @@ class PaymentTransactionCrud:
                 payment_id=UUID(str(data.get("payment_id"))),
                 status=data.get("status"),
                 provider_transaction_id=data.get("provider_transaction_id"),
-                url=data.get("url"),
                 response=data.get("response")
             )
 

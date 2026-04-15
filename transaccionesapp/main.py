@@ -50,6 +50,14 @@ swagger_template = {
         "description": "Documentación de endpoints de transacciones",
         "version": "1.0.0"
     },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Formato: Bearer <token_jwt>"
+        }
+    },
     "basePath": "/",
     "schemes": ["http"]
 }
