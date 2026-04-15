@@ -26,8 +26,5 @@ phases:
 
   build:
     commands:
-      - helm upgrade --install auth-app ./autenticadorapp/chart \
-          --set image.repository=$IMAGE_REPO \
-          --set image.tag=$IMAGE_TAG \
-          --kubeconfig $KUBECONFIG
+      - helm upgrade --install auth-app ./autenticadorapp/chart --set image.repository=$IMAGE_REPO --set image.tag=$IMAGE_TAG --kubeconfig $KUBECONFIG
       - kubectl apply -f k8s/gateway-ingress.yaml

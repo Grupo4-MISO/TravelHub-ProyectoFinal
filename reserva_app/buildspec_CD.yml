@@ -12,10 +12,14 @@ phases:
 
   pre_build:
     commands:
-      - echo "Configuring kubectl for EKS..."
       - aws eks update-kubeconfig --region us-east-1 --name proyecto-final-grupo-4
-
-      - echo "Reading image artifact..."
+      - echo "=== 1. Verificando identidad IAM ==="
+      - aws sts get-caller-identity
+      - echo "=== 2. Probando generación manual del token ==="
+      - aws eks get-token --cluster-name proyecto-final-grupo-4 --region us-east-1
+      - echo "=== 3. Inspeccionando kubeconfig ==="
+      - cat ~/.kube/config | grep -A5 "users:"
+      - export KUBECONFIG=$HOME/.kube/config
       - IMAGE_URI=$(jq -r '.image_uri' reserva_app/imageDetail.json)
       - IMAGE_REPO=$(echo $IMAGE_URI | cut -d ':' -f1)
       - IMAGE_TAG=$(echo $IMAGE_URI | cut -d ':' -f2)
