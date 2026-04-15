@@ -11,13 +11,13 @@ phases:
       - mv kubectl /usr/local/bin/
 
   pre_build:
-  commands:
-    - aws eks update-kubeconfig --region us-east-1 --name proyecto-final-grupo-4
-    - export KUBECONFIG=$HOME/.kube/config
-    - kubectl get nodes
-    - IMAGE_URI=$(jq -r '.image_uri' autenticadorapp/imageDetail.json)
-    - IMAGE_REPO=$(echo $IMAGE_URI | cut -d ':' -f1)
-    - IMAGE_TAG=$(echo $IMAGE_URI | cut -d ':' -f2)
+    commands:
+      - aws eks update-kubeconfig --region us-east-1 --name proyecto-final-grupo-4
+      - export KUBECONFIG=$HOME/.kube/config
+      - kubectl get nodes
+      - IMAGE_URI=$(jq -r '.image_uri' autenticadorapp/imageDetail.json)
+      - IMAGE_REPO=$(echo $IMAGE_URI | cut -d ':' -f1)
+      - IMAGE_TAG=$(echo $IMAGE_URI | cut -d ':' -f2)
 
   build:
     commands:
