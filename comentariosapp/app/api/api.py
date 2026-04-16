@@ -252,3 +252,8 @@ class SeedDB(Resource):
             'Comentarios insertados': result['reviews_insertados'],
             'Hospedajes procesados': result['hospedajes_procesados']
         }, 200
+
+class CleanDB(Resource):
+    def post(self):
+        comment_crud.resetDb()
+        return {'msg': 'Base de datos limpiada correctamente'}, 200

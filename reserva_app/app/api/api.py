@@ -146,6 +146,11 @@ class TarifaReserva(Resource):
         
         return calculo_tarifa, 200
 
+class CleanDB(Resource):
+    def post(self):
+        reservas_crud.resetDb()
+        return {'msg': 'Base de datos reiniciada correctamente'}, 200
+
 
 
 

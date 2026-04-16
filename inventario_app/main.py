@@ -1,4 +1,4 @@
-from app.api.api import CountryList, PopularCitiesByCountry, InventarioHealth, FiltroHabitaciones, SeedDB, HospedajeCollection, buscarHotel, HabitacionesporId, SeedDB, SeedReservations, HospedajeById
+from app.api.api import CleanDB, CountryList, PopularCitiesByCountry, InventarioHealth, FiltroHabitaciones, SeedDB, HospedajeCollection, buscarHotel, HabitacionesporId, SeedDB, SeedReservations, HospedajeById
 from app.errors.handlers import ErrorHandler
 from flask_restful import Api
 from app.db.models import db
@@ -80,3 +80,4 @@ api.add_resource(SeedDB, '/api/v1/inventarios/seed')
 api.add_resource(HospedajeCollection, '/api/v1/inventarios/hospedajes')
 api.add_resource(HospedajeById, '/api/v1/inventarios/hospedajes/<string:hospedaje_id>/<string:currency_code>')
 api.add_resource(SeedReservations, '/api/v1/inventarios/seed-reservas')
+api.add_resource(CleanDB, '/api/v1/inventarios/clean')

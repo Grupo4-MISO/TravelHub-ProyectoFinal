@@ -6,6 +6,10 @@ env:
     REPOSITORY_URI: 387050840675.dkr.ecr.us-east-1.amazonaws.com/inventarios-app
 
 phases:
+  install:
+    runtime-versions:
+      python: 3.11
+      
   pre_build:
     commands:
       - echo "Pre-build iniciado en $(date)"

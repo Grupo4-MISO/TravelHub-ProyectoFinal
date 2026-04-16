@@ -1,4 +1,4 @@
-from app.api.api import Health, Login, SeedDB, UserCollectionResource, UserDetailResource, SeedUsers
+from app.api.api import Health, Login, SeedDB, UserCollectionResource, UserDetailResource, SeedUsers, CleanDB
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -76,3 +76,4 @@ api.add_resource(UserCollectionResource, '/api/v1/auth/users')
 api.add_resource(UserDetailResource, '/api/v1/auth/users/<string:user_id>')
 api.add_resource(SeedDB, '/api/v1/auth/seed')
 api.add_resource(SeedUsers, '/api/v1/auth/user')
+api.add_resource(CleanDB, '/api/v1/auth/clean')

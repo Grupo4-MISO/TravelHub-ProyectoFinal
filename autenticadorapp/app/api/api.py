@@ -298,3 +298,9 @@ class SeedUsers(Resource):
           return {"message": "Default users created"}, 200
       except Exception as exc:
           return {"message": "Error creating default users", "error": str(exc)}, 500
+
+class CleanDB(Resource):
+    def post(self):
+        user_crud.resetDb()
+
+        return {"message": "Database cleaned"}, 200
