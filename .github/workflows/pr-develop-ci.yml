@@ -24,13 +24,13 @@ jobs:
             tests_path: tests
           - name: comentariosapp
             path: comentariosapp
-            tests_path: Test
+            tests_path: tests
           - name: autenticadorapp
             path: autenticadorapp
-            tests_path: Test
+            tests_path: tests
           - name: proveedoresapp
             path: proveedoresapp
-            tests_path: Test
+            tests_path: tests
 
     steps:
       - name: Checkout repository
