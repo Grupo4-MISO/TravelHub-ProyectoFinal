@@ -1,4 +1,4 @@
-from app.api.api import Health, ReviewResource, ReviewResourceById, ReviewByHospedajeResource, SeedDB
+from app.api.api import Health, ReviewResource, ReviewResourceById, ReviewByHospedajeResource, SeedDB, CleanDB
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -80,3 +80,4 @@ api.add_resource(
     '/api/v1/reviews/hospedajes/<string:id>'
 )
 api.add_resource(SeedDB, '/api/v1/reviews/seed')
+api.add_resource(CleanDB, '/api/v1/reviews/clean')

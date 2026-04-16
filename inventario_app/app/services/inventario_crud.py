@@ -1,6 +1,6 @@
 import uuid
 from app.utils.helper import InventarioHelper
-from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM, Hospedaje_ImagenORM
+from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM, Hospedaje_ImagenORM, Hospedaje_AmenidadORM, AmenidadORM
 from app.errors.exceptions import DatababaseError
 
 class InventarioCRUD:
@@ -257,6 +257,21 @@ class InventarioCRUD:
     def habitacionesporIdHotel(self, hotel_id):
         habitaciones = self.db.query(HabitacionORM).filter_by(propiedad_id=hotel_id).all()
         return habitaciones
+    
+    def resetDb(self):
+        try:
+            # Reiniciamos la base de datos
+            self.db.query(HabitacionORM).delete()
+            self.db.query(Hospedaje_ImagenORM).delete()
+            self.db.query(Hospedaje_AmenidadORM).delete()
+            self.db.query(AmenidadORM).delete()
+            self.db.query(CountryORM).delete()
+            self.db.query(HospedajeORM).delete()
+            self.db.commit()
+            
+        except Exception as e:
+            self.db.rollback()
+            raise e
 
 
 class CountriesCRUD:

@@ -66,3 +66,13 @@ class UserCrud:
         db.session.delete(user)
         db.session.commit()
         return True
+
+    def resetDb(self):
+        try:
+            # Reiniciamos la base de datos
+            db.session.query(User).delete()
+            db.session.commit()
+            
+        except Exception as e:
+            db.session.rollback()
+            raise e

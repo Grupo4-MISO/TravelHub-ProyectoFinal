@@ -154,6 +154,11 @@ class ListadoPaises(Resource):
 
         return paises, 200
 
+class CleanDB(Resource):
+       def post(self):
+              inventario_CRUD.resetDb()
+              return {'msg': 'Base de datos limpiada exitosamente'}, 200
+
 class buscarHotel(Resource):
     #Endpoint para identificar un hotel en inventario(por ahora busca por nombre) 
     def get(self):
