@@ -1,5 +1,5 @@
 from app.errors.exceptions import DatababaseError
-from app.db.models import ReservaORM, db
+from app.db.models import Payment, ReservaORM, db
 from sqlalchemy import not_
 from datetime import date
 from uuid import UUID
@@ -75,4 +75,15 @@ class ReservaCRUD:
             ]
         except Exception as e:
             return str(e)
+    
+    def resetDb(self):
+        try:
+            # Reiniciamos la base de datos
+            self.db.query(ReservaORM).delete()
+            self.db.query(Payment).delete()
+            self.db.commit()
+            
+        except Exception as e:
+            self.db.rollback()
+            raise e
         

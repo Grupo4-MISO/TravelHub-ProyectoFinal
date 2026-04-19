@@ -1,4 +1,4 @@
-from app.api.api import CountryList, PopularCitiesByCountry, InventarioHealth, FiltroHabitaciones, SeedDB, HospedajeCollection, buscarHotel, HabitacionesporId, SeedDB, SeedReservations, HospedajeById
+from app.api.api import CleanDB, CountryList, PopularCitiesByCountry, InventarioHealth, FiltroHabitaciones, SeedDB, HospedajeCollection, buscarHotel, HabitacionesporId, SeedDB, SeedReservations, HospedajeById
 from app.errors.handlers import ErrorHandler
 from flask_restful import Api
 from app.db.models import db

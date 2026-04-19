@@ -22,7 +22,7 @@ RUN pip install gunicorn
 COPY . .
 
 # Exponer puerto
-EXPOSE 3003
+EXPOSE 3004
 
 # Ejecutar con Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:3004", "main:app"]

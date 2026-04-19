@@ -54,6 +54,13 @@ class ReviewCrud:
         db.session.delete(review)
         db.session.commit()
         return True
-
-
-comment_crud = ReviewCrud()
+    
+    def resetDb(self):
+        try:
+            # Reiniciamos la base de datos
+            db.session.query(Review).delete()
+            db.session.commit()
+            
+        except Exception as e:
+            db.session.rollback()
+            raise e

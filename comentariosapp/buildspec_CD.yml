@@ -36,13 +36,13 @@ phases:
       - echo "=== 4. Test de conexión al cluster ==="
       - kubectl get nodes
 
-      - IMAGE_URI=$(jq -r '.image_uri' busquedas_app/imageDetail.json)
+      - IMAGE_URI=$(jq -r '.image_uri' comentariosapp/imageDetail.json)
       - IMAGE_REPO=$(echo $IMAGE_URI | cut -d ':' -f1)
       - IMAGE_TAG=$(echo $IMAGE_URI | cut -d ':' -f2)
 
   build:
     commands:
       - echo "Deploying with Helm..."
-      - helm upgrade --install busquedas-app ./busquedas_app/chart --set image.repository=$IMAGE_REPO --set image.tag=$IMAGE_TAG
+      - helm upgrade --install comentarios-app ./comentariosapp/chart --set image.repository=$IMAGE_REPO --set image.tag=$IMAGE_TAG
 
       - kubectl apply -f k8s/gateway-ingress.yaml
