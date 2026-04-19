@@ -64,6 +64,7 @@ class ReservaCRUD:
             return [
                 {
                     "id": str(reserva.id),
+                    "public_id": str(reserva.public_id),
                     "habitacion_id": str(reserva.habitacion_id),
                     "check_in": reserva.check_in.isoformat(),
                     "check_out": reserva.check_out.isoformat(),
@@ -74,6 +75,33 @@ class ReservaCRUD:
                 for reserva in reservas
             ]
         except Exception as e:
+            return str(e)
+    
+    def confirmarReserva(self, reserva_id: int | str) -> bool | str:
+        try:
+            reserva_uuid = UUID(str(reserva_id))
+            reserva = self.db.query(ReservaORM).filter_by(id=reserva_uuid).first()
+            if not reserva:
+                return f"No se encontró la reserva con ID {reserva_id}"
+
+            reserva.estado = 'confirmada'
+            self.db.commit()
+            return True
+        except Exception as e:
+            self.db.rollback()
+            return str(e)
+    
+    def revocarReserva(self, reserva_id: int | str) -> bool | str:
+        try:
+            reserva_uuid = UUID(str(reserva_id))
+            reserva = self.db.query(ReservaORM).filter_by(id=reserva_uuid).first()
+            if not reserva:
+                return f"No se encontró la reserva con ID {reserva_id}"
+            self.db.delete(reserva)
+            self.db.commit()
+            return True
+        except Exception as e:
+            self.db.rollback()
             return str(e)
     
     def resetDb(self):
