@@ -342,7 +342,7 @@ class HospedajeById(Resource):
                         },
                         {
                                 'name': 'currency_code',
-                                'in': 'query',
+                                'in': 'path',
                                 'type': 'string',
                                 'required': True,
                                 'description': 'Código de moneda del destino',
