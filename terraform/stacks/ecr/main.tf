@@ -28,3 +28,9 @@ module "auth_repository_name" {
   keep_tags_number = var.keep_tags_number
   repository_name  = var.auth_repository_name
 }
+
+module "webhook_pagos_repository_name" {
+  source = "../../modules/ecr"
+  keep_tags_number = var.keep_tags_number
+  repository_name  = var.webhook_pagos_repository_name
+}
