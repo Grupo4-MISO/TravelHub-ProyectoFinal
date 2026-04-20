@@ -1,11 +1,11 @@
 from botocore.exceptions import ClientError
-import app.utils.helper as Helper
+from app.utils.helper import Helper
 import boto3
 
 class HelperQueue:
     def __init__(self, queue_url):
         self.queue_url = queue_url
-        self.sqs_cliente = boto3.client('sqs')
+        self.sqs_client = boto3.client('sqs')
     
     def sendMessage(self, message_body):
         try:
