@@ -1,6 +1,7 @@
 from botocore.exceptions import ClientError
 from app.utils.helper import Helper
 import boto3
+import json
 
 class HelperQueue:
     def __init__(self, queue_url):
@@ -12,7 +13,7 @@ class HelperQueue:
             #Enviamos mensaje a SQS
             response = self.sqs_client.send_message(
                 QueueUrl = self.queue_url,
-                MessageBody = message_body
+                MessageBody = json.dumps(message_body)
             )
 
             return Helper.response(status_code = 200, message = response)

@@ -23,7 +23,7 @@ IMAGE_TAG_NEW=v5.0.0
 # Nueva version imagen lambda
 SERVICES_LAMBDA_NEW=webhook-pagos-app
 FOLDERS_LAMBDA_NEW=webhook_pagos
-IMAGE_TAG_LAMBDA_NEW=v2.0.0
+IMAGE_TAG_LAMBDA_NEW=v3.0.0
 
 export AWS_REGION
 
