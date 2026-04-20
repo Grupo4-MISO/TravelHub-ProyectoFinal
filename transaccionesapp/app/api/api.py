@@ -84,8 +84,8 @@ class Health(Resource):
 
 
 class PaymentProviderResource(Resource):
-    @token_required
-    def get(current_user, self):
+    # @token_required
+    def get(self):
         """
         Listar proveedores de pago
         ---
@@ -100,7 +100,7 @@ class PaymentProviderResource(Resource):
             description: Token faltante o invalido
         """
         providers = payment_provider_crud.get_all_payment_providers()
-        return {"providers": [_serialize_payment_provider(provider) for provider in providers]}, 200
+        return [_serialize_payment_provider(provider) for provider in providers], 200
 
     @token_required
     @roles_required("Admin")

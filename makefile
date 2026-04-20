@@ -10,6 +10,8 @@ DB_PASSWORD=proyectogrupo4
 
 # Microservicios
 SERVICES=busquedas-app inventarios-app reservas-app comentarios-app auth-app
+SERVICES_LAMBDA=webhook-pagos-app
+FOLDERS_LAMBDA=webhook_pagos
 FOLDERS=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp
 IMAGE_TAG=v1.0.0
 
@@ -17,6 +19,11 @@ IMAGE_TAG=v1.0.0
 SERVICES_NEW=inventarios-app
 FOLDERS_NEW=inventario_app
 IMAGE_TAG_NEW=v5.0.0
+
+# Nueva version imagen lambda
+SERVICES_LAMBDA_NEW=webhook-pagos-app
+FOLDERS_LAMBDA_NEW=webhook_pagos
+IMAGE_TAG_LAMBDA_NEW=v3.0.0
 
 export AWS_REGION
 
@@ -49,6 +56,18 @@ elasticache:
 	terraform plan -var-file="../../environments/elasticache/terraform.tfvars" -out .tfplan && \
 	terraform apply ".tfplan"
 
+sqs:
+	cd terraform/stacks/sqs && \
+	terraform init -backend-config="../../environments/sqs/backend.tfvars" && \
+	terraform plan -var-file="../../environments/sqs/terraform.tfvars" -out .tfplan && \
+	terraform apply ".tfplan"
+
+lambda:
+	cd terraform/stacks/lambda && \
+	terraform init -backend-config="../../environments/lambda/backend.tfvars" && \
+	terraform plan -var-file="../../environments/lambda/terraform.tfvars" -out .tfplan && \
+	terraform apply ".tfplan"
+
 ingress:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && \
 	helm repo update && \
@@ -77,6 +96,14 @@ destroy-elasticache:
 	cd terraform/stacks/elasticache && \
 	terraform destroy -var-file="../../environments/elasticache/terraform.tfvars"
 
+destroy-sqs:
+	cd terraform/stacks/sqs && \
+	terraform destroy -var-file="../../environments/sqs/terraform.tfvars"
+
+destroy-lambda:
+	cd terraform/stacks/lambda && \
+	terraform destroy -var-file="../../environments/lambda/terraform.tfvars"
+
 destroy-ingress:
 	kubectl delete service ingress-nginx-controller -n ingress-nginx || true
 	helm uninstall ingress-nginx -n ingress-nginx || true
@@ -101,13 +128,17 @@ docker-push-all:
 		i=$$((i+1)); \
 	done
 
-docker-push-all-local:
+docker-push-lambda:
 	@i=0; \
-	for service in $(SERVICES); do \
-		folder=$$(echo $(FOLDERS) | cut -d' ' -f$$((i+1))); \
+	for service in $(SERVICES_LAMBDA); do \
+		folder=$$(echo $(FOLDERS_LAMBDA) | cut -d' ' -f$$((i+1))); \
 		echo ">>> Construyendo y subiendo $$service desde $$folder"; \
-		docker build --rm -t $$service:$(IMAGE_TAG) -f $$folder/Dockerfile $$folder/.; \
-		docker tag $$service:$(IMAGE_TAG) $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$$service:$(IMAGE_TAG); \
+		docker buildx build \
+			--platform linux/amd64 \
+			--provenance=false \
+			-t $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$$service:$(IMAGE_TAG) \
+			-f $$folder/Dockerfile $$folder/. \
+			--push; \
 		i=$$((i+1)); \
 	done
 
@@ -122,11 +153,19 @@ docker-push-new:
 		i=$$((i+1)); \
 	done
 
+docker-push-lambda-new:
+	docker buildx build \
+		--platform linux/amd64 \
+		--provenance=false \
+		-t $(ACCOUNT_ID).dkr.ecr.$(AWS_REGION).amazonaws.com/$(SERVICES_LAMBDA_NEW):$(IMAGE_TAG_LAMBDA_NEW) \
+		-f $(FOLDERS_LAMBDA_NEW)/Dockerfile $(FOLDERS_LAMBDA_NEW)/. \
+		--push
+
 # =====================
 # WORKFLOWS COMPLETOS
 # =====================
 
-infra: ecr rds eks elasticache
-images: ecr-login docker-push-all
+infra: ecr rds eks elasticache sqs lambda
+images: ecr-login docker-push-all docker-push-lambda
 deploy: infra images ingress
-destroy: destroy-ingress destroy-elasticache destroy-eks destroy-rds destroy-ecr
+destroy: destroy-ingress destroy-elasticache destroy-eks destroy-rds destroy-ecr destroy-sqs destroy-lambda
