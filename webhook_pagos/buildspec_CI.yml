@@ -1,0 +1,39 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: us-east-1
+    REPOSITORY_URI: 387050840675.dkr.ecr.us-east-1.amazonaws.com/webhook-pagos-app
+
+phases:
+  pre_build:
+    commands:
+      - set -e
+      - echo "Pre-build iniciado en $(date)"
+
+      - cd webhook_pagos
+
+      - echo "Login en ECR..."
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
+
+      - echo "Generando tag de imagen..."
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo "IMAGE_TAG=$IMAGE_TAG"
+
+  build:
+    commands:
+      - echo "Build iniciado en $(date)"
+      - docker build -t webhook-pagos-app:$IMAGE_TAG .
+      - docker tag webhook-pagos-app:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo "Pushing imagen a ECR..."
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+
+      - echo "Actualizando Lambda..."
+      - aws lambda update-function-code --function-name webhook-app-lambda --image-uri $REPOSITORY_URI:$IMAGE_TAG
+
+      - aws lambda wait function-updated --function-name webhook-app-lambda
+
+      - echo "Deploy completado"
