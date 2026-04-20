@@ -56,6 +56,12 @@ elasticache:
 	terraform plan -var-file="../../environments/elasticache/terraform.tfvars" -out .tfplan && \
 	terraform apply ".tfplan"
 
+sqs:
+	cd terraform/stacks/sqs && \
+	terraform init -backend-config="../../environments/sqs/backend.tfvars" && \
+	terraform plan -var-file="../../environments/sqs/terraform.tfvars" -out .tfplan && \
+	terraform apply ".tfplan"
+
 ingress:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && \
 	helm repo update && \
@@ -83,6 +89,10 @@ destroy-eks:
 destroy-elasticache:
 	cd terraform/stacks/elasticache && \
 	terraform destroy -var-file="../../environments/elasticache/terraform.tfvars"
+
+destroy-sqs:
+	cd terraform/stacks/sqs && \
+	terraform destroy -var-file="../../environments/sqs/terraform.tfvars"
 
 destroy-ingress:
 	kubectl delete service ingress-nginx-controller -n ingress-nginx || true
@@ -145,7 +155,7 @@ docker-push-lambda-new:
 # WORKFLOWS COMPLETOS
 # =====================
 
-infra: ecr rds eks elasticache
+infra: ecr rds eks elasticache sqs
 images: ecr-login docker-push-all docker-push-lambda
 deploy: infra images ingress
-destroy: destroy-ingress destroy-elasticache destroy-eks destroy-rds destroy-ecr
+destroy: destroy-ingress destroy-elasticache destroy-eks destroy-rds destroy-ecr destroy-sqs
