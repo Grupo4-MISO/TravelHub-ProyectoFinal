@@ -45,6 +45,8 @@ class SQSHelper:
                     'status': TransactionStatus[body.get('status')]
                 }
             }
+            #TODO: crear el objeto transaccion payment (modelo de datos)
+            #TODO: actualizar el status de payment (modelo de datos)
             response = payment_transaction_crud.update_payment_transaction(transaction_data.get('transaction_id'), transaction_data.get('data'))
 
             if not response:
