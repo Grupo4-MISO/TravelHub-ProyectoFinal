@@ -16,12 +16,17 @@ from flask_cors import CORS
 from flask import Flask
 import os
 from flasgger import Swagger
+from app.errors.handlers import ErrorHandler
+from app.worker.worker import pagosWorker
 
 #Traemos del ambiente las variables de configuracion
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
+
+#Registramos el manejador de errores
+ErrorHandler.errors(app)
 
 #Ponemos configuraciones de la app
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
@@ -105,6 +110,8 @@ api.add_resource(PaymentTransactionByIdResource, '/api/v1/Transactions/attempts/
 api.add_resource(PaymentTransactionByPaymentIdResource, '/api/v1/Transactions/attempts/payment/<string:payment_id>')
 
 api.add_resource(SeedDB, '/api/v1/Transactions/seed')
+
+pagosWorker()
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5006, debug=True)
