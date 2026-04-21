@@ -12,3 +12,24 @@ resource "aws_ecr_lifecycle_policy" "lifecycle_policy" {
   repository = aws_ecr_repository.main.name # esto genera una dependencia con el recurso anterior
   policy     = local.policy_document # usamos la variable local
 }
+
+resource "aws_ecr_repository_policy" "lambda_access" {
+  repository = var.repository_name
+
+  policy = jsonencode({
+    Version = "2008-10-17"
+    Statement = [
+      {
+        Sid = "LambdaECRAccess"
+        Effect = "Allow"
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+        Action = [
+          "ecr:BatchGetImage",
+          "ecr:GetDownloadUrlForLayer"
+        ]
+      }
+    ]
+  })
+}
