@@ -169,3 +169,4 @@ infra: ecr rds eks elasticache sqs lambda
 images: ecr-login docker-push-all docker-push-lambda
 deploy: infra images ingress
 destroy: destroy-ingress destroy-elasticache destroy-eks destroy-rds destroy-ecr destroy-sqs destroy-lambda
+destroy-some: destroy-rds destroy-ecr destroy-sqs destroy-lambda
