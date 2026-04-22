@@ -17,7 +17,6 @@ from flask import Flask
 import os
 from flasgger import Swagger
 from app.errors.handlers import ErrorHandler
-from app.worker.worker import pagosWorker
 
 #Traemos del ambiente las variables de configuracion
 DATABASE_URL = os.getenv('DATABASE_URL')
@@ -110,5 +109,3 @@ api.add_resource(PaymentTransactionByIdResource, '/api/v1/Transactions/attempts/
 api.add_resource(PaymentTransactionByPaymentIdResource, '/api/v1/Transactions/attempts/payment/<string:payment_id>')
 
 api.add_resource(SeedDB, '/api/v1/Transactions/seed')
-
-pagosWorker()
