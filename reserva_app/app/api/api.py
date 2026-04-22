@@ -1,5 +1,6 @@
 from app.services.reserva_crud import ReservaCRUD
 from app.services.hold_service import HoldService
+from app.errors.exceptions import APIError
 from app.utils.seedHelper import SeedHelper
 from app.utils.helper import ReservaHelper
 from flask_restful import Resource
@@ -28,6 +29,30 @@ class VerificarDisponibilidad(Resource):
         disponibilidad = reservas_crud.verificarDisponibilidad(habitaciones_ids, check_in, check_out)
     
         return disponibilidad, 200
+
+
+class CrearReserva(Resource):
+    def post(self):
+        data = request.get_json() or {}
+
+        habitacion_id = data.get('habitacion_id')
+        if not habitacion_id:
+            return {'msg': 'El campo habitacion_id es requerido'}, 400
+
+        try:
+            check_in, check_out = ReservaHelper.validacionCampoFechas(data.get('check_in'), data.get('check_out'))
+        except APIError as e:
+            return {'msg': e.message}, e.status_code
+
+        user_id = data.get('user_id')
+
+        reserva = reservas_crud.crearReserva(habitacion_id, check_in, check_out, user_id=user_id)
+        if isinstance(reserva, str):
+            if reserva == 'La habitación no está disponible para las fechas seleccionadas':
+                return {'msg': reserva}, 409
+            return {'msg': 'Error al crear la reserva', 'error': reserva}, 500
+
+        return {'msg': 'Reserva creada correctamente', 'reserva': reserva}, 201
 
 class SeedReservas(Resource):
     def post(self, cantidad):
@@ -94,7 +119,7 @@ class HoldReserva(Resource):
         try:
             resultado = hold_service.crear_hold(user_id, habitacion_id, check_in, check_out)
         except NotImplementedError as e:
-            return {'msg': 'Funcionalidad pendiente de implementación', 'detalle': str(e)}, 501
+            return {'msg': 'Falló al crear el hold', 'detalle': str(e)}, 501
 
         # Si el servicio retornó un error (string), lo propagamos como 500
         if isinstance(resultado, str):
