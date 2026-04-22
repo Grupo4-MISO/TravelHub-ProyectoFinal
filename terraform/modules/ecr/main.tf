@@ -14,7 +14,7 @@ resource "aws_ecr_lifecycle_policy" "lifecycle_policy" {
 }
 
 resource "aws_ecr_repository_policy" "lambda_access" {
-  repository = var.repository_name
+  repository = module.ecr.repository_name
 
   policy = jsonencode({
     Version = "2008-10-17"
