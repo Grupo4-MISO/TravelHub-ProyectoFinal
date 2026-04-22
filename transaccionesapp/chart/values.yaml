@@ -1,0 +1,15 @@
+image:
+  repository: 387050840675.dkr.ecr.us-east-1.amazonaws.com/transacciones-app
+  tag: v1.0.0
+
+service:
+  port: 80
+
+replicaCount: 1
+
+database: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260421014259848900000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
+sqsPagosUrl: https://sqs.us-east-1.amazonaws.com/387050840675/pagos-sqs
+sqsReservasUrl: https://sqs.us-east-1.amazonaws.com/387050840675/reservas-sqs
+healthPath: /api/v1/Transactions/health
+port: 3005
+nodePort: 30005

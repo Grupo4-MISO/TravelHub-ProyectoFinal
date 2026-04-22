@@ -112,6 +112,3 @@ api.add_resource(PaymentTransactionByPaymentIdResource, '/api/v1/Transactions/at
 api.add_resource(SeedDB, '/api/v1/Transactions/seed')
 
 pagosWorker()
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5006, debug=True)
