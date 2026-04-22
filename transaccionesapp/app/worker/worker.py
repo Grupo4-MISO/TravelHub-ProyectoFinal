@@ -20,5 +20,8 @@ def pagosWorker():
             sqs_helper.deleteMessage(msg['ReceiptHandle'])
 
             #Enviamos mensaje a la cola de reservas
-            reservas_message = Helper.reservasMessage(msg)
+            # reservas_message = Helper.reservasMessage(msg)
+            reservas_message = {
+                'key': 'value'
+            }
             sqs_helper.sendMessage(reservas_message)

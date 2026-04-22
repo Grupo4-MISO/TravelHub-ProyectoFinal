@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transacciones-app
+  labels:
+    app: transacciones-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: transacciones-app
+  template:
+    metadata:
+      labels:
+        app: transacciones-app
+    spec:
+      containers:
+      - name: transacciones-api
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.port }}
+        env:
+        - name: DATABASE_URL
+          value: {{ .Values.database }}
+        - name: SQS_PAGOS_URL
+          value: {{ .Values.sqsPagosUrl }}
+        - name: SQS_RESERVAS_URL
+          value: {{ .Values.sqsReservasUrl }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+          initialDelaySeconds: 5 
+          periodSeconds: 30
+          failureThreshold: 3
