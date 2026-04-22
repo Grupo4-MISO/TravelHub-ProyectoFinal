@@ -23,7 +23,7 @@ spec:
 
           env:
             - name: SQS_PAGOS_URL
-              value: "{{ .Values.env.sqsPagosUrl }}"
+              value: {{ .Values.sqsPagosUrl }}
 
             - name: SQS_RESERVAS_URL
-              value: "{{ .Values.env.sqsReservasUrl }}"
+              value: {{ .Values.sqsReservasUrl }}
