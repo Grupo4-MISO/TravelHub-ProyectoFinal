@@ -52,7 +52,7 @@ class SQSHelper:
         try:
             #Borramos el mensaje de la cola
             self.sqs_client.delete_message(
-                QueueUrl = self.pagos_queue_url,
+                QueueUrl = self.reservas_queue_url,
                 ReceiptHandle = receipt_handle
             )
         except Exception as e:
