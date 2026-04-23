@@ -1,4 +1,4 @@
-from app.api.api import Health, ManagerByHospedajeResource, ManagerResource, ManagerResourceById, SeedDB
+from app.api.api import Health, ManagerByProviderResource, ManagerByUserIdResource, ManagerResource, ManagerResourceById, SeedDB
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -81,9 +81,11 @@ api.add_resource(Health, '/api/v1/Managers/health')
 api.add_resource(ManagerResource, '/api/v1/Managers')
 api.add_resource(ManagerResourceById, '/api/v1/Managers/<string:id>')
 api.add_resource(
-    ManagerByHospedajeResource,
-    '/api/v1/Managers/hospedajes/<string:id>'
+    ManagerByProviderResource,
+    '/api/v1/Managers/providers/<string:id>'
 )
+api.add_resource(ManagerByUserIdResource, 
+    '/api/v1/Managers/users/<string:id>')
 api.add_resource(SeedDB, '/api/v1/Managers/seed')
 
 if __name__ == "__main__":

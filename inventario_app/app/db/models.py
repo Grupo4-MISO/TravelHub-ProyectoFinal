@@ -35,6 +35,7 @@ class HospedajeORM(db.Model):
     longitude = db.Column(db.Float, nullable = False)
     rating = db.Column(db.Float, nullable = False)
     reviews = db.Column(db.Integer, nullable = False)
+    providerId = db.Column(UUID(as_uuid = True), nullable = False) #Nuevo
     created_at = db.Column(db.DateTime, nullable = False, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable = False, default = db.func.current_timestamp(), onupdate = db.func.current_timestamp())
     habitaciones = db.relationship('HabitacionORM', backref = 'hospedaje', lazy = True)

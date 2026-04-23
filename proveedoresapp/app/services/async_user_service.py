@@ -1,8 +1,9 @@
 import requests
 from typing import Optional, Dict, Tuple
+import os
 
 # URL base del servicio de autenticación
-AUTH_SERVICE_URL = "http://127.0.0.1:5000/api/v1/auth"
+AUTH_SERVICE_URL = os.getenv("AUTH_SERVICE_URL", "http://127.0.0.1:3004")
 
 class AsyncUserService:
     """
@@ -46,18 +47,18 @@ class AsyncUserService:
                 user_id = user_data["id"]
         """
         try:
-            # Preparar el payload
+            # Preparar el payload con la estructura esperada por autenticadorapp.
             payload = {
+                "first_name": first_name,
+                "last_name": last_name,
                 "email": email,
                 "password": password,
-                "role": role,
-                "first_name": first_name,
-                "last_name": last_name
+                "role": role or "Manager",
             }
             
             # Hacer la petición POST a autenticadorapp
             response = requests.post(
-                f"{AUTH_SERVICE_URL}/users",
+                f"{AUTH_SERVICE_URL}/api/v1/auth/users",
                 json=payload,
                 timeout=10
             )
@@ -89,7 +90,7 @@ class AsyncUserService:
             return None, error_msg
         
         except requests.exceptions.ConnectionError:
-            error_msg = "Error de conexión: No se pudo conectar con el servicio de autenticación. Verifica que autenticadorapp esté corriendo en puerto 5000"
+            error_msg = "Error de conexión: No se pudo conectar con el servicio de autenticación. Verifica que autenticadorapp esté corriendo"
             return None, error_msg
         
         except Exception as e:
