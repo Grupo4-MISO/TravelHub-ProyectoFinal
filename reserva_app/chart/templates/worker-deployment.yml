@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservas-worker-app
+  labels:
+    app: reservas-worker-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: reservas-worker-app
+  template:
+    metadata:
+      labels:
+        app: reservas-worker-app
+    spec:
+      containers:
+        - name: worker
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
+
+          command: ["python", "worker_main.py"]
+
+          env:
+            - name: SQS_RESERVAS_URL
+              value: {{ .Values.sqsReservasUrl }}

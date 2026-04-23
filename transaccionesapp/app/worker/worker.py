@@ -1,5 +1,4 @@
 from app.utils.sqs_helper import SQSHelper
-from app.utils.helper import Helper
 import os
 
 #URL de la cola de SQS y helper

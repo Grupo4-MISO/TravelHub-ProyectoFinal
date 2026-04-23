@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reservas-worker-app
+  labels:
+    app: reservas-worker-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reservas-worker-app
+  template:
+    metadata:
+      labels:
+        app: reservas-worker-app
+    spec:
+      containers:
+        - name: worker
+          image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/reservas-app:v3.0.0
+          imagePullPolicy: Always
+
+          command: ["python", "worker_main.py"]
+
+          env:
+            - name: SQS_RESERVAS_URL
+              value: https://sqs.us-east-1.amazonaws.com/387050840675/reservas-sqs

@@ -1,5 +1,6 @@
-from app.errors.exceptions import BadRequestError
+from app.errors.exceptions import BadRequestError, InternalServerError
 from datetime import datetime
+import json
 
 IMPUESTOS = {
     'AR': 0.21,
@@ -14,6 +15,14 @@ class ReservaHelper:
     @staticmethod
     def convertirFechasDate(fecha):
         return datetime.strptime(fecha, '%Y-%m-%d').date()
+    
+    @staticmethod
+    def loadJSON(message):
+        try:
+            return json.loads(message['Body'])
+        
+        except Exception as e:
+            raise InternalServerError(f'Error loading JSON from message: {str(e)}')
     
     @staticmethod
     def validacionCampoFechas(check_in, check_out):
