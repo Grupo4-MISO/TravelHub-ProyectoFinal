@@ -103,6 +103,26 @@ class ReservaCRUD:
         except Exception as e:
             self.db.rollback()
             return str(e)
+        
+    def obtenerReservasPorUsuario(self, user_id: int | str) -> list[ReservaORM] | str:
+        try: 
+            user_uuid = UUID(str(user_id))
+            reservas = self.db.query(ReservaORM).filter_by(user_id=user_uuid).all()
+            return [
+                {
+                    "id": str(reserva.id),
+                    "public_id": str(reserva.public_id),
+                    "habitacion_id": str(reserva.habitacion_id),
+                    "check_in": reserva.check_in.isoformat(),
+                    "check_out": reserva.check_out.isoformat(),
+                    "estado": reserva.estado,
+                    "created_at": reserva.created_at.isoformat() if reserva.created_at else None,
+                    "updated_at": reserva.updated_at.isoformat() if reserva.updated_at else None,
+                }
+                for reserva in reservas
+            ]
+        except Exception as e:
+            return str(e)
     
     def resetDb(self):
         try:
