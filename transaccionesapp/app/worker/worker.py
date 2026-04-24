@@ -1,4 +1,5 @@
 from app.utils.sqs_helper import SQSHelper
+from app.utils.helper import Helper
 import os
 
 #URL de la cola de SQS y helper
@@ -12,15 +13,16 @@ def pagosWorker():
         messages = sqs_helper.readMessages()
         
         for msg in messages:
+            #Leemos el body del mensaje
+            msg = Helper.loadJSON(msg)
+
             #Procesamos el mensaje
-            response = sqs_helper.processMessage(msg)
+            payment_transaction = sqs_helper.processMessage(msg)
 
             #Borramos el mensasje de la cola
             sqs_helper.deleteMessage(msg['ReceiptHandle'])
 
             #Enviamos mensaje a la cola de reservas
-            # reservas_message = Helper.reservasMessage(msg)
-            reservas_message = {
-                'key': 'value'
-            }
+            reservas_message = Helper.reservasMessage(payment_transaction)
+            reservas_message['status'] = msg.get('status')
             sqs_helper.sendMessage(reservas_message)
