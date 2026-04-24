@@ -17,7 +17,6 @@ from flask import Flask
 import os
 from flasgger import Swagger
 from app.errors.handlers import ErrorHandler
-from app.worker.worker import pagosWorker
 
 API_PREFIX = '/api/v1/Transactions'
 

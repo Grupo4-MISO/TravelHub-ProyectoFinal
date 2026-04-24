@@ -11,7 +11,7 @@ payment_transaction_crud = PaymentTransactionCrud()
 class SQSHelper:
     def __init__(self, pagos_sqs_url: str, reservas_sqs_url: str):
         #Creamos cliente de SQS
-        self.sqs_client = boto3.client('sqs')
+        self.sqs_client = boto3.client('sqs', region_name = 'us-east-1')
 
         #Guardamos la URL de la cola
         self.pagos_queue_url = pagos_sqs_url
@@ -35,20 +35,20 @@ class SQSHelper:
     
     def processMessage(self, message):
         try:
-            #Sacamos el body del mensaje
-            body = Helper.loadJSON(message['Body'])
+            # #Sacamos el body del mensaje
+            # body = Helper.loadJSON(message['Body'])
 
-            #Actualizamos transaccion en base de datos
-            transaction_data = {
-                'transaction_id': body.get('transaction_id'),
-                'data': {
-                    'status': TransactionStatus[body.get('status')]
-                }
-            }
+            # #Actualizamos transaccion en base de datos
+            # transaction_data = {
+            #     'transaction_id': body.get('transaction_id'),
+            #     'data': {
+            #         'status': TransactionStatus[body.get('status')]
+            #     }
+            # }
             #TODO: crear el objeto transaccion payment (modelo de datos)
             #TODO: actualizar el status de payment (modelo de datos)
-            response = payment_transaction_crud.update_payment_transaction(transaction_data.get('transaction_id'), transaction_data.get('data'))
-
+            # response = payment_transaction_crud.update_payment_transaction(transaction_data.get('transaction_id'), transaction_data.get('data'))
+            response = True
             if not response:
                 raise DatababaseError('Error updating payment transaction in database')
 
