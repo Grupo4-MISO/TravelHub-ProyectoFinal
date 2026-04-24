@@ -119,7 +119,7 @@ class HoldReserva(Resource):
         try:
             resultado = hold_service.crear_hold(user_id, habitacion_id, check_in, check_out)
         except NotImplementedError as e:
-            return {'msg': 'Falló al crear el hold', 'detalle': str(e)}, 501
+            return {'msg': 'Funcionalidad pendiente de implementación', 'detalle': str(e)}, 501
 
         # Si el servicio retornó un error (string), lo propagamos como 500
         if isinstance(resultado, str):

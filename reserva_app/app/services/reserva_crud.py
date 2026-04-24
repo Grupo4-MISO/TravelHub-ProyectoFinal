@@ -3,7 +3,7 @@ from app.db.models import Payment, ReservaORM, db
 from app.domain.reserva_estado import ReservaEstado
 from app.utils.hold_cache_helper import HoldCacheHelper
 from sqlalchemy import not_
-from datetime import date
+from datetime import date, datetime
 from uuid import UUID
 
 class ReservaCRUD:
@@ -104,6 +104,9 @@ class ReservaCRUD:
 
     @staticmethod
     def _serializar_reserva(reserva: ReservaORM) -> dict:
+        created_at_iso = reserva.created_at.isoformat() if reserva.created_at else None
+        updated_at_iso = reserva.updated_at.isoformat() if reserva.updated_at else None
+
         return {
             "id": str(reserva.id),
             "public_id": str(reserva.public_id),
@@ -111,8 +114,10 @@ class ReservaCRUD:
             "check_in": reserva.check_in.isoformat(),
             "check_out": reserva.check_out.isoformat(),
             "estado": reserva.estado,
-            "created_at": reserva.created_at.isoformat() if reserva.created_at else None,
-            "updated_at": reserva.updated_at.isoformat() if reserva.updated_at else None,
+            "created_at": created_at_iso,
+            "updated_at": updated_at_iso,
+            "fecha_creacion": created_at_iso,
+            "fecha_actualizacion": updated_at_iso,
         }
 
     def crearReserva(self, habitacion_id: int | str, check_in: date, check_out: date, user_id: int | str | None = None) -> dict | str:
@@ -129,11 +134,14 @@ class ReservaCRUD:
             return 'El habitacion_id debe ser un UUID válido'
 
         try:
+            now = datetime.now()
             reserva = ReservaORM(
                 habitacion_id=habitacion_uuid,
                 check_in=check_in,
                 check_out=check_out,
                 estado=ReservaEstado.PENDIENTE.value,
+                created_at=now,
+                updated_at=now,
             )
             self.db.add(reserva)
             self.db.commit()
