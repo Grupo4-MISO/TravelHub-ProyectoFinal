@@ -1,4 +1,4 @@
-from app.errors.exceptions import DatababaseError
+from app.errors.exceptions import DatababaseError, NotFoundError
 from app.db.models import Payment, ReservaORM, db
 from sqlalchemy import not_
 from datetime import date
@@ -7,6 +7,24 @@ from uuid import UUID
 class ReservaCRUD:
     def __init__(self) -> None:
         self.db = db.session
+
+    def cambiarEstadoReserva(self, data_reserva: dict):
+        try:
+            #Filtramos reserva por ID
+            reserva_id = UUID(str(data_reserva.get('reserva_id')))
+            reserva = self.db.query(ReservaORM).filter_by(id = reserva_id).first()
+
+            #Validamos que la reserva exista
+            if not reserva:
+                raise NotFoundError(f"No se encontró la reserva con ID {data_reserva.get('reserva_id')}")
+
+            #Actualizamos el estado de la reserva
+            reserva.estado = data_reserva.get('status')
+            self.db.commit()
+
+        except Exception as e:
+            self.db.rollback()
+            raise DatababaseError(f"Error al cambiar estado de reserva: {str(e)}")
 
     def _obtener_habitaciones_ocupadas(self, habitacion_ids: list[int | str], check_in: date, check_out: date) -> set[str] | str:
         try:

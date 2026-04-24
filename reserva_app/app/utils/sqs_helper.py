@@ -1,6 +1,9 @@
-from app.errors.exceptions import ExternalServiceError, DatababaseError
-from app.utils.helper import ReservaHelper
+from app.errors.exceptions import InternalServerError, ExternalServiceError
+from app.services.reserva_crud import ReservaCRUD
 import boto3
+
+#Creamos instancia de ReservaCRUD
+reserva_crud = ReservaCRUD()
 
 class SQSHelper:
     def __init__(self, reservas_sqs_url: str):
@@ -28,25 +31,11 @@ class SQSHelper:
     
     def processMessage(self, message):
         try:
-            # #Sacamos el body del mensaje
-            # body = ReservaHelper.loadJSON(message['Body'])
-
-            # #Actualizamos transaccion en base de datos
-            # transaction_data = {
-            #     'transaction_id': body.get('transaction_id'),
-            #     'data': {
-            #         'status': TransactionStatus[body.get('status')]
-            #     }
-            # }
-            #TODO: crear el objeto transaccion payment (modelo de datos)
-            #TODO: actualizar el status de payment (modelo de datos)
-            # response = payment_transaction_crud.update_payment_transaction(transaction_data.get('transaction_id'), transaction_data.get('data'))
-            response = True
-            if not response:
-                raise DatababaseError('Error updating payment transaction in database')
+            #Cambiamos el estado de la reserva
+            reserva_crud.cambiarEstadoReserva(message)
 
         except Exception as e:
-            raise ExternalServiceError(f'Error processing message: {str(e)}')
+            raise InternalServerError(f'Error processing message: {str(e)}')
 
     def deleteMessage(self, receipt_handle):
         try:

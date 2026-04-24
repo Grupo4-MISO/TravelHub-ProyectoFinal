@@ -1,3 +1,4 @@
+from app.utils.helper import ReservaHelper
 from app.utils.sqs_helper import SQSHelper
 import os
 
@@ -11,8 +12,11 @@ def reservasWorker():
         messages = sqs_helper.readMessages()
         
         for msg in messages:
+            #Sacamos el cuerpo del mensaje
+            msg = ReservaHelper.loadJSON(msg)
+
             #Procesamos el mensaje
-            response = sqs_helper.processMessage(msg)
+            sqs_helper.processMessage(msg)
 
             #Borramos el mensasje de la cola
             sqs_helper.deleteMessage(msg['ReceiptHandle'])

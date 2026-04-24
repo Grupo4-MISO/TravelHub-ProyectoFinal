@@ -23,3 +23,7 @@ class InternalServerError(APIError):
 class ExternalServiceError(APIError):
     def __init__(self, message = 'External service error'):
         super().__init__(message, 502)
+
+class NotFoundError(APIError):
+    def __init__(self, message = 'Resource not found'):
+        super().__init__(message, 404)

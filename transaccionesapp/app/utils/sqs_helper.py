@@ -1,4 +1,4 @@
-from app.errors.exceptions import ExternalServiceError, DatababaseError
+from app.errors.exceptions import InternalServerError, DatababaseError, ExternalServiceError
 from app.services.transactions_crud import PaymentTransactionCrud
 from app.db.models import TransactionStatus
 import boto3
@@ -50,7 +50,7 @@ class SQSHelper:
             return payment_transaction
         
         except Exception as e:
-            raise ExternalServiceError(f'Error processing message: {str(e)}')
+            raise InternalServerError(f'Error processing message: {str(e)}')
 
     def deleteMessage(self, receipt_handle):
         try:
