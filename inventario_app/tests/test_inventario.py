@@ -272,6 +272,7 @@ def test_hospedaje_collection_validation_and_db_error(mocker):
         '/hospedajes',
         method='POST',
         json={
+            'providerId': str(uuid4()),
             'nombre': 'Hotel',
             'descripcion': 'Desc',
             'countryCode': 'CO',
@@ -290,6 +291,7 @@ def test_hospedaje_collection_validation_and_db_error(mocker):
 
     mocker.patch('app.api.api.inventario_CRUD.crear_hospedaje', return_value=DatababaseError('Error en la base de datos: fallo simulado'))
     valid_payload = {
+        'providerId': str(uuid4()),
         'nombre': 'Hotel',
         'descripcion': 'Desc',
         'countryCode': 'CO',
@@ -311,13 +313,15 @@ def test_hospedaje_collection_success(mocker):
     app, api = build_app()
     api.add_resource(HospedajeCollection, '/hospedajes')
 
-    created = {'id': '1', 'nombre': 'Hotel', 'descripcion': 'Desc'}
+    provider_id = str(uuid4())
+    created = {'id': '1', 'providerId': provider_id, 'nombre': 'Hotel', 'descripcion': 'Desc'}
     mocker.patch('app.api.api.inventario_CRUD.crear_hospedaje', return_value=created)
 
     with app.test_request_context(
         '/hospedajes',
         method='POST',
         json={
+            'providerId': provider_id,
             'nombre': 'Hotel',
             'descripcion': 'Desc',
             'countryCode': 'co',
@@ -353,6 +357,7 @@ def test_hospedaje_by_id_variants(mocker):
 
     hospedaje = {
         'id': '1',
+        'providerId': str(uuid4()),
         'nombre': 'Hotel',
         'pais': 'Colombia',
         'ciudad': 'Bogota',
@@ -447,6 +452,7 @@ def test_seed_helper_reset_and_seed(monkeypatch):
     monkeypatch.setattr(seed_module, 'HOSPEDAJES_SEED', [
         {
             'id': str(uuid4()),
+            'providerId': str(uuid4()),
             'nombre': 'Hotel Uno',
             'countryCode': 'CO',
             'pais': 'Colombia',
@@ -572,6 +578,7 @@ def test_inventario_crud_hospedajes_and_detail(monkeypatch):
 
     fake_hospedaje = SimpleNamespace(
         id=uuid4(),
+        providerId=uuid4(),
         nombre='Hotel Uno',
         descripcion='Desc',
         countryCode='CO',
@@ -641,6 +648,7 @@ def test_inventario_crud_hospedajes_and_detail(monkeypatch):
 
     with build_app()[0].app_context():
         created = crud.crear_hospedaje({
+            'providerId': str(uuid4()),
             'nombre': 'Hotel Uno',
             'descripcion': 'Desc',
             'countryCode': 'CO',
@@ -769,6 +777,7 @@ def test_inventario_crud_habitaciones_and_countries(monkeypatch):
 
     hotel_detail = SimpleNamespace(
         id=uuid4(),
+        providerId=uuid4(),
         nombre='Hotel',
         descripcion='Desc',
         countryCode='CO',
