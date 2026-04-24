@@ -50,9 +50,25 @@ def make_manager(manager_id=None, provider_id=None, user_id=None, email="tester@
 def make_provider(provider_id=None):
     return SimpleNamespace(
         id=provider_id or uuid4(),
-        Name="Proveedor Test",
-        DocumentNumber="900123456",
-        ProviderStatus=SimpleNamespace(name="Pending"),
+        name="Proveedor Test",
+        documentNumber="900123456",
+        providerStatus=SimpleNamespace(name="Pending"),
+        created_at=datetime(2026, 4, 6, 12, 0, 0),
+        updated_at=datetime(2026, 4, 6, 12, 30, 0),
+    )
+
+
+def make_provider_address(provider_id):
+    return SimpleNamespace(
+        id=uuid4(),
+        provider_id=provider_id,
+        line1="Calle 123",
+        line2="Apto 456",
+        city="Bogota",
+        state="Cundinamarca",
+        country="Colombia",
+        countryCode="CO",
+        postal_code="110111",
         created_at=datetime(2026, 4, 6, 12, 0, 0),
         updated_at=datetime(2026, 4, 6, 12, 30, 0),
     )
@@ -148,10 +164,31 @@ def test_get_manager_by_userid_ok(client, monkeypatch):
     assert resp.get_json()["userId"] == str(user_id)
 
 
+def test_get_provider_by_userid_includes_addresses(client, monkeypatch):
+    user_id = uuid4()
+    provider = make_provider()
+    address = make_provider_address(provider.id)
+
+    monkeypatch.setattr(
+        api_module.manager_crud,
+        "get_provider_by_userid",
+        lambda value: (provider, [address]) if value == user_id else None,
+    )
+
+    resp = client.get(f"/api/v1/Providers/users/{user_id}")
+
+    assert resp.status_code == 200
+    body = resp.get_json()
+    assert body["id"] == str(provider.id)
+    assert len(body["addresses"]) == 1
+    assert body["addresses"][0]["provider_id"] == str(provider.id)
+    assert body["addresses"][0]["countryCode"] == "CO"
+
+
 def test_create_manager_missing_nested_fields(client):
     resp = client.post(
         "/api/v1/Managers",
-        json={"name": "Proveedor X", "DocumentNumber": "123", "manager": {}},
+        json={"name": "Proveedor X", "documentNumber": "123", "manager": {}},
     )
 
     assert resp.status_code == 400
@@ -196,9 +233,9 @@ def test_create_manager_ok(client, monkeypatch):
         "/api/v1/Managers",
         json={
             "name": "Proveedor X",
-            "DocumentNumber": "123456",
+            "documentNumber": "123456",
             "currency": "COP",
-            "status": "pending",
+            "providerStatus": "pending",
             "description": "Pago hotel",
             "provider_payment_id": None,
             "url": None,
@@ -217,6 +254,9 @@ def test_create_manager_ok(client, monkeypatch):
     assert resp.status_code == 201
     assert body["message"] == "Provider, manager y dirección creados exitosamente"
     assert body["provider"]["id"] == str(provider.id)
+    assert body["provider"]["name"] == provider.name
+    assert body["provider"]["documentNumber"] == provider.documentNumber
+    assert body["provider"]["providerStatus"] == provider.providerStatus.name
     assert body["manager"]["provider_id"] == str(provider.id)
     assert body["user"]["id"] == str(user_id)
     assert body["address"] == address_payload
@@ -238,7 +278,7 @@ def test_create_manager_returns_409_on_auth_duplicate(client, monkeypatch):
         "/api/v1/Managers",
         json={
             "name": "Proveedor X",
-            "DocumentNumber": "123456",
+            "documentNumber": "123456",
             "manager": {
                 "first_name": "Ana",
                 "last_name": "Lopez",
@@ -376,8 +416,8 @@ def test_manager_crud_create_get_update_delete(monkeypatch):
     created = crud.create_manager(
         {
             "name": "Proveedor Test",
-            "DocumentNumber": "123456",
-            "status": "pending",
+            "documentNumber": "123456",
+            "providerStatus": "pending",
             "userId": str(fake_user_id),
             "email": "tester@example.com",
             "first_name": "Test",
@@ -466,8 +506,8 @@ def test_manager_crud_error_branches(monkeypatch):
     assert crud.create_manager(
         {
             "name": "Proveedor Test",
-            "DocumentNumber": "123456",
-            "status": "pending",
+            "documentNumber": "123456",
+            "providerStatus": "pending",
             "userId": str(uuid4()),
             "email": "tester@example.com",
             "first_name": "Test",

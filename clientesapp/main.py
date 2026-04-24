@@ -1,4 +1,4 @@
-from app.api.api import Health, ManagerByProviderIdResource, ManagerByUserIdResource, ManagerResource, ManagerResourceById, ProviderByUserId, SeedDB
+from app.api.api import Health, TravelerResource, TravelerResourceById, TravelerByUserIdResource, SeedDB
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -13,7 +13,7 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 app = Flask(__name__)
 
 #Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv( 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
     "DATABASE_URL",
     "sqlite:///travelhub.db"
 )
@@ -34,8 +34,8 @@ app.config["SWAGGER"] = {
 swagger_template = {
     "swagger": "2.0",
     "info": {
-        "title": "TravelHub Providers API",
-        "description": "Documentación de endpoints de proveedores",
+        "title": "TravelHub Traveler API",
+        "description": "Documentación de endpoints de clientes",
         "version": "1.0.0"
     },
     "basePath": "/",
@@ -77,18 +77,12 @@ CORS(app)
 #Registramos la API RESTful
 api = Api(app)
 
-api.add_resource(Health, '/api/v1/Managers/health')
-api.add_resource(ProviderByUserId,
-                 '/api/v1/Providers/users/<string:user_id>')
-api.add_resource(ManagerResource, '/api/v1/Managers')
-api.add_resource(ManagerResourceById, '/api/v1/Managers/<string:id>')
-api.add_resource(
-                ManagerByProviderIdResource,
-                '/api/v1/Managers/providers/<string:id>'
-)
-api.add_resource(ManagerByUserIdResource, 
-                '/api/v1/Managers/users/<string:id>')
-api.add_resource(SeedDB, '/api/v1/Managers/seed')
+api.add_resource(Health, '/api/v1/Travelers/health')
+api.add_resource(TravelerResource, '/api/v1/Travelers')
+api.add_resource(TravelerResourceById, '/api/v1/Travelers/<string:id>')
+api.add_resource(TravelerByUserIdResource, 
+                '/api/v1/Travelers/users/<string:id>')
+api.add_resource(SeedDB, '/api/v1/Travelers/seed')
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3005, debug=True)
+    app.run(host="127.0.0.1", port=3007, debug=True)

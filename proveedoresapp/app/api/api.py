@@ -17,12 +17,38 @@ def _serialize_manager(manager):
         "id": str(manager.id),
         "provider_id": str(manager.provider_id) if manager.provider_id else None,
         "userId": str(manager.userId) if manager.userId else None,
-        "email": manager.email,
         "first_name": manager.first_name,
         "last_name": manager.last_name,
         "phone": manager.phone,
+        "email": manager.email,
         "created_at": manager.created_at.isoformat() if hasattr(manager.created_at, "isoformat") else manager.created_at,
         "updated_at": manager.updated_at.isoformat() if hasattr(manager.updated_at, "isoformat") else manager.updated_at,
+    }
+
+def _serialize_provider(provider):
+    return {
+        "id": str(provider.id),
+        "name": provider.name,
+        "documentNumber": getattr(provider, "documentNumber", getattr(provider, "DocumentNumber", None)),
+        "providerStatus": provider.providerStatus.name if provider.providerStatus else None,
+        "created_at": provider.created_at.isoformat() if hasattr(provider.created_at, "isoformat") else provider.created_at,
+        "updated_at": provider.updated_at.isoformat() if hasattr(provider.updated_at, "isoformat") else provider.updated_at,
+    }
+
+
+def _serialize_provider_address(address):
+  return {
+        "id": str(address.id),
+        "provider_id": str(address.provider_id),
+        "line1": address.line1,
+        "line2": address.line2,
+        "city": address.city,
+        "state": address.state,
+        "country": address.country,
+        "countryCode": address.countryCode,
+        "postal_code": address.postal_code,
+        "created_at": address.created_at.isoformat() if hasattr(address.created_at, "isoformat") else address.created_at,
+        "updated_at": address.updated_at.isoformat() if hasattr(address.updated_at, "isoformat") else address.updated_at,
     }
 
 class Health(Resource):
@@ -44,6 +70,75 @@ class Health(Resource):
         """
         return {'status': 'healthy'}, 200
 
+class ProviderByUserId(Resource):
+    def get(self, user_id):
+        """
+        Obtener provider por ID de usuario
+        ---
+        tags:
+          - ProviderByUserId
+        parameters:
+          - in: path
+            name: user_id
+            required: true
+            type: string
+            format: uuid
+        responses:  
+          200:
+            description: Provider encontrado
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                documentNumber:
+                  type: string
+                providerStatus:
+                  type: string
+                created_at:
+                  type: string
+                updated_at:
+                  type: string
+                addresses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      provider_id:
+                        type: string
+                      line1:
+                        type: string
+                      line2:
+                        type: string
+                      city:
+                        type: string
+                      state:
+                        type: string
+                      country:
+                        type: string
+                      countryCode:
+                        type: string
+                      postal_code:
+                        type: string
+          404:
+            description: Provider no encontrado
+        """
+        user_id_uuid = UUID(user_id)
+        provider_data = manager_crud.get_provider_by_userid(user_id_uuid)
+
+        if not provider_data:
+            return {"message": "Provider not found"}, 404
+
+        provider, addresses = provider_data
+        response = _serialize_provider(provider)
+        response["addresses"] = [_serialize_provider_address(address) for address in addresses]
+
+        return response, 200
+
 class ManagerResource(Resource):
     def post(self):
         """
@@ -57,28 +152,17 @@ class ManagerResource(Resource):
             required: true
             schema:
               type: object
-              required: [name, DocumentNumber, manager]
+              required: [name, documentNumber, manager]
               properties:
                 name:
                   type: string
                   example: Hotel Las Colinas
-                DocumentNumber:
+                documentNumber:
                   type: string
                   example: 900123456
-                currency:
-                  type: string
-                  example: COP
-                status:
+                providerStatus:
                   type: string
                   example: pending
-                description:
-                  type: string
-                provider_payment_id:
-                  type: string
-                  nullable: true
-                url:
-                  type: string
-                  nullable: true
                 manager:
                   type: object
                   required: [first_name, last_name, email, password]
@@ -144,10 +228,13 @@ class ManagerResource(Resource):
         payload = request.get_json() or {}
         manager_data = payload.get("manager") or {}
         address_data = payload.get("address") or {}
+        document_number = payload.get("documentNumber") or payload.get("DocumentNumber")
 
         # Validar datos requeridos para Provider y su Manager
-        required_fields = ["name", "DocumentNumber", "manager"]
+        required_fields = ["name", "manager"]
         missing_fields = [field for field in required_fields if not payload.get(field)]
+        if not document_number:
+          missing_fields.append("documentNumber")
 
         manager_required_fields = ["first_name", "last_name", "email", "password"]
         missing_manager_fields = [
@@ -192,8 +279,8 @@ class ManagerResource(Resource):
         # Si la creación del usuario fue exitosa, crear Provider + Manager
         manager_payload = {
           "name": payload.get("name"),
-          "DocumentNumber": payload.get("DocumentNumber"),
-          "status": payload.get("status", "pending"),
+          "documentNumber": document_number,
+          "providerStatus": payload.get("providerStatus", "Pending"),
           "userId": user_data["id"],
           "email": manager_data.get("email") or user_data.get("email"),
           "first_name": manager_data.get("first_name"),
@@ -215,13 +302,9 @@ class ManagerResource(Resource):
           "message": "Provider, manager y dirección creados exitosamente",
           "provider": {
             "id": str(provider.id),
-            "name": provider.Name,
-            "DocumentNumber": provider.DocumentNumber,
-            "status": provider.ProviderStatus.name if provider.ProviderStatus else None,
-            "currency": payload.get("currency"),
-            "description": payload.get("description"),
-            "provider_payment_id": payload.get("provider_payment_id"),
-            "url": payload.get("url"),
+            "name": getattr(provider, "name", getattr(provider, "Name", None)),
+            "documentNumber": getattr(provider, "documentNumber", getattr(provider, "DocumentNumber", None)),
+            "providerStatus": provider.providerStatus.name if provider.providerStatus else None,
             "created_at": provider.created_at.isoformat() if hasattr(provider.created_at, "isoformat") else provider.created_at,
             "updated_at": provider.updated_at.isoformat() if hasattr(provider.updated_at, "isoformat") else provider.updated_at,
           },
@@ -332,14 +415,14 @@ class ManagerResourceById(Resource):
 
         return {"message": "Manager deleted"}, 200
 
-class ManagerByProviderResource(Resource):
+class ManagerByProviderIdResource(Resource):
     @token_required
     def get(current_user, self, id):
         """
         Obtener managers por provider_id
         ---
         tags:
-          - ManagersByProvider
+          - ManagersByProviderId
         parameters:
           - in: path
             name: id
@@ -426,5 +509,6 @@ class SeedDB(Resource):
 
         return {
             'msg': 'Seed ejecutado correctamente',
-            'Managers procesados': result['managers_procesados']
+            'Managers procesados': result['managers_procesados'],
+            "Providers procesados": result['providers_procesados'],
         }, 200

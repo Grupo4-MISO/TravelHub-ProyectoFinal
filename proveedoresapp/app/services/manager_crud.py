@@ -4,9 +4,19 @@ from uuid import UUID
 
 class ManagerCrud:
 
+    def get_provider_by_userid(self, userid: UUID):
+        manager = Manager.query.filter(Manager.userId == userid).first()
+        if manager:
+            provider = Provider.query.get(manager.provider_id)
+            if not provider:
+                return None
+            addresses = ProviderAddress.query.filter(ProviderAddress.provider_id == provider.id).all()
+            return provider, addresses
+        return None
+
     def create_manager(self, data: dict):
         try:
-            raw_status = str(data.get("status", "Pending")).strip().lower()
+            raw_status = str(data.get("providerStatus", data.get("status", "Pending"))).strip().lower()
             status_map = {
                 "pending": ProviderStatus.Pending,
                 "active": ProviderStatus.Active,
@@ -15,9 +25,9 @@ class ManagerCrud:
             }
 
             provider = Provider(
-                Name=data.get("name"),
-                DocumentNumber=data.get("DocumentNumber"),
-                ProviderStatus=status_map.get(raw_status, ProviderStatus.Pending),
+                name=data.get("name"),
+                documentNumber=data.get("documentNumber"),
+                providerStatus=status_map.get(raw_status, ProviderStatus.Pending),
             )
 
             db.session.add(provider)
