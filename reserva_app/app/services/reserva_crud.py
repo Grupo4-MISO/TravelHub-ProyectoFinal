@@ -217,7 +217,6 @@ class ReservaCRUD:
         try:
             # Reiniciamos la base de datos
             self.db.query(ReservaORM).delete()
-            self.db.query(Payment).delete()
             self.db.commit()
             
         except Exception as e:
