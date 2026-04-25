@@ -1,7 +1,6 @@
-from app.errors.exceptions import ExternalServiceError, DatababaseError
+from app.errors.exceptions import InternalServerError, DatababaseError, ExternalServiceError
 from app.services.transactions_crud import PaymentTransactionCrud
 from app.db.models import TransactionStatus
-from app.utils.helper import Helper
 import boto3
 import json
 
@@ -33,27 +32,25 @@ class SQSHelper:
         except Exception as e:
             raise ExternalServiceError(f'Error reading messages from SQS: {str(e)}')
     
-    def processMessage(self, message):
+    def processMessage(self, message_body):
         try:
-            # #Sacamos el body del mensaje
-            # body = Helper.loadJSON(message['Body'])
+            #Construimos dicionarios para crear objeto de pago de transaccion 
+            transaccion_data = {
+                'payment_id': message_body.get('payment_id'),
+                'status': TransactionStatus[message_body.get('status')],
+                'provider_transaction_id': message_body.get('external_payment_id'),
+                'response': message_body
+            }
+            payment_transaction = payment_transaction_crud.create_payment_transaction(transaccion_data)
 
-            # #Actualizamos transaccion en base de datos
-            # transaction_data = {
-            #     'transaction_id': body.get('transaction_id'),
-            #     'data': {
-            #         'status': TransactionStatus[body.get('status')]
-            #     }
-            # }
-            #TODO: crear el objeto transaccion payment (modelo de datos)
-            #TODO: actualizar el status de payment (modelo de datos)
-            # response = payment_transaction_crud.update_payment_transaction(transaction_data.get('transaction_id'), transaction_data.get('data'))
-            response = True
-            if not response:
-                raise DatababaseError('Error updating payment transaction in database')
-
+            #Validamos que se haya creado la transaccion
+            if not payment_transaction:
+                raise DatababaseError('Error creating payment transaction in the database')
+            
+            return payment_transaction
+        
         except Exception as e:
-            raise ExternalServiceError(f'Error processing message: {str(e)}')
+            raise InternalServerError(f'Error processing message: {str(e)}')
 
     def deleteMessage(self, receipt_handle):
         try:

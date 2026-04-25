@@ -10,5 +10,6 @@ replicaCount: 1
 database: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260421014259848900000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
 redisHost: master.name.igqc6u.use1.cache.amazonaws.com
 healthPath: api/v1/reservas/health
+sqsReservasUrl: https://sqs.us-east-1.amazonaws.com/387050840675/reservas-sqs
 port: 3001
 nodePort: 30001

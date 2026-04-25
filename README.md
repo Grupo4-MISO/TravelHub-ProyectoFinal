@@ -124,6 +124,7 @@ Gestiona el registro de reservas y verifica la disponibilidad de habitaciones en
 |---|---|---|
 | `GET` | `/api/v1/reservas/health` | Health check del servicio |
 | `POST` | `/api/v1/reservas/disponibilidad` | Verificar disponibilidad de habitaciones |
+| `POST` | `/api/v1/reservas/crear` | Crear una reserva |
 | `POST` | `/api/v1/reservas/seed/<cantidad>` | Generar reservas de prueba |
 
 **Body de disponibilidad (`/disponibilidad`):**
@@ -135,6 +136,48 @@ Gestiona el registro de reservas y verifica la disponibilidad de habitaciones en
   "check_out": "2025-06-05"
 }
 ```
+
+**Body de creación (`/crear`):**
+
+```json
+{
+  "habitacion_id": "1ecf9ccf-fc58-4a44-95c9-b4dd8c5bf5b8",
+  "check_in": "2026-05-10",
+  "check_out": "2026-05-13",
+  "user_id": "u1"
+}
+```
+
+Campos del body:
+- `habitacion_id` (string, requerido): UUID de la habitación.
+- `check_in` (string, requerido): Fecha de entrada en formato `YYYY-MM-DD`.
+- `check_out` (string, requerido): Fecha de salida en formato `YYYY-MM-DD`.
+- `user_id` (string, opcional): Identificador del usuario que realiza la reserva.
+
+**Respuesta exitosa de creación (`201 Created`):**
+
+```json
+{
+  "msg": "Reserva creada correctamente",
+  "reserva": {
+    "id": "bd9f0966-e7c9-4cb6-9ab6-8cd444da0000",
+    "public_id": "RSV-ABC12345",
+    "habitacion_id": "1ecf9ccf-fc58-4a44-95c9-b4dd8c5bf5b8",
+    "check_in": "2026-05-10",
+    "check_out": "2026-05-13",
+    "estado": "pendiente",
+    "created_at": "2026-04-23T18:12:40",
+    "updated_at": "2026-04-23T18:12:40",
+    "fecha_creacion": "2026-04-23T18:12:40",
+    "fecha_actualizacion": "2026-04-23T18:12:40"
+  }
+}
+```
+
+**Errores comunes de creación:**
+- `400 Bad Request`: campos faltantes o fechas inválidas.
+- `409 Conflict`: la habitación no está disponible para las fechas seleccionadas.
+- `500 Internal Server Error`: error interno al crear la reserva.
 
 **Variables de entorno requeridas:**
 - `DATABASE_URL` — URL de conexión a PostgreSQL

@@ -33,6 +33,14 @@ class FakeRedis:
             if key.startswith(prefix):
                 yield key
 
+    def delete(self, key):
+        if key not in self.store:
+            return 0
+
+        del self.store[key]
+        self.ttls.pop(key, None)
+        return 1
+
 
 class FakeRedisFactory:
     last_from_url = None
@@ -56,11 +64,15 @@ def _hold_json(user_id="u1", habitacion_id="h1", check_in=None, check_out=None):
     ci, co = _future_dates() if (check_in is None or check_out is None) else (check_in, check_out)
     return json.dumps(
         {
-            "hold_id": "h-1",
+            "id": "h-1",
+            "public_id": "RSV-HOLD0001",
             "user_id": user_id,
             "habitacion_id": habitacion_id,
             "check_in": ci.isoformat(),
             "check_out": co.isoformat(),
+            "estado": "pendiente",
+            "created_at": datetime.now().isoformat(),
+            "updated_at": datetime.now().isoformat(),
             "expira_en": int(time.time()) + 900,
             "ttl_segundos": 900,
         }
@@ -134,7 +146,9 @@ def test_buscar_hold_cache_retorna_hold_con_ttl():
     result = HoldCacheHelper.buscar_hold_cache("h1", "2026-04-10", "2026-04-12")
 
     assert result is not None
-    assert result["hold_id"] == "h-1"
+    assert result["id"] == "h-1"
+    assert result["public_id"] == "RSV-HOLD0001"
+    assert result["estado"] == "pendiente"
     assert result["ttl_restante"] == 850
 
 
@@ -168,6 +182,53 @@ def test_verificar_disponibilidad_cache_false_con_traslape():
     assert result is False
 
 
+def test_verificar_disponibilidad_cache_para_usuario_true_si_hold_exacto_es_del_mismo_usuario():
+    client = FakeRedis()
+    client.setex(
+        "hold:h1:2026-04-10:2026-04-14",
+        900,
+        _hold_json(user_id="u1", check_in=date(2026, 4, 10), check_out=date(2026, 4, 14)),
+    )
+    HoldCacheHelper._client = client
+
+    result = HoldCacheHelper.verificar_disponibilidad_cache_para_usuario("h1", "2026-04-10", "2026-04-14", "u1")
+
+    assert result is True
+
+
+def test_verificar_disponibilidad_cache_para_usuario_false_si_hold_es_de_otro_usuario():
+    client = FakeRedis()
+    client.setex(
+        "hold:h1:2026-04-10:2026-04-14",
+        900,
+        _hold_json(user_id="otro", check_in=date(2026, 4, 10), check_out=date(2026, 4, 14)),
+    )
+    HoldCacheHelper._client = client
+
+    result = HoldCacheHelper.verificar_disponibilidad_cache_para_usuario("h1", "2026-04-10", "2026-04-14", "u1")
+
+    assert result is False
+
+
+def test_verificar_disponibilidad_cache_para_usuario_false_si_hay_otro_hold_traslapado():
+    client = FakeRedis()
+    client.setex(
+        "hold:h1:2026-04-10:2026-04-14",
+        900,
+        _hold_json(user_id="u1", check_in=date(2026, 4, 10), check_out=date(2026, 4, 14)),
+    )
+    client.setex(
+        "hold:h1:2026-04-12:2026-04-16",
+        900,
+        _hold_json(user_id="otro", check_in=date(2026, 4, 12), check_out=date(2026, 4, 16)),
+    )
+    HoldCacheHelper._client = client
+
+    result = HoldCacheHelper.verificar_disponibilidad_cache_para_usuario("h1", "2026-04-10", "2026-04-14", "u1")
+
+    assert result is False
+
+
 def test_crear_hold_cache_persiste_hold_y_ttl():
     client = FakeRedis()
     HoldCacheHelper._client = client
@@ -186,8 +247,10 @@ def test_crear_hold_cache_persiste_hold_y_ttl():
 
     assert hold["user_id"] == "u1"
     assert hold["habitacion_id"] == "101"
+    assert hold["estado"] == "pendiente"
+    assert hold["public_id"].startswith("RSV-")
     assert hold["ttl_segundos"] == 1200
-    assert persisted["hold_id"] == hold["hold_id"]
+    assert persisted["id"] == hold["id"]
     assert client.ttl(key) == 1200
 
 
@@ -240,6 +303,38 @@ def test_actualizar_hold_cache_renueva_ttl_y_retorma_hold_actualizado():
     assert result["ttl_segundos"] == 450
     assert result["ttl_restante"] == 450
     assert client.ttl(key) == 450
+
+
+def test_eliminar_hold_cache_false_si_no_existe():
+    HoldCacheHelper._client = FakeRedis()
+
+    result = HoldCacheHelper.eliminar_hold_cache("h1", "2026-04-10", "2026-04-12")
+
+    assert result is False
+
+
+def test_eliminar_hold_cache_false_si_user_no_coincide():
+    client = FakeRedis()
+    key = HoldCacheHelper._construir_hold_key("h1", date(2026, 4, 10), date(2026, 4, 12))
+    client.setex(key, 900, _hold_json(user_id="otro", check_in=date(2026, 4, 10), check_out=date(2026, 4, 12)))
+    HoldCacheHelper._client = client
+
+    result = HoldCacheHelper.eliminar_hold_cache("h1", "2026-04-10", "2026-04-12", user_id="u1")
+
+    assert result is False
+    assert client.get(key) is not None
+
+
+def test_eliminar_hold_cache_true_si_elimina_hold_del_mismo_usuario():
+    client = FakeRedis()
+    key = HoldCacheHelper._construir_hold_key("h1", date(2026, 4, 10), date(2026, 4, 12))
+    client.setex(key, 900, _hold_json(user_id="u1", check_in=date(2026, 4, 10), check_out=date(2026, 4, 12)))
+    HoldCacheHelper._client = client
+
+    result = HoldCacheHelper.eliminar_hold_cache("h1", "2026-04-10", "2026-04-12", user_id="u1")
+
+    assert result is True
+    assert client.get(key) is None
 
 
 def test_get_client_usa_redis_url(monkeypatch):
