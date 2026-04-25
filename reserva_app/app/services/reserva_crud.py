@@ -3,8 +3,8 @@ from app.db.models import ReservaORM, db
 from app.domain.reserva_estado import ReservaEstado
 from app.utils.hold_cache_helper import HoldCacheHelper
 from sqlalchemy import not_
-from datetime import date, datetime
 from uuid import UUID
+from datetime import date, datetime
 
 class ReservaCRUD:
     def __init__(self) -> None:
