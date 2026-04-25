@@ -1,5 +1,5 @@
 from app.errors.exceptions import DatababaseError, NotFoundError
-from app.db.models import Payment, ReservaORM, db
+from app.db.models import ReservaORM, db
 from app.domain.reserva_estado import ReservaEstado
 from app.utils.hold_cache_helper import HoldCacheHelper
 from sqlalchemy import not_
