@@ -50,6 +50,7 @@ class InventarioCRUD:
             return [
                 {
                     'id': str(hospedaje.id),
+                    'providerId': str(hospedaje.providerId),
                     'nombre': hospedaje.nombre,
                     'descripcion': hospedaje.descripcion,
                     'countryCode': hospedaje.countryCode,
@@ -73,6 +74,7 @@ class InventarioCRUD:
     def crear_hospedaje(self, data):
         try:
             hospedaje = HospedajeORM(
+                providerId=uuid.UUID(str(data.get('providerId'))),
                 nombre=data.get('nombre'),
                 descripcion=data.get('descripcion') or f"Hospedaje en {data.get('ciudad', 'destino turístico')}",
                 countryCode=data.get('countryCode'),
@@ -90,6 +92,7 @@ class InventarioCRUD:
 
             return {
                 'id': str(hospedaje.id),
+                'providerId': str(hospedaje.providerId),
                 'nombre': hospedaje.nombre,
                 'descripcion': hospedaje.descripcion,
                 'countryCode': hospedaje.countryCode,
@@ -142,6 +145,7 @@ class InventarioCRUD:
         
             return {
                 'id': str(hospedaje.id),
+                'providerId': str(hospedaje.providerId),
                 'nombre': hospedaje.nombre,
                 'descripcion': hospedaje.descripcion,
                 'countryCode': hospedaje.countryCode,

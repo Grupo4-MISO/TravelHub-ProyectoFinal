@@ -17,7 +17,11 @@ app = Flask(__name__)
 ErrorHandler.errors(app)
 
 #Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///inventario.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv( 
+    "DATABASE_URL",
+    "sqlite:///travelhub.db"
+)
+#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'supersecretkey'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -58,6 +62,11 @@ swagger_config = {
 
 Swagger(app, config=swagger_config, template=swagger_template)
 
+# Configuración de base de datos (pruebas locales)
+# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://usuario:password@localhost:5432/travelhub"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///travelhub.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
 #Inicializamos la base de datos
 if not app.config.get('TESTING'):
     with app.app_context():
@@ -80,3 +89,6 @@ api.add_resource(SeedDB, '/api/v1/inventarios/seed')
 api.add_resource(HospedajeCollection, '/api/v1/inventarios/hospedajes')
 api.add_resource(HospedajeById, '/api/v1/inventarios/hospedajes/<string:hospedaje_id>/<string:currency_code>')
 api.add_resource(SeedReservations, '/api/v1/inventarios/seed-reservas') 
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=3000, debug=True) 

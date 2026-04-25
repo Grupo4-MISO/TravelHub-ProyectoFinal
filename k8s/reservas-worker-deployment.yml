@@ -1,29 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pagos-worker-app
+  name: reservas-worker-app
   labels:
-    app: pagos-worker-app
+    app: reservas-worker-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pagos-worker-app
+      app: reservas-worker-app
   template:
     metadata:
       labels:
-        app: pagos-worker-app
+        app: reservas-worker-app
     spec:
       containers:
         - name: worker
-          image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/transacciones-app:v3.0.0
+          image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/reservas-app:v1.0.0
           imagePullPolicy: Always
 
           command: ["python", "worker_main.py"]
 
           env:
-            - name: SQS_PAGOS_URL
-              value: https://sqs.us-east-1.amazonaws.com/387050840675/pagos-sqs
-
             - name: SQS_RESERVAS_URL
               value: https://sqs.us-east-1.amazonaws.com/387050840675/reservas-sqs

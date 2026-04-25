@@ -70,7 +70,7 @@ def test_login_success(client, monkeypatch):
 def test_create_user_missing_password(client):
     resp = client.post(
         "/api/v1/auth/users",
-        json={"username": "u1", "email": "u1@x.com", "role": "Traveler"},
+        json={"email": "u1@x.com", "role": "Traveler"},
     )
     assert resp.status_code == 400
     assert resp.get_json()["message"] == "Missing password"
@@ -80,7 +80,6 @@ def test_create_user_invalid_role(client):
     resp = client.post(
         "/api/v1/auth/users",
         json={
-            "username": "u1",
             "email": "u1@x.com",
             "password": "abc123",
             "role": "NoExiste",
@@ -99,6 +98,8 @@ def test_create_user_success_hashes_password(client, monkeypatch):
             id=uuid4(),
             username=payload["username"],
             email=payload["email"],
+            first_name=payload.get("first_name"),
+            last_name=payload.get("last_name"),
         )
 
     monkeypatch.setattr(api_module.user_crud, "create_user", fake_create_user)
@@ -106,16 +107,19 @@ def test_create_user_success_hashes_password(client, monkeypatch):
     resp = client.post(
         "/api/v1/auth/users",
         json={
-            "username": "nuevo",
             "email": "nuevo@travelhub.com",
             "password": "abc123",
             "role": "Traveler",
+            "first_name": "Nuevo",
+            "last_name": "Usuario",
         },
     )
 
     body = resp.get_json()
     assert resp.status_code == 201
     assert body["username"] == "nuevo"
+    assert body["first_name"] == "Nuevo"
+    assert body["last_name"] == "Usuario"
     assert "password" not in captured["payload"]
     assert "password_hash" in captured["payload"]
     assert captured["payload"]["role"].value == "Traveler"

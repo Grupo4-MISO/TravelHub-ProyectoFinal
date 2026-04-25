@@ -1,0 +1,5 @@
+apiVersion: v2
+name: clientes-app-chart
+description: Clientes microservice
+version: 0.1.0
+appVersion: "1.0"
