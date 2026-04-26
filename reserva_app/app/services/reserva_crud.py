@@ -8,11 +8,19 @@ class ReservaCRUD:
     def __init__(self) -> None:
         self.db = db.session
 
+    def _normalizar_habitacion_ids(self, habitacion_ids: list[int | str]) -> list[UUID]:
+        try:
+            return [UUID(str(habitacion_id)) for habitacion_id in habitacion_ids]
+        except Exception as e:
+            raise DatababaseError(f"IDs de habitación inválidos: {str(e)}")
+
     def _obtener_habitaciones_ocupadas(self, habitacion_ids: list[int | str], check_in: date, check_out: date) -> set[str] | str:
         try:
+            habitacion_ids_normalizados = self._normalizar_habitacion_ids(habitacion_ids)
+
             # Definimos consulta para verificar habitaciones ocupadas
             query = self.db.query(ReservaORM).filter(
-                ReservaORM.habitacion_id.in_(habitacion_ids),
+                ReservaORM.habitacion_id.in_(habitacion_ids_normalizados),
                 ReservaORM.estado == 'confirmada',
                 not_(
                     (ReservaORM.check_out <= check_in) |

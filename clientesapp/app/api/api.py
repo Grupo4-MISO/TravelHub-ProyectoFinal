@@ -20,6 +20,8 @@ def _serialize_traveler(traveler):
         "first_name": traveler.first_name,
         "last_name": traveler.last_name,
         "phone": traveler.phone,
+        "gender": traveler.gender,
+        "photo": traveler.photo,
         "email": traveler.email,
         "travelerStatus": traveler.travelerStatus.name if traveler.travelerStatus else None,
         "created_at": traveler.created_at.isoformat() if hasattr(traveler.created_at, "isoformat") else traveler.created_at,
@@ -92,6 +94,11 @@ class TravelerResource(Resource):
                       type: string
                       format: email
                     phone:
+                      type: string
+                    gender:
+                      type: string
+                      example: Female
+                    photo:
                       type: string
                     password:
                       type: string
@@ -193,7 +200,7 @@ class TravelerResource(Resource):
         )
 
         if user_error:
-            # Retornar error del servicio de autenticación
+          # Retornar error del servicio de autenticación
           is_conflict = "duplicado" in user_error.lower() or "registrado" in user_error.lower()
           return {"message": user_error}, 409 if is_conflict else 500
 
@@ -201,12 +208,14 @@ class TravelerResource(Resource):
         Traveler_payload = {
           "name": payload.get("name"),
           "documentNumber": document_number,
-          "travelerStatus": payload.get("travelerStatus", "Pending"),
+          "travelerStatus": Traveler_data.get("travelerStatus", "Pending"),
           "userId": user_data["id"],
           "email": Traveler_data.get("email") or user_data.get("email"),
           "first_name": Traveler_data.get("first_name"),
           "last_name": Traveler_data.get("last_name"),
           "phone": Traveler_data.get("phone"),
+          "gender": Traveler_data.get("gender"),
+          "photo": Traveler_data.get("photo"),
           "address": address_data,
         }
 

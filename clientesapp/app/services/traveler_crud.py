@@ -6,7 +6,7 @@ class TravelerCrud:
 
     def create_traveler(self, data: dict):
         try:
-            raw_status = str(data.get("travelerStatus", "Pending")).strip().lower()
+            raw_status = str(data.get("travelerStatus") or "Pending").strip().lower()
             status_map = {
                 "pending": TravelerStatus.Pending,
                 "active": TravelerStatus.Active,
@@ -16,9 +16,12 @@ class TravelerCrud:
 
             traveler = Traveler(
                 userId=UUID(str(data.get("userId"))),
+                documentNumber=data.get("documentNumber"),
                 first_name=data.get("first_name"),
                 last_name=data.get("last_name"),
                 phone=data.get("phone"),
+                gender=data.get("gender"),
+                photo=data.get("photo"),
                 email=data.get("email"),
                 travelerStatus=status_map.get(raw_status, TravelerStatus.Pending),
             )

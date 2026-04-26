@@ -1,0 +1,50 @@
+{
+  "inventario_app": {
+    "name": "inventario_app",
+    "description": "API para gestionar el inventario de hoteles",
+    "file": "http://127.0.0.1:3000/apispec_1.json",
+    "localUrl": "http://127.0.0.1:3000"
+  },
+  "reserva_app": {
+    "name": "reserva_app",
+    "description": "API para gestionar las reservas de los clientes",
+    "file": "http://127.0.0.1:3001/apispec_1.json",
+    "localUrl": "http://127.0.0.1:3001"
+  },
+  "busquedas": {
+    "name": "busquedas_app",
+    "description": "API para gestionar las búsquedas de hoteles",
+    "file": "http://127.0.0.1:3002/apispec_1.json",
+    "localUrl": "http://127.0.0.1:3002"
+  },
+  "comentarios": {
+    "name": "comentariosapp",
+    "description": "API para gestionar los comentarios de los clientes",
+    "file": "http://127.0.0.1:3003/apispec_1.json",
+    "localUrl": "http://127.0.0.1:3003"
+  },
+  "autenticador": {
+    "name": "autenticadorapp",
+    "description": "API para gestionar la autenticación de los usuarios",
+    "file": "http://127.0.0.1:3004/apispec_1.json",
+    "localUrl": "http://127.0.0.1:3004"
+  },
+  "proveedores": {
+    "name": "proveedoresapp",
+    "description": "API para gestionar los proveedores de hoteles",
+    "file": "http://127.0.0.1:3005/apispec_1.json",
+    "localUrl": "http://127.0.0.1:3005"
+  },
+  "trasacciones": {
+    "name": "trasaccionesapp",
+    "description": "API para gestionar las transacciones de los clientes",
+    "file": "http://127.0.0.1:3006/apispec_1.json",
+    "localUrl": "http://127.0.0.1:3006"
+  },
+  "clientes": {
+    "name": "clientesapp",
+    "description": "API para gestionar los clientes de la plataforma",
+    "file": "http://127.0.0.1:3007/apispec_1.json",
+    "localUrl": "http://127.0.0.1:3007"
+  }
+}

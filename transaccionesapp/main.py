@@ -109,3 +109,6 @@ api.add_resource(PaymentTransactionByIdResource, '/api/v1/Transactions/attempts/
 api.add_resource(PaymentTransactionByPaymentIdResource, '/api/v1/Transactions/attempts/payment/<string:payment_id>')
 
 api.add_resource(SeedDB, '/api/v1/Transactions/seed')
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=3005, debug=True)

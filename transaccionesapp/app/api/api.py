@@ -84,7 +84,6 @@ class Health(Resource):
 
 
 class PaymentProviderResource(Resource):
-    @token_required
     def get(self):
         """
         Listar proveedores de pago
