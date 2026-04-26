@@ -10,6 +10,10 @@ class ReservaCRUD:
     def __init__(self) -> None:
         self.db = db.session
 
+    @staticmethod
+    def _normalizar_habitacion_ids(habitacion_ids: list[int | str]) -> list:
+        return [UUID(str(habitacion_id)) for habitacion_id in habitacion_ids]
+
     def cambiarEstadoReserva(self, data_reserva: dict):
         try:
             #Filtramos reserva por ID
@@ -34,7 +38,7 @@ class ReservaCRUD:
 
             # Definimos consulta para verificar habitaciones ocupadas
             query = self.db.query(ReservaORM).filter(
-                ReservaORM.habitacion_id.in_(habitacion_ids),
+                ReservaORM.habitacion_id.in_(habitacion_ids_normalizados),
                 ReservaORM.estado == ReservaEstado.CONFIRMADA.value,
                 not_(
                     (ReservaORM.check_out <= check_in) |
@@ -69,7 +73,7 @@ class ReservaCRUD:
 
             return ocupadas_en_cache
         except Exception as e:
-            return str(e)
+            return set()
 
     def existeReservaEnCache(self, habitacion_id: int | str, check_in: date, check_out: date, user_id: int | str | None = None) -> bool | str:
         try:
@@ -250,10 +254,10 @@ class ReservaCRUD:
     
     def resetDb(self):
         try:
-            # Reiniciamos la base de datos
-            self.db.query(ReservaORM).delete()
-            self.db.query(Payment).delete()
-            self.db.commit()
+            # Reiniciamos el esquema completo para dejar la base limpia.
+            self.db.close()
+            db.drop_all()
+            db.create_all()
             
         except Exception as e:
             self.db.rollback()

@@ -4,6 +4,8 @@ import requests
 import subprocess
 import os
 import sys
+import socket
+import time
 
 from app.utils.token_helper import token_required, roles_required
 
@@ -408,6 +410,12 @@ class ProveedoresProxy(Resource):
 
 
 class StartAllServices(Resource):
+    @staticmethod
+    def _is_port_open(port, host="127.0.0.1"):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            sock.settimeout(0.1)
+            return sock.connect_ex((host, port)) == 0
+
     def post(self):
         """
         Inicia todos los microservicios de TravelHub
@@ -432,6 +440,8 @@ class StartAllServices(Resource):
         started = []
         errors = []
         
+        pending_services = []
+
         for service_name, service_folder, port in services:
             try:
                 service_path = os.path.join(PROJECT_ROOT, "..", "..", service_folder)
@@ -439,17 +449,41 @@ class StartAllServices(Resource):
                 if not os.path.exists(main_path):
                     errors.append(f"{service_name}: main.py no encontrado")
                     continue
+
+                if self._is_port_open(port):
+                    started.append(f"{service_name} (puerto {port})")
+                    continue
+
+                # En Windows, 1 equivale a DEBUG_PROCESS y puede impedir un arranque normal.
+                # Usamos un nuevo grupo de proceso para desacoplar el hijo del proceso web.
+                creation_flags = getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0) if sys.platform == 'win32' else 0
                     
-                subprocess.Popen(
+                process = subprocess.Popen(
                     [sys.executable, main_path],
                     cwd=service_path,
-                    creationflags=1 if sys.platform == 'win32' else 0,
+                    creationflags=creation_flags,
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL
                 )
-                started.append(f"{service_name} (puerto {port})")
+                pending_services.append((service_name, port, process))
             except Exception as e:
                 errors.append(f"{service_name}: {str(e)}")
+
+        # Verificación global para evitar esperas acumuladas por servicio.
+        deadline = time.time() + 20
+        while pending_services and time.time() < deadline:
+            still_pending = []
+            for service_name, port, process in pending_services:
+                if self._is_port_open(port):
+                    started.append(f"{service_name} (puerto {port})")
+                else:
+                    still_pending.append((service_name, port, process))
+            pending_services = still_pending
+            if pending_services:
+                time.sleep(0.25)
+
+        for service_name, port, process in pending_services:
+            errors.append(f"{service_name}: no levantó en puerto {port}")
         
         return {
             "message": "Microservicios iniciados" if started else "Error iniciando servicios",

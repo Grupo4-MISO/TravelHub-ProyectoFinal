@@ -283,7 +283,6 @@ class UserDetailResource(Resource):
 
         return {"message": "User deleted"}, 200
 
-
 class SeedDB(Resource):
     def post(self):
         """

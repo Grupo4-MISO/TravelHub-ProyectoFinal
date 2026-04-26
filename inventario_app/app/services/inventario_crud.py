@@ -281,14 +281,10 @@ class InventarioCRUD:
     
     def resetDb(self):
         try:
-            # Reiniciamos la base de datos
-            self.db.query(HabitacionORM).delete()
-            self.db.query(Hospedaje_ImagenORM).delete()
-            self.db.query(Hospedaje_AmenidadORM).delete()
-            self.db.query(AmenidadORM).delete()
-            self.db.query(CountryORM).delete()
-            self.db.query(HospedajeORM).delete()
-            self.db.commit()
+            # Reiniciamos el esquema completo para dejar la base limpia.
+            self.db.close()
+            db.drop_all()
+            db.create_all()
             
         except Exception as e:
             self.db.rollback()

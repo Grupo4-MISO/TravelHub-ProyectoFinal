@@ -16,19 +16,24 @@ class ReservaHealth(Resource):
 
 class VerificarDisponibilidad(Resource):
     def post(self):
-        #Obtenemos los datos del request
-        data = request.get_json()
+        try:
+            #Obtenemos los datos del request
+            data = request.get_json() or {}
 
-        #Validamos campos de fechas
-        check_in, check_out = ReservaHelper.validacionCampoFechas(data.get('check_in'), data.get('check_out'))
+            #Validamos campos de fechas
+            check_in, check_out = ReservaHelper.validacionCampoFechas(data.get('check_in'), data.get('check_out'))
 
-        #Obtenemos datos del request de ids
-        habitaciones_ids = data.get('habitacion_ids')
+            #Obtenemos datos del request de ids
+            habitaciones_ids = data.get('habitacion_ids') or []
 
-        #Verificamos disponibilidad
-        disponibilidad = reservas_crud.verificarDisponibilidad(habitaciones_ids, check_in, check_out)
-    
-        return disponibilidad, 200
+            #Verificamos disponibilidad
+            disponibilidad = reservas_crud.verificarDisponibilidad(habitaciones_ids, check_in, check_out)
+
+            return disponibilidad, 200
+        except APIError as e:
+            return {'msg': e.message}, e.status_code
+        except Exception as e:
+            return {'msg': 'Error al verificar la disponibilidad', 'error': str(e)}, 500
 
 
 class CrearReserva(Resource):

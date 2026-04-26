@@ -92,6 +92,7 @@ class HoldCacheHelper:
 
         return True
 
+
     @classmethod
     def verificar_disponibilidad_cache_para_usuario(cls, habitacion_id, check_in, check_out, user_id):
         cliente = cls._get_client()

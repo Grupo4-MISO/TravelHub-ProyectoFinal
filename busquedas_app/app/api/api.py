@@ -1,7 +1,7 @@
 from app.utils.inventario_helper import InventarioHelper
 from app.utils.busquedas_helper import BusquedasHelper
 from app.utils.reserva_helper import ReservaHelper
-from app.errors.exceptions import NotFoundError
+from app.errors.exceptions import APIError, NotFoundError
 from app.utils.cache_helper import CacheHelper
 from flask_restful import Resource
 from flask import request
@@ -121,80 +121,85 @@ class Search(Resource):
           500:
             description: Error interno al procesar la búsqueda
         """
-        #Extraemos parametros de busqueda
-        ciudad = request.args.get('ciudad')
-        capacidad = request.args.get('capacidad')
-        check_in = request.args.get('check_in')
-        check_out = request.args.get('check_out')
-        country_code = request.args.get('country_code')
-        currency_code = request.args.get('currency_code')
+        try:
+          #Extraemos parametros de busqueda
+          ciudad = request.args.get('ciudad')
+          capacidad = request.args.get('capacidad')
+          check_in = request.args.get('check_in')
+          check_out = request.args.get('check_out')
+          country_code = request.args.get('country_code')
+          currency_code = request.args.get('currency_code')
 
-        #Validamos parametros de busqueda
-        BusquedasHelper.validacionCampoCiudad(ciudad)
-        BusquedasHelper.validacionCampoCapacidad(capacidad)
-        BusquedasHelper.validacionCampoFechas(check_in, check_out)
+          #Validamos parametros de busqueda
+          BusquedasHelper.validacionCampoCiudad(ciudad)
+          BusquedasHelper.validacionCampoCapacidad(capacidad)
+          BusquedasHelper.validacionCampoFechas(check_in, check_out)
 
-        #Limpieza de parametros de busqueda
-        ciudad = BusquedasHelper.limpiarCampoCiudad(ciudad)
+          #Limpieza de parametros de busqueda
+          ciudad = BusquedasHelper.limpiarCampoCiudad(ciudad)
 
-        #Construimos la clave de cache
-        cache_key = CacheHelper.construirCacheKey(
+          #Construimos la clave de cache
+          cache_key = CacheHelper.construirCacheKey(
             ciudad,
             capacidad,
             check_in,
             check_out,
             country_code,
             currency_code
-        )
+          )
 
-        #Intentamos obtener resultados de cache
-        disponibles = CacheHelper.obtenerCache(redis_client, cache_key)
+          #Intentamos obtener resultados de cache
+          disponibles = CacheHelper.obtenerCache(redis_client, cache_key)
 
-        if not disponibles:
+          if not disponibles:
             #Consulta al microservicio de inventario
             hospedajes_habitaciones = InventarioHelper.getInventario(
-                INVENTARIOS_URL,
-                ciudad,
-                capacidad,
-                currency_code
+              INVENTARIOS_URL,
+              ciudad,
+              capacidad,
+              currency_code
             )
 
             #Validamos que existan hospedajes para la ciudad y capacidad especificada
             if not hospedajes_habitaciones:
-                raise NotFoundError('No se encontraron hospedajes disponibles para la ciudad o capacidad especificada')
+              raise NotFoundError('No se encontraron hospedajes disponibles para la ciudad o capacidad especificada')
 
             #Construimos los ids de habitaciones
             habitaciones_ids = [
-                habitacion.get('habitacion_id')
-                for habitacion in hospedajes_habitaciones
+              habitacion.get('habitacion_id')
+              for habitacion in hospedajes_habitaciones
             ]
 
             #Consulta al microservicio de reservas
             disponibles = ReservaHelper.disponibilidadReserva(
-                RESERVAS_URL,
-                habitaciones_ids,
-                check_in,
-                check_out
+              RESERVAS_URL,
+              habitaciones_ids,
+              check_in,
+              check_out
             )
 
             #Validamos que existan habitaciones disponibles para las fechas especificadas
             if not disponibles:
-                raise NotFoundError('No se encontraron habitaciones disponibles para las fechas especificadas')
+              raise NotFoundError('No se encontraron habitaciones disponibles para las fechas especificadas')
 
             #Filtramos habitaciones disponibles
             hospedajes_habitaciones_disponibles = BusquedasHelper.filtrarHabitacionesDisponibles(
-                hospedajes_habitaciones,
-                disponibles
+              hospedajes_habitaciones,
+              disponibles
             )
 
             #Guardamos en cache
             CacheHelper.guardarCache(
-                redis_client,
-                cache_key,
-                hospedajes_habitaciones_disponibles,
-                ttl=120
+              redis_client,
+              cache_key,
+              hospedajes_habitaciones_disponibles,
+              ttl=120
             )
 
             return hospedajes_habitaciones_disponibles, 200
 
-        return disponibles, 200
+          return disponibles, 200
+        except APIError as e:
+          return {'msg': e.message}, e.status_code
+        except Exception as e:
+          return {'msg': 'Error al procesar la búsqueda', 'error': str(e)}, 500
