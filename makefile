@@ -16,9 +16,9 @@ FOLDERS=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp 
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
-SERVICES_NEW=transacciones-app
-FOLDERS_NEW=transaccionesapp
-IMAGE_TAG_NEW=v4.0.0
+SERVICES_NEW=busquedas-app inventarios-app reservas-app comentarios-app auth-app transacciones-app clientes-app proveedores-app
+FOLDERS_NEW=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp transaccionesapp clientesapp proveedoresapp
+IMAGE_TAG_NEW=v2.0.0
 
 # Nueva version imagen lambda
 SERVICES_LAMBDA_NEW=webhook-pagos-app

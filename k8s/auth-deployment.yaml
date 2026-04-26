@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
       - name: auth-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/auth-app:v1.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/auth-app:v2.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 3004
         env:
         - name: DATABASE_URL
-          value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260421014259848900000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
+          value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260426211023287000000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
         readinessProbe:
           httpGet:
             path: api/v1/auth/health

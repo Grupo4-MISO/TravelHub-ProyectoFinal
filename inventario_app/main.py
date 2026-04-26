@@ -62,11 +62,6 @@ swagger_config = {
 
 Swagger(app, config=swagger_config, template=swagger_template)
 
-# Configuración de base de datos (pruebas locales)
-# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://usuario:password@localhost:5432/travelhub"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///travelhub.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
 #Inicializamos la base de datos
 if not app.config.get('TESTING'):
     with app.app_context():
