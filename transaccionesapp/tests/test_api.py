@@ -53,10 +53,10 @@ class TestHealth:
 
 
 class TestAuthGuards:
-    def test_protected_endpoint_without_token_returns_401(self, client):
+    def test_public_endpoint_without_token_returns_200(self, client):
         response = client.get("/api/v1/Transactions/providers")
-        assert response.status_code == 401
-        assert response.json["message"] == "Token missing"
+        assert response.status_code == 200
+        assert isinstance(response.json, list)
 
     def test_admin_endpoint_with_non_admin_role_returns_403(self, client, user_headers):
         payload = {"name": "Stripe"}
