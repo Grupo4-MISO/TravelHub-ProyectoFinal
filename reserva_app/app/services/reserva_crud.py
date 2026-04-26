@@ -66,6 +66,7 @@ class ReservaCRUD:
                     "id": str(reserva.id),
                     "public_id": str(reserva.public_id),
                     "habitacion_id": str(reserva.habitacion_id),
+                    "user_id": str(reserva.user_id),
                     "check_in": reserva.check_in.isoformat(),
                     "check_out": reserva.check_out.isoformat(),
                     "estado": reserva.estado,

@@ -11,7 +11,6 @@ _DURACION_MIN = 1
 _DURACION_MAX = 14
 # Intentos máximos por reserva antes de abandonar (evita bucle infinito)
 _MAX_INTENTOS_FACTOR = 300
-_MAX_RESERVAS_POR_USUARIO = 15
 
 TRAVELERS_FALLBACK = [
     {"id": uuid.UUID("ed4be7ea-b9f0-42b7-97fc-4808d359ba70"), "reservas": 0},
@@ -37,7 +36,46 @@ TRAVELERS_FALLBACK = [
     {"id": uuid.UUID("3520ec74-3072-4f7f-b9fc-52bc993d649d"), "reservas": 0}
 ]
 
-DEFAULT_USER = {"id": uuid.UUID("b3b2fc2c-914a-4210-8cb2-2db02c8d796b")}
+DEFAULT_USER = {"id": uuid.UUID("b3b2fc2c-914a-4210-8cb2-2db02c8d796b"), "reservas":0}
+
+ROOMS_DEFAULT = [
+    {"id": uuid.UUID("46f50af3-f0c8-401a-93b1-2f1c17ad36e8")}, 
+    {"id": uuid.UUID("6c0b7f21-e00e-4801-bd3e-edb755489be2")}, 
+    {"id": uuid.UUID("58f2f88e-43ab-48c9-981e-9345d4f0d7e4")}, 
+    {"id": uuid.UUID("a8b7436f-2329-480b-8826-857296842dc6")}, 
+    {"id": uuid.UUID("c12d9860-6980-4305-bd0f-6bc023e484c8")}, 
+    {"id": uuid.UUID("168fdd6d-ceea-4f03-a029-f65dc61c148b")}, 
+    {"id": uuid.UUID("aee846a4-b540-5ab1-83be-aea569053393")}, 
+    {"id": uuid.UUID("930c3fab-34a2-56de-be9f-defcef0c1ee5")}, 
+    {"id": uuid.UUID("011db853-35f6-5891-af51-688c01727518")}, 
+    {"id": uuid.UUID("f03b6889-443f-5d1b-b101-af14a11095d6")}, 
+    {"id": uuid.UUID("cd818041-b021-5a23-93f7-d31cf4ea784b")}, 
+    {"id": uuid.UUID("81471e49-54d5-5f85-8b38-4e329bdd94ed")}, 
+    {"id": uuid.UUID("71ff332b-b767-5338-924e-ce75f7c2bad5")}, 
+    {"id": uuid.UUID("d1fcf297-72d9-5e97-a666-3ab1207adb08")}, 
+    {"id": uuid.UUID("c046fcd9-8d33-5426-bee4-818f79859861")}, 
+    {"id": uuid.UUID("f91d422a-45c2-519f-9453-7ff8681940ac")}, 
+    {"id": uuid.UUID("c1eac988-2624-54c3-856c-753ba138a0d0")}, 
+    {"id": uuid.UUID("8dcba403-556a-5969-a83a-3fd3c6c6bdcb")}, 
+    {"id": uuid.UUID("0ad9b137-703f-56d5-ba88-ff0f89772847")}, 
+    {"id": uuid.UUID("d639d4ba-ed4f-53fa-bce3-37c371afb661")}, 
+    {"id": uuid.UUID("827a6c25-7d44-5606-ab4f-e44b154a9123")}, 
+    {"id": uuid.UUID("fc607564-0b5f-57d5-8027-bd6d84f0fdd9")}, 
+    {"id": uuid.UUID("776becf5-c253-5fdc-a891-a90b126c35d0")}, 
+    {"id": uuid.UUID("df0f27ce-ca58-5aaf-ae4a-29e42a9a5d7f")}, 
+    {"id": uuid.UUID("f4d97608-5a73-56ca-a48a-3131e656d298")}, 
+    {"id": uuid.UUID("c37ad2ca-d293-512c-8245-4d01f57e210b")}, 
+    {"id": uuid.UUID("494c0de6-286f-5646-b872-7b5ceab4657d")}, 
+    {"id": uuid.UUID("123b67e5-4c70-58e3-ae45-7bd33b3bd675")}, 
+    {"id": uuid.UUID("dbde0bf9-40b4-5b80-af74-fb3397892adf")}, 
+    {"id": uuid.UUID("92a15cb7-b3ef-5a40-b544-adce6c1cd7d8")}, 
+    {"id": uuid.UUID("dff85b84-ec52-5f09-b2c7-020eeac630dd")}, 
+    {"id": uuid.UUID("51d47de0-6e91-5c38-a177-8827b4f4a76e")}, 
+    {"id": uuid.UUID("f6fd45c0-9b4a-5c9d-b967-0aa3f5485e83")}, 
+    {"id": uuid.UUID("d2db799c-00f5-5f5f-8e6d-eecb4983dbb5")}, 
+    {"id": uuid.UUID("8336fb33-6844-517e-95d8-75e68fac3513")}, 
+    {"id": uuid.UUID("6f4260dd-404b-5505-a6d2-ce3bbd163c6c")} 
+]
 
 
 def _obtener_habitacion_ids():
@@ -134,8 +172,9 @@ class SeedHelper:
                     # Estado aleatorio
                     estado = random.choice(["confirmada", "pendiente"])
 
-                    usuario_aleatorio = random.choice(TRAVELERS_FALLBACK)
-                    if usuario_aleatorio["reservas"] >= _MAX_RESERVAS_POR_USUARIO:
+                    if habitacion in [str(r["id"]) for r in ROOMS_DEFAULT]:
+                        usuario_aleatorio = random.choice(TRAVELERS_FALLBACK)
+                    else:
                         usuario_aleatorio = DEFAULT_USER
 
                     reserva = ReservaORM(
@@ -148,6 +187,7 @@ class SeedHelper:
                     db.session.add(reserva)
                     reservas_insertadas += 1
                     reservas_totales += 1
+                    usuario_aleatorio["reservas"] += 1
 
             db.session.commit()
 
