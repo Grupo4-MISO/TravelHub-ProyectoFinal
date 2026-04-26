@@ -122,6 +122,13 @@ class FiltroHabitaciones(Resource):
                                 'required': False,
                                 'description': 'Capacidad mínima requerida',
                         },
+                        {
+                                'name': 'currency_code',
+                                'in': 'query',
+                                'type': 'string',
+                                'required': False,
+                                'description': 'Código de moneda para obtener tarifas (ejemplo: USD, COP, EUR)',
+                        }
                 ],
                 'responses': {
                         200: {'description': 'Resultado de la búsqueda'},
