@@ -392,12 +392,13 @@ class SeedHelper:
                 latitude, longitude = _resolve_coordinates(data)
                 hospedaje = HospedajeORM(
                     id=uuid.UUID(data["id"]),
+                    providerId = uuid.UUID(data["providerId"]),
                     nombre=data["nombre"],
                     descripcion=_resolve_description(data),
                     countryCode = data["countryCode"],
                     pais=data["pais"],
                     ciudad=data["ciudad"],
-                    direccion=data["direccion"],
+                    direccion=data["direccion"], 
                     latitude=latitude,
                     longitude=longitude,
                     rating=data["rating"],

@@ -1,4 +1,5 @@
 from app.db.models import db, ReservaORM
+from app.domain.reserva_estado import ReservaEstado
 from sqlalchemy import text
 from datetime import date, timedelta
 import random
@@ -170,7 +171,7 @@ class SeedHelper:
                     ocupaciones.append((check_in, check_out))
 
                     # Estado aleatorio
-                    estado = random.choice(["confirmada", "pendiente"])
+                    estado = random.choice([ReservaEstado.CONFIRMADA.value, ReservaEstado.PENDIENTE.value])
 
                     if habitacion in [str(r["id"]) for r in ROOMS_DEFAULT]:
                         usuario_aleatorio = random.choice(TRAVELERS_FALLBACK)

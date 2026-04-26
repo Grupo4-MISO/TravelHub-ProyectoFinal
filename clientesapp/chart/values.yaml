@@ -1,0 +1,16 @@
+image:
+  repository: 387050840675.dkr.ecr.us-east-1.amazonaws.com/clientes-app
+  tag: v1.0.0
+
+service:
+  port: 80
+
+replicaCount: 1
+
+auth:
+  URL: http://auth-app-service:80
+
+database: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260421014259848900000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
+healthPath: api/v1/Travelers/health
+port: 3006
+nodePort: 30006

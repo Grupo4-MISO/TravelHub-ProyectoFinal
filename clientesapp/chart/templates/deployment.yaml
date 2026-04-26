@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clientes-app
+  labels:
+    app: clientes-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: clientes-app
+  template:
+    metadata:
+      labels:
+        app: clientes-app
+    spec:
+      containers:
+      - name: clientes-api
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: {{ .Values.port }}
+        env:
+        - name: DATABASE_URL
+          value: {{ .Values.database }}
+        - name: AUTH_SERVICE_URL
+          value: {{ .Values.auth.URL }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.healthPath }}
+            port: {{ .Values.port }}
+          initialDelaySeconds: 5 
+          periodSeconds: 30
+          failureThreshold: 3

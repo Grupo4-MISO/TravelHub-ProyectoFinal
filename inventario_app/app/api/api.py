@@ -5,6 +5,7 @@ from app.errors.exceptions import BadRequestError, DatababaseError
 from flask_restful import Resource
 from flask import request
 from flasgger import swag_from
+import uuid
 
 # Inicializamos el CRUD
 inventario_CRUD = InventarioCRUD()
@@ -241,8 +242,9 @@ class HospedajeCollection(Resource):
                                 'required': True,
                                 'schema': {
                                         'type': 'object',
-                                        'required': ['nombre', 'descripcion', 'countryCode', 'pais', 'ciudad', 'direccion', 'latitude', 'longitude', 'rating', 'reviews'],
+                                        'required': ['providerId', 'nombre', 'descripcion', 'countryCode', 'pais', 'ciudad', 'direccion', 'latitude', 'longitude', 'rating', 'reviews'],
                                         'properties': {
+                                                'providerId': {'type': 'string', 'format': 'uuid', 'example': '123e4567-e89b-12d3-a456-426614174000'},
                                                 'nombre': {'type': 'string', 'example': 'Hotel Andino'},
                                                 'descripcion': {'type': 'string', 'example': 'Hotel céntrico con diseño moderno y excelente conectividad.'},
                                                 'countryCode': {'type': 'string', 'example': 'CO'},
@@ -258,8 +260,35 @@ class HospedajeCollection(Resource):
                         }
                 ],
                 'responses': {
-                        200: {'description': 'Listado de hospedajes'},
-                        201: {'description': 'Hospedaje creado exitosamente'},
+                        200: {
+                                'description': 'Listado de hospedajes con providerId',
+                                'schema': {
+                                        'type': 'array',
+                                        'items': {
+                                                'type': 'object',
+                                                'properties': {
+                                                        'id': {'type': 'string', 'format': 'uuid'},
+                                                        'providerId': {'type': 'string', 'format': 'uuid'},
+                                                        'nombre': {'type': 'string'},
+                                                        'countryCode': {'type': 'string'},
+                                                        'ciudad': {'type': 'string'},
+                                                }
+                                        }
+                                }
+                        },
+                        201: {
+                                'description': 'Hospedaje creado exitosamente con providerId',
+                                'schema': {
+                                        'type': 'object',
+                                        'properties': {
+                                                'id': {'type': 'string', 'format': 'uuid'},
+                                                'providerId': {'type': 'string', 'format': 'uuid'},
+                                                'nombre': {'type': 'string'},
+                                                'countryCode': {'type': 'string'},
+                                                'ciudad': {'type': 'string'},
+                                        }
+                                }
+                        },
                         400: {'description': 'Datos inválidos'},
                         500: {'description': 'Error en la base de datos'}
                 }
@@ -283,10 +312,15 @@ class HospedajeCollection(Resource):
                 """Crear un hospedaje."""
                 payload = request.get_json() or {}
 
-                required_fields = ['nombre', 'descripcion', 'countryCode', 'pais', 'ciudad', 'direccion', 'latitude', 'longitude', 'rating', 'reviews']
+                required_fields = ['providerId', 'nombre', 'descripcion', 'countryCode', 'pais', 'ciudad', 'direccion', 'latitude', 'longitude', 'rating', 'reviews']
                 missing_fields = [field for field in required_fields if payload.get(field) in [None, '']]
                 if missing_fields:
                         raise BadRequestError(f"Faltan campos requeridos: {', '.join(missing_fields)}")
+
+                try:
+                        payload['providerId'] = str(uuid.UUID(str(payload.get('providerId'))))
+                except (ValueError, TypeError):
+                        raise BadRequestError('El campo providerId debe tener formato UUID válido')
 
                 try:
                         latitude = float(payload.get('latitude'))
@@ -341,7 +375,19 @@ class HospedajeById(Resource):
                         }
                 ],
                 'responses': {
-                        200: {'description': 'Hospedaje consultado exitosamente'},
+                        200: {
+                                'description': 'Hospedaje consultado exitosamente',
+                                'schema': {
+                                        'type': 'object',
+                                        'properties': {
+                                                'id': {'type': 'string', 'format': 'uuid'},
+                                                'providerId': {'type': 'string', 'format': 'uuid'},
+                                                'nombre': {'type': 'string'},
+                                                'countryCode': {'type': 'string'},
+                                                'habitaciones': {'type': 'array'},
+                                        }
+                                }
+                        },
                         400: {'description': 'Id inválido'},
                         404: {'description': 'Hospedaje no encontrado'},
                         500: {'description': 'Error en la base de datos'}

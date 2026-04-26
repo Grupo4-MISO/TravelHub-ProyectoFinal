@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
       - name: inventarios-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/inventarios-app:v5.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/inventarios-app:v1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
         env:
         - name: DATABASE_URL
-          value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260415132532300400000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
+          value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260421014259848900000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
         readinessProbe:
           httpGet:
             path: api/v1/inventarios/health

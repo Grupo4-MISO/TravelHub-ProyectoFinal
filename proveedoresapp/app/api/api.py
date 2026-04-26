@@ -13,17 +13,43 @@ async_user_service = AsyncUserService()
 
 
 def _serialize_manager(manager):
+    return {
+        "id": str(manager.id),
+        "provider_id": str(manager.provider_id) if manager.provider_id else None,
+        "userId": str(manager.userId) if manager.userId else None,
+        "first_name": manager.first_name,
+        "last_name": manager.last_name,
+        "phone": manager.phone,
+        "email": manager.email,
+        "created_at": manager.created_at.isoformat() if hasattr(manager.created_at, "isoformat") else manager.created_at,
+        "updated_at": manager.updated_at.isoformat() if hasattr(manager.updated_at, "isoformat") else manager.updated_at,
+    }
+
+def _serialize_provider(provider):
+    return {
+        "id": str(provider.id),
+        "name": provider.name,
+        "documentNumber": getattr(provider, "documentNumber", getattr(provider, "DocumentNumber", None)),
+        "providerStatus": provider.providerStatus.name if provider.providerStatus else None,
+        "created_at": provider.created_at.isoformat() if hasattr(provider.created_at, "isoformat") else provider.created_at,
+        "updated_at": provider.updated_at.isoformat() if hasattr(provider.updated_at, "isoformat") else provider.updated_at,
+    }
+
+
+def _serialize_provider_address(address):
   return {
-    "id": str(manager.id),
-    "hospedajeId": str(manager.hospedajeId) if manager.hospedajeId else None,
-    "userId": str(manager.userId),
-    "userName": manager.userName,
-    "email": manager.email,
-    "first_name": manager.first_name,
-    "last_name": manager.last_name,
-    "created_at": manager.created_at.isoformat() if hasattr(manager.created_at, "isoformat") else manager.created_at,
-    "updated_at": manager.updated_at.isoformat() if hasattr(manager.updated_at, "isoformat") else manager.updated_at,
-  }
+        "id": str(address.id),
+        "provider_id": str(address.provider_id),
+        "line1": address.line1,
+        "line2": address.line2,
+        "city": address.city,
+        "state": address.state,
+        "country": address.country,
+        "countryCode": address.countryCode,
+        "postal_code": address.postal_code,
+        "created_at": address.created_at.isoformat() if hasattr(address.created_at, "isoformat") else address.created_at,
+        "updated_at": address.updated_at.isoformat() if hasattr(address.updated_at, "isoformat") else address.updated_at,
+    }
 
 class Health(Resource):
     def get(self):
@@ -44,10 +70,79 @@ class Health(Resource):
         """
         return {'status': 'healthy'}, 200
 
+class ProviderByUserId(Resource):
+    def get(self, user_id):
+        """
+        Obtener provider por ID de usuario
+        ---
+        tags:
+          - ProviderByUserId
+        parameters:
+          - in: path
+            name: user_id
+            required: true
+            type: string
+            format: uuid
+        responses:  
+          200:
+            description: Provider encontrado
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                documentNumber:
+                  type: string
+                providerStatus:
+                  type: string
+                created_at:
+                  type: string
+                updated_at:
+                  type: string
+                addresses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      provider_id:
+                        type: string
+                      line1:
+                        type: string
+                      line2:
+                        type: string
+                      city:
+                        type: string
+                      state:
+                        type: string
+                      country:
+                        type: string
+                      countryCode:
+                        type: string
+                      postal_code:
+                        type: string
+          404:
+            description: Provider no encontrado
+        """
+        user_id_uuid = UUID(user_id)
+        provider_data = manager_crud.get_provider_by_userid(user_id_uuid)
+
+        if not provider_data:
+            return {"message": "Provider not found"}, 404
+
+        provider, addresses = provider_data
+        response = _serialize_provider(provider)
+        response["addresses"] = [_serialize_provider_address(address) for address in addresses]
+
+        return response, 200
+
 class ManagerResource(Resource):
     def post(self):
         """
-        Crear manager con usuario en autenticadorapp
+        Crear provider y manager con usuario en autenticadorapp
         ---
         tags:
           - Managers
@@ -57,33 +152,61 @@ class ManagerResource(Resource):
             required: true
             schema:
               type: object
-              required: [first_name, last_name, email, password]
+              required: [name, documentNumber, manager]
               properties:
-                hospedajeId:
+                name:
                   type: string
-                  format: uuid
-                  nullable: true
-                password:
+                  example: Hotel Las Colinas
+                documentNumber:
                   type: string
-                  minLength: 8
-                first_name:
+                  example: 900123456
+                providerStatus:
                   type: string
-                  example: Juan
-                last_name:
-                  type: string
-                  example: Pérez
-                email:
-                  type: string
-                  format: email
-                  example: juan.perez@example.com
+                  example: pending
+                manager:
+                  type: object
+                  required: [first_name, last_name, email, password]
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                      format: email
+                    phone:
+                      type: string
+                    password:
+                      type: string
+                      minLength: 8
+                address:
+                  type: object
+                  properties:
+                    line1:
+                      type: string
+                    line2:
+                      type: string
+                      nullable: true
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    country:
+                      type: string
+                    countryCode:
+                      type: string
+                    postal_code:
+                      type: string
         security:
           - Bearer: []
         responses:
           201:
-            description: Manager y usuario creados exitosamente
+            description: Provider, manager y usuario creados exitosamente
             schema:
               type: object
               properties:
+                provider:
+                  type: object
                 manager:
                   type: object
                 user:
@@ -102,61 +225,91 @@ class ManagerResource(Resource):
           500:
             description: Error al conectar con autenticadorapp
         """
-        payload = request.get_json()
-        
-        # Validar datos requeridos
-        required_fields = ["first_name", "last_name", "email", "password"]
+        payload = request.get_json() or {}
+        manager_data = payload.get("manager") or {}
+        address_data = payload.get("address") or {}
+        document_number = payload.get("documentNumber") or payload.get("DocumentNumber")
+
+        # Validar datos requeridos para Provider y su Manager
+        required_fields = ["name", "manager"]
         missing_fields = [field for field in required_fields if not payload.get(field)]
-        
+        if not document_number:
+          missing_fields.append("documentNumber")
+
+        manager_required_fields = ["first_name", "last_name", "email", "password"]
+        missing_manager_fields = [
+          field for field in manager_required_fields if not manager_data.get(field)
+        ]
+
+        if missing_manager_fields:
+          return {
+            "message": f"Faltan campos requeridos en manager: {', '.join(missing_manager_fields)}"
+          }, 400
+
         if missing_fields:
             return {
                 "message": f"Faltan campos requeridos: {', '.join(missing_fields)}"
             }, 400
-        
+
         # Validar datos del usuario
         is_valid, validation_error = AsyncUserService.validate_user_creation_data(
-            email=payload.get("email"),
-            password=payload.get("password"), 
-            first_name=payload.get("first_name"),
-            last_name=payload.get("last_name")
+          email=manager_data.get("email"),
+          password=manager_data.get("password"),
+          first_name=manager_data.get("first_name"),
+          last_name=manager_data.get("last_name")
         )
-        
+
         if not is_valid:
             return {"message": validation_error}, 400
-        
+
         # Crear usuario en autenticadorapp de forma asincrónica
         user_data, user_error = AsyncUserService.create_user_in_auth_service(
-            email=payload.get("email"),
-          password=payload.get("password"),
-            first_name=payload.get("first_name"),
-            last_name=payload.get("last_name"),
-            role="Manager"
+          email=manager_data.get("email"),
+          password=manager_data.get("password"),
+          first_name=manager_data.get("first_name"),
+          last_name=manager_data.get("last_name"),
+          role="Manager"
         )
-        
+
         if user_error:
             # Retornar error del servicio de autenticación
-            return {"message": user_error}, 409 if "duplicado" in user_error.lower() else 500
-        
-        # Si la creación del usuario fue exitosa, crear el Manager
+          is_conflict = "duplicado" in user_error.lower() or "registrado" in user_error.lower()
+          return {"message": user_error}, 409 if is_conflict else 500
+
+        # Si la creación del usuario fue exitosa, crear Provider + Manager
         manager_payload = {
-            "hospedajeId": payload.get("hospedajeId"),
-            "userId": user_data["id"],
-            "userName": user_data["username"],
-            "email": user_data["email"],
-            "first_name": payload.get("first_name"),
-            "last_name": payload.get("last_name")
+          "name": payload.get("name"),
+          "documentNumber": document_number,
+          "providerStatus": payload.get("providerStatus", "Pending"),
+          "userId": user_data["id"],
+          "email": manager_data.get("email") or user_data.get("email"),
+          "first_name": manager_data.get("first_name"),
+          "last_name": manager_data.get("last_name"),
+          "phone": manager_data.get("phone"),
+          "address": address_data,
         }
-        
-        manager = manager_crud.create_manager(manager_payload)
-        
-        if not manager:
+
+        created = manager_crud.create_manager(manager_payload)
+
+        if not created:
             return {
-                "message": "Error creating manager (duplicate email in providers?)"
+            "message": "Error creating provider and manager"
             }, 409
-        
+
+        provider, manager = created
+
         return {
-            "message": "Manager y usuario creados exitosamente",
+          "message": "Provider, manager y dirección creados exitosamente",
+          "provider": {
+            "id": str(provider.id),
+            "name": getattr(provider, "name", getattr(provider, "Name", None)),
+            "documentNumber": getattr(provider, "documentNumber", getattr(provider, "DocumentNumber", None)),
+            "providerStatus": provider.providerStatus.name if provider.providerStatus else None,
+            "created_at": provider.created_at.isoformat() if hasattr(provider.created_at, "isoformat") else provider.created_at,
+            "updated_at": provider.updated_at.isoformat() if hasattr(provider.updated_at, "isoformat") else provider.updated_at,
+          },
             "manager": _serialize_manager(manager),
+            "address": address_data if address_data else None,
             "user": user_data
         }, 201
 
@@ -262,14 +415,14 @@ class ManagerResourceById(Resource):
 
         return {"message": "Manager deleted"}, 200
 
-class ManagerByHospedajeResource(Resource):
+class ManagerByProviderIdResource(Resource):
     @token_required
     def get(current_user, self, id):
         """
-        Obtener managers por ID de hospedaje
+        Obtener managers por provider_id
         ---
         tags:
-          - ManagersByHospedaje
+          - ManagersByProviderId
         parameters:
           - in: path
             name: id
@@ -284,7 +437,7 @@ class ManagerByHospedajeResource(Resource):
           404:
             description: managers no encontrados
         """
-        managers = manager_crud.get_all_managers_by_hospedaje_id(UUID(id))
+        managers = manager_crud.get_all_managers_by_provider_id(UUID(id))
 
         if not managers:
             return {"message": "Managers no encontrados"}, 404
@@ -293,17 +446,46 @@ class ManagerByHospedajeResource(Resource):
             "managers": [
                 {
                     "id": str(manager.id),
-                    "hospedajeId": str(manager.hospedajeId),
-                    "userName": manager.userName,
+                    "provider_id": str(manager.provider_id),
                     "userId": str(manager.userId),
                     "email": manager.email,
                     "first_name": manager.first_name,
                     "last_name": manager.last_name,
+                    "phone": manager.phone,
                     "created_at": manager.created_at.isoformat() if hasattr(manager.created_at, "isoformat") else manager.created_at,
                 }
                 for manager in managers
             ]
         }, 200
+
+class ManagerByUserIdResource(Resource):
+    @token_required
+    def get(current_user, self, id):
+        """
+        Obtener manager por userId
+        ---
+        tags:
+          - ManagerByUserId 
+        parameters:
+          - in: path
+            name: id
+            required: true
+            type: string
+            format: uuid
+        security:
+          - Bearer: []
+        responses:
+          200:
+            description: manager encontrado
+          404:
+            description: manager no encontrado
+        """
+        manager = manager_crud.get_manager_by_userid(UUID(id))
+
+        if not manager:
+            return {"message": "Manager not found"}, 404
+
+        return _serialize_manager(manager), 200
 
 class SeedDB(Resource):
     def post(self):
@@ -327,5 +509,6 @@ class SeedDB(Resource):
 
         return {
             'msg': 'Seed ejecutado correctamente',
-            'Managers procesados': result['managers_procesados']
+            'Managers procesados': result['managers_procesados'],
+            "Providers procesados": result['providers_procesados'],
         }, 200

@@ -16,12 +16,18 @@ from flask_cors import CORS
 from flask import Flask
 import os
 from flasgger import Swagger
+from app.errors.handlers import ErrorHandler
+
+API_PREFIX = '/api/v1/Transactions'
 
 #Traemos del ambiente las variables de configuracion
 DATABASE_URL = os.getenv('DATABASE_URL')
 
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
+
+#Registramos el manejador de errores
+ErrorHandler.errors(app)
 
 #Ponemos configuraciones de la app
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
@@ -89,22 +95,22 @@ if not app.config.get('TESTING'):
 CORS(app)
 
 #Registramos la API RESTful
-api = Api(app)
+api = Api(app, prefix=API_PREFIX)
 
-api.add_resource(Health, '/api/v1/Transactions/health')
+api.add_resource(Health, '/health')
 
-api.add_resource(PaymentProviderResource, '/api/v1/Transactions/providers')
-api.add_resource(PaymentProviderByIdResource, '/api/v1/Transactions/providers/<string:id>')
+api.add_resource(PaymentProviderResource, '/providers')
+api.add_resource(PaymentProviderByIdResource, '/providers/<string:id>')
 
-api.add_resource(PaymentResource, '/api/v1/Transactions/payments')
-api.add_resource(PaymentResourceById, '/api/v1/Transactions/payments/<string:id>')
-api.add_resource(PaymentByReservaIdResource, '/api/v1/Transactions/payments/reserva/<string:reserva_id>')
-api.add_resource(PaymentByProviderIdResource, '/api/v1/Transactions/payments/provider/<string:provider_id>')
+api.add_resource(PaymentResource, '/payments')
+api.add_resource(PaymentResourceById, '/payments/<string:id>')
+api.add_resource(PaymentByReservaIdResource, '/payments/reserva/<string:reserva_id>')
+api.add_resource(PaymentByProviderIdResource, '/payments/provider/<string:provider_id>')
 
-api.add_resource(PaymentTransactionByIdResource, '/api/v1/Transactions/attempts/<string:id>')
-api.add_resource(PaymentTransactionByPaymentIdResource, '/api/v1/Transactions/attempts/payment/<string:payment_id>')
+api.add_resource(PaymentTransactionByIdResource, '/attempts/<string:id>')
+api.add_resource(PaymentTransactionByPaymentIdResource, '/attempts/payment/<string:payment_id>')
 
-api.add_resource(SeedDB, '/api/v1/Transactions/seed')
+api.add_resource(SeedDB, '/seed')
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5006, debug=True)

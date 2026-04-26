@@ -9,16 +9,16 @@ DB_USER=proyectogrupo4
 DB_PASSWORD=proyectogrupo4
 
 # Microservicios
-SERVICES=busquedas-app inventarios-app reservas-app comentarios-app auth-app
+SERVICES=busquedas-app inventarios-app reservas-app comentarios-app auth-app transacciones-app clientes-app proveedores-app
 SERVICES_LAMBDA=webhook-pagos-app
 FOLDERS_LAMBDA=webhook_pagos
-FOLDERS=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp
+FOLDERS=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp transaccionesapp clientesapp proveedoresapp
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
-SERVICES_NEW=inventarios-app
-FOLDERS_NEW=inventario_app
-IMAGE_TAG_NEW=v5.0.0
+SERVICES_NEW=transacciones-app
+FOLDERS_NEW=transaccionesapp
+IMAGE_TAG_NEW=v4.0.0
 
 # Nueva version imagen lambda
 SERVICES_LAMBDA_NEW=webhook-pagos-app
@@ -169,3 +169,4 @@ infra: ecr rds eks elasticache sqs lambda
 images: ecr-login docker-push-all docker-push-lambda
 deploy: infra images ingress
 destroy: destroy-ingress destroy-elasticache destroy-eks destroy-rds destroy-ecr destroy-sqs destroy-lambda
+destroy-some: destroy-rds destroy-ecr destroy-sqs destroy-lambda

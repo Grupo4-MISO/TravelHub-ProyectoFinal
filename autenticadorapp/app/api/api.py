@@ -111,6 +111,12 @@ class UserCollectionResource(Resource):
               type: object
               required: [email, password, role]
               properties:
+                first_name:
+                  type: string
+                  nullable: true
+                last_name:
+                  type: string
+                  nullable: true
                 email:
                   type: string
                 password:
@@ -126,16 +132,23 @@ class UserCollectionResource(Resource):
           409:
             description: Usuario duplicado
         """
-        data = request.get_json()
+        data = request.get_json() or {}
 
-        if not data or not data.get("password"):
+        if not data.get("password"):
             return {"message": "Missing password"}, 400
+
+        if not data.get("email"):
+            return {"message": "Missing email"}, 400
 
         payload = dict(data)
         payload.pop("password_hash", None)  # no confiar en hash enviado por cliente
 
         if not payload.get("role"):
             return {"message": "Missing role"}, 400
+
+        # first_name y last_name son opcionales; si llegan vacíos se almacenan como null.
+        payload["first_name"] = (payload.get("first_name") or "").strip() or None
+        payload["last_name"] = (payload.get("last_name") or "").strip() or None
 
         try:
             payload["role"] = UserRole(payload["role"])
@@ -156,7 +169,9 @@ class UserCollectionResource(Resource):
         return {
             "id": str(user.id),
             "username": user.username,
-            "email": user.email
+            "email": user.email,
+            "first_name": getattr(user, "first_name", None),
+            "last_name": getattr(user, "last_name", None),
         }, 201
 
 class UserDetailResource(Resource):

@@ -50,3 +50,21 @@ variable "webhook_pagos_repository_name" {
   type        = string
   nullable    = false
 }
+
+variable "transacciones_repository_name" {
+  description = "Name of the repository to apps"
+  type        = string
+  nullable    = false
+}
+
+variable "clientes_repository_name" {
+  description = "Name of the repository to apps"
+  type        = string
+  nullable    = false
+}
+
+variable "proveedores_repository_name" {
+  description = "Name of the repository to apps"
+  type        = string
+  nullable    = false
+}

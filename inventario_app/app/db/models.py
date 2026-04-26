@@ -8,7 +8,6 @@ db = SQLAlchemy()
 
 class Hospedaje_ImagenORM(db.Model):
     __tablename__ = 'hospedajes_imagenes'
-
     id = db.Column(UUID(as_uuid = True), primary_key = True, default = uuid.uuid4)
     hospedaje_id = db.Column(UUID(as_uuid = True), db.ForeignKey('hospedajes.id'), nullable = False)
     url = db.Column(db.String(255), nullable = False)
@@ -25,6 +24,7 @@ class HospedajeORM(db.Model):
     __tablename__ = 'hospedajes'
 
     id = db.Column(UUID(as_uuid = True), primary_key = True, default = uuid.uuid4)
+    providerId = db.Column(UUID(as_uuid = True), nullable = False)
     nombre = db.Column(db.String(255), nullable = False)
     descripcion = db.Column(db.String(255), nullable = False)
     countryCode = db.Column(db.String(10), nullable = False)

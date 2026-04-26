@@ -5,7 +5,7 @@ resource "aws_cloudwatch_log_group" "main" {
 }
 
 resource "aws_iam_role" "lambda_role" {
-  name = "lambda-auth-app-role"
+  name = "lambda-webhook-pagos-app-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

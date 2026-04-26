@@ -1,0 +1,64 @@
+{
+  "countries": [
+    {
+      "countryCode": "CO",
+      "country": "Colombia",
+      "sources": [
+        {
+          "city": "*",
+          "file": "Colombia_providers_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "PE",
+      "country": "Perú",
+      "sources": [
+        {
+          "city": "*",
+          "file": "Peru_providers_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "EC",
+      "country": "Ecuador",
+      "sources": [
+        {
+          "city": "*",
+          "file": "Ecuador_providers_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "MX",
+      "country": "México",
+      "sources": [
+        {
+          "city": "*",
+          "file": "Mexico_providers_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "CL",
+      "country": "Chile",
+      "sources": [
+        {
+          "city": "*",
+          "file": "Chile_providers_seed.json"
+        }
+      ]
+    },
+    {
+      "countryCode": "AR",
+      "country": "Argentina",
+      "sources": [
+        {
+          "city": "*",
+          "file": "Argentina_providers_seed.json"
+        }
+      ]
+    }
+  ]
+}
