@@ -40,3 +40,15 @@ module "transacciones_repository_name" {
   keep_tags_number = var.keep_tags_number
   repository_name  = var.transacciones_repository_name
 }
+
+module "clientes_repository_name" {
+  source = "../../modules/ecr"
+  keep_tags_number = var.keep_tags_number
+  repository_name  = var.clientes_repository_name
+}
+
+module "proveedores_repository_name" {
+  source = "../../modules/ecr"
+  keep_tags_number = var.keep_tags_number
+  repository_name  = var.proveedores_repository_name
+}

@@ -15,6 +15,10 @@ def client():
 
     api = Api(app)
     api.add_resource(HoldReserva, "/api/v1/reservas/hold")
+    api.add_resource(api_module.darReservas, "/api/v1/reservas")
+    api.add_resource(api_module.Confirmar_Reserva, "/api/v1/reservas/confirmar/<string:reserva_id>")
+    api.add_resource(api_module.Revocar_Reserva, "/api/v1/reservas/revocar/<string:reserva_id>")
+    api.add_resource(api_module.Reservas_por_usuario, "/api/v1/reservas/usuario/<string:user_id>")
 
     return app.test_client()
 
@@ -133,3 +137,94 @@ def test_hold_reserva_retorna_201_si_hold_creado(client, monkeypatch):
 
     assert response.status_code == 201
     assert response.get_json() == resultado
+
+def test_dar_reservas(client, monkeypatch):
+    def _mock_obtener_reservas_por_habitacion(idHabitacion):
+        return [{"reserva_id": f"r-{idHabitacion}-1"}, {"reserva_id": f"r-{idHabitacion}-2"}]
+
+    monkeypatch.setattr(api_module.reservas_crud, "obtenerReservasPorHabitacion", _mock_obtener_reservas_por_habitacion)
+
+    payload = {"habitaciones": [101, 102]}
+    response = client.post("/api/v1/reservas", json=payload)
+
+    assert response.status_code == 200
+    reservas = response.get_json()
+    assert len(reservas) == 4
+    assert reservas[0]["reserva_id"] == "r-101-1"
+    assert reservas[2]["reserva_id"] == "r-102-1"
+
+def test_dar_reservas_error(client, monkeypatch):
+    def _raise_db_error(*_args, **_kwargs):
+        raise Exception("db error")
+
+    monkeypatch.setattr(api_module.reservas_crud, "obtenerReservasPorHabitacion", _raise_db_error)
+
+    payload = {"habitaciones": [101]}
+    response = client.post("/api/v1/reservas", json=payload)
+
+    assert response.status_code == 500
+    body = response.get_json()
+    assert body["msg"] == "Error al obtener las reservas"
+    assert body["error"] == "db error"
+
+def test_confirmar_reserva(client, monkeypatch):
+    monkeypatch.setattr(api_module.reservas_crud, "confirmarReserva", lambda reserva_id: True)
+
+    response = client.post("/api/v1/reservas/confirmar/r-123")
+
+    assert response.status_code == 200
+    assert response.get_json()["msg"] == "Reserva confirmada correctamente"
+
+def test_confirmar_reserva_error(client, monkeypatch):
+    monkeypatch.setattr(api_module.reservas_crud, "confirmarReserva", lambda reserva_id: "db error")
+
+    response = client.post("/api/v1/reservas/confirmar/r-123")
+
+    assert response.status_code == 500
+    body = response.get_json()
+    assert body["msg"] == "db error"
+
+
+def test_revocar_reserva(client, monkeypatch):
+    monkeypatch.setattr(api_module.reservas_crud, "revocarReserva", lambda reserva_id: True)
+
+    response = client.post("/api/v1/reservas/revocar/r-123")
+
+    assert response.status_code == 200
+    assert response.get_json()["msg"] == "Reserva revocada correctamente"
+
+def test_revocar_reserva_error(client, monkeypatch):
+    monkeypatch.setattr(api_module.reservas_crud, "revocarReserva", lambda reserva_id: "db error")
+
+    response = client.post("/api/v1/reservas/revocar/r-123")
+
+    assert response.status_code == 500
+    body = response.get_json()
+    assert body["msg"] == "db error"
+
+def test_reservas_por_usuario(client, monkeypatch):
+    def _mock_obtener_reservas_por_usuario(user_id):
+        return [{"reserva_id": f"r-{user_id}-1"}, {"reserva_id": f"r-{user_id}-2"}]
+
+    monkeypatch.setattr(api_module.reservas_crud, "obtenerReservasPorUsuario", _mock_obtener_reservas_por_usuario)
+
+    response = client.get("/api/v1/reservas/usuario/u-1")
+
+    assert response.status_code == 200
+    reservas = response.get_json()
+    assert len(reservas) == 2
+    assert reservas[0]["reserva_id"] == "r-u-1-1"
+    assert reservas[1]["reserva_id"] == "r-u-1-2"
+
+def test_reservas_por_usuario_error(client, monkeypatch):
+    def _raise_db_error(*_args, **_kwargs):
+        raise Exception("db error")
+
+    monkeypatch.setattr(api_module.reservas_crud, "obtenerReservasPorUsuario", _raise_db_error)
+
+    response = client.get("/api/v1/reservas/usuario/u-1")
+
+    assert response.status_code == 500
+    body = response.get_json()
+    assert body["msg"] == "Error al obtener las reservas del usuario"
+    assert body["error"] == "db error"

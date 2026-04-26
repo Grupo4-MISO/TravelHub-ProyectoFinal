@@ -1,4 +1,4 @@
-from app.api.api import CleanDB, ReservaHealth, VerificarDisponibilidad, SeedReservas, HoldReserva, darReservas, TarifaReserva, Confirmar_Reserva, Revocar_Reserva
+from app.api.api import CleanDB, ReservaHealth, Reservas_por_usuario, VerificarDisponibilidad, SeedReservas, HoldReserva, darReservas, TarifaReserva, Confirmar_Reserva, Revocar_Reserva, CrearReserva
 from app.errors.handlers import ErrorHandler
 from app.db.models import db
 from flask_restful import Api
@@ -6,6 +6,8 @@ from app.db.models import db
 from flask_cors import CORS
 from flask import Flask
 import os
+
+API_PREFIX = '/api/v1/reservas'
 
 #Traemos del ambiente las variables de configuracion
 DATABASE_URL = os.getenv('DATABASE_URL') 
@@ -42,16 +44,18 @@ if not app.config.get('TESTING'):
 CORS(app)
 
 #Registramos la API RESTful
-api = Api(app)
-api.add_resource(ReservaHealth, '/api/v1/reservas/health')
-api.add_resource(VerificarDisponibilidad, '/api/v1/reservas/disponibilidad')
-api.add_resource(SeedReservas, '/api/v1/reservas/seed/<int:cantidad>')
-api.add_resource(HoldReserva, '/api/v1/reservas/hold')
-api.add_resource(darReservas, '/api/v1/reservas')
-api.add_resource(TarifaReserva, '/api/v1/reservas/tarifa')
-api.add_resource(CleanDB, '/api/v1/reservas/clean')
-api.add_resource(Confirmar_Reserva, '/api/v1/reservas/confirmar/<string:reserva_id>')
-api.add_resource(Revocar_Reserva, '/api/v1/reservas/revocar/<string:reserva_id>')
+api = Api(app, prefix=API_PREFIX)
+api.add_resource(ReservaHealth, '/health')
+api.add_resource(VerificarDisponibilidad, '/disponibilidad')
+api.add_resource(CrearReserva, '/crear')
+api.add_resource(SeedReservas, '/seed/<int:cantidad>')
+api.add_resource(HoldReserva, '/hold')
+api.add_resource(darReservas, '')
+api.add_resource(TarifaReserva, '/tarifa')
+api.add_resource(CleanDB, '/clean')
+api.add_resource(Confirmar_Reserva, '/confirmar/<string:reserva_id>')
+api.add_resource(Revocar_Reserva, '/revocar/<string:reserva_id>')
+api.add_resource(Reservas_por_usuario, '/api/v1/reservas/usuario/<string:user_id>')
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=3001, debug=True)

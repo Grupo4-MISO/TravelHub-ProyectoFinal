@@ -18,6 +18,8 @@ import os
 from flasgger import Swagger
 from app.errors.handlers import ErrorHandler
 
+API_PREFIX = '/api/v1/Transactions'
+
 #Traemos del ambiente las variables de configuracion
 DATABASE_URL = os.getenv('DATABASE_URL')
 
@@ -41,6 +43,17 @@ app.config['JWT_TOKEN_LOCATION'] = ['headers']
 app.config['JWT_HEADER_NAME'] = 'Authorization'
 app.config['JWT_HEADER_TYPE'] = 'Bearer'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600
+app.config['EXTERNAL_PAYMENT_SESSION_URL'] = os.getenv(
+    'EXTERNAL_PAYMENT_SESSION_URL',
+    'https://external-payment-provider.onrender.com/payment-sessions'
+)
+app.config['PAYMENT_WEBHOOK_URL'] = os.getenv(
+    'PAYMENT_WEBHOOK_URL',
+    'https://v7iqo4ymndw6lnektybll5za4y0udwfi.lambda-url.us-east-1.on.aws'
+)
+app.config['PAYMENT_SIMULATE_OUTCOME'] = os.getenv('PAYMENT_SIMULATE_OUTCOME', 'success')
+app.config['PAYMENT_CALLBACK_DELAY_SECONDS'] = int(os.getenv('PAYMENT_CALLBACK_DELAY_SECONDS', '20'))
+app.config['PAYMENT_SESSION_TIMEOUT_SECONDS'] = int(os.getenv('PAYMENT_SESSION_TIMEOUT_SECONDS', '10'))
 app.config["SWAGGER"] = {
     "title": "TravelHub Managers API",
     "uiversion": 3
@@ -93,22 +106,22 @@ if not app.config.get('TESTING'):
 CORS(app)
 
 #Registramos la API RESTful
-api = Api(app)
+api = Api(app, prefix=API_PREFIX)
 
-api.add_resource(Health, '/api/v1/Transactions/health')
+api.add_resource(Health, '/health')
 
-api.add_resource(PaymentProviderResource, '/api/v1/Transactions/providers')
-api.add_resource(PaymentProviderByIdResource, '/api/v1/Transactions/providers/<string:id>')
+api.add_resource(PaymentProviderResource, '/providers')
+api.add_resource(PaymentProviderByIdResource, '/providers/<string:id>')
 
-api.add_resource(PaymentResource, '/api/v1/Transactions/payments')
-api.add_resource(PaymentResourceById, '/api/v1/Transactions/payments/<string:id>')
-api.add_resource(PaymentByReservaIdResource, '/api/v1/Transactions/payments/reserva/<string:reserva_id>')
-api.add_resource(PaymentByProviderIdResource, '/api/v1/Transactions/payments/provider/<string:provider_id>')
+api.add_resource(PaymentResource, '/payments')
+api.add_resource(PaymentResourceById, '/payments/<string:id>')
+api.add_resource(PaymentByReservaIdResource, '/payments/reserva/<string:reserva_id>')
+api.add_resource(PaymentByProviderIdResource, '/payments/provider/<string:provider_id>')
 
-api.add_resource(PaymentTransactionByIdResource, '/api/v1/Transactions/attempts/<string:id>')
-api.add_resource(PaymentTransactionByPaymentIdResource, '/api/v1/Transactions/attempts/payment/<string:payment_id>')
+api.add_resource(PaymentTransactionByIdResource, '/attempts/<string:id>')
+api.add_resource(PaymentTransactionByPaymentIdResource, '/attempts/payment/<string:payment_id>')
 
-api.add_resource(SeedDB, '/api/v1/Transactions/seed')
+api.add_resource(SeedDB, '/seed')
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=3005, debug=True)

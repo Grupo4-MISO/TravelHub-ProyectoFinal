@@ -5,7 +5,6 @@ from app.api.api import (
     PopularCitiesByCountry,
     InventarioHealth,
     FiltroHabitaciones,
-    buscarHotel,
     HabitacionesporId,
     SeedDB,
     HospedajeCollection,
@@ -161,34 +160,6 @@ def test_filtro_habitaciones_ok(mocker):
 
     assert response.status_code == 200
     assert response.get_json() == expected
-
-
-def test_buscar_hotel_ok_and_not_found(mocker):
-    app, api = build_app()
-    api.add_resource(buscarHotel, '/hotel')
-    client = app.test_client()
-
-    hotel = SimpleNamespace(
-        id=uuid4(),
-        nombre='Hotel Andino',
-        pais='Colombia',
-        ciudad='Bogota',
-        direccion='Calle 1',
-        rating=4.7,
-    )
-    mocker.patch('app.api.api.inventario_CRUD.buscarHotelByName', return_value=hotel, create=True)
-
-    response = client.get('/hotel?nombre=Hotel Andino')
-
-    assert response.status_code == 200
-    assert response.get_json()['nombre'] == 'Hotel Andino'
-    assert response.get_json()['pais'] == 'Colombia'
-
-    mocker.patch('app.api.api.inventario_CRUD.buscarHotelByName', return_value=None, create=True)
-    not_found = client.get('/hotel?nombre=NoExiste')
-
-    assert not_found.status_code == 404
-    assert not_found.get_json() == {'msg': 'Hotel no encontrado'}
 
 
 def test_habitaciones_por_id_ok_and_empty(mocker):
@@ -854,7 +825,8 @@ def test_inventario_crud_habitaciones_and_countries(monkeypatch):
             'query',
             lambda *args: FakeQuery(result=[room]),
         )
-        assert crud.habitacionesporIdHotel('hotel-id') == [room]
+        hotel_id = str(uuid4())
+        assert crud.habitacionesporIdHotel(hotel_id) == [room]
 
 
 def test_seed_helper_error_branches(monkeypatch):

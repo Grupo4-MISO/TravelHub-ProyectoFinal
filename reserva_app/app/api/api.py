@@ -1,5 +1,6 @@
 from app.services.reserva_crud import ReservaCRUD
 from app.services.hold_service import HoldService
+from app.errors.exceptions import APIError
 from app.utils.seedHelper import SeedHelper
 from app.utils.helper import ReservaHelper
 from flask_restful import Resource
@@ -29,6 +30,30 @@ class VerificarDisponibilidad(Resource):
     
         return disponibilidad, 200
 
+
+class CrearReserva(Resource):
+    def post(self):
+        data = request.get_json() or {}
+
+        habitacion_id = data.get('habitacion_id')
+        if not habitacion_id:
+            return {'msg': 'El campo habitacion_id es requerido'}, 400
+
+        try:
+            check_in, check_out = ReservaHelper.validacionCampoFechas(data.get('check_in'), data.get('check_out'))
+        except APIError as e:
+            return {'msg': e.message}, e.status_code
+
+        user_id = data.get('user_id')
+
+        reserva = reservas_crud.crearReserva(habitacion_id, check_in, check_out, user_id=user_id)
+        if isinstance(reserva, str):
+            if reserva == 'La habitación no está disponible para las fechas seleccionadas':
+                return {'msg': reserva}, 409
+            return {'msg': 'Error al crear la reserva', 'error': reserva}, 500
+
+        return {'msg': 'Reserva creada correctamente', 'reserva': reserva}, 201
+
 class SeedReservas(Resource):
     def post(self, cantidad):
         if cantidad <= 0:
@@ -41,7 +66,7 @@ class SeedReservas(Resource):
 
         response = {
             'msg': 'Seed ejecutado correctamente',
-            'solicitadas': result['solicitadas'],
+            'solicitadas por habitacion': result['solicitadas'],
             'reservas_insertadas': result['reservas_insertadas'],
         }
 
@@ -158,6 +183,14 @@ class Revocar_Reserva(Resource):
             return {'msg': 'Reserva revocada correctamente'}, 200
         else:
             return {'msg': response}, 500
+
+class Reservas_por_usuario(Resource):
+    def get(self, user_id):
+        try:
+            reservas = reservas_crud.obtenerReservasPorUsuario(user_id)
+            return reservas, 200
+        except Exception as e:
+            return {'msg': 'Error al obtener las reservas del usuario', 'error': str(e)}, 500
 
 class CleanDB(Resource):
     def post(self):

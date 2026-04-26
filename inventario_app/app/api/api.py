@@ -160,26 +160,9 @@ class CleanDB(Resource):
               inventario_CRUD.resetDb()
               return {'msg': 'Base de datos limpiada exitosamente'}, 200
 
-class buscarHotel(Resource):
-    #Endpoint para identificar un hotel en inventario(por ahora busca por nombre) 
-    def get(self):
-        nombre_hotel = request.args.get('nombre')
-        hotel = inventario_CRUD.buscarHotelByName(nombre_hotel)
-        if hotel is None:
-            return {'msg': 'Hotel no encontrado'}, 404
-        
-        response = {
-            'id': str(hotel.id),
-            'nombre': hotel.nombre,
-            'pais': hotel.pais,
-            'ciudad': hotel.ciudad,
-            'direccion': hotel.direccion,
-            'rating': hotel.rating
-        }
-        return response, 200
 
 class HabitacionesporId(Resource):
-    #Retorna los datos de una habitación a partir de su id, para el dashboard
+    #Retorna los datos de una habitación a partir del id del hotel, para el dashboard del hotel
     def get(self):
         id_hotel = request.args.get('id')
 
@@ -197,7 +180,16 @@ class HabitacionesporId(Resource):
                 for habitacion in habitaciones
             ]
         return response, 200
-
+    
+class ListadoHoteles(Resource):
+        #Recibe un listado de habitaciones y retorna un listado de hoteles (a los cuales
+        #pertencen dichas habitaciones), para el dashboard del viajero.
+        def post(self):
+                data = request.get_json()
+                habitaciones_ids = data.get('habitaciones_ids', [])
+                hoteles = inventario_CRUD.hotelesPorHabitaciones(habitaciones_ids)
+                return hoteles, 200
+        
 class SeedDB(Resource):
         @swag_from({
                 'tags': ['Seed'],

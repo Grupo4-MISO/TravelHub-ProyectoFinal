@@ -414,6 +414,7 @@ class SeedHelper:
 
                 for hab in data["habitaciones"]:
                     habitacion = HabitacionORM(
+                        id =uuid.UUID(hab["id"]),
                         propiedad_id=hospedaje.id,
                         code=hab["code"],
                         descripcion=hab["descripcion"],
