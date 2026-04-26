@@ -1,9 +1,9 @@
 import jwt
+from uuid import UUID
 from datetime import datetime, timedelta
 from functools import wraps
 from flask import request, current_app
-
-from app.db.models import User
+from app.db.models import db, User
 
 
 def generate_token(user):
@@ -17,7 +17,7 @@ def generate_token(user):
 
     token = jwt.encode(
         payload,
-        current_app.config["SECRET_KEY"],
+        current_app.config["JWT_SECRET_KEY"],
         algorithm="HS256"
     )
 
@@ -39,11 +39,12 @@ def token_required(f):
         try:
             data = jwt.decode(
                 token,
-                current_app.config["SECRET_KEY"],
+                current_app.config["JWT_SECRET_KEY"],
                 algorithms=["HS256"]
             )
 
-            current_user = User.query.get(data["sub"])
+            user_id = UUID(data["sub"])
+            current_user = db.session.get(User, user_id)
 
             if not current_user:
                 return {"message": "User not found"}, 404
