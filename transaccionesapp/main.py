@@ -43,6 +43,17 @@ app.config['JWT_TOKEN_LOCATION'] = ['headers']
 app.config['JWT_HEADER_NAME'] = 'Authorization'
 app.config['JWT_HEADER_TYPE'] = 'Bearer'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600
+app.config['EXTERNAL_PAYMENT_SESSION_URL'] = os.getenv(
+    'EXTERNAL_PAYMENT_SESSION_URL',
+    'https://external-payment-provider.onrender.com/payment-sessions'
+)
+app.config['PAYMENT_WEBHOOK_URL'] = os.getenv(
+    'PAYMENT_WEBHOOK_URL',
+    'https://v7iqo4ymndw6lnektybll5za4y0udwfi.lambda-url.us-east-1.on.aws'
+)
+app.config['PAYMENT_SIMULATE_OUTCOME'] = os.getenv('PAYMENT_SIMULATE_OUTCOME', 'success')
+app.config['PAYMENT_CALLBACK_DELAY_SECONDS'] = int(os.getenv('PAYMENT_CALLBACK_DELAY_SECONDS', '20'))
+app.config['PAYMENT_SESSION_TIMEOUT_SECONDS'] = int(os.getenv('PAYMENT_SESSION_TIMEOUT_SECONDS', '10'))
 app.config["SWAGGER"] = {
     "title": "TravelHub Managers API",
     "uiversion": 3

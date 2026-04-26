@@ -1,7 +1,8 @@
 from decimal import Decimal
-from uuid import UUID
+from uuid import UUID, uuid4
 
-from flask import request
+import requests
+from flask import current_app, request
 from flask_restful import Resource
 
 from app.services.transactions_crud import (
@@ -62,6 +63,83 @@ def _serialize_payment_transaction(payment_transaction):
         "created_at": payment_transaction.created_at.isoformat() if payment_transaction.created_at else None,
         "updated_at": payment_transaction.updated_at.isoformat() if payment_transaction.updated_at else None,
     }
+
+
+def _extract_session_url(session_response: dict):
+    if not isinstance(session_response, dict):
+        return None
+
+    for key in ("url", "payment_url", "checkout_url", "session_url", "redirect_url"):
+        value = session_response.get(key)
+        if value:
+            return value
+
+    return None
+
+
+def _map_session_status_to_payment_status(session_status: str):
+    if not session_status:
+        return None
+
+    normalized_status = str(session_status).strip().lower()
+    status_mapping = {
+        "created": "pending",
+        "pending": "pending",
+        "authorized": "authorized",
+        "captured": "captured",
+        "failed": "failed",
+        "cancelled": "cancelled",
+        "refunded": "refunded",
+    }
+    return status_mapping.get(normalized_status)
+
+
+def _create_external_payment_session(payment_id: str, payload: dict):
+    if current_app.config.get("TESTING"):
+        fake_session_id = f"ps_{uuid4().hex[:16]}"
+        return {
+            "ok": True,
+            "session_response": {
+                "session_id": fake_session_id,
+                "payment_id": payment_id,
+                "checkout_url": payload.get("url") or f"https://external-payment-provider.onrender.com/checkout/{fake_session_id}",
+                "status": "created",
+            },
+        }
+
+    session_payload = {
+        "payment_id": payment_id,
+        "amount": payload.get("amount"),
+        "webhook_url": current_app.config.get("PAYMENT_WEBHOOK_URL"),
+        "currency": payload.get("currency"),
+        "customer_id": payload.get("customer_id") or str(payload.get("reserva_id")),
+        "simulate_outcome": current_app.config.get("PAYMENT_SIMULATE_OUTCOME", "success"),
+        "callback_delay_seconds": current_app.config.get("PAYMENT_CALLBACK_DELAY_SECONDS", 20),
+    }
+
+    try:
+        response = requests.post(
+            current_app.config.get("EXTERNAL_PAYMENT_SESSION_URL"),
+            json=session_payload,
+            timeout=current_app.config.get("PAYMENT_SESSION_TIMEOUT_SECONDS", 10),
+        )
+    except requests.RequestException as exc:
+        return {"ok": False, "error": f"No fue posible crear la sesion de pago: {str(exc)}"}
+
+    if response.status_code not in (200, 201):
+        return {
+            "ok": False,
+            "error": "El proveedor externo no pudo crear la sesion de pago",
+            "status_code": response.status_code,
+            "response_text": response.text,
+        }
+
+    try:
+        session_response = response.json()
+    except ValueError:
+        session_response = {}
+
+    return {"ok": True, "session_response": session_response}
 
 class Health(Resource):
     def get(self):
@@ -327,18 +405,39 @@ class PaymentResource(Resource):
         missing_fields = [field for field in required_fields if payload.get(field) in (None, "")]
         if missing_fields:
             return {"message": f"Faltan campos requeridos: {', '.join(missing_fields)}"}, 400
-        
-        #aqui va el codigo para hacer la solicitud de pago al proveedor http,
-        #el proveedor debe retornar un provider_payment_id y una url (si aplica)
-        #para redirigir al usuario a completar el pago
-        #Si la solicitud al proveedor falla, se almacena el pago con status "failed" y url null,
-        #y se puede retornar un error 400 con un mensaje indicando que no fue posible crear el pago
-        #Si la solicitud al proveedor es exitosa, se almacena el pago con el provider_payment_id y la url
-        #con estado "pending" y se retorna el pago creado con un status 201
 
-        payment = payment_crud.create_payment(payload)
+        provider_payment_id = payload.get("provider_payment_id") or f"pay_{uuid4().hex[:12]}"
+        session_result = _create_external_payment_session(provider_payment_id, payload)
+
+        payload_to_store = dict(payload)
+        payload_to_store["provider_payment_id"] = provider_payment_id
+
+        if session_result["ok"]:
+            session_response = session_result.get("session_response") or {}
+            session_payment_status = _map_session_status_to_payment_status(session_response.get("status"))
+            payload_to_store["status"] = payload.get("status") or session_payment_status or "pending"
+            payload_to_store["url"] = _extract_session_url(session_response)
+
+            metadata = payload_to_store.get("metadata") if isinstance(payload_to_store.get("metadata"), dict) else {}
+            metadata["payment_session_response"] = session_response
+            payload_to_store["metadata"] = metadata
+        else:
+            payload_to_store["status"] = "failed"
+            payload_to_store["url"] = None
+
+            metadata = payload_to_store.get("metadata") if isinstance(payload_to_store.get("metadata"), dict) else {}
+            metadata["payment_session_error"] = session_result
+            payload_to_store["metadata"] = metadata
+
+        payment = payment_crud.create_payment(payload_to_store)
         if not payment:
             return {"message": "No fue posible crear el pago"}, 400
+
+        if not session_result["ok"]:
+            return {
+                "message": "No fue posible crear la sesion en el proveedor externo",
+                "payment": _serialize_payment(payment),
+            }, 400
 
         return _serialize_payment(payment), 201
 
