@@ -85,6 +85,3 @@ api.add_resource(HospedajeCollection, '/api/v1/inventarios/hospedajes')
 api.add_resource(HospedajeById, '/api/v1/inventarios/hospedajes/<string:hospedaje_id>/<string:currency_code>')
 api.add_resource(SeedReservations, '/api/v1/inventarios/seed-reservas') 
 api.add_resource(ListadoHoteles, '/api/v1/inventarios/hoteles')
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3000, debug=True) 

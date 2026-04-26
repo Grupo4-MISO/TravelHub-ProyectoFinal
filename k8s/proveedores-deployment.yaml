@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: proveedores-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/proveedores-app:v3.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/proveedores-app:v1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 3007

@@ -56,6 +56,3 @@ api.add_resource(CleanDB, '/clean')
 api.add_resource(Confirmar_Reserva, '/confirmar/<string:reserva_id>')
 api.add_resource(Revocar_Reserva, '/revocar/<string:reserva_id>')
 api.add_resource(Reservas_por_usuario, '/usuario/<string:user_id>')
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3001, debug=True)

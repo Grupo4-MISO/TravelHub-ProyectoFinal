@@ -60,6 +60,3 @@ api = Api(app)
 api.add_resource(SearchHealth, '/api/v1/busquedas/health')
 api.add_resource(Search, '/api/v1/busquedas/search')
 api.add_resource(SeedDB, '/api/v1/busquedas/seed')
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3002, debug=True)
