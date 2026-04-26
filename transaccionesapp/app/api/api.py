@@ -162,20 +162,15 @@ class Health(Resource):
 
 
 class PaymentProviderResource(Resource):
-    @token_required
     def get(self):
         """
         Listar proveedores de pago
         ---
         tags:
           - PaymentProviders
-        security:
-          - Bearer: []
         responses:
           200:
             description: Lista de proveedores de pago
-          401:
-            description: Token faltante o invalido
         """
         providers = payment_provider_crud.get_all_payment_providers()
         return [_serialize_payment_provider(provider) for provider in providers], 200

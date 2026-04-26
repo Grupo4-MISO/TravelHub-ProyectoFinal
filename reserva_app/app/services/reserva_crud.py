@@ -30,6 +30,8 @@ class ReservaCRUD:
 
     def _obtener_habitaciones_ocupadas(self, habitacion_ids: list[int | str], check_in: date, check_out: date) -> set[str] | str:
         try:
+            habitacion_ids_normalizados = self._normalizar_habitacion_ids(habitacion_ids)
+
             # Definimos consulta para verificar habitaciones ocupadas
             query = self.db.query(ReservaORM).filter(
                 ReservaORM.habitacion_id.in_(habitacion_ids),

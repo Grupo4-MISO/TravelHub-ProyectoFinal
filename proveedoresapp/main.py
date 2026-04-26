@@ -91,4 +91,4 @@ api.add_resource(ManagerByUserIdResource,
 api.add_resource(SeedDB, '/api/v1/Managers/seed')
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3005, debug=True)
+    app.run(host="127.0.0.1", port=3006, debug=True)

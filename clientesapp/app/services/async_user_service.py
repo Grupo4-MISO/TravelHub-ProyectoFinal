@@ -17,7 +17,7 @@ class AsyncUserService:
         password: str,
         first_name: str,
         last_name: str,
-        role: str = "Manager"
+        role: str = "Traveler"
     ) -> Tuple[Optional[Dict], Optional[str]]:
         """
         Crea un usuario en el servicio de autenticación (autenticadorapp)
@@ -27,7 +27,7 @@ class AsyncUserService:
             password (str): Password del usuario
             first_name (str): Nombre del usuario
             last_name (str): Apellido del usuario
-            role (str): Rol del usuario (default: Manager)
+            role (str): Rol del usuario (default: Traveler)
         
         Returns:
             Tuple[Optional[Dict], Optional[str]]: 
@@ -53,7 +53,7 @@ class AsyncUserService:
                 "last_name": last_name,
                 "email": email,
                 "password": password,
-                "role": role or "Manager",
+                "role": role or "Traveler",
             }
             
             # Hacer la petición POST a autenticadorapp

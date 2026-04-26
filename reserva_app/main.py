@@ -26,7 +26,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
 #app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'supersecretkey'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['PROPAGATE_EXCEPTIONS'] = False
 app.config['JWT_TOKEN_LOCATION'] = ['headers']
 app.config['JWT_HEADER_NAME'] = 'Authorization'
 app.config['JWT_HEADER_TYPE'] = 'Bearer'
@@ -56,3 +56,6 @@ api.add_resource(CleanDB, '/clean')
 api.add_resource(Confirmar_Reserva, '/confirmar/<string:reserva_id>')
 api.add_resource(Revocar_Reserva, '/revocar/<string:reserva_id>')
 api.add_resource(Reservas_por_usuario, '/api/v1/reservas/usuario/<string:user_id>')
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=3001, debug=True)

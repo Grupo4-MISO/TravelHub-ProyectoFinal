@@ -3,7 +3,17 @@ import requests
 import os
 
 #Importamos ruta del endpoint
-ENDPOINT_RESERVA = os.getenv('ENDPOINT_RESERVA')
+ENDPOINT_RESERVA = os.getenv('ENDPOINT_RESERVA', '/api/v1/reservas/disponibilidad')
+
+
+def _build_service_url(base_url, endpoint):
+    if not base_url:
+        raise ExternalServiceError('La variable RESERVAS_URL no esta configurada')
+
+    if not endpoint:
+        raise ExternalServiceError('La variable ENDPOINT_RESERVA no esta configurada')
+
+    return f"{base_url.rstrip('/')}/{endpoint.lstrip('/')}"
 
 class ReservaHelper:
     @staticmethod
@@ -17,7 +27,8 @@ class ReservaHelper:
 
         try:
             #Hacemos la consulta al microservicio de reservas
-            response = requests.post(f"{reserva_url}{ENDPOINT_RESERVA}", json = payload)
+            reservas_service_url = _build_service_url(reserva_url, ENDPOINT_RESERVA)
+            response = requests.post(reservas_service_url, json = payload)
 
             #Genera expecion si el status code es diferente a 200
             response.raise_for_status()
@@ -25,7 +36,7 @@ class ReservaHelper:
             return response.json()
         
         except requests.exceptions.RequestException as e:
-            return ExternalServiceError(f"Error al consultar el microservicio de reservas: {str(e)}")
+            raise ExternalServiceError(f"Error al consultar el microservicio de reservas: {str(e)}")
         
     @staticmethod
     def seedReservas(reservas_url, cantidad, payload):
@@ -34,4 +45,4 @@ class ReservaHelper:
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
-            return ExternalServiceError(f"Error al ejecutar el seed en el microservicio de reservas: {str(e)}")
+            raise ExternalServiceError(f"Error al ejecutar el seed en el microservicio de reservas: {str(e)}")
