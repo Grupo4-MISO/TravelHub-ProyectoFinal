@@ -66,7 +66,7 @@ class SeedReservas(Resource):
 
         response = {
             'msg': 'Seed ejecutado correctamente',
-            'solicitadas': result['solicitadas'],
+            'solicitadas por habitacion': result['solicitadas'],
             'reservas_insertadas': result['reservas_insertadas'],
         }
 
@@ -183,6 +183,14 @@ class Revocar_Reserva(Resource):
             return {'msg': 'Reserva revocada correctamente'}, 200
         else:
             return {'msg': response}, 500
+
+class Reservas_por_usuario(Resource):
+    def get(self, user_id):
+        try:
+            reservas = reservas_crud.obtenerReservasPorUsuario(user_id)
+            return reservas, 200
+        except Exception as e:
+            return {'msg': 'Error al obtener las reservas del usuario', 'error': str(e)}, 500
 
 class CleanDB(Resource):
     def post(self):

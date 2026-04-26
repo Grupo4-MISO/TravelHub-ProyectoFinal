@@ -259,8 +259,25 @@ class InventarioCRUD:
         return hotel
 
     def habitacionesporIdHotel(self, hotel_id):
-        habitaciones = self.db.query(HabitacionORM).filter_by(propiedad_id=hotel_id).all()
+        hotel_uuid = uuid.UUID(str(hotel_id))
+        habitaciones = self.db.query(HabitacionORM).filter_by(propiedad_id=hotel_uuid).all()
         return habitaciones
+
+    def hotelesPorHabitaciones(self, habitaciones_ids):
+        respuesta = {}
+        for habitacion in habitaciones_ids:
+            habitacion_orm = self.db.query(HabitacionORM).filter(HabitacionORM.id == habitacion).first()            
+            hospedaje_id = habitacion_orm.propiedad_id if habitacion_orm else None
+            hospedaje = self.db.query(HospedajeORM).filter_by(id=hospedaje_id).first()
+            if hospedaje:
+                respuesta[str(habitacion)] = {
+                    'nombre': hospedaje.nombre,
+                    'pais': hospedaje.pais,
+                    'ciudad': hospedaje.ciudad,
+                    'direccion': hospedaje.direccion,
+                    'imagen': habitacion_orm.imageUrl
+                }
+        return respuesta
     
     def resetDb(self):
         try:

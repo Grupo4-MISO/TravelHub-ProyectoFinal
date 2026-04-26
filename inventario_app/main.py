@@ -1,4 +1,4 @@
-from app.api.api import CleanDB, CountryList, PopularCitiesByCountry, InventarioHealth, FiltroHabitaciones, SeedDB, HospedajeCollection, buscarHotel, HabitacionesporId, SeedDB, SeedReservations, HospedajeById
+from app.api.api import CleanDB, CountryList, PopularCitiesByCountry, InventarioHealth, FiltroHabitaciones, SeedDB, HospedajeCollection, HabitacionesporId, SeedDB, SeedReservations, HospedajeById, ListadoHoteles
 from app.errors.handlers import ErrorHandler
 from flask_restful import Api
 from app.db.models import db
@@ -83,12 +83,12 @@ api.add_resource(InventarioHealth, '/api/v1/inventarios/health')
 api.add_resource(CountryList, '/api/v1/inventarios/countries')
 api.add_resource(PopularCitiesByCountry, '/api/v1/inventarios/countries/<code>/popular-cities')
 api.add_resource(FiltroHabitaciones, '/api/v1/inventarios/filtro')
-api.add_resource(buscarHotel, '/api/v1/inventarios/hotel')
 api.add_resource(HabitacionesporId, '/api/v1/inventarios/habitaciones')
 api.add_resource(SeedDB, '/api/v1/inventarios/seed')
 api.add_resource(HospedajeCollection, '/api/v1/inventarios/hospedajes')
 api.add_resource(HospedajeById, '/api/v1/inventarios/hospedajes/<string:hospedaje_id>/<string:currency_code>')
 api.add_resource(SeedReservations, '/api/v1/inventarios/seed-reservas') 
+api.add_resource(ListadoHoteles, '/api/v1/inventarios/hoteles')
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=3000, debug=True) 
