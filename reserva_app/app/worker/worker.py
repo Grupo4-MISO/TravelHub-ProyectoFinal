@@ -15,10 +15,10 @@ def reservasWorker():
             
             for msg in messages:
                 #Sacamos el cuerpo del mensaje
-                msg = ReservaHelper.loadJSON(msg)
+                message = ReservaHelper.loadJSON(msg)
 
                 #Procesamos el mensaje
-                sqs_helper.processMessage(msg)
+                sqs_helper.processMessage(message)
 
                 #Borramos el mensasje de la cola
                 sqs_helper.deleteMessage(msg['ReceiptHandle'])
