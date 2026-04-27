@@ -79,7 +79,7 @@ api = Api(app)
 
 api.add_resource(Health, '/api/v1/Managers/health')
 api.add_resource(ProviderByUserId,
-                 '/api/v1/Providers/users/<string:user_id>')
+                 '/api/v1/Managers/Providers/users/<string:user_id>')
 api.add_resource(ManagerResource, '/api/v1/Managers')
 api.add_resource(ManagerResourceById, '/api/v1/Managers/<string:id>')
 api.add_resource(
