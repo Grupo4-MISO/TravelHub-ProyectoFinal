@@ -95,51 +95,51 @@ def _map_session_status_to_payment_status(session_status: str):
 
 
 def _create_external_payment_session(payment_id: str, payload: dict):
-    if current_app.config.get("TESTING"):
-        fake_session_id = f"ps_{uuid4().hex[:16]}"
-        return {
-            "ok": True,
-            "session_response": {
-                "session_id": fake_session_id,
-                "payment_id": payment_id,
-                "checkout_url": payload.get("url") or f"https://external-payment-provider.onrender.com/checkout/{fake_session_id}",
-                "status": "created",
-            },
-        }
-
-    session_payload = {
+  if current_app.config.get("TESTING"):
+    fake_session_id = f"ps_{uuid4().hex[:16]}"
+    return {
+      "ok": True,
+      "session_response": {
+        "session_id": fake_session_id,
         "payment_id": payment_id,
-        "amount": payload.get("amount"),
-        "webhook_url": current_app.config.get("PAYMENT_WEBHOOK_URL"),
-        "currency": payload.get("currency"),
-        "customer_id": payload.get("customer_id") or str(payload.get("reserva_id")),
-        "simulate_outcome": current_app.config.get("PAYMENT_SIMULATE_OUTCOME", "success"),
-        "callback_delay_seconds": current_app.config.get("PAYMENT_CALLBACK_DELAY_SECONDS", 20),
+        "checkout_url": payload.get("url") or f"https://external-payment-provider.onrender.com/checkout/{payment_id}",
+        "status": "created",
+      },
     }
 
-    try:
-        response = requests.post(
-            current_app.config.get("EXTERNAL_PAYMENT_SESSION_URL"),
-            json=session_payload,
-            timeout=current_app.config.get("PAYMENT_SESSION_TIMEOUT_SECONDS", 10),
-        )
-    except requests.RequestException as exc:
-        return {"ok": False, "error": f"No fue posible crear la sesion de pago: {str(exc)}"}
+  session_payload = {
+    "payment_id": payment_id,
+    "amount": payload.get("amount"),
+    "webhook_url": current_app.config.get("PAYMENT_WEBHOOK_URL"),
+    "currency": payload.get("currency"),
+    "customer_id": payload.get("customer_id") or str(payload.get("reserva_id")),
+    "simulate_outcome": current_app.config.get("PAYMENT_SIMULATE_OUTCOME", "success"),
+    "callback_delay_seconds": current_app.config.get("PAYMENT_CALLBACK_DELAY_SECONDS", 20),
+  }
 
-    if response.status_code not in (200, 201):
-        return {
-            "ok": False,
-            "error": "El proveedor externo no pudo crear la sesion de pago",
-            "status_code": response.status_code,
-            "response_text": response.text,
-        }
+  try:
+    response = requests.post(
+      current_app.config.get("EXTERNAL_PAYMENT_SESSION_URL"),
+      json=session_payload,
+      timeout=current_app.config.get("PAYMENT_SESSION_TIMEOUT_SECONDS", 10),
+    )
+  except requests.RequestException as exc:
+    return {"ok": False, "error": f"No fue posible crear la sesion de pago: {str(exc)}"}
 
-    try:
-        session_response = response.json()
-    except ValueError:
-        session_response = {}
+  if response.status_code not in (200, 201):
+    return {
+      "ok": False,
+      "error": "El proveedor externo no pudo crear la sesion de pago",
+      "status_code": response.status_code,
+      "response_text": response.text,
+    }
 
-    return {"ok": True, "session_response": session_response}
+  try:
+    session_response = response.json()
+  except ValueError:
+    session_response = {}
+
+  return {"ok": True, "session_response": session_response}
 
 class Health(Resource):
     def get(self):
