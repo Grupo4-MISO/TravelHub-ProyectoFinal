@@ -96,13 +96,12 @@ def _map_session_status_to_payment_status(session_status: str):
 
 def _create_external_payment_session(payment_id: str, payload: dict):
     if current_app.config.get("TESTING"):
-        fake_session_id = f"ps_{uuid4().hex[:16]}"
         return {
             "ok": True,
             "session_response": {
                 "session_id": fake_session_id,
                 "payment_id": payment_id,
-                "checkout_url": payload.get("url") or f"https://external-payment-provider.onrender.com/checkout/{fake_session_id}",
+                "checkout_url": payload.get("url") or f"https://external-payment-provider.onrender.com/checkout/{payment_id}",
                 "status": "created",
             },
         }
