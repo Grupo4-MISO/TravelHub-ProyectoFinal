@@ -71,6 +71,3 @@ api.add_resource(UserCollectionResource, '/api/v1/auth/users')
 api.add_resource(UserDetailResource, '/api/v1/auth/users/<string:user_id>')
 api.add_resource(SeedDB, '/api/v1/auth/seed')
 api.add_resource(CleanDB, '/api/v1/auth/clean')
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3004, debug=True)

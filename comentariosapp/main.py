@@ -76,6 +76,3 @@ api.add_resource(
 )
 api.add_resource(SeedDB, '/api/v1/reviews/seed')
 api.add_resource(CleanDB, '/api/v1/reviews/clean')
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3003, debug=True)

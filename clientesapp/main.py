@@ -73,7 +73,3 @@ api.add_resource(TravelerResourceById, '/api/v1/Travelers/<string:id>')
 api.add_resource(TravelerByUserIdResource, 
                 '/api/v1/Travelers/users/<string:id>')
 api.add_resource(SeedDB, '/api/v1/Travelers/seed')
-
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3007, debug=True)

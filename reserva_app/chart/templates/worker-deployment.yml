@@ -24,3 +24,5 @@ spec:
           env:
             - name: SQS_RESERVAS_URL
               value: {{ .Values.sqsReservasUrl }}
+            - name: DATABASE_URL
+              value: {{ .Values.database }}

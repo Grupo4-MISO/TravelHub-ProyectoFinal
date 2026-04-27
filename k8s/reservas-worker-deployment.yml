@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/reservas-app:v1.0.0
+          image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/reservas-app:v4.0.0
           imagePullPolicy: Always
 
           command: ["python", "worker_main.py"]
@@ -24,3 +24,5 @@ spec:
           env:
             - name: SQS_RESERVAS_URL
               value: https://sqs.us-east-1.amazonaws.com/387050840675/reservas-sqs
+            - name: DATABASE_URL
+              value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260426211023287000000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
