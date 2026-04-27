@@ -90,11 +90,10 @@ swagger_config = {
 
 Swagger(app, config=swagger_config, template=swagger_template)
 
-#Inicializamos la base de datos
+db.init_app(app)
+
 if not app.config.get('TESTING'):
     with app.app_context():
-        #Creamos tablas en la base de datos
-        db.init_app(app)
         db.create_all()
 
 #Habilitamos CORS
@@ -117,6 +116,3 @@ api.add_resource(PaymentTransactionByIdResource, '/attempts/<string:id>')
 api.add_resource(PaymentTransactionByPaymentIdResource, '/attempts/payment/<string:payment_id>')
 
 api.add_resource(SeedDB, '/seed')
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3005, debug=True)
