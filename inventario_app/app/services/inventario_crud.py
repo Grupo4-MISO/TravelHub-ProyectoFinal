@@ -266,7 +266,8 @@ class InventarioCRUD:
     def hotelesPorHabitaciones(self, habitaciones_ids):
         respuesta = {}
         for habitacion in habitaciones_ids:
-            habitacion_orm = self.db.query(HabitacionORM).filter(HabitacionORM.id == habitacion).first()            
+            habitacion_uuid = uuid.UUID(str(habitacion))
+            habitacion_orm = self.db.query(HabitacionORM).filter(HabitacionORM.id == habitacion_uuid).first()            
             hospedaje_id = habitacion_orm.propiedad_id if habitacion_orm else None
             hospedaje = self.db.query(HospedajeORM).filter_by(id=hospedaje_id).first()
             if hospedaje:

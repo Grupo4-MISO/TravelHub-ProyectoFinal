@@ -161,6 +161,7 @@ class ReservaCRUD:
             now = datetime.now()
             reserva = ReservaORM(
                 habitacion_id=habitacion_uuid,
+                user_id=UUID(str(user_id)),
                 check_in=check_in,
                 check_out=check_out,
                 estado=ReservaEstado.PENDIENTE.value,

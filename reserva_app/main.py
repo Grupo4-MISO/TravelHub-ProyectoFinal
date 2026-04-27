@@ -18,12 +18,7 @@ app = Flask(__name__)
 #Registramos el manejador de errores
 ErrorHandler.errors(app)
 
-#Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-    "DATABASE_URL",
-    "sqlite:///travelhub.db"
-)
-#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'supersecretkey'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = False
@@ -55,7 +50,7 @@ api.add_resource(TarifaReserva, '/tarifa')
 api.add_resource(CleanDB, '/clean')
 api.add_resource(Confirmar_Reserva, '/confirmar/<string:reserva_id>')
 api.add_resource(Revocar_Reserva, '/revocar/<string:reserva_id>')
-api.add_resource(Reservas_por_usuario, '/api/v1/reservas/usuario/<string:user_id>')
+api.add_resource(Reservas_por_usuario, '/usuario/<string:user_id>')
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=3001, debug=True)
