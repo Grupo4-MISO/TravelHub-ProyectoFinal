@@ -21,9 +21,9 @@ FOLDERS_NEW=reserva_app
 IMAGE_TAG_NEW=v7.0.0
 
 # Nueva version imagen lambda
-SERVICES_LAMBDA_NEW=webhook-pagos-app
-FOLDERS_LAMBDA_NEW=webhook_pagos
-IMAGE_TAG_LAMBDA_NEW=v3.0.0
+SERVICES_LAMBDA_NEW=email-app
+FOLDERS_LAMBDA_NEW=email
+IMAGE_TAG_LAMBDA_NEW=v5.0.0
 
 export AWS_REGION
 

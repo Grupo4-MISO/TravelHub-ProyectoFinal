@@ -6,7 +6,7 @@ import smtplib
 SMTP_HOST = 'smtp.gmail.com'
 SMTP_PORT = 587
 SMTP_USER = 'travelhub.reservations@gmail.com' 
-SMTP_PASS = 'kjyx rzlf ccli rqsj'
+SMTP_PASS = 'hkzu sqcg crdy gxmk'
 
 class EmailHelper:
     @staticmethod
@@ -18,6 +18,8 @@ class EmailHelper:
         message['Subject'] = 'Reserva Confirmada'
         message['From'] = SMTP_USER
         message['To'] = body.get('email')
+
+        print(f"Email a enviar: {message['To']}")
 
         return message
     
@@ -79,10 +81,14 @@ class EmailHelper:
     @staticmethod
     def sendEmail(message):
         try:
-            with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout = 30) as server:
+                server.set_debuglevel(1)
                 server.starttls()
+                print("Iniciando sesión en el servidor SMTP...")
                 server.login(SMTP_USER, SMTP_PASS)
+                print("Enviando email...")
                 server.sendmail(SMTP_USER, message["To"], message.as_string())
+                print("Email enviado exitosamente.")
 
         except Exception as e:
             return f'Error sending email: {str(e)}'
