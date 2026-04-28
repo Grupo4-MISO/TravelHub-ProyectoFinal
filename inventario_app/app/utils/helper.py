@@ -44,14 +44,19 @@ class InventarioHelper:
 
     @staticmethod
     def convertirMoneda(precio, currency_code_origen, currency_code_destino):
+        # Si no se especifica moneda destino, no hacemos conversión.
+        if not currency_code_destino:
+            return precio
+
         if currency_code_origen == currency_code_destino:
             return precio
-        
+
         #Tasas de conversion
         tasa_origen = RATES.get(currency_code_origen)
         tasa_destino = RATES.get(currency_code_destino)
 
-        if not tasa_origen or not tasa_destino:
+        # Distinción explícita entre ausencia de tasa (None) y tasa 0.
+        if tasa_origen is None or tasa_destino is None:
             raise ValueError("Currency no soportada")
 
         #Convertimos a USD como base
