@@ -25,8 +25,9 @@ class ReservaCRUD:
                 raise NotFoundError(f"No se encontró la reserva con ID {data_reserva.get('reserva_id')}")
 
             #Actualizamos el estado de la reserva
-            reserva.estado = data_reserva.get('status')
-            self.db.commit()
+            if data_reserva.get('status') == 'success':
+                reserva.estado = ReservaEstado.CONFIRMADA.value
+                self.db.commit()
 
         except Exception as e:
             self.db.rollback()
