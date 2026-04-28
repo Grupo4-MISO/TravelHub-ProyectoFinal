@@ -49,7 +49,7 @@ app.config['EXTERNAL_PAYMENT_SESSION_URL'] = os.getenv(
 )
 app.config['PAYMENT_WEBHOOK_URL'] = os.getenv(
     'PAYMENT_WEBHOOK_URL',
-    'https://v7iqo4ymndw6lnektybll5za4y0udwfi.lambda-url.us-east-1.on.aws'
+    'https://if2v3gkiranep7n2xau4lzxsrq0athlp.lambda-url.us-east-1.on.aws/'
 )
 app.config['PAYMENT_SIMULATE_OUTCOME'] = os.getenv('PAYMENT_SIMULATE_OUTCOME', 'success')
 app.config['PAYMENT_CALLBACK_DELAY_SECONDS'] = int(os.getenv('PAYMENT_CALLBACK_DELAY_SECONDS', '20'))
