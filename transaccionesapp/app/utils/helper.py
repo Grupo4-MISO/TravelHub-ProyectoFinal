@@ -1,4 +1,4 @@
-from app.errors.exceptions import DatababaseError, InternalServerError
+from app.errors.exceptions import InternalServerError
 from app.services.transactions_crud import PaymentCrud
 import json
 import uuid
@@ -14,22 +14,6 @@ class Helper:
         
         except Exception as e:
             raise InternalServerError(f'Error loading JSON from message: {str(e)}')
-    
-    @staticmethod
-    def reservasMessage(payment_transaction):
-        try:
-            #Traemos la informacion de base de datos
-            payment = payment_crud.get_payment_by_id(payment_transaction.payment_id)
-
-            #Construimos el mensaje para la cola de reservas
-            reservas_message = {
-                'reserva_id': str(payment.reserva_id),
-            }
-
-            return reservas_message
-
-        except Exception as e:
-            raise DatababaseError(f'Error searching payment by id: {str(e)}')
     
     @staticmethod
     def normalizeUUID(id: str):
