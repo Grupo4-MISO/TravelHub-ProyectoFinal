@@ -25,6 +25,7 @@ class EmailHelper:
     
     @staticmethod
     def createEmailMessage(message, data):
+        print(data)
         #Cuerpo del correo en formato HTML
         html = f"""\
         <html>
@@ -133,7 +134,7 @@ class EmailHelper:
                                     <strong>Información de Pago</strong>
                                 </td>
                                 <td align="right" style="font-size:20px; color:#0d6efd;">
-                                    $ {data['reserva']['tarifa_total']:.2f} {data['reserva']['currency']}
+                                    $ {float(data['reserva']['tarifa_total']):.2f} {data['reserva']['currency']}
                                 </td>
                             </tr>
                         </table>

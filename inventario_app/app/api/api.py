@@ -437,7 +437,7 @@ class HospedajeInfo(Resource):
                        'direccion': hospedaje.get('direccion'),
                        'ciudad': hospedaje.get('ciudad'),
                        'pais': hospedaje.get('pais'),
-                       'amedidades': hospedaje.get('amenidades'),
+                       'amenidades': hospedaje.get('amenidades'),
                        'imagenes': hospedaje.get('imagenes'),
                 }
 
