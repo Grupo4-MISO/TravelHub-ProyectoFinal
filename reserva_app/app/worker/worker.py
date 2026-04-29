@@ -25,4 +25,7 @@ def reservasWorker():
                 sqs_helper.deleteMessage(msg['ReceiptHandle'])
 
                 #Enviamos mensaje a cola de mail
-                sqs_helper.sendMessage(message.get('email'))
+                mail_message = {
+                    'email': message.get('email')
+                }
+                sqs_helper.sendMessage(mail_message)
