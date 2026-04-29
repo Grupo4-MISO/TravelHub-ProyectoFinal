@@ -116,7 +116,7 @@ class EmailHelper:
                             <tr>
                                 <td style="padding-top:10px;">
                                     {"".join([
-                                        f'<span style="display:inline-block; background:#f1f1f1; padding:8px 12px; margin:5px; border-radius:6px; font-size:13px;">{a}</span>'
+                                        f'<span style="display:inline-block; background:#f1f1f1; padding:8px 12px; margin:5px; border-radius:6px; font-size:13px;">{a["name"]}</span>'
                                         for a in data['hospedaje']['amenidades']
                                     ])}
                                 </td>
@@ -131,7 +131,7 @@ class EmailHelper:
                         <table width="100%" style="border:1px solid #e0e0e0; border-radius:8px; padding:15px;">
                             <tr>
                                 <td>
-                                    <strong>Información de Pago</strong>
+                                    <strong>Costo total de la estadía:</strong>
                                 </td>
                                 <td align="right" style="font-size:20px; color:#0d6efd;">
                                     $ {float(data['reserva']['tarifa_total']):.2f} {data['reserva']['currency']}

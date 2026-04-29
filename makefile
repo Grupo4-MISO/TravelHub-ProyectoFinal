@@ -23,7 +23,7 @@ IMAGE_TAG_NEW=v2.0.0
 # Nueva version imagen lambda
 SERVICES_LAMBDA_NEW=email-app
 FOLDERS_LAMBDA_NEW=email
-IMAGE_TAG_LAMBDA_NEW=v3.0.0
+IMAGE_TAG_LAMBDA_NEW=v4.0.0
 
 export AWS_REGION
 
