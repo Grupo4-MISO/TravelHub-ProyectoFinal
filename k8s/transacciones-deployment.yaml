@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: transacciones-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/transacciones-app:v1.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/transacciones-app:v2.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 3005

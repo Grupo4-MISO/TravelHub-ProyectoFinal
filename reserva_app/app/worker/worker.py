@@ -27,8 +27,13 @@ def reservasWorker():
                 #Borramos el mensasje de la cola
                 sqs_helper.deleteMessage(msg['ReceiptHandle'])
 
+                #Consultamos la reserva en la base de datos
+                reserva = ReservaHelper.reservaInfo(message.get('reserva_id'))
+
+                #Consultamos inventario
+                currency_code = message.get('payment_info').get('currency')
+                hospedaje_info = ReservaHelper.hospedajeInfo(INVENTARIOS_URL, reserva.get('habitacion_id'), currency_code)
+
                 #Enviamos mensaje a cola de mail
-                mail_message = {
-                    'email': message.get('email')
-                }
+                mail_message = ReservaHelper.mailMessage(reserva, hospedaje_info, message)
                 sqs_helper.sendMessage(mail_message)
