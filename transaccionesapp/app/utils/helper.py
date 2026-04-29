@@ -18,6 +18,18 @@ class Helper:
     @staticmethod
     def normalizeUUID(id: str):
         return uuid.UUID(str(id))
+
+    @staticmethod
+    def reservasMessage(payment, message):
+        #Definimos diccionario de salida
+        reservas_message = dict()
+
+        #Agregamos id de reserva, status y email al mensaje
+        reservas_message['reserva_id'] = str(payment.reserva_id)
+        reservas_message['status'] = message.get('status')
+        reservas_message['email'] = message.get('metadata').get('customer_email')
+
+        return reservas_message
         
 
     
