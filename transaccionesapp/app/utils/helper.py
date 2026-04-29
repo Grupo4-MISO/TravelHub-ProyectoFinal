@@ -1,6 +1,7 @@
 from app.errors.exceptions import DatababaseError, InternalServerError
 from app.services.transactions_crud import PaymentCrud
 import json
+import uuid
 
 #Declaramos payement crud
 payment_crud = PaymentCrud()
@@ -13,7 +14,8 @@ class Helper:
         
         except Exception as e:
             raise InternalServerError(f'Error loading JSON from message: {str(e)}')
-
+    
+    @staticmethod
     def reservasMessage(payment_transaction):
         try:
             #Traemos la informacion de base de datos
@@ -28,4 +30,11 @@ class Helper:
 
         except Exception as e:
             raise DatababaseError(f'Error searching payment by id: {str(e)}')
+    
+    @staticmethod
+    def normalizeUUID(id: str):
+        return uuid.UUID(str(id))
+        
+
+    
         

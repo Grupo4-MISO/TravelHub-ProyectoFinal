@@ -19,12 +19,12 @@ def pagosWorker():
                 message = Helper.loadJSON(msg)
 
                 #Procesamos el mensaje
-                payment_transaction = sqs_helper.processMessage(message)
+                payment = sqs_helper.processMessage(message)
 
                 #Borramos el mensasje de la cola
                 sqs_helper.deleteMessage(msg['ReceiptHandle'])
 
                 #Enviamos mensaje a la cola de reservas
-                reservas_message = Helper.reservasMessage(payment_transaction)
+                reservas_message = str(payment.reserva_id)
                 reservas_message['status'] = message.get('status')
                 sqs_helper.sendMessage(reservas_message)
