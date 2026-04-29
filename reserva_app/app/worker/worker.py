@@ -3,6 +3,9 @@ from app.utils.sqs_helper import SQSHelper
 from main import app
 import os
 
+#Inventarios URL
+INVENTARIOS_URL = os.getenv('INVENTARIOS_URL')
+
 #URL de la cola de SQS y helper
 SQS_RESERVAS_URL = os.getenv('SQS_RESERVAS_URL')
 SQS_MAIL_URL = os.getenv('SQS_MAIL_URL')

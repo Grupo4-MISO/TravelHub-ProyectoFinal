@@ -12,5 +12,6 @@ redisHost: master.name.igqc6u.use1.cache.amazonaws.com
 healthPath: api/v1/reservas/health
 sqsReservasUrl: https://sqs.us-east-1.amazonaws.com/387050840675/reservas-sqs
 sqsMailUrl: https://sqs.us-east-1.amazonaws.com/387050840675/mail-sqs
+inventariosUrl: http://inventarios-app-service:80
 port: 3001
 nodePort: 30001

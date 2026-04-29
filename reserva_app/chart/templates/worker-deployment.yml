@@ -26,5 +26,7 @@ spec:
               value: {{ .Values.sqsReservasUrl }}
             - name: SQS_MAIL_URL
               value: {{ .Values.sqsMailUrl }}
+            - name: INVENTARIOS_URL
+              value: {{ .Values.inventariosUrl }}
             - name: DATABASE_URL
               value: {{ .Values.database }}
