@@ -10,7 +10,7 @@ class Helper:
     @staticmethod
     def loadJSON(message):
         try:
-            return json.loads(message['Body'])
+            return json.loads(json.loads(message['Body'])['body'])
         
         except Exception as e:
             raise InternalServerError(f'Error loading JSON from message: {str(e)}')

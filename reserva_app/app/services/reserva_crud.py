@@ -16,12 +16,10 @@ class ReservaCRUD:
 
     def cambiarEstadoReserva(self, data_reserva: dict):
         try:
-            print(f"Data recibida para cambiar estado de reserva: {data_reserva}")
             #Filtramos reserva por ID
             reserva_id = UUID(str(data_reserva.get('reserva_id')))
-            print(reserva_id)
             reserva = self.db.query(ReservaORM).filter_by(id = reserva_id).first()
-            print(reserva)
+
             #Validamos que la reserva exista
             if not reserva:
                 raise NotFoundError(f"No se encontró la reserva con ID {data_reserva.get('reserva_id')}")
