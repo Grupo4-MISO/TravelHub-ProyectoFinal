@@ -28,6 +28,10 @@ class Helper:
         reservas_message['reserva_id'] = str(payment.reserva_id)
         reservas_message['status'] = message.get('status')
         reservas_message['email'] = message.get('metadata').get('customer_email')
+        reservas_message['payment_info'] = {
+            'amount': payment.amount,
+            'currency': payment.currency,
+        }
 
         return reservas_message
         
