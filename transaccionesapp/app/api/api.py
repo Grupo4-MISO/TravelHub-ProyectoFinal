@@ -401,11 +401,12 @@ class PaymentResource(Resource):
         if missing_fields:
             return {"message": f"Faltan campos requeridos: {', '.join(missing_fields)}"}, 400
 
-        provider_payment_id = payload.get("provider_payment_id") or f"pay_{uuid4().hex[:12]}"
-        session_result = _create_external_payment_session(provider_payment_id, payload)
+        payment_id = uuid4()
+        session_result = _create_external_payment_session(str(payment_id), payload)
 
         payload_to_store = dict(payload)
-        payload_to_store["provider_payment_id"] = provider_payment_id
+        payload_to_store["id"] = payment_id
+        payload_to_store["provider_payment_id"] = payload.get("provider_payment_id") or str(payment_id)
 
         if session_result["ok"]:
             session_response = session_result.get("session_response") or {}

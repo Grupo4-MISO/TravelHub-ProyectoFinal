@@ -63,6 +63,7 @@ class PaymentCrud:
     def create_payment(self, data: dict):
         try:
             payment = Payment(
+                id=UUID(str(data.get("id"))) if data.get("id") else None,
                 reserva_id=UUID(str(data.get("reserva_id"))),
                 provider_id=UUID(str(data.get("provider_id"))) if data.get("provider_id") else None,
                 amount=data.get("amount"),
