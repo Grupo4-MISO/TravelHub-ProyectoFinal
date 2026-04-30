@@ -31,11 +31,11 @@ jobs:
           - name: proveedoresapp
             path: proveedoresapp
             tests_path: tests
-          - name: transaccionesapp
-            path: transaccionesapp
-            tests_path: tests
           - name: clientesapp
             path: clientesapp
+            tests_path: tests
+          - name: transaccionesapp
+            path: transaccionesapp
             tests_path: tests
 
     steps:
@@ -62,3 +62,58 @@ jobs:
         env:
           PYTHONPATH: .
         run: pytest ${{ matrix.service.tests_path }} -v
+
+  docker-build:
+    name: Docker Build (${{ matrix.service.name }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - name: busquedas_app
+            path: busquedas_app
+          - name: inventario_app
+            path: inventario_app
+          - name: reserva_app
+            path: reserva_app
+          - name: comentariosapp
+            path: comentariosapp
+          - name: autenticadorapp
+            path: autenticadorapp
+          - name: proveedoresapp
+            path: proveedoresapp
+          - name: clientesapp
+            path: clientesapp
+          - name: transaccionesapp
+            path: transaccionesapp
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t ${{ matrix.service.name }}:pr-${{ github.sha }} ${{ matrix.service.path }}
+
+  required-checks:
+    name: Required Checks
+    runs-on: ubuntu-latest
+    needs:
+      - python-validate-and-test
+      - docker-build
+    if: always()
+
+    steps:
+      - name: Verify upstream jobs
+        env:
+          PYTHON_VALIDATE_RESULT: ${{ needs.python-validate-and-test.result }}
+          DOCKER_BUILD_RESULT: ${{ needs.docker-build.result }}
+        run: |
+          echo "python-validate-and-test => ${PYTHON_VALIDATE_RESULT}"
+          echo "docker-build => ${DOCKER_BUILD_RESULT}"
+
+          if [ "${PYTHON_VALIDATE_RESULT}" != "success" ] || [ "${DOCKER_BUILD_RESULT}" != "success" ]; then
+            echo "One or more required jobs failed."
+            exit 1
+          fi
+
+          echo "All required jobs passed."
