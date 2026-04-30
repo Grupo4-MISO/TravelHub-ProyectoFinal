@@ -10,6 +10,6 @@ spec:
     app: transacciones-app
   ports:
     - protocol: TCP
-      port: 3005        # Service port
+      port: 80        # Service port
       targetPort: 3005  # Container port
       nodePort: 30005  # External port (30000-32767)

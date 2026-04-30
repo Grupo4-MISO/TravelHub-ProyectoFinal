@@ -24,7 +24,7 @@ spec:
         - name: INVENTARIOS_URL
           value: http://inventarios-app-service:80
         - name: ENDPOINT_INVENTARIO
-          value: /api/v1/inventarios/filtro
+          value: /api/v1/inventarios/filtro-economico
         - name: RESERVAS_URL
           value: http://reservas-app-service:80
         - name: ENDPOINT_RESERVA

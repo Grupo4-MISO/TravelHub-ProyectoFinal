@@ -10,6 +10,7 @@ from app.utils.token_helper import token_required, roles_required
 
 traveler_crud = TravelerCrud()
 async_user_service = AsyncUserService()
+TRAVELER_UPDATABLE_FIELDS = {"documentNumber", "first_name", "last_name", "phone", "gender"}
 
 
 def _serialize_traveler(traveler):
@@ -20,6 +21,8 @@ def _serialize_traveler(traveler):
         "first_name": traveler.first_name,
         "last_name": traveler.last_name,
         "phone": traveler.phone,
+        "gender": traveler.gender,
+        "photo": traveler.photo,
         "email": traveler.email,
         "travelerStatus": traveler.travelerStatus.name if traveler.travelerStatus else None,
         "created_at": traveler.created_at.isoformat() if hasattr(traveler.created_at, "isoformat") else traveler.created_at,
@@ -92,6 +95,11 @@ class TravelerResource(Resource):
                       type: string
                       format: email
                     phone:
+                      type: string
+                    gender:
+                      type: string
+                      example: Female
+                    photo:
                       type: string
                     password:
                       type: string
@@ -193,7 +201,7 @@ class TravelerResource(Resource):
         )
 
         if user_error:
-            # Retornar error del servicio de autenticación
+          # Retornar error del servicio de autenticación
           is_conflict = "duplicado" in user_error.lower() or "registrado" in user_error.lower()
           return {"message": user_error}, 409 if is_conflict else 500
 
@@ -201,12 +209,14 @@ class TravelerResource(Resource):
         Traveler_payload = {
           "name": payload.get("name"),
           "documentNumber": document_number,
-          "travelerStatus": payload.get("travelerStatus", "Pending"),
+          "travelerStatus": Traveler_data.get("travelerStatus", "Pending"),
           "userId": user_data["id"],
           "email": Traveler_data.get("email") or user_data.get("email"),
           "first_name": Traveler_data.get("first_name"),
           "last_name": Traveler_data.get("last_name"),
           "phone": Traveler_data.get("phone"),
+          "gender": Traveler_data.get("gender"),
+          "photo": Traveler_data.get("photo"),
           "address": address_data,
         }
 
@@ -256,7 +266,7 @@ class TravelerResourceById(Resource):
         return _serialize_traveler(Traveler), 200
 
     @token_required
-    @roles_required("Admin")
+    @roles_required("Admin", "Traveler")
     def put(current_user, self, id):
         """
         Actualizar Traveler
@@ -275,24 +285,49 @@ class TravelerResourceById(Resource):
             schema:
               type: object
               properties:
+                documentNumber:
+                  type: string
                 first_name:
                   type: string
                 last_name:
                   type: string
-                email:
+                phone:
                   type: string
-                  format: email
+                gender:
+                  type: string
+              additionalProperties: false
         security:
           - Bearer: []
         responses:
           200:
             description: Traveler actualizado
+          403:
+            description: No autorizado para actualizar este Traveler
           400:
             description: Error al actualizar
         """
-        data = request.get_json()
+        user_role = current_user.get("role")
+        token_user_id = current_user.get("sub")
+        if user_role == "Traveler":
+            traveler = traveler_crud.get_traveler_by_id(UUID(id))
+            if not traveler:
+                return {"message": "Traveler not found"}, 404
+            if str(traveler.userId) != str(token_user_id):
+                return {"message": "Unauthorized"}, 403
 
-        Traveler = traveler_crud.update_traveler(UUID(id), data)
+        data = request.get_json() or {}
+        invalid_fields = [key for key in data.keys() if key not in TRAVELER_UPDATABLE_FIELDS]
+        if invalid_fields:
+            return {
+                "message": (
+                    "Campos no permitidos para actualización: "
+                    f"{', '.join(sorted(invalid_fields))}"
+                )
+            }, 400
+
+        allowed_data = {key: value for key, value in data.items() if key in TRAVELER_UPDATABLE_FIELDS}
+
+        Traveler = traveler_crud.update_traveler(UUID(id), allowed_data)
 
         if not Traveler:
             return {"message": "Error updating Traveler"}, 400

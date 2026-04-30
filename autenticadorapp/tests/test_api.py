@@ -125,26 +125,6 @@ def test_create_user_success_hashes_password(client, monkeypatch):
     assert captured["payload"]["role"].value == "Traveler"
 
 
-def test_seed_users_success(client, monkeypatch):
-    monkeypatch.setattr(api_module.SeedHelper, "create_default_users", lambda: None)
-
-    resp = client.post("/api/v1/auth/user")
-
-    assert resp.status_code == 200
-    assert resp.get_json() == {"message": "Default users created"}
-
-def test_seed_users_error(client, monkeypatch):
-    def _raise_error():
-        raise Exception("fallo seed")
-
-    monkeypatch.setattr(api_module.SeedHelper, "create_default_users", _raise_error)
-
-    resp = client.post("/api/v1/auth/user")
-    body = resp.get_json()
-
-    assert resp.status_code == 500
-    assert body["message"] == "Error creating default users"
-    assert "fallo seed" in body["error"]
 
 
 def test_create_user_success(monkeypatch):
@@ -284,22 +264,6 @@ def test_delete_user(monkeypatch):
     crud.delete_user(fake_user.id)
     assert len(fake_users) == 0
     assert crud.delete_user(uuid4()) is False
-
-def test_seed_users(monkeypatch):
-    users = []
-
-    def fake_create_user(self, payload):
-        users.append(payload)
-
-    mock_user = SimpleNamespace(
-    query=SimpleNamespace(delete=lambda: None))
-
-    monkeypatch.setattr("app.utils.seedHelper.User", mock_user)
-    monkeypatch.setattr(UserCrud, "create_user", fake_create_user)
-    
-    SeedHelper.create_default_users()
-
-    assert len(users) > 0
 
 def test_generate_token(monkeypatch, client):
     fake_user = SimpleNamespace(id=uuid4(), username="u1", role=SimpleNamespace(value="Traveler"))

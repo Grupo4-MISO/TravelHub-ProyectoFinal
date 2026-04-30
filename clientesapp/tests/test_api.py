@@ -38,6 +38,8 @@ def make_traveler(traveler_id=None, user_id=None):
         first_name="Ana",
         last_name="Lopez",
         phone="3001234567",
+        gender="Female",
+        photo="https://example.com/photo.jpg",
         email="ana@example.com",
         travelerStatus=SimpleNamespace(name="Pending"),
         created_at=datetime(2026, 4, 23, 12, 0, 0),
@@ -69,6 +71,8 @@ def traveler_payload():
             "last_name": "Lopez",
             "email": "ana@example.com",
             "phone": "3001234567",
+            "gender": "Female",
+            "photo": "https://example.com/photo.jpg",
             "password": "Pass12345",
             "travelerStatus": "Pending",
         },
@@ -112,6 +116,8 @@ def test_get_traveler_by_userid_ok(client, monkeypatch):
         "first_name": traveler.first_name,
         "last_name": traveler.last_name,
         "phone": traveler.phone,
+        "gender": traveler.gender,
+        "photo": traveler.photo,
         "email": traveler.email,
         "travelerStatus": traveler.travelerStatus.name,
         "created_at": traveler.created_at.isoformat(),
@@ -279,10 +285,20 @@ def test_get_traveler_by_id_not_found(client, monkeypatch):
     assert resp.get_json() == {"message": "Traveler not found"}
 
 
-def test_update_traveler_requires_admin(client):
+def test_update_traveler_requires_owner_when_role_is_traveler(client, monkeypatch):
+    traveler_id = uuid4()
+    owner_user_id = uuid4()
+    traveler = make_traveler(traveler_id=traveler_id, user_id=owner_user_id)
+
+    monkeypatch.setattr(
+        api_module.traveler_crud,
+        "get_traveler_by_id",
+        lambda value: traveler if value == traveler_id else None,
+    )
+
     resp = client.put(
-        f"/api/v1/Travelers/{uuid4()}",
-        headers=auth_headers(role="Traveler"),
+        f"/api/v1/Travelers/{traveler_id}",
+        headers=auth_headers(role="Traveler", user_id=uuid4()),
         json={"first_name": "Nuevo"},
     )
 
@@ -290,12 +306,66 @@ def test_update_traveler_requires_admin(client):
     assert resp.get_json() == {"message": "Unauthorized"}
 
 
-def test_update_traveler_ok(client, monkeypatch):
+def test_update_traveler_returns_404_for_traveler_when_target_not_found(client, monkeypatch):
+    monkeypatch.setattr(api_module.traveler_crud, "get_traveler_by_id", lambda value: None)
+
+    resp = client.put(
+        f"/api/v1/Travelers/{uuid4()}",
+        headers=auth_headers(role="Traveler", user_id=uuid4()),
+        json={"first_name": "Nuevo"},
+    )
+
+    assert resp.status_code == 404
+    assert resp.get_json() == {"message": "Traveler not found"}
+
+
+def test_update_traveler_allows_owner_when_role_is_traveler(client, monkeypatch):
     traveler_id = uuid4()
+    owner_user_id = uuid4()
+    traveler = make_traveler(traveler_id=traveler_id, user_id=owner_user_id)
+    captured = {}
+
+    monkeypatch.setattr(
+        api_module.traveler_crud,
+        "get_traveler_by_id",
+        lambda value: traveler if value == traveler_id else None,
+    )
+
+    def fake_update(value, data):
+        captured["value"] = value
+        captured["data"] = data
+        return SimpleNamespace(id=value) if value == traveler_id else None
+
     monkeypatch.setattr(
         api_module.traveler_crud,
         "update_traveler",
-        lambda value, data: SimpleNamespace(id=value) if value == traveler_id else None,
+        fake_update,
+    )
+
+    resp = client.put(
+        f"/api/v1/Travelers/{traveler_id}",
+        headers=auth_headers(role="Traveler", user_id=owner_user_id),
+        json={"first_name": "Nuevo"},
+    )
+
+    assert resp.status_code == 200
+    assert resp.get_json() == {"message": "Traveler updated"}
+    assert captured["data"] == {"first_name": "Nuevo"}
+
+
+def test_update_traveler_ok(client, monkeypatch):
+    traveler_id = uuid4()
+    captured = {}
+
+    def fake_update(value, data):
+        captured["value"] = value
+        captured["data"] = data
+        return SimpleNamespace(id=value) if value == traveler_id else None
+
+    monkeypatch.setattr(
+        api_module.traveler_crud,
+        "update_traveler",
+        fake_update,
     )
 
     resp = client.put(
@@ -306,6 +376,28 @@ def test_update_traveler_ok(client, monkeypatch):
 
     assert resp.status_code == 200
     assert resp.get_json() == {"message": "Traveler updated"}
+    assert captured["data"] == {"first_name": "Nuevo"}
+
+
+def test_update_traveler_rejects_non_updatable_fields(client, monkeypatch):
+    called = {"value": False}
+    monkeypatch.setattr(
+        api_module.traveler_crud,
+        "update_traveler",
+        lambda value, data: called.update({"value": True}) or None,
+    )
+
+    resp = client.put(
+        f"/api/v1/Travelers/{uuid4()}",
+        headers=auth_headers(role="Admin"),
+        json={"email": "nuevo@example.com", "photo": "https://new.example.com/photo.jpg"},
+    )
+
+    assert resp.status_code == 400
+    assert resp.get_json() == {
+        "message": "Campos no permitidos para actualización: email, photo"
+    }
+    assert called["value"] is False
 
 
 def test_update_traveler_returns_400_when_missing(client, monkeypatch):

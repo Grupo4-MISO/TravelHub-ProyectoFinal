@@ -203,9 +203,12 @@ class UserDetailResource(Resource):
 
         return {
             "id": str(user.id),
-            "username": user.username,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
             "email": user.email,
-            "role": user.role.value
+            "role": user.role.value,
+            "country": user.country,
+            "gender": user.gender
         }, 200
 
     @token_required
@@ -280,7 +283,6 @@ class UserDetailResource(Resource):
 
         return {"message": "User deleted"}, 200
 
-
 class SeedDB(Resource):
     def post(self):
         """
@@ -306,14 +308,6 @@ class SeedDB(Resource):
             'Usuarios insertados': result['users_insertados'],
         }, 200
     
-class SeedUsers(Resource):
-    def post(self):
-      try:
-          SeedHelper.create_default_users()
-          return {"message": "Default users created"}, 200
-      except Exception as exc:
-          return {"message": "Error creating default users", "error": str(exc)}, 500
-
 class CleanDB(Resource):
     def post(self):
         user_crud.resetDb()

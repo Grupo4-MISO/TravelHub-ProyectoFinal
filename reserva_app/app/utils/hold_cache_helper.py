@@ -35,9 +35,22 @@ class HoldCacheHelper:
             'decode_responses': True,
         }
         if redis_ssl:
-            redis_kwargs['ssl'] = True
+            # pass ssl only when explicitly requested
+            cls._client = redis.Redis(
+                host=redis_host,
+                port=redis_port,
+                db=redis_db,
+                decode_responses=True,
+                ssl=True,
+            )
+        else:
+            cls._client = redis.Redis(
+                host=redis_host,
+                port=redis_port,
+                db=redis_db,
+                decode_responses=True,
+            )
 
-        cls._client = redis.Redis(**redis_kwargs)
         return cls._client
 
     @staticmethod
@@ -91,6 +104,7 @@ class HoldCacheHelper:
                 return False
 
         return True
+
 
     @classmethod
     def verificar_disponibilidad_cache_para_usuario(cls, habitacion_id, check_in, check_out, user_id):

@@ -2,11 +2,13 @@ from app.db.models import Traveler, TravelerAddress, TravelerStatus, db
 from sqlalchemy.exc import IntegrityError
 from uuid import UUID
 
+TRAVELER_UPDATABLE_FIELDS = {"documentNumber", "first_name", "last_name", "phone", "gender"}
+
 class TravelerCrud:
 
     def create_traveler(self, data: dict):
         try:
-            raw_status = str(data.get("travelerStatus", "Pending")).strip().lower()
+            raw_status = str(data.get("travelerStatus") or "Pending").strip().lower()
             status_map = {
                 "pending": TravelerStatus.Pending,
                 "active": TravelerStatus.Active,
@@ -16,9 +18,12 @@ class TravelerCrud:
 
             traveler = Traveler(
                 userId=UUID(str(data.get("userId"))),
+                documentNumber=data.get("documentNumber"),
                 first_name=data.get("first_name"),
                 last_name=data.get("last_name"),
                 phone=data.get("phone"),
+                gender=data.get("gender"),
+                photo=data.get("photo"),
                 email=data.get("email"),
                 travelerStatus=status_map.get(raw_status, TravelerStatus.Pending),
             )
@@ -67,7 +72,11 @@ class TravelerCrud:
             return None
 
         try:
-            for key, value in data.items():
+            allowed_data = {key: value for key, value in (data or {}).items() if key in TRAVELER_UPDATABLE_FIELDS}
+            if not allowed_data:
+                return None
+
+            for key, value in allowed_data.items():
                 if hasattr(traveler, key) and value is not None:
                     setattr(traveler, key, value)
 

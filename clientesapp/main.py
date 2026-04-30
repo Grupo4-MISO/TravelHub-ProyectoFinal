@@ -12,12 +12,7 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
 
-#Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-    "DATABASE_URL",
-    "sqlite:///travelhub.db"
-)
-#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'o+jGoFFM5+EZULQUkXUkmxNU9eGSxU89GlCG9hbNSYI='
 app.config['SECRET_KEY'] = app.config['JWT_SECRET_KEY']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -58,11 +53,6 @@ swagger_config = {
 }
 
 Swagger(app, config=swagger_config, template=swagger_template)
-
-# Configuración de base de datos (pruebas locales)
-# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://usuario:password@localhost:5432/travelhub"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///travelhub.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 #Inicializamos la base de datos
 if not app.config.get('TESTING'):

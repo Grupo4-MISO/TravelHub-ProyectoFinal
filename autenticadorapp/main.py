@@ -1,4 +1,4 @@
-from app.api.api import Health, Login, SeedDB, UserCollectionResource, UserDetailResource, SeedUsers, CleanDB
+from app.api.api import Health, Login, SeedDB, UserCollectionResource, UserDetailResource, CleanDB
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -12,12 +12,7 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 #Creamos la aplicacion de Flask
 app = Flask(__name__)
 
-#Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-    "DATABASE_URL",
-    "sqlite:///travelhub.db"
-)
-#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'o+jGoFFM5+EZULQUkXUkmxNU9eGSxU89GlCG9hbNSYI='
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -75,5 +70,4 @@ api.add_resource(Login, '/api/v1/auth/login')
 api.add_resource(UserCollectionResource, '/api/v1/auth/users')
 api.add_resource(UserDetailResource, '/api/v1/auth/users/<string:user_id>')
 api.add_resource(SeedDB, '/api/v1/auth/seed')
-api.add_resource(SeedUsers, '/api/v1/auth/user')
 api.add_resource(CleanDB, '/api/v1/auth/clean')

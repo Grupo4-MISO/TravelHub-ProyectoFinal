@@ -6,3 +6,7 @@ class ErrorHandler:
         @app.errorhandler(APIError)
         def handleApiError(error):
             return {'msg': error.message}, error.status_code
+
+        @app.errorhandler(Exception)
+        def handleUnhandledError(error):
+            return {'msg': f'Error interno del servidor: {str(error)}'}, 500

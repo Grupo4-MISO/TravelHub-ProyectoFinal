@@ -35,6 +35,9 @@ class User(db.Model):
         nullable=False
     )
 
+    country = db.Column(db.String(100), nullable=True)
+    gender = db.Column(db.String(20), nullable=True)
+
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(
         db.DateTime,

@@ -1,6 +1,11 @@
-from app.errors.exceptions import BadRequestError, InternalServerError
+from app.errors.exceptions import BadRequestError, ExternalServiceError, InternalServerError
+from app.services.reserva_crud import ReservaCRUD
 from datetime import datetime
+import requests
 import json
+
+#Instancia del reserva crud
+reserva_crud = ReservaCRUD()
 
 IMPUESTOS = {
     'AR': 0.21,
@@ -125,3 +130,59 @@ class ReservaHelper:
         }
 
         return response
+
+    @staticmethod
+    def hospedajeInfo(inventario_url, habitacion_id, currency_code):
+        try:
+            #Request al microservicio de inventario para obtener información del hospedaje
+            response = requests.get(f"{inventario_url}/api/v1/inventarios/habitacion/{habitacion_id}/{currency_code}")
+
+            #Genera expecion si el status code es diferente a 200
+            response.raise_for_status()
+
+            return response.json()
+
+        except requests.exceptions.RequestException as e:
+            raise ExternalServiceError(f"Error al consultar el microservicio de inventario para obtener información del hospedaje: {str(e)}")
+
+    @staticmethod
+    def reservaInfo(reserva_id):
+        try:
+            return reserva_crud.reservaById(reserva_id)
+
+        except Exception as e:
+            raise InternalServerError(f'Error al consultar la reserva en la base de datos: {str(e)}')
+
+    @staticmethod
+    def mailMessage(reserva, hospedaje_info, message):
+        #DTO del mensaje para la cola de mail
+        mail_message = dict()
+
+        #Construimos la informacion de reserva
+        mail_message['reserva'] = {
+            'codigo_reserva': reserva.get('public_id'),
+            'check_in': reserva.get('check_in'),
+            'check_out': reserva.get('check_out'),
+            'tarifa_total': message.get('payment_info').get('amount'),
+            'currency': message.get('payment_info').get('currency')
+        }
+
+        #Construimos la informacion del hospedaje
+        mail_message['hospedaje'] = {
+            'nombre': hospedaje_info.get('nombre'),
+            'direccion': hospedaje_info.get('direccion'),
+            'ciudad': hospedaje_info.get('ciudad'),
+            'pais': hospedaje_info.get('pais'),
+            'amenidades': hospedaje_info.get('amenidades'),
+            'imagen': hospedaje_info.get('imagenes')[0].get('url')
+        }
+
+        #Construimos la informacion del cliente
+        mail_message['cliente'] = {
+            'email': message.get('email')
+        }
+
+        return mail_message
+        
+
+        

@@ -16,6 +16,8 @@ AUTH_SEED = [
         "last_name": "Andrade",
         "is_active": True,
         "is_verified": True,
+        "country": "Colombia",
+        "gender": "Male",
         "role": UserRole.ADMIN,
     },
     {
@@ -26,6 +28,8 @@ AUTH_SEED = [
         "last_name": "Fajardo",
         "is_active": True,
         "is_verified": True,
+        "country": "Colombia",
+        "gender": "Male",
         "role": UserRole.ADMIN,
     },
     {
@@ -36,6 +40,8 @@ AUTH_SEED = [
         "last_name": "Mora",
         "is_active": True,
         "is_verified": True,
+        "country": "Colombia",
+        "gender": "Male",
         "role": UserRole.ADMIN,
     },
     {
@@ -46,6 +52,8 @@ AUTH_SEED = [
         "last_name": "Oicata",
         "is_active": True,
         "is_verified": True,
+        "country": "Colombia",
+        "gender": "Male",
         "role": UserRole.ADMIN,
     },
     {
@@ -56,6 +64,8 @@ AUTH_SEED = [
         "last_name": "Gomez",
         "is_active": True,
         "is_verified": True,
+        "country": "Colombia",
+        "gender": "Female",
         "role": UserRole.MANAGER,
     },
     {
@@ -66,6 +76,8 @@ AUTH_SEED = [
         "last_name": "Vargas",
         "is_active": True,
         "is_verified": True,
+        "country": "Colombia",
+        "gender": "Male",
         "role": UserRole.MANAGER,
     },
     {
@@ -76,6 +88,8 @@ AUTH_SEED = [
         "last_name": "Lopez",
         "is_active": True,
         "is_verified": True,
+        "country": "Peru",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -86,6 +100,8 @@ AUTH_SEED = [
         "last_name": "Martinez",
         "is_active": True,
         "is_verified": True,
+        "country": "Ecuador",
+        "gender": "Male",
         "role": UserRole.TRAVELER,
     },
     {
@@ -96,6 +112,8 @@ AUTH_SEED = [
         "last_name": "Ruiz",
         "is_active": True,
         "is_verified": True,
+        "country": "Mexico",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -106,6 +124,8 @@ AUTH_SEED = [
         "last_name": "Hernandez",
         "is_active": True,
         "is_verified": True,
+        "country": "Chile",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -116,6 +136,8 @@ AUTH_SEED = [
         "last_name": "Perez",
         "is_active": True,
         "is_verified": True,
+        "country": "Argentina",
+        "gender": "Male",
         "role": UserRole.TRAVELER,
     },
     {
@@ -126,6 +148,8 @@ AUTH_SEED = [
         "last_name": "Mora",
         "is_active": True,
         "is_verified": True,
+        "country": "Colombia",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -136,6 +160,8 @@ AUTH_SEED = [
         "last_name": "Lopez",
         "is_active": True,
         "is_verified": True,
+        "country": "Peru",
+        "gender": "Male",
         "role": UserRole.TRAVELER,
     },
     {
@@ -146,6 +172,8 @@ AUTH_SEED = [
         "last_name": "Garcia",
         "is_active": True,
         "is_verified": True,
+        "country": "Ecuador",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -156,6 +184,8 @@ AUTH_SEED = [
         "last_name": "Suarez",
         "is_active": True,
         "is_verified": True,
+        "country": "Mexico",
+        "gender": "Male",
         "role": UserRole.TRAVELER,
     },
     {
@@ -166,6 +196,8 @@ AUTH_SEED = [
         "last_name": "Ramirez",
         "is_active": True,
         "is_verified": True,
+        "country": "Chile",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -176,6 +208,8 @@ AUTH_SEED = [
         "last_name": "Torres",
         "is_active": True,
         "is_verified": True,
+        "country": "Argentina",
+        "gender": "Male",
         "role": UserRole.TRAVELER,
     },
     {
@@ -186,6 +220,8 @@ AUTH_SEED = [
         "last_name": "Castro",
         "is_active": True,
         "is_verified": True,
+        "country": "Colombia",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -196,6 +232,8 @@ AUTH_SEED = [
         "last_name": "Ortiz",
         "is_active": True,
         "is_verified": True,
+        "country": "Peru",
+        "gender": "Male",
         "role": UserRole.TRAVELER,
     },
     {
@@ -206,6 +244,8 @@ AUTH_SEED = [
         "last_name": "Vargas",
         "is_active": True,
         "is_verified": True,
+        "country": "Ecuador",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -216,6 +256,8 @@ AUTH_SEED = [
         "last_name": "Gomez",
         "is_active": True,
         "is_verified": True,
+        "country": "Mexico",
+        "gender": "Male",
         "role": UserRole.TRAVELER,
     },
     {
@@ -226,6 +268,8 @@ AUTH_SEED = [
         "last_name": "Reyes",
         "is_active": True,
         "is_verified": True,
+        "country": "Chile",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -236,6 +280,8 @@ AUTH_SEED = [
         "last_name": "Marin",
         "is_active": True,
         "is_verified": True,
+        "country": "Argentina",
+        "gender": "Male",
         "role": UserRole.TRAVELER,
     },
     {
@@ -246,6 +292,8 @@ AUTH_SEED = [
         "last_name": "Fernandez",
         "is_active": True,
         "is_verified": True,
+        "country": "Colombia",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
     },
     {
@@ -256,6 +304,8 @@ AUTH_SEED = [
         "last_name": "Rojas",
         "is_active": True,
         "is_verified": True,
+        "country": "Peru",
+        "gender": "Male",
         "role": UserRole.TRAVELER,
     },
     {
@@ -266,7 +316,167 @@ AUTH_SEED = [
         "last_name": "Cortes",
         "is_active": True,
         "is_verified": True,
+        "country": "Ecuador",
+        "gender": "Female",
         "role": UserRole.TRAVELER,
+    },
+    {
+        "id": uuid.UUID("3520ec74-3072-4f7f-b9fc-52bc993d649d"),
+        "username": "Maria Garcia",
+        "email": "usuario_prueba@gmail.com",
+        "password": "usuario",
+        "first_name": "Maria",
+        "last_name": "Garcia",
+        "role": UserRole.TRAVELER,
+        "country": "Colombia",
+        "gender": "Female",
+        "is_active": True,
+        "is_verified": True
+    },
+    {
+        "id": uuid.UUID("b3b2fc2c-914a-4210-8cb2-2db02c8d796b"),
+        "username": "default_user",
+        "email": "default_user@gmail.com",
+        "password": "12345",
+        "first_name": "Default",
+        "last_name": "User",
+        "role": UserRole.TRAVELER,
+        "country": "Colombia",
+        "gender": "Male",
+        "is_active": True,
+        "is_verified": True
+    },
+    {
+        "id": uuid.UUID("7a4aa60c-fab5-43c4-b234-e1c72f249b18"),
+        "first_name": "Hotel Las Colinas Manizales",
+        "last_name": "",
+        "password": "alojamiento",
+        "email": "alojamiento_prueba@gmail.com",
+        "country": "Colombia",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("0fedea59-bcc4-4b90-b703-b8613d93c415"),
+        "first_name": "Hotel Sunrise Beach San Andres",
+        "last_name": "",
+        "email": "sunrise_beach_san_andres@gmail.com",
+        "password": "12345",
+        "country": "Colombia",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("09e1229e-7832-5cb5-a9e7-e39f32c5d31b"),
+        "first_name": "Quito Grand Hotel",
+        "last_name": "",
+        "email": "quito_grand_hotel@gmail.com",
+        "password": "12345",
+        "country": "Ecuador",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("286c7159-2e57-595c-ae72-094772c88bc6"),
+        "first_name": "Hotel Boutique Guayaquil",
+        "last_name": "",
+        "email": "guayaquil_boutique@gmail.com",
+        "password": "12345",
+        "country": "Ecuador",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("a4c44c5f-b17d-5eed-a388-37cf96e3e431"),
+        "first_name": "Iquitos Plaza Suites",
+        "last_name": "",
+        "email": "iquitos_plaza_suites@gmail.com",
+        "password": "12345",
+        "country": "Perú",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("808dd541-8767-57d9-88fa-83ffda9ed6b6"),
+        "first_name": "Casa Colonial Arequipa",
+        "last_name": "",
+        "email": "casa_colonial_arequipa@gmail.com",
+        "password": "12345",
+        "country": "Perú",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("67d2ad02-4793-54f8-b4fa-0c4ace7683b3"),
+        "first_name": "Hotel Costa Ciudad de México",
+        "last_name": "",
+        "email": "costa_ciudad_mexico@gmail.com",
+        "password": "12345",
+        "country": "México",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("8180f5b3-0f0d-5dcc-b659-06ff8c804ebe"),
+        "first_name": "Cancún Grand Hotel",
+        "last_name": "",
+        "email": "cancun_grand_hotel@gmail.com",
+        "password": "12345",
+        "country": "México",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("a875d943-3fc4-53f2-adce-b2c760d18d79"),
+        "first_name": "Hotel Boutique Santiago",
+        "last_name": "",
+        "email": "boutique_santiago@gmail.com",
+        "password": "12345",
+        "country": "Chile",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("6d350755-fc82-557c-9e09-a9d88ad7bf01"),
+        "first_name": "Hotel Mirador de Valparaíso",
+        "last_name": "",
+        "email": "mirador_valparaiso@gmail.com",
+        "password": "12345",
+        "country": "Chile",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("920ae6a3-537b-576d-9a0e-c0ac74460088"),
+        "first_name": "Buenos Aires Plaza Suites",
+        "last_name": "",
+        "email": "buenos_aires_plaza_suites@gmail.com",
+        "password": "12345",
+        "country": "Argentina",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
+    },
+    {
+        "id": uuid.UUID("e142b65f-8b48-53ae-8610-2d2324c364ed"),
+        "first_name": "Bariloche Grand Hotel",
+        "last_name": "",
+        "email": "bariloche_grand_hotel@gmail.com",
+        "password": "12345",
+        "country": "Argentina",
+        "is_active": True,
+        "is_verified": True,
+        "role": UserRole.ACCOMODATION
     }
 ]
 
@@ -291,14 +501,17 @@ class SeedHelper:
             users_insertados = 0
 
             for data in AUTH_SEED:
+                username_default = data.get("username", data["first_name"] + " " + data["last_name"])
                 user = User(
                     id = data.get("id"),    
-                    username=data["email"].split("@")[0],
+                    username=username_default,
                     email=data["email"],
                     password_hash=generate_password_hash(data["password"]),
                     first_name=data.get("first_name"),
                     last_name=data.get("last_name"),
                     is_active = data.get("is_active", True),
+                    country=data.get("country"),
+                    gender=data.get("gender"),
                     is_verified = data.get("is_verified", True),
                     role=data.get("role")
                 )
@@ -316,35 +529,3 @@ class SeedHelper:
             db.session.rollback()
             return {"ok": False, "error": str(e)}
 
-class SeedHelper:
-    @staticmethod
-    def create_default_users():
-
-        User.query.delete()  # Elimina todos los usuarios existentes
-
-        user_crud = UserCrud()
-
-        default_users = [
-            {
-                "username": "Hotel Las Colinas Manizales",
-                "email": "alojamiento_prueba@gmail.com",
-                "password_hash": generate_password_hash("alojamiento"),
-                "first_name": "Nombre del Admin",
-                "last_name": "Apellido del Admin",
-                "role": UserRole.ACCOMODATION,
-                "is_active": True,
-                "is_verified": True
-            },
-            {
-                "username": "Maria Garcia",
-                "email": "usuario_prueba@gmail.com",
-                "password_hash": generate_password_hash("usuario"),
-                "first_name": "Maria",
-                "last_name": "Garcia",
-                "role": UserRole.TRAVELER,
-                "is_active": True,
-                "is_verified": True
-            }]
-        
-        for user in default_users:
-            user_crud.create_user(user)
