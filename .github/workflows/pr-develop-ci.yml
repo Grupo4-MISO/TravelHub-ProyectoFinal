@@ -9,10 +9,6 @@ jobs:
   python-validate-and-test:
     name: Validate and Test (${{ matrix.service.name }})
     runs-on: ubuntu-latest
-    env:
-      SQLALCHEMY_DATABASE_URI: 'sqlite:///:memory:'
-      SQLALCHEMY_TRACK_MODIFICATIONS: "false"
-      DATABASE_URL: 'sqlite:///:memory:'
     strategy:
       fail-fast: false
       matrix:
@@ -35,14 +31,11 @@ jobs:
           - name: proveedoresapp
             path: proveedoresapp
             tests_path: tests
-          - name: transaccionesapp
-            path: transaccionesapp
-            tests_path: tests
           - name: clientesapp
             path: clientesapp
             tests_path: tests
-          - name: proveedoresapp
-            path: proveedoresapp
+          - name: transaccionesapp
+            path: transaccionesapp
             tests_path: tests
 
     steps:
@@ -65,10 +58,10 @@ jobs:
         run: python -m compileall ${{ matrix.service.path }}
 
       - name: Run unit tests
-        working-directory: ${{ github.workspace }}
+        working-directory: ${{ matrix.service.path }}
         env:
-          PYTHONPATH: ${{ matrix.service.path }}
-        run: pytest -q ${{ matrix.service.path }}/${{ matrix.service.tests_path }}
+          PYTHONPATH: .
+        run: pytest ${{ matrix.service.tests_path }} -v
 
   docker-build:
     name: Docker Build (${{ matrix.service.name }})
@@ -89,13 +82,11 @@ jobs:
             path: autenticadorapp
           - name: proveedoresapp
             path: proveedoresapp
-          - name: transaccionesapp
-            path: transaccionesapp
           - name: clientesapp
             path: clientesapp
-          - name: proveedoresapp
-            path: proveedoresapp
-            
+          - name: transaccionesapp
+            path: transaccionesapp
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

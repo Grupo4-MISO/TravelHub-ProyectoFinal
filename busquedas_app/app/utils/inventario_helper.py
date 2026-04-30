@@ -3,7 +3,6 @@ import requests
 import os
 
 #Importamos ruta del endpoint
-# ENDPOINT_INVENTARIO = os.getenv('ENDPOINT_INVENTARIO', '/api/v1/inventarios/filtro')
 ENDPOINT_INVENTARIO = os.getenv('ENDPOINT_INVENTARIO', '/api/v1/inventarios/filtro-economico')
 
 def _build_service_url(base_url, endpoint):

@@ -28,28 +28,12 @@ class HoldCacheHelper:
         redis_db = int(os.getenv('REDIS_DB', '0'))
         redis_ssl = os.getenv('REDIS_SSL', 'false').lower() in ('1', 'true', 'yes', 'on')
 
-        redis_kwargs = {
-            'host': redis_host,
-            'port': redis_port,
-            'db': redis_db,
-            'decode_responses': True,
-        }
-        if redis_ssl:
-            # pass ssl only when explicitly requested
-            cls._client = redis.Redis(
-                host=redis_host,
-                port=redis_port,
-                db=redis_db,
-                decode_responses=True,
-                ssl=True,
-            )
-        else:
-            cls._client = redis.Redis(
-                host=redis_host,
-                port=redis_port,
-                db=redis_db,
-                decode_responses=True,
-            )
+        cls._client = redis.Redis(
+            host=os.getenv('REDIS_HOST'),
+            port=6379,
+            decode_responses=True,
+            ssl=True
+        )
 
         return cls._client
 
