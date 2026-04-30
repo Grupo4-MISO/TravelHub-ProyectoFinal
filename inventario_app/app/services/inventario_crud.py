@@ -2,7 +2,7 @@ import uuid
 from sqlalchemy import func
 from app.utils.helper import InventarioHelper
 from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM, Hospedaje_ImagenORM, Hospedaje_AmenidadORM, AmenidadORM
-from app.errors.exceptions import DatababaseError
+from app.errors.exceptions import DatababaseError, NotFoundError
 
 class InventarioCRUD:
     def __init__(self):
@@ -331,10 +331,28 @@ class InventarioCRUD:
         habitaciones = self.db.query(HabitacionORM).filter_by(propiedad_id=hotel_uuid).all()
         return habitaciones
 
+    def habitacionPorId(self, habitacion_id):
+        try:
+            #Normalizamos el id de la habitacion a UUID
+            habitacion_uuid = uuid.UUID(str(habitacion_id))
+
+            #Realizamos consulta a la base de datos
+            habitacion = self.db.query(HabitacionORM).filter(HabitacionORM.id == habitacion_uuid).first()
+
+            #Validamos que la habitacion exista
+            if not habitacion:
+                raise NotFoundError(f"No se encontró una habitación con el id: {habitacion_id}")
+            
+            return habitacion
+        
+        except DatababaseError as e:
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
+
     def hotelesPorHabitaciones(self, habitaciones_ids):
         respuesta = {}
         for habitacion in habitaciones_ids:
-            habitacion_orm = self.db.query(HabitacionORM).filter(HabitacionORM.id == habitacion).first()            
+            habitacion_uuid = uuid.UUID(str(habitacion))
+            habitacion_orm = self.db.query(HabitacionORM).filter(HabitacionORM.id == habitacion_uuid).first()            
             hospedaje_id = habitacion_orm.propiedad_id if habitacion_orm else None
             hospedaje = self.db.query(HospedajeORM).filter_by(id=hospedaje_id).first()
             if hospedaje:

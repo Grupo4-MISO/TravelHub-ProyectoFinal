@@ -29,12 +29,7 @@ app = Flask(__name__)
 #Registramos el manejador de errores
 ErrorHandler.errors(app)
 
-#Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-    "DATABASE_URL",
-    "sqlite:///travelhub.db"
-)
-#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['JWT_SECRET_KEY'] = 'o+jGoFFM5+EZULQUkXUkmxNU9eGSxU89GlCG9hbNSYI='
 app.config['SECRET_KEY'] = app.config['JWT_SECRET_KEY']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -95,11 +90,10 @@ swagger_config = {
 
 Swagger(app, config=swagger_config, template=swagger_template)
 
-#Inicializamos la base de datos
+db.init_app(app)
+
 if not app.config.get('TESTING'):
     with app.app_context():
-        #Creamos tablas en la base de datos
-        db.init_app(app)
         db.create_all()
 
 #Habilitamos CORS
@@ -122,6 +116,3 @@ api.add_resource(PaymentTransactionByIdResource, '/attempts/<string:id>')
 api.add_resource(PaymentTransactionByPaymentIdResource, '/attempts/payment/<string:payment_id>')
 
 api.add_resource(SeedDB, '/seed')
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=3005, debug=True)

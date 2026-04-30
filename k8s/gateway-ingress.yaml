@@ -42,3 +42,24 @@ spec:
                 name: comentarios-app-service
                 port:
                   number: 80
+          - path: /api/v1/Travelers
+            pathType: Prefix
+            backend:
+              service:
+                name: clientes-app-service
+                port:
+                  number: 80
+          - path: /api/v1/Managers
+            pathType: Prefix
+            backend:
+              service:
+                name: proveedores-app-service
+                port:
+                  number: 80
+          - path: /api/v1/Transactions
+            pathType: Prefix
+            backend:
+              service:
+                name: transacciones-app-service
+                port:
+                  number: 80

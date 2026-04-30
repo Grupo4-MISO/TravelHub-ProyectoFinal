@@ -52,3 +52,9 @@ module "proveedores_repository_name" {
   keep_tags_number = var.keep_tags_number
   repository_name  = var.proveedores_repository_name
 }
+
+module "email_repository_name" {
+  source = "../../modules/ecr"
+  keep_tags_number = var.keep_tags_number
+  repository_name  = var.email_repository_name
+}

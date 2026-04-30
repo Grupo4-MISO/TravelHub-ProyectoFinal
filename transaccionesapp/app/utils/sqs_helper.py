@@ -1,10 +1,12 @@
 from app.errors.exceptions import InternalServerError, DatababaseError, ExternalServiceError
-from app.services.transactions_crud import PaymentTransactionCrud
-from app.db.models import TransactionStatus
+from app.services.transactions_crud import PaymentTransactionCrud, PaymentCrud
+from app.db.models import TransactionStatus, PaymentStatus
+from app.utils.helper import Helper
 import boto3
 import json
 
 #Instancia de transaction CRUD
+payment_crud = PaymentCrud()
 payment_transaction_crud = PaymentTransactionCrud()
 
 class SQSHelper:
@@ -46,8 +48,16 @@ class SQSHelper:
             #Validamos que se haya creado la transaccion
             if not payment_transaction:
                 raise DatababaseError('Error creating payment transaction in the database')
+
+            #Actualizamos el estado del pago
+            payment_id = Helper.normalizeUUID(message_body.get('payment_id'))
+            status = PaymentStatus.authorized if message_body.get('status') == 'success' else PaymentStatus.pending
+            data_update_payment = {
+                'status': status
+            }
+            payment = payment_crud.update_payment(payment_id, data_update_payment)
             
-            return payment_transaction
+            return payment
         
         except Exception as e:
             raise InternalServerError(f'Error processing message: {str(e)}')

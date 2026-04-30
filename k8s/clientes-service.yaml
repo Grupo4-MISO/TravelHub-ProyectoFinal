@@ -10,6 +10,6 @@ spec:
     app: clientes-app
   ports:
     - protocol: TCP
-      port: 3006         # Service port
+      port: 80         # Service port
       targetPort: 3006  # Container port
       nodePort: 30006   # External port (30000-32767)

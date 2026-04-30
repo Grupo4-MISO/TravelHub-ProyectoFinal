@@ -35,9 +35,22 @@ class HoldCacheHelper:
             'decode_responses': True,
         }
         if redis_ssl:
-            redis_kwargs['ssl'] = True
+            # pass ssl only when explicitly requested
+            cls._client = redis.Redis(
+                host=redis_host,
+                port=redis_port,
+                db=redis_db,
+                decode_responses=True,
+                ssl=True,
+            )
+        else:
+            cls._client = redis.Redis(
+                host=redis_host,
+                port=redis_port,
+                db=redis_db,
+                decode_responses=True,
+            )
 
-        cls._client = redis.Redis(**redis_kwargs)
         return cls._client
 
     @staticmethod
