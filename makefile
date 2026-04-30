@@ -16,14 +16,14 @@ FOLDERS=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp 
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
-SERVICES_NEW=reservas-app
-FOLDERS_NEW=reserva_app
-IMAGE_TAG_NEW=v7.0.0
+SERVICES_NEW=inventarios-app
+FOLDERS_NEW=inventario_app
+IMAGE_TAG_NEW=v2.0.0
 
 # Nueva version imagen lambda
-SERVICES_LAMBDA_NEW=webhook-pagos-app
-FOLDERS_LAMBDA_NEW=webhook_pagos
-IMAGE_TAG_LAMBDA_NEW=v3.0.0
+SERVICES_LAMBDA_NEW=email-app
+FOLDERS_LAMBDA_NEW=email
+IMAGE_TAG_LAMBDA_NEW=v4.0.0
 
 export AWS_REGION
 
@@ -68,6 +68,12 @@ lambda:
 	terraform plan -var-file="../../environments/lambda/terraform.tfvars" -out .tfplan && \
 	terraform apply ".tfplan"
 
+lambda-queue:
+	cd terraform/stacks/lambda-queue && \
+	terraform init -backend-config="../../environments/lambda-queue/backend.tfvars" && \
+	terraform plan -var-file="../../environments/lambda-queue/terraform.tfvars" -out .tfplan && \
+	terraform apply ".tfplan"
+
 ingress:
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx && \
 	helm repo update && \
@@ -103,6 +109,10 @@ destroy-sqs:
 destroy-lambda:
 	cd terraform/stacks/lambda && \
 	terraform destroy -var-file="../../environments/lambda/terraform.tfvars"
+
+destroy-lambda-queue:
+	cd terraform/stacks/lambda-queue && \
+	terraform destroy -var-file="../../environments/lambda-queue/terraform.tfvars"
 
 destroy-ingress:
 	kubectl delete service ingress-nginx-controller -n ingress-nginx || true
@@ -168,5 +178,5 @@ docker-push-lambda-new:
 infra: ecr rds eks elasticache sqs lambda
 images: ecr-login docker-push-all docker-push-lambda
 deploy: infra images ingress
-destroy: destroy-ingress destroy-elasticache destroy-eks destroy-rds destroy-ecr destroy-sqs destroy-lambda
-destroy-some: destroy-rds destroy-ecr destroy-sqs destroy-lambda
+deploy-lambda-queue: lambda-queue
+destroy: destroy-ingress destroy-elasticache destroy-eks destroy-rds destroy-ecr destroy-sqs destroy-lambda-queue destroy-lambda

@@ -1,6 +1,5 @@
 from aws_lambda_powertools.utilities.data_classes import SQSEvent, event_source
 from app.utils.email_helper import EmailHelper
-from app.utils.sqs_helper import SQSHelper
 import json
 import os
 
@@ -17,12 +16,9 @@ def handler(event: SQSEvent, context):
         header_message = EmailHelper.headerEmailMessage(body)
 
         #Creamos el cuerpo del mensaje de email
-        email_message = EmailHelper.createEmailMessage(header_message)
+        email_message = EmailHelper.createEmailMessage(header_message, body)
 
         #Enviamos email
         EmailHelper.sendEmail(email_message)
-
-        #Eliminamos el mensaje de SQS
-        SQSHelper.deleteMessage(record.receipt_handle)
 
 

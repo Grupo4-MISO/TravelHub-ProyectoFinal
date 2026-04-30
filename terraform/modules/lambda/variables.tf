@@ -20,3 +20,15 @@ variable "env_variables" {
   type        = map(string)
   default     = {}
 }
+
+variable "role_arn" {
+  description = "ARN de un rol existente para la Lambda"
+  type        = string
+  default     = null
+}
+
+variable "create_role" {
+  description = "Indica si el módulo debe crear un rol"
+  type        = bool
+  default     = true
+}

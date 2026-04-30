@@ -254,6 +254,23 @@ class ReservaCRUD:
         except Exception as e:
             return str(e)
     
+    def reservaById(self, reserva_id):
+        try:
+            #Normalizamos el ID a UUID
+            reserva_id = UUID(str(reserva_id))
+
+            #Consultamos en vase de datos
+            reserva = self.db.query(ReservaORM).filter_by(id = reserva_id).first()
+
+            #Validamos que la reserva exista
+            if not reserva:
+                raise NotFoundError(f"No se encontró la reserva con ID {reserva_id}")
+
+            return self._serializar_reserva(reserva)
+        
+        except Exception as e:
+            raise DatababaseError(f"Error al obtener reserva por ID: {str(e)}")
+
     def resetDb(self):
         try:
             # Reiniciamos el esquema completo para dejar la base limpia.
