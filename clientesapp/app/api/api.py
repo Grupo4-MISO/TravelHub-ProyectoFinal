@@ -10,6 +10,7 @@ from app.utils.token_helper import token_required, roles_required
 
 traveler_crud = TravelerCrud()
 async_user_service = AsyncUserService()
+TRAVELER_UPDATABLE_FIELDS = {"documentNumber", "first_name", "last_name", "phone", "gender"}
 
 
 def _serialize_traveler(traveler):
@@ -265,7 +266,7 @@ class TravelerResourceById(Resource):
         return _serialize_traveler(Traveler), 200
 
     @token_required
-    @roles_required("Admin")
+    @roles_required("Admin", "Traveler")
     def put(current_user, self, id):
         """
         Actualizar Traveler
@@ -284,24 +285,49 @@ class TravelerResourceById(Resource):
             schema:
               type: object
               properties:
+                documentNumber:
+                  type: string
                 first_name:
                   type: string
                 last_name:
                   type: string
-                email:
+                phone:
                   type: string
-                  format: email
+                gender:
+                  type: string
+              additionalProperties: false
         security:
           - Bearer: []
         responses:
           200:
             description: Traveler actualizado
+          403:
+            description: No autorizado para actualizar este Traveler
           400:
             description: Error al actualizar
         """
-        data = request.get_json()
+        user_role = current_user.get("role")
+        token_user_id = current_user.get("sub")
+        if user_role == "Traveler":
+            traveler = traveler_crud.get_traveler_by_id(UUID(id))
+            if not traveler:
+                return {"message": "Traveler not found"}, 404
+            if str(traveler.userId) != str(token_user_id):
+                return {"message": "Unauthorized"}, 403
 
-        Traveler = traveler_crud.update_traveler(UUID(id), data)
+        data = request.get_json() or {}
+        invalid_fields = [key for key in data.keys() if key not in TRAVELER_UPDATABLE_FIELDS]
+        if invalid_fields:
+            return {
+                "message": (
+                    "Campos no permitidos para actualización: "
+                    f"{', '.join(sorted(invalid_fields))}"
+                )
+            }, 400
+
+        allowed_data = {key: value for key, value in data.items() if key in TRAVELER_UPDATABLE_FIELDS}
+
+        Traveler = traveler_crud.update_traveler(UUID(id), allowed_data)
 
         if not Traveler:
             return {"message": "Error updating Traveler"}, 400

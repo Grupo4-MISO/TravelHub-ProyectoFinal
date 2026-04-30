@@ -85,6 +85,69 @@ class PopularCitiesByCountry(Resource):
 
                 return cities, 200
         
+class PopularAccommodationsByCountry(Resource):
+        @swag_from({
+                'tags': ['Countries'],
+                'parameters': [
+                        {
+                                'name': 'code',
+                                'in': 'path',
+                                'type': 'string',
+                                'required': True,
+                                'description': 'Código del país (ejemplo: CO, PE, EC, MX, CL, AR)',
+                        },
+                ],
+                'responses': {
+                        200: {
+                                'description': 'Lista de 5 hospedajes populares aleatorios del país',
+                                'schema': {
+                                        'type': 'array',
+                                        'items': {
+                                                'type': 'object',
+                                                'properties': {
+                                                        'id': {'type': 'string', 'format': 'uuid'},
+                                                        'providerId': {'type': 'string', 'format': 'uuid'},
+                                                        'nombre': {'type': 'string', 'example': 'Hotel Andino'},
+                                                        'descripcion': {'type': 'string'},
+                                                        'countryCode': {'type': 'string', 'example': 'CO'},
+                                                        'pais': {'type': 'string', 'example': 'Colombia'},
+                                                        'ciudad': {'type': 'string', 'example': 'Bogotá'},
+                                                        'direccion': {'type': 'string'},
+                                                        'latitude': {'type': 'number', 'format': 'float'},
+                                                        'longitude': {'type': 'number', 'format': 'float'},
+                                                        'rating': {'type': 'number', 'format': 'float', 'example': 4.5},
+                                                        'reviews': {'type': 'integer', 'example': 120},
+                                                }
+                                        },
+                                        'example': [
+                                                {
+                                                        'id': '123e4567-e89b-12d3-a456-426614174000',
+                                                        'nombre': 'Hotel Andino',
+                                                        'rating': 4.5,
+                                                        'reviews': 120,
+                                                }
+                                        ]
+                                }
+                        },
+                        400: {
+                                'description': 'Código inválido',
+                        }
+                }
+        })
+        def get(self, code):
+                """Obtener 5 hospedajes populares aleatorios de un país."""
+                country_code = (code or '').upper().strip()
+
+                if not country_code:
+                        return {'msg': 'El parámetro code es requerido en la URL'}, 400
+
+                accommodations = countries_CRUD.obtener_hospedajes_populares_por_pais(country_code)
+
+                if isinstance(accommodations, DatababaseError):
+                        return {'msg': accommodations.message}, 500
+
+                return accommodations, 200
+        
 class InventarioHealth(Resource):
         @swag_from({
                 'tags': ['Health'],
@@ -145,6 +208,66 @@ class FiltroHabitaciones(Resource):
                 capacidad = InventarioHelper.validacionCampoCapacidad(capacidad)
 
                 response = inventario_CRUD.habitacionesDisponibles(ciudad, capacidad, currency_code)
+
+                return response, 200
+
+class FiltroHabitacionesConMenorPrecio(Resource):
+        @swag_from({
+                'tags': ['Inventario'],
+                'parameters': [
+                        {
+                                'name': 'ciudad',
+                                'in': 'query',
+                                'type': 'string',
+                                'required': False,
+                                'description': 'Ciudad a consultar',
+                        },
+                        {
+                                'name': 'capacidad',
+                                'in': 'query',
+                                'type': 'integer',
+                                'required': False,
+                                'description': 'Capacidad mínima requerida',
+                        },
+                        {
+                                'name': 'currency_code',
+                                'in': 'query',
+                                'type': 'string',
+                                'required': False,
+                                'description': 'Código de moneda para obtener tarifas (ejemplo: USD, COP, EUR)',
+                        }
+                ],
+                'responses': {
+                        200: {
+                                'description': 'Resultado de la búsqueda con la habitación más económica de cada hospedaje',
+                                'schema': {
+                                        'type': 'array',
+                                        'items': {
+                                                'type': 'object',
+                                                'properties': {
+                                                        'habitacion_id': {'type': 'string', 'format': 'uuid'},
+                                                        'hospedaje_id': {'type': 'string', 'format': 'uuid'},
+                                                        'nombre': {'type': 'string'},
+                                                        'ciudad': {'type': 'string'},
+                                                        'precio': {'type': 'number'},
+                                                        'rating': {'type': 'number'},
+                                                }
+                                        }
+                                }
+                        },
+                        400: {'description': 'Parámetros inválidos'}
+                }
+        })
+        def get(self):
+                """Obtener solo la habitación más económica de cada hospedaje disponible."""
+                ciudad = request.args.get('ciudad')
+                capacidad = request.args.get('capacidad')
+                currency_code = request.args.get('currency_code')
+
+                ciudad = InventarioHelper.validacionCampoCiudad(ciudad)
+                capacidad = InventarioHelper.validacionCampoCapacidad(capacidad)
+
+                response = inventario_CRUD.habitacionesDisponiblesConMenorPrecio(ciudad, capacidad, currency_code)
 
                 return response, 200
     

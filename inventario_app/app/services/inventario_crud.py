@@ -1,4 +1,5 @@
 import uuid
+from sqlalchemy import func
 from app.utils.helper import InventarioHelper
 from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM, Hospedaje_ImagenORM, Hospedaje_AmenidadORM, AmenidadORM
 from app.errors.exceptions import DatababaseError
@@ -254,6 +255,73 @@ class InventarioCRUD:
             self.db.rollback()
             raise DatababaseError(f"Error en la base de datos: {str(e)}")
 
+    def habitacionesDisponiblesConMenorPrecio(self, ciudad, capacidad, currency_code_destino):
+        """Retorna solo la habitación más económica de cada hospedaje disponible."""
+        try:
+            #Definimos la consulta para obtener habitaciones disponibles
+            query = self.db.query(
+                HabitacionORM.id.label('habitacion_id'),
+                HabitacionORM.code,
+                HabitacionORM.precio,
+                HabitacionORM.capacidad,
+                HabitacionORM.descripcion,
+                HospedajeORM.id.label('hospedaje_id'),
+                HospedajeORM.nombre,
+                HospedajeORM.pais,
+                HospedajeORM.ciudad,
+                HospedajeORM.direccion,
+                HospedajeORM.rating,
+                HospedajeORM.reviews,
+                CountryORM.CurrencyCode.label('currency_code'),
+                Hospedaje_ImagenORM.url.label('image_url')
+            ).join(HospedajeORM, HabitacionORM.propiedad_id == HospedajeORM.id)\
+            .join(CountryORM, HospedajeORM.countryCode == CountryORM.code)\
+            .join(Hospedaje_ImagenORM, HospedajeORM.id == Hospedaje_ImagenORM.hospedaje_id)
+
+            #Aplicamos filtros de ciudad y capacidad
+            if ciudad:
+                query = query.filter(HospedajeORM.ciudad == ciudad)
+            
+            if capacidad:
+                query = query.filter(HabitacionORM.capacidad >= capacidad)
+            
+            #Ordenamos por hospedaje_id y precio para facilitar agrupación
+            resultados = query.order_by(HospedajeORM.id, HabitacionORM.precio.asc()).all()
+
+            # Agrupamos por hospedaje_id y tomamos solo el primero (más económico)
+            hospedajes_unicos = {}
+            for campo in resultados:
+                hospedaje_id = str(campo.hospedaje_id)
+                if hospedaje_id not in hospedajes_unicos:
+                    hospedajes_unicos[hospedaje_id] = {
+                        'habitacion_id': str(campo.habitacion_id),
+                        'hospedaje_id': hospedaje_id,
+                        'code': campo.code,
+                        'nombre': campo.nombre,
+                        'pais': campo.pais,
+                        'ciudad': campo.ciudad,
+                        'direccion': campo.direccion,
+                        'rating': campo.rating,
+                        'reviews': campo.reviews,
+                        'capacidad': campo.capacidad,
+                        'precio': campo.precio,
+                        'descripcion': campo.descripcion,
+                        'currency_code': campo.currency_code,
+                        'image_url': campo.image_url,
+                    }
+
+            #Construimos respuesta
+            response = list(hospedajes_unicos.values())
+            
+            #Construimos respuesta con precios convertidos
+            response_convertida = InventarioHelper.convertirPrecios(response, currency_code_destino)
+
+            return response_convertida
+        
+        except Exception as e:
+            self.db.rollback()
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
+
     def buscarHotelByName(self, nombre_hotel):
         hotel = self.db.query(HospedajeORM).filter_by(nombre=nombre_hotel).first()
         return hotel
@@ -333,6 +401,48 @@ class CountriesCRUD:
             )
 
             return [row.ciudad for row in ciudades]
+
+        except Exception as e:
+            self.db.rollback()
+            return DatababaseError(f"Error en la base de datos: {str(e)}")
+
+    def obtener_hospedajes_populares_por_pais(self, country_code):
+        try:
+            if not country_code:
+                return DatababaseError("El código de país es requerido")
+
+            country_code_upper = (country_code or '').upper().strip()
+            
+            # Obtenemos hospedajes populares (rating >= 3.5) ordenados aleatoriamente, limitados a 5
+            hospedajes = self.db.query(HospedajeORM)\
+                .filter(HospedajeORM.countryCode == country_code_upper)\
+                .filter(HospedajeORM.rating >= 3.5)\
+                .order_by(func.random())\
+                .limit(5)\
+                .all()
+
+            if not hospedajes:
+                return []
+
+            return [
+                {
+                    'id': str(hospedaje.id),
+                    'providerId': str(hospedaje.providerId),
+                    'nombre': hospedaje.nombre,
+                    'descripcion': hospedaje.descripcion,
+                    'countryCode': hospedaje.countryCode,
+                    'pais': hospedaje.pais,
+                    'ciudad': hospedaje.ciudad,
+                    'direccion': hospedaje.direccion,
+                    'latitude': hospedaje.latitude,
+                    'longitude': hospedaje.longitude,
+                    'rating': hospedaje.rating,
+                    'reviews': hospedaje.reviews,
+                    'created_at': hospedaje.created_at.isoformat() if hasattr(hospedaje.created_at, 'isoformat') else hospedaje.created_at,
+                    'updated_at': hospedaje.updated_at.isoformat() if hasattr(hospedaje.updated_at, 'isoformat') else hospedaje.updated_at,
+                }
+                for hospedaje in hospedajes
+            ]
 
         except Exception as e:
             self.db.rollback()
