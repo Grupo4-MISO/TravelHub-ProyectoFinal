@@ -36,9 +36,9 @@ jobs:
 
       - name: Run per-service tests
         env:
-          SQLALCHEMY_DATABASE_URI: sqlite:///:memory:
+          SQLALCHEMY_DATABASE_URI: 'sqlite:///:memory:'
           SQLALCHEMY_TRACK_MODIFICATIONS: "false"
-          DATABASE_URL: sqlite:///:memory:
+          DATABASE_URL: 'sqlite:///:memory:'
         run: |
           echo "Running tests for ${{ matrix.service }}"
           python -m pytest -q ${{ matrix.service }}/tests
