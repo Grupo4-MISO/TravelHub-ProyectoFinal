@@ -9,6 +9,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      SQLALCHEMY_DATABASE_URI: 'sqlite:///:memory:'
+      SQLALCHEMY_TRACK_MODIFICATIONS: "false"
+      DATABASE_URL: 'sqlite:///:memory:'
     strategy:
       matrix:
         service: [autenticadorapp, reserva_app, transaccionesapp, clientesapp, comentariosapp, inventario_app, proveedoresapp, busquedas_app]
@@ -35,10 +39,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run per-service tests
-        env:
-          SQLALCHEMY_DATABASE_URI: 'sqlite:///:memory:'
-          SQLALCHEMY_TRACK_MODIFICATIONS: "false"
-          DATABASE_URL: 'sqlite:///:memory:'
         run: |
           echo "Running tests for ${{ matrix.service }}"
           python -m pytest -q ${{ matrix.service }}/tests
