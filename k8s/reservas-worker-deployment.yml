@@ -30,3 +30,7 @@ spec:
               value: http://inventarios-app-service:80
             - name: DATABASE_URL
               value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260426211023287000000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
+            - name: ONE_SIGNAL_APP_ID
+              value: 4a46cf3a-a9ec-456b-b382-de8793e5f38b
+            - name: ONE_SIGNAL_API_KEY
+              value: os_v2_app_jjdm6ovj5rcwxm4c32dzhzptrngjgsdhkxjuf5m7jiooa47uhh6c7mamj6rwkbgnaejgqp57jf2e573sufwd6k47anq7zlkq2cufe7i
