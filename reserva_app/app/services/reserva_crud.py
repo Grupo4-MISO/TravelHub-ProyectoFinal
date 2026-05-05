@@ -28,12 +28,13 @@ class ReservaCRUD:
             if data_reserva.get('status') == 'success':
                 setattr(reserva, 'estado', ReservaEstado.CONFIRMADA.value)
                 self.db.commit()
+            
+            elif data_reserva.get('status') == 'checked_in':
+                setattr(reserva, 'estado', ReservaEstado.CHECKED_IN.value)
+                self.db.commit()
 
         except Exception as e:
-            try:
-                self.db.rollback()
-            except RuntimeError:
-                pass
+            self.db.rollback()
             raise DatababaseError(f"Error al cambiar estado de reserva: {str(e)}")
 
     def _obtener_habitaciones_ocupadas(self, habitacion_ids: list[int | str], check_in: date, check_out: date) -> set[str] | str:

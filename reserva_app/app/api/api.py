@@ -202,6 +202,23 @@ class CleanDB(Resource):
         reservas_crud.resetDb()
         return {'msg': 'Base de datos reiniciada correctamente'}, 200
 
+class CheckInReserva(Resource):
+    def patch(self):
+        #Obtenemos datos del request
+        data = request.get_json()
+
+        #Validamos campos requeridos
+        if not data.get('reserva_id'):
+            return {'msg': 'El campo reserva_id es requerido'}, 400
+        
+        if not data.get('status'):
+            return {'msg': 'El campo status es requerido'}, 400
+        
+        #Cambiamos el estado de la reserva a checked_in
+        reservas_crud.cambiarEstadoReserva(data)
+
+        return {'msg': 'Reserva actualizada con check_in realizada correctamente'}, 200
+
 
 
 
