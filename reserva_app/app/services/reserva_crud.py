@@ -141,6 +141,7 @@ class ReservaCRUD:
         return {
             "id": str(reserva.id),
             "public_id": str(reserva.public_id),
+            "user_id": str(reserva.user_id),
             "habitacion_id": str(reserva.habitacion_id),
             "check_in": reserva.check_in.isoformat(),
             "check_out": reserva.check_out.isoformat(),
