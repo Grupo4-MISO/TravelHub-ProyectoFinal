@@ -26,7 +26,7 @@ class ReservaCRUD:
 
             #Actualizamos el estado de la reserva
             if data_reserva.get('status') == 'success':
-                reserva.estado = ReservaEstado.CONFIRMADA.value
+                setattr(reserva, 'estado', ReservaEstado.CONFIRMADA.value)
                 self.db.commit()
 
         except Exception as e:
