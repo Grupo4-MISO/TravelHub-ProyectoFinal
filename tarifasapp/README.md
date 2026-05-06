@@ -100,6 +100,12 @@ ALTER TABLE tarifas ADD COLUMN hotel_id VARCHAR(50) NOT NULL DEFAULT '';
 ALTER TABLE tarifas RENAME COLUMN valor_noche TO valor_base;
 ```
 
+Si el error indica que la relación `tarifas` no existe, primero crea las tablas del esquema actual dentro del contenedor de la app:
+
+```bash
+python -c "from main import app, db; ctx = app.app_context(); ctx.push(); db.create_all(); ctx.pop()"
+```
+
 ## Testing
 
 ```bash
