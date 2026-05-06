@@ -250,7 +250,7 @@ class ReservaCRUD:
                 return f"No se encontró la reserva con ID {reserva_id}"
             self.db.delete(reserva)
             self.db.commit()
-            return True
+            return True, self._serializar_reserva(reserva)
         except Exception as e:
             try:
                 self.db.rollback()

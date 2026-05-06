@@ -1,3 +1,4 @@
+from app.utils.one_signal_helper import OneSignalHelper
 from app.services.reserva_crud import ReservaCRUD
 from app.services.hold_service import HoldService
 from app.errors.exceptions import APIError
@@ -6,6 +7,12 @@ from app.utils.helper import ReservaHelper
 from flask_restful import Resource
 from datetime import datetime
 from flask import request
+import os
+
+#Variables de entorno para OneSignal
+ONE_SIGNAL_APP_ID = os.getenv('ONE_SIGNAL_APP_ID')
+ONE_SIGNAL_API_KEY = os.getenv('ONE_SIGNAL_API_KEY')
+one_signal_helper = OneSignalHelper(ONE_SIGNAL_APP_ID, ONE_SIGNAL_API_KEY)
 
 #Instanciamos crud
 reservas_crud = ReservaCRUD()
@@ -182,12 +189,17 @@ class Confirmar_Reserva(Resource):
 
 class Revocar_Reserva(Resource):
     def post(self, reserva_id):
-        response = reservas_crud.revocarReserva(reserva_id)
-        
-        if response == True:
+        response, reserva = reservas_crud.revocarReserva(reserva_id)
+
+        #Enviamos notificación a OneSignal
+        notification_title = f"Cancelación reserva: {reserva.get('public_id')}"
+        notification_message = f"Tu reserva del {reserva.get('check_in')} al {reserva.get('check_out')} ha sido cancelada."
+        one_signal_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
+
+        if response:
             return {'msg': 'Reserva revocada correctamente'}, 200
-        else:
-            return {'msg': response}, 500
+
+        return {'msg': response}, 500
 
 class Reservas_por_usuario(Resource):
     def get(self, user_id):
