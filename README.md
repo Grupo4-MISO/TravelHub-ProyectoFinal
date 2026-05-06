@@ -92,7 +92,7 @@ Actúa como punto de entrada para las búsquedas de hospedajes. Agrega datos del
 
 ### 2. `inventario_app` — Servicio de Inventario
 
-Gestiona el catálogo de hospedajes y habitaciones. Permite filtrar habitaciones por ciudad y capacidad, y provee un endpoint para poblar la base de datos con datos de prueba.
+Gestiona el catálogo de hospedajes y habitaciones. Permite filtrar habitaciones por ciudad y capacidad, expone la categoría de habitación en las respuestas y provee un endpoint para poblar la base de datos con datos de prueba.
 
 **Endpoints:**
 

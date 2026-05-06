@@ -1,4 +1,5 @@
 from app.errors.exceptions import BadRequestError
+from app.utils.constants import CATEGORIAS_HABITACION
 
 RATES = {
     'USD': 1,
@@ -41,6 +42,20 @@ class InventarioHelper:
             raise BadRequestError('El campo capacidad debe ser un número entero positivo')
 
         return capacidad
+
+    @staticmethod
+    def validacionCampoCategoriaHabitacion(categoria):
+        if categoria in [None, '']:
+            return ''
+
+        categoria_normalizada = str(categoria).upper().strip()
+
+        if categoria_normalizada not in CATEGORIAS_HABITACION:
+            raise BadRequestError(
+                f'La categoria de la habitacion no es valida. Permitidas: {sorted(CATEGORIAS_HABITACION)}'
+            )
+
+        return categoria_normalizada
 
     @staticmethod
     def convertirMoneda(precio, currency_code_origen, currency_code_destino):

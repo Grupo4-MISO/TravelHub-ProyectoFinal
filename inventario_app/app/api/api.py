@@ -305,6 +305,7 @@ class HabitacionesporId(Resource):
                     'habitacion_id': str(habitacion.id),
                     'precio': habitacion.precio,
                     'capacidad': habitacion.capacidad,
+                                        'categoria': getattr(habitacion, 'categoria', '') or '',
                     'descripcion': habitacion.descripcion
                 }
                 for habitacion in habitaciones
@@ -562,6 +563,7 @@ class HospedajeInfo(Resource):
                        'pais': hospedaje.get('pais'),
                        'amenidades': hospedaje.get('amenidades'),
                        'imagenes': hospedaje.get('imagenes'),
+                          'categoria_habitacion': getattr(habitacion, 'categoria', '') or '',
                 }
 
                 return hospedaje_info, 200
