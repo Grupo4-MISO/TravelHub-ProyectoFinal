@@ -1,21 +1,22 @@
+from onesignal.model.notification import Notification
+from onesignal import ApiClient, Configuration
 from onesignal.rest import ApiException
 from onesignal.api import default_api
-import onesignal
 
 class OneSignalHelper:
     def __init__(self, app_id, api_key):
         self.app_id = app_id
         self.api_key = api_key
-        config = onesignal.Configuration(rest_api_key = self.api_key)
-        self.client = default_api.DefaultApi(onesignal.ApiClient(config))
+        config = Configuration(rest_api_key = self.api_key)
+        self.client = default_api.DefaultApi(ApiClient(config))
 
-    def sendNotificacion(self, hotel_name, user_id):
+    def sendNotificacion(self, title, message, user_id):
         #Creamos notificacion
-        notificacion = onesignal.Notification(
+        notificacion = Notification(
             app_id = self.app_id,
-            contents = onesignal.StringMap(en = f"Tu reserva en el {hotel_name} ha sido confirmada."),
-            headings = onesignal.StringMap(en = '¡Reserva Confirmada!'),
-            include_subscription_ids = [user_id]
+            contents = {"en": message},
+            headings = {"en": title},
+            include_external_user_ids = [user_id]
         )
 
         try:
