@@ -14,6 +14,6 @@ sqsReservasUrl: https://sqs.us-east-1.amazonaws.com/387050840675/reservas-sqs
 sqsMailUrl: https://sqs.us-east-1.amazonaws.com/387050840675/mail-sqs
 inventariosUrl: http://inventarios-app-service:80
 oneSignalAppId: 4a46cf3a-a9ec-456b-b382-de8793e5f38b
-oneSignalApiKey: os_v2_app_jjdm6ovj5rcwxm4c32dzhzptrngjgsdhkxjuf5m7jiooa47uhh6c7mamj6rwkbgnaejgqp57jf2e573sufwd6k47anq7zlkq2cufe7i
+oneSignalApiKey: os_v2_app_jjdm6ovj5rcwxm4c32dzhzptrpow47ggt62ursvuuemebis2pze6n2bujkzhvn2xdid3t6op33dw3lvjyel22zzid7qg6zdrtt4giza
 port: 3001
 nodePort: 30001

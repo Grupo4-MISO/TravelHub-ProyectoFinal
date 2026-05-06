@@ -42,7 +42,9 @@ def reservasWorker():
                 hospedaje_info = ReservaHelper.hospedajeInfo(INVENTARIOS_URL, reserva.get('habitacion_id'), currency_code)
 
                 #Enviamos notificación a OneSignal
-                one_signal_helper.sendNotificacion(hospedaje_info.get('nombre'), reserva.get('user_id'))
+                notification_title = f"Confirmación reserva: {reserva.get('public_id')}"
+                notification_message = f"Tu reserva en el hotel {hospedaje_info.get('nombre')} ha sido confirmada del {reserva.get('check_in')} al {reserva.get('check_out')}."
+                one_signal_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
 
                 #Enviamos mensaje a cola de mail
                 mail_message = ReservaHelper.mailMessage(reserva, hospedaje_info, message)
