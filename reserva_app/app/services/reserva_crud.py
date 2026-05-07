@@ -249,7 +249,7 @@ class ReservaCRUD:
             if not reserva:
                 return f"No se encontró la reserva con ID {reserva_id}"
 
-            reserva.estado = ReservaEstado.COMPLETADA.value
+            setattr(reserva, 'estado', ReservaEstado.COMPLETADA.value)
             self.db.commit()
             return True
         except Exception as e:
