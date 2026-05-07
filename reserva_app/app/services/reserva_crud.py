@@ -29,8 +29,8 @@ class ReservaCRUD:
                 setattr(reserva, 'estado', ReservaEstado.CONFIRMADA.value)
                 self.db.commit()
             
-            elif data_reserva.get('status') == 'checked_in':
-                setattr(reserva, 'estado', ReservaEstado.CHECKED_IN.value)
+            elif data_reserva.get('status') == 'completada':
+                setattr(reserva, 'estado', ReservaEstado.COMPLETADA.value)
                 self.db.commit()
 
         except Exception as e:
