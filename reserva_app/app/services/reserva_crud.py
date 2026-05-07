@@ -242,6 +242,23 @@ class ReservaCRUD:
                 pass
             return str(e)
     
+    def completarReserva(self, reserva_id: int | str) -> bool | str:
+        try:
+            reserva_uuid = UUID(str(reserva_id))
+            reserva = self.db.query(ReservaORM).filter_by(id=reserva_uuid).first()
+            if not reserva:
+                return f"No se encontró la reserva con ID {reserva_id}"
+
+            reserva.estado = ReservaEstado.COMPLETADA.value
+            self.db.commit()
+            return True
+        except Exception as e:
+            try:
+                self.db.rollback()
+            except RuntimeError:
+                pass
+            return str(e)
+    
     def revocarReserva(self, reserva_id: int | str) -> bool | str:
         try:
             reserva_uuid = UUID(str(reserva_id))

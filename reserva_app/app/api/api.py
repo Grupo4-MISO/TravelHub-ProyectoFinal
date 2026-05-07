@@ -187,6 +187,15 @@ class Confirmar_Reserva(Resource):
         else:
             return {'msg': response}, 500
 
+class Completar_Reserva(Resource):
+    def post(self, reserva_id):
+        response = reservas_crud.completarReserva(reserva_id)
+        
+        if response == True:
+            return {'msg': 'Reserva completada correctamente'}, 200
+        else:
+            return {'msg': response}, 500
+
 class Revocar_Reserva(Resource):
     def post(self, reserva_id):
         response, reserva = reservas_crud.revocarReserva(reserva_id)
@@ -213,23 +222,6 @@ class CleanDB(Resource):
     def post(self):
         reservas_crud.resetDb()
         return {'msg': 'Base de datos reiniciada correctamente'}, 200
-
-class CheckInReserva(Resource):
-    def patch(self):
-        #Obtenemos datos del request
-        data = request.get_json()
-
-        #Validamos campos requeridos
-        if not data.get('reserva_id'):
-            return {'msg': 'El campo reserva_id es requerido'}, 400
-        
-        if not data.get('status'):
-            return {'msg': 'El campo status es requerido'}, 400
-        
-        #Cambiamos el estado de la reserva a checked_in
-        reservas_crud.cambiarEstadoReserva(data)
-
-        return {'msg': 'Reserva actualizada con check_in realizada correctamente'}, 200
 
 
 
