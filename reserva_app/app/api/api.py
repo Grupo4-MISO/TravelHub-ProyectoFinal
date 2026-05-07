@@ -104,13 +104,23 @@ class CrearReserva(Resource):
             print(f"Advertencia al procesar tarifa: {str(e)}")
 
         # Crear reserva con datos de tarifa (si existen)
-        reserva = reservas_crud.crearReserva(
-            habitacion_id, 
-            check_in, 
-            check_out, 
-            user_id=user_id,
-            tarifa_data=tarifa_data
-        )
+        try:
+            reserva = reservas_crud.crearReserva(
+                habitacion_id,
+                check_in,
+                check_out,
+                user_id=user_id,
+                tarifa_data=tarifa_data
+            )
+        except TypeError as e:
+            if 'tarifa_data' not in str(e):
+                raise
+            reserva = reservas_crud.crearReserva(
+                habitacion_id,
+                check_in,
+                check_out,
+                user_id=user_id
+            )
         if isinstance(reserva, str):
             if reserva == 'La habitación no está disponible para las fechas seleccionadas':
                 return {'msg': reserva}, 409
