@@ -25,4 +25,4 @@ class OneSignalHelper:
             print(f"Notificación enviada a OneSignal: {response}")
         
         except ApiException as e:
-            raise Exception(f"Error al enviar la notificación a OneSignal: {e}")
+            return None
