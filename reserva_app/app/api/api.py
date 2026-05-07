@@ -188,7 +188,7 @@ class Confirmar_Reserva(Resource):
             return {'msg': response}, 500
 
 class Completar_Reserva(Resource):
-    def post(self, reserva_id):
+    def get(self, reserva_id):
         response = reservas_crud.completarReserva(reserva_id)
         
         if response == True:
