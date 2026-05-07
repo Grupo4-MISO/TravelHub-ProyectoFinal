@@ -56,6 +56,14 @@ Cliente POST /api/v1/Managers en proveedoresapp:5005
 
 ---
 
+## 📌 Criterio de Uso de Endpoints
+
+- **CrearReserva** es el endpoint que debe usar el cliente para confirmar una reserva. El backend resuelve automáticamente si debe aplicar una tarifa configurada, un descuento heredado o un fallback sin tarifa.
+- **TarifaReserva** queda para cotización, cálculo explícito o compatibilidad con consumidores antiguos que todavía envían `precio` y `descuento` manualmente.
+- El cliente no necesita conocer la lógica interna de configuración de tarifas para crear una reserva; solo debe enviar la información mínima de la reserva.
+
+---
+
 ## 🧪 Tests Ejecutados
 
 Todos los tests pasaron correctamente:

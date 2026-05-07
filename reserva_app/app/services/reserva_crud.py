@@ -149,9 +149,19 @@ class ReservaCRUD:
             "updated_at": updated_at_iso,
             "fecha_creacion": created_at_iso,
             "fecha_actualizacion": updated_at_iso,
+                    "tarifa_id": str(reserva.tarifa_id) if reserva.tarifa_id else None,
+                    "precio_tarifa_aplicada": reserva.precio_tarifa_aplicada,
+                    "descuentos_aplicados": reserva.descuentos_aplicados,
         }
 
     def crearReserva(self, habitacion_id: int | str, check_in: date, check_out: date, user_id: int | str | None = None) -> dict | str:
+        disponible = self.verificarDisponibilidadHabitacion(habitacion_id, check_in, check_out, user_id=user_id)
+        if isinstance(disponible, str):
+            return disponible
+
+        if not disponible:
+            return 'La habitación no está disponible para las fechas seleccionadas'
+    def crearReserva(self, habitacion_id: int | str, check_in: date, check_out: date, user_id: int | str | None = None, tarifa_data: dict | None = None) -> dict | str:
         disponible = self.verificarDisponibilidadHabitacion(habitacion_id, check_in, check_out, user_id=user_id)
         if isinstance(disponible, str):
             return disponible
@@ -181,6 +191,9 @@ class ReservaCRUD:
                 estado=ReservaEstado.PENDIENTE.value,
                 created_at=now,
                 updated_at=now,
+                            tarifa_id=tarifa_data.get('tarifa_id') if tarifa_data else None,
+                            precio_tarifa_aplicada=tarifa_data.get('precio_tarifa_aplicada') if tarifa_data else None,
+                            descuentos_aplicados=tarifa_data.get('descuentos_aplicados') if tarifa_data else None,
             )
             self.db.add(reserva)
             self.db.commit()
