@@ -1,14 +1,17 @@
+from app.utils.token_helper import token_required, roles_required
 from app.utils.one_signal_helper import OneSignalHelper
 from app.services.reserva_crud import ReservaCRUD
 from app.services.hold_service import HoldService
 from app.errors.exceptions import APIError
 from app.utils.seedHelper import SeedHelper
 from app.utils.helper import ReservaHelper
-from app
 from flask_restful import Resource
 from datetime import datetime
 from flask import request
 import os
+
+#Url de microservicios
+INVENTARIOS_URL = os.getenv('INVENTARIOS_URL')
 
 #Variables de entorno para OneSignal
 ONE_SIGNAL_APP_ID = os.getenv('ONE_SIGNAL_APP_ID')
@@ -180,7 +183,19 @@ class TarifaReserva(Resource):
         return calculo_tarifa, 200
 
 class Confirmar_Reserva(Resource):
-    def post(self, reserva_id):
+    @token_required
+    @roles_required('Admin', 'Manager', 'Accomodation')
+    def post(current_user, self, reserva_id):
+        #Traemos la reserva por id
+        reserva = reservas_crud.reservaById(reserva_id)
+
+        #Llamamos a inventario para traer el id del hospedaje
+        hospedaje_id = ReservaHelper.hospedajeId(INVENTARIOS_URL, reserva.get('habitacion_id'))
+
+        #Validamos que el user_id del token pueda confirmar la reserva
+        if hospedaje_id.get('id') != current_user.get('sub'):
+            return {'msg': 'No tienes permisos para confirmar esta reserva'}, 403
+
         response = reservas_crud.confirmarReserva(reserva_id)
         
         if response == True:
@@ -189,7 +204,18 @@ class Confirmar_Reserva(Resource):
             return {'msg': response}, 500
 
 class Completar_Reserva(Resource):
-    def get(self, reserva_id):
+    @token_required
+    @roles_required('Admin', 'Manager', 'Accomodation')
+    def post(current_user, self, reserva_id):
+        #Traemos la reserva por id
+        reserva = reservas_crud.reservaById(reserva_id)
+
+        #Llamamos a inventario para traer el id del hospedaje
+        hospedaje_id = ReservaHelper.hospedajeId(INVENTARIOS_URL, reserva.get('habitacion_id'))
+
+        #Validamos que el user_id del token pueda confirmar la reserva
+        if hospedaje_id.get('id') != current_user.get('sub'):
+            return {'msg': 'No tienes permisos para confirmar esta reserva'}, 403
         response = reservas_crud.completarReserva(reserva_id)
         
         if response == True:

@@ -183,6 +183,20 @@ class ReservaHelper:
         }
 
         return mail_message
+    
+    @staticmethod
+    def hospedajeId(inventario_url, habitacion_id):
+        try:
+            #Request al microservicio de inventario para obtener información del hospedaje
+            response = requests.get(f"{inventario_url}/api/v1/inventarios/hospedaje/{habitacion_id}")
+
+            #Genera expecion si el status code es diferente a 200
+            response.raise_for_status()
+
+            return response.json()
+
+        except requests.exceptions.RequestException as e:
+            raise ExternalServiceError(f"Error al consultar el microservicio de inventario para obtener información del hospedaje: {str(e)}")
         
 
         

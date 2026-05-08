@@ -112,6 +112,24 @@ class InventarioCRUD:
             self.db.rollback()
             return DatababaseError(f"Error en la base de datos: {str(e)}")
 
+    def hospedajeById(self, hospedaje_id):
+        try:
+            hospedaje_uuid = uuid.UUID(str(hospedaje_id))
+            hospedaje = self.db.query(HospedajeORM).filter(HospedajeORM.id == hospedaje_uuid).first()
+
+            if not hospedaje:
+                return None
+
+            return {
+                'id': str(hospedaje.id),
+            }
+
+        except ValueError as e:
+            raise ValueError(str(e))
+        except Exception as e:
+            self.db.rollback()
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
+        
     def obtener_hospedaje_por_id(self, hospedaje_id, currency_code_destino):
         try:
             hospedaje_uuid = uuid.UUID(str(hospedaje_id))

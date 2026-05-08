@@ -574,6 +574,24 @@ class HospedajeInfo(Resource):
 
                 return hospedaje_info, 200
 
+class HospedajeByHabitacionId(Resource):
+       def get(self, habitacion_id):
+                #Traemos la información de la habitación a partir del id
+                habitacion = inventario_CRUD.habitacionPorId(habitacion_id)
+
+                #Validamos que la habitación exista
+                if not habitacion:
+                        return {'msg': f'No se encontró una habitación para el id {habitacion_id}'}, 404
+
+                #Traemos la información del hospedaje al que pertenece la habitación
+                hospedaje_id = inventario_CRUD.hospedajeById(habitacion.propiedad_id)
+
+                #Validamos que el hospedaje exista
+                if not hospedaje_id:
+                        return {'msg': f'No se encontró el hospedaje para la habitación con id {habitacion_id}'}, 404
+
+                return hospedaje_id, 200
+
 class SeedReservations(Resource):
     #Proporciona un listado de Id's para seeding de reservas.
     def get(self):

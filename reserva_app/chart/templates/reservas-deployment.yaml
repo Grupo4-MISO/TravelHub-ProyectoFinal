@@ -29,6 +29,8 @@ spec:
           value: {{ .Values.oneSignalAppId }}
         - name: ONE_SIGNAL_API_KEY
           value: {{ .Values.oneSignalApiKey }}
+        - name: INVENTARIOS_URL
+          value: {{ .Values.inventariosUrl }}
         readinessProbe:
           httpGet:
             path: {{ .Values.healthPath }}
