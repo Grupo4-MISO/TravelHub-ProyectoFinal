@@ -562,6 +562,14 @@ class HospedajeInfo(Resource):
                        'pais': hospedaje.get('pais'),
                        'amenidades': hospedaje.get('amenidades'),
                        'imagenes': hospedaje.get('imagenes'),
+                       "habitacion": {
+                              'id': str(habitacion.id),
+                              'code': habitacion.code,
+                              'descripcion': habitacion.descripcion,
+                              'capacidad': habitacion.capacidad,
+                              'precio': habitacion.precio,
+                              'imagen_url': habitacion.imageUrl
+                       }   
                 }
 
                 return hospedaje_info, 200

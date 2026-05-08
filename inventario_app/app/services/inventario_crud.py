@@ -187,11 +187,11 @@ class InventarioCRUD:
                 'updated_at': hospedaje.updated_at.isoformat() if hasattr(hospedaje.updated_at, 'isoformat') else hospedaje.updated_at,
             }
 
-        except ValueError:
-            return DatababaseError("El id del hospedaje no tiene un formato UUID válido")
+        except ValueError as e:
+            raise ValueError(str(e))
         except Exception as e:
             self.db.rollback()
-            return DatababaseError(f"Error en la base de datos: {str(e)}")
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
     
     def habitacionesDisponibles(self, ciudad, capacidad, currency_code_destino):
         try:

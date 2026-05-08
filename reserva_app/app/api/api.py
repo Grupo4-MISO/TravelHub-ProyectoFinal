@@ -218,6 +218,17 @@ class Reservas_por_usuario(Resource):
         except Exception as e:
             return {'msg': 'Error al obtener las reservas del usuario', 'error': str(e)}, 500
 
+class ReservaById(Resource):
+    def get(self, reserva_id):
+        try:
+            reserva = reservas_crud.reservaById(reserva_id)
+            if reserva:
+                return reserva, 200
+            else:
+                return {'msg': 'Reserva no encontrada'}, 404
+        except Exception as e:
+            return {'msg': 'Error al obtener la reserva', 'error': str(e)}, 500
+
 class CleanDB(Resource):
     def post(self):
         reservas_crud.resetDb()

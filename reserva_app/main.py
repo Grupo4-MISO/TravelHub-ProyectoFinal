@@ -1,4 +1,4 @@
-from app.api.api import CleanDB, Completar_Reserva, ReservaHealth, Reservas_por_usuario, VerificarDisponibilidad, SeedReservas, HoldReserva, darReservas, TarifaReserva, Confirmar_Reserva, Revocar_Reserva, CrearReserva
+from app.api.api import CleanDB, ReservaById, Completar_Reserva, ReservaHealth, Reservas_por_usuario, VerificarDisponibilidad, SeedReservas, HoldReserva, darReservas, TarifaReserva, Confirmar_Reserva, Revocar_Reserva, CrearReserva
 from app.errors.handlers import ErrorHandler
 from app.db.models import db
 from flask_restful import Api
@@ -53,3 +53,4 @@ api.add_resource(Confirmar_Reserva, '/confirmar/<string:reserva_id>')
 api.add_resource(Completar_Reserva, '/completar/<string:reserva_id>')
 api.add_resource(Revocar_Reserva, '/revocar/<string:reserva_id>')
 api.add_resource(Reservas_por_usuario, '/usuario/<string:user_id>')
+api.add_resource(ReservaById, '/<string:reserva_id>')
