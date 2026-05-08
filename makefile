@@ -18,7 +18,7 @@ IMAGE_TAG=v1.0.0
 # Nueva version imagen
 SERVICES_NEW=reservas-app inventarios-app
 FOLDERS_NEW=reserva_app inventario_app
-IMAGE_TAG_NEW=v25.0.0
+IMAGE_TAG_NEW=v28.0.0
 
 # Nueva version imagen lambda
 SERVICES_LAMBDA_NEW=email-app

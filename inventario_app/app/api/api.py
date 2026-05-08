@@ -586,6 +586,9 @@ class HospedajeByHabitacionId(Resource):
                 #Traemos la información del hospedaje al que pertenece la habitación
                 hospedaje_id = inventario_CRUD.hospedajeById(habitacion.propiedad_id)
 
+                #Traemos la descripcion de la habitacion
+                hospedaje_id['tipo_habitacion'] = habitacion.descripcion
+
                 #Validamos que el hospedaje exista
                 if not hospedaje_id:
                         return {'msg': f'No se encontró el hospedaje para la habitación con id {habitacion_id}'}, 404

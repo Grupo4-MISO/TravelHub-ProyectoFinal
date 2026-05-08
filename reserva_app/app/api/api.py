@@ -204,23 +204,27 @@ class Confirmar_Reserva(Resource):
             return {'msg': response}, 500
 
 class Completar_Reserva(Resource):
-    @token_required
-    @roles_required('Admin', 'Manager', 'Accomodation')
-    def post(current_user, self, reserva_id):
+    def post(self, reserva_id):
         #Traemos la reserva por id
         reserva = reservas_crud.reservaById(reserva_id)
 
         #Llamamos a inventario para traer el id del hospedaje
         hospedaje_id = ReservaHelper.hospedajeId(INVENTARIOS_URL, reserva.get('habitacion_id'))
-
-        #Validamos que el user_id del token pueda confirmar la reserva
-        if hospedaje_id.get('id') != current_user.get('sub'):
-            return {'msg': 'No tienes permisos para confirmar esta reserva'}, 403
         
         response = reservas_crud.completarReserva(reserva_id)
         
-        if response == True:
-            return {'msg': 'Reserva completada correctamente'}, 200
+        if response:
+            return {
+                'msg': 'Reserva completada correctamente',
+                'reserva': {
+                    'reserva_id': reserva.get('public_id'),
+                    'check_in': reserva.get('check_in'),
+                    'check_out': reserva.get('check_out'),
+                    'nombre_hospedaje': hospedaje_id.get('nombre'),
+                    'tipo_habitacion': hospedaje_id.get('tipo_habitacion'),
+                }
+            }
+        
         else:
             return {'msg': response}, 500
 

@@ -122,6 +122,7 @@ class InventarioCRUD:
 
             return {
                 'id': str(hospedaje.id),
+                'nombre': hospedaje.nombre,
             }
 
         except ValueError as e:
