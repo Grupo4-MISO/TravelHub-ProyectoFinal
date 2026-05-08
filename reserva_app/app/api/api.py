@@ -216,6 +216,7 @@ class Completar_Reserva(Resource):
         #Validamos que el user_id del token pueda confirmar la reserva
         if hospedaje_id.get('id') != current_user.get('sub'):
             return {'msg': 'No tienes permisos para confirmar esta reserva'}, 403
+        
         response = reservas_crud.completarReserva(reserva_id)
         
         if response == True:
