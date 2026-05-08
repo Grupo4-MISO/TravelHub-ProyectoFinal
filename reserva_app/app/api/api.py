@@ -4,6 +4,7 @@ from app.services.hold_service import HoldService
 from app.errors.exceptions import APIError
 from app.utils.seedHelper import SeedHelper
 from app.utils.helper import ReservaHelper
+from app
 from flask_restful import Resource
 from datetime import datetime
 from flask import request
