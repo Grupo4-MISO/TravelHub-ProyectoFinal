@@ -239,6 +239,7 @@ class Revocar_Reserva(Resource):
         return {'msg': response}, 500
 
 class Reservas_por_usuario(Resource):
+    @token_required
     def get(self, user_id):
         try:
             reservas = reservas_crud.obtenerReservasPorUsuario(user_id)
