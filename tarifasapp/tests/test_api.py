@@ -1,8 +1,9 @@
 import pytest
-from app.db.models import db, Tarifa, TarifaStatus
+from app.db.models import db, Tarifa, TarifaStatus, Descuento
 import sys
 import os
 from datetime import datetime, timedelta
+from uuid import UUID
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
@@ -56,7 +57,8 @@ class TestTarifaList:
         now = datetime.utcnow()
         data = {
             'nombre': 'Tarifa Test',
-            'valor_noche': 50.0,
+            'hotel_id': 'HTL-99281',
+            'valor_base': 50.0,
             'moneda': 'COP',
             'categoria_habitacion': 'DOBLE',
             'descripcion': 'Tarifa para pruebas',
@@ -67,7 +69,8 @@ class TestTarifaList:
         assert response.status_code == 201
         json_data = response.get_json()
         assert json_data['nombre'] == 'Tarifa Test'
-        assert json_data['valor_noche'] == 50.0
+        assert json_data['hotel_id'] == 'HTL-99281'
+        assert json_data['valor_base'] == 50.0
         assert json_data['moneda'] == 'COP'
         assert json_data['categoria_habitacion'] == 'DOBLE'
         assert json_data['vigente'] is True
@@ -84,7 +87,8 @@ class TestTarifaList:
         now = datetime.utcnow()
         vigente = Tarifa(
             nombre='Tarifa Vigente',
-            valor_noche=120,
+            hotel_id='HTL-99281',
+            valor_base=120,
             moneda='COP',
             categoria_habitacion='SUITE',
             vigencia_inicio=now - timedelta(days=2),
@@ -93,7 +97,8 @@ class TestTarifaList:
         )
         no_vigente = Tarifa(
             nombre='Tarifa Vencida',
-            valor_noche=90,
+            hotel_id='HTL-99282',
+            valor_base=90,
             moneda='USD',
             categoria_habitacion='SENCILLA',
             vigencia_inicio=now - timedelta(days=20),
@@ -127,6 +132,51 @@ class TestTarifaResource:
         response = client.get('/tarifas/00000000-0000-0000-0000-000000000000')
         assert response.status_code == 404
 
+    def test_get_tarifa_includes_active_discounts(self, client, app_context):
+        now = datetime.utcnow()
+        tarifa_response = client.post('/tarifas', json={
+            'nombre': 'Tarifa con descuentos',
+            'hotel_id': 'HTL-99281',
+            'valor_base': 250.0,
+            'moneda': 'USD',
+            'categoria_habitacion': 'SUITE',
+            'vigencia_inicio': (now - timedelta(days=1)).isoformat(),
+            'vigencia_fin': (now + timedelta(days=10)).isoformat(),
+        })
+        assert tarifa_response.status_code == 201
+        tarifa_id = tarifa_response.get_json()['id']
+
+        tarifa = Tarifa.query.filter_by(id=UUID(tarifa_id)).first()
+        descuento_activo = Descuento(
+            nombre='Descuento activo',
+            tarifa_id=tarifa.id,
+            porcentaje=12,
+            activo=True,
+            vigencia_inicio=now - timedelta(days=1),
+            vigencia_fin=now + timedelta(days=5),
+        )
+        descuento_inactivo = Descuento(
+            nombre='Descuento inactivo',
+            tarifa_id=tarifa.id,
+            porcentaje=20,
+            activo=False,
+            vigencia_inicio=now - timedelta(days=1),
+            vigencia_fin=now + timedelta(days=5),
+        )
+        db.session.add_all([descuento_activo, descuento_inactivo])
+        db.session.commit()
+
+        response = client.get(f'/tarifas/{tarifa_id}')
+        assert response.status_code == 200
+        json_data = response.get_json()
+        assert 'descuentos_activos' in json_data
+        assert len(json_data['descuentos_activos']) == 1
+        assert json_data['descuentos_activos'][0]['nombre'] == 'Descuento activo'
+        assert json_data['descuentos_activos'][0]['porcentaje'] == 12
+        assert json_data['descuentos_activos'][0]['valor_descuento_calculado'] == 30.0
+        assert json_data['valor_descuento_total'] == 30.0
+        assert json_data['valor_final'] == 220.0
+
 
 class TestSeedDB:
     def test_seed_db(self, client, app_context):
@@ -137,3 +187,85 @@ class TestSeedDB:
         # Verificar que se crearon los datos
         response = client.get('/tarifas')
         assert len(response.get_json()) > 0
+
+
+class TestDescuentos:
+    def _create_tarifa(self, client):
+        now = datetime.utcnow()
+        response = client.post('/tarifas', json={
+            'nombre': 'Tarifa base',
+            'hotel_id': 'HTL-99281',
+            'valor_base': 200.0,
+            'moneda': 'USD',
+            'categoria_habitacion': 'SENCILLA',
+            'vigencia_inicio': (now - timedelta(days=1)).isoformat(),
+            'vigencia_fin': (now + timedelta(days=10)).isoformat(),
+        })
+        assert response.status_code == 201
+        return response.get_json()['id']
+
+    def test_create_discount_and_filter(self, client, app_context):
+        tarifa_id = self._create_tarifa(client)
+        now = datetime.utcnow()
+
+        create_response = client.post('/descuentos', json={
+            'nombre': 'Promo verano',
+            'tarifa_id': tarifa_id,
+            'porcentaje': 15,
+            'activo': True,
+            'vigencia_inicio': (now - timedelta(days=1)).isoformat(),
+            'vigencia_fin': (now + timedelta(days=10)).isoformat(),
+        })
+        assert create_response.status_code == 201
+        descuento = create_response.get_json()
+        assert descuento['porcentaje'] == 15
+        assert descuento['tarifa_id'] == tarifa_id
+        assert descuento['activo'] is True
+
+        inactive_response = client.post('/descuentos', json={
+            'nombre': 'Promo vieja',
+            'tarifa_id': tarifa_id,
+            'porcentaje': 10,
+            'activo': False,
+            'vigencia_inicio': (now - timedelta(days=20)).isoformat(),
+            'vigencia_fin': (now - timedelta(days=10)).isoformat(),
+        })
+        assert inactive_response.status_code == 201
+
+        active_list = client.get('/descuentos?activos=true')
+        assert active_list.status_code == 200
+        assert len(active_list.get_json()) == 1
+        assert active_list.get_json()[0]['nombre'] == 'Promo verano'
+
+        tarifa_filter = client.get(f'/descuentos?tarifa_id={tarifa_id}')
+        assert tarifa_filter.status_code == 200
+        assert len(tarifa_filter.get_json()) == 2
+
+    def test_update_get_and_delete_discount(self, client, app_context):
+        tarifa_id = self._create_tarifa(client)
+        now = datetime.utcnow()
+        create_response = client.post('/descuentos', json={
+            'nombre': 'Promo update',
+            'tarifa_id': tarifa_id,
+            'porcentaje': 5,
+            'vigencia_inicio': (now - timedelta(days=1)).isoformat(),
+            'vigencia_fin': (now + timedelta(days=10)).isoformat(),
+        })
+        descuento_id = create_response.get_json()['id']
+
+        update_response = client.put(f'/descuentos/{descuento_id}', json={
+            'porcentaje': 20,
+            'activo': False,
+        })
+        assert update_response.status_code == 200
+        assert update_response.get_json()['porcentaje'] == 20
+        assert update_response.get_json()['activo'] is False
+
+        get_response = client.get(f'/descuentos/{descuento_id}')
+        assert get_response.status_code == 200
+
+        delete_response = client.delete(f'/descuentos/{descuento_id}')
+        assert delete_response.status_code == 200
+
+        missing_response = client.get(f'/descuentos/{descuento_id}')
+        assert missing_response.status_code == 404

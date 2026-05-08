@@ -305,6 +305,7 @@ class HabitacionesporId(Resource):
                     'habitacion_id': str(habitacion.id),
                     'precio': habitacion.precio,
                     'capacidad': habitacion.capacidad,
+                                        'categoria': getattr(habitacion, 'categoria', '') or '',
                     'descripcion': habitacion.descripcion
                 }
                 for habitacion in habitaciones
@@ -562,6 +563,7 @@ class HospedajeInfo(Resource):
                        'pais': hospedaje.get('pais'),
                        'amenidades': hospedaje.get('amenidades'),
                        'imagenes': hospedaje.get('imagenes'),
+                          'categoria_habitacion': getattr(habitacion, 'categoria', '') or '',
                 }
 
                 return hospedaje_info, 200
@@ -571,3 +573,31 @@ class SeedReservations(Resource):
     def get(self):
         result = SeedHelper.seed_reservations()
         return result, 200
+
+class HabitacionDatos(Resource):
+        """Retorna datos simples de una habitación para consulta de tarifas."""
+        def get(self, habitacion_id):
+                try:
+                        habitacion = inventario_CRUD.habitacionPorId(habitacion_id)
+            
+                        if not habitacion:
+                                return {'msg': f'No se encontró una habitación para el id {habitacion_id}'}, 404
+            
+                        hospedaje = inventario_CRUD.obtener_hospedaje_por_id(habitacion.propiedad_id, None)
+            
+                        if not hospedaje:
+                                return {'msg': f'No se encontró el hospedaje para la habitación con id {habitacion_id}'}, 404
+            
+                        # Retornar solo los datos necesarios para consultar tarifa
+                        datos = {
+                                'habitacion_id': str(habitacion.id),
+                                'hospedaje_id': str(habitacion.propiedad_id),
+                                'categoria': getattr(habitacion, 'categoria', '') or '',
+                                'pais': hospedaje.get('pais'),
+                                'precio': habitacion.precio,
+                                'currency_code': hospedaje.get('currency_code'),
+                        }
+            
+                        return datos, 200
+                except Exception as e:
+                        return {'msg': f'Error al obtener datos de habitación: {str(e)}'}, 500

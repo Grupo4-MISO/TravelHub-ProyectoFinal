@@ -18,6 +18,10 @@ class ReservaORM(db.Model):
     estado = db.Column(db.String(20), nullable = False, default = ReservaEstado.PENDIENTE.value)
     created_at = db.Column(db.DateTime, nullable = False, default = db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable = False, default = db.func.current_timestamp(), onupdate = db.func.current_timestamp())
+    # Campos para tarifa y descuentos aplicados
+    tarifa_id = db.Column(UUID(as_uuid = True), nullable = True)
+    precio_tarifa_aplicada = db.Column(db.Float, nullable = True)
+    descuentos_aplicados = db.Column(db.JSON, nullable = True)
 
     @validates('estado')
     def validate_estado(self, _key, estado):

@@ -4,14 +4,15 @@ from app.db.models import db, Tarifa
 class TarifaCrud:
     """Clase para manejar operaciones CRUD de Tarifas"""
 
-    def create_tarifa(self, nombre, valor_noche, moneda, categoria_habitacion, vigencia_inicio, vigencia_fin, identificador=None, descripcion=None):
+    def create_tarifa(self, nombre, hotel_id, valor_base, moneda, categoria_habitacion, vigencia_inicio, vigencia_fin, identificador=None, descripcion=None):
         """Crear una nueva tarifa"""
         try:
             nueva_tarifa = Tarifa(
                 nombre=nombre,
+                hotel_id=hotel_id,
                 identificador=identificador,
                 descripcion=descripcion,
-                valor_noche=valor_noche,
+                valor_base=valor_base,
                 moneda=moneda,
                 categoria_habitacion=categoria_habitacion,
                 vigencia_inicio=vigencia_inicio,

@@ -3,6 +3,10 @@ from app.services.reserva_crud import ReservaCRUD
 from datetime import datetime
 import requests
 import json
+from app.utils.tarifas_helper import TarifasHelper
+import os
+
+INVENTARIOS_URL = os.getenv('INVENTARIOS_URL', 'http://127.0.0.1:3000')
 
 #Instancia del reserva crud
 reserva_crud = ReservaCRUD()
@@ -130,6 +134,65 @@ class ReservaHelper:
         }
 
         return response
+    @staticmethod
+    def calcularTarifaTotal(check_in, check_out, precio_noche, descuento, pais, tarifa_data=None):
+        """
+        Calcula la tarifa total considerando precio base, descuentos e impuestos.
+        
+        Si tarifa_data es proporcionada, usa el precio_tarifa_aplicada (que ya tiene descuentos).
+        Si no, usa el descuento genérico tradicional.
+        
+        Args:
+            check_in: fecha de check-in
+            check_out: fecha de check-out
+            precio_noche: precio por noche (usado si no hay tarifa_data)
+            descuento: descuento genérico en % (usado si no hay tarifa_data)
+            pais: código de país para obtener tasa de impuesto
+            tarifa_data: dict con tarifa_id, precio_tarifa_aplicada, descuentos_aplicados
+        
+        Returns:
+            dict con desglose de precios
+        """
+        #Calculamos numeros de noches
+        noches = ReservaHelper.calcularNoches(check_in, check_out)
+
+        # Si tenemos tarifa configurada, usarla; sino, usar descuento genérico
+        if tarifa_data and tarifa_data.get('precio_tarifa_aplicada'):
+            precio_por_noche = tarifa_data.get('precio_tarifa_aplicada')
+            descuentos_detalle = tarifa_data.get('descuentos_aplicados', [])
+        else:
+            precio_por_noche = precio_noche
+            # Convertir descuento genérico a formato de detalle
+            descuentos_detalle = [{"porcentaje": descuento * 100, "nombre": "Descuento manual"}] if descuento > 0 else []
+
+        #Calculamos subtotal sin descuento e impuestos
+        subtotal = noches * precio_por_noche
+
+        #Calculamos descuento (si viene con tarifa, ya está incluido en precio_por_noche)
+        if tarifa_data and tarifa_data.get('precio_tarifa_aplicada'):
+            # El descuento ya está aplicado en la tarifa
+            descuento_aplicado = 0.0
+        else:
+            # Descuento genérico tradicional
+            descuento_aplicado = subtotal * descuento
+
+        #Calculamos impuestos
+        impuestos = (subtotal - descuento_aplicado) * IMPUESTOS.get(pais, 0)
+
+        #Calculamos tarifa total
+        tarifa_total = subtotal - descuento_aplicado + impuestos
+
+        #DTO de respuesta
+        response = {
+            'precio_base': subtotal,
+            'descuento': descuento_aplicado,
+            'impuestos': impuestos,
+            'tarifa_total': tarifa_total,
+            'descuentos_detalle': descuentos_detalle,
+            'tarifa_id': tarifa_data.get('tarifa_id') if tarifa_data else None,
+        }
+
+        return response
 
     @staticmethod
     def hospedajeInfo(inventario_url, habitacion_id, currency_code):
@@ -183,6 +246,42 @@ class ReservaHelper:
         }
 
         return mail_message
+
+
+@staticmethod
+def obtener_datos_habitacion(habitacion_id: str):
+    """
+    Obtiene los datos de una habitación desde inventario.
+    Retorna: hotel_id, categoria, pais, precio
+    """
+    try:
+        response = requests.get(
+            f"{INVENTARIOS_URL}/api/v1/inventarios/habitacion-datos/{habitacion_id}",
+            timeout=5
+        )
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        raise ExternalServiceError(f"Error al consultar datos de habitación: {str(e)}")
+
+@staticmethod
+def obtener_tarifa_para_reserva(hotel_id: str, categoria: str, check_in: str, check_out: str):
+    """
+    Obtiene la tarifa configurada para esta reserva.
+    Retorna: dict con tarifa_id, precio_tarifa_aplicada, descuentos_aplicados
+    o None si no existe tarifa configurada
+    """
+    try:
+        return TarifasHelper.obtener_tarifa_para_reserva(
+            hotel_id, 
+            categoria, 
+            check_in, 
+            check_out
+        )
+    except Exception as e:
+        # Log pero no fallar - si no hay tarifa, continuar sin ella
+        print(f"Advertencia al obtener tarifa: {str(e)}")
+        return None
         
 
         

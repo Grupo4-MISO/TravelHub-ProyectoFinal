@@ -1,4 +1,5 @@
 from app.api.api import CleanDB, CountryList, HospedajeInfo, PopularCitiesByCountry, PopularAccommodationsByCountry, InventarioHealth, FiltroHabitaciones, FiltroHabitacionesConMenorPrecio, SeedDB, HospedajeCollection, HabitacionesporId, SeedDB, SeedReservations, HospedajeById, ListadoHoteles
+from app.api.api import CleanDB, CountryList, HospedajeInfo, PopularCitiesByCountry, PopularAccommodationsByCountry, InventarioHealth, FiltroHabitaciones, FiltroHabitacionesConMenorPrecio, SeedDB, HospedajeCollection, HabitacionesporId, SeedDB, SeedReservations, HospedajeById, ListadoHoteles, HabitacionDatos
 from app.errors.handlers import ErrorHandler
 from flask_restful import Api
 from app.db.models import db
@@ -84,3 +85,4 @@ api.add_resource(HospedajeById, '/api/v1/inventarios/hospedajes/<string:hospedaj
 api.add_resource(SeedReservations, '/api/v1/inventarios/seed-reservas') 
 api.add_resource(ListadoHoteles, '/api/v1/inventarios/hoteles')
 api.add_resource(HospedajeInfo, '/api/v1/inventarios/habitacion/<string:habitacion_id>/<string:currency_code>')
+api.add_resource(HabitacionDatos, '/api/v1/inventarios/habitacion-datos/<string:habitacion_id>')

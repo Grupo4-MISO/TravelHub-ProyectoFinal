@@ -175,6 +175,7 @@ def test_habitaciones_por_id_ok_and_empty(mocker):
         capacidad=2,
         descripcion='Habitación doble',
     )
+    room.categoria = 'DOBLE'
     mocker.patch('app.api.api.inventario_CRUD.habitacionesporIdHotel', return_value=[room], create=True)
 
     response = client.get('/habitaciones?id=hotel-1')
@@ -184,6 +185,7 @@ def test_habitaciones_por_id_ok_and_empty(mocker):
         'habitacion_id': str(room.id),
         'precio': 250000,
         'capacidad': 2,
+        'categoria': 'DOBLE',
         'descripcion': 'Habitación doble',
     }]
 
@@ -311,7 +313,6 @@ def test_hospedaje_collection_success(mocker):
 
     assert response == (created, 201)
 
-
 def test_hospedaje_by_id_variants(mocker):
     app, api = build_app()
     api.add_resource(HospedajeById, '/hospedajes/<string:hospedaje_id>/<string:currency_code>')
@@ -389,7 +390,6 @@ def test_seed_helper_loaders(monkeypatch):
     monkeypatch.setattr(seed_module, '_load_hospedajes_catalog', lambda: {'countries': [{'sources': [{'file': 'a.json'}]}]})
     assert seed_module._load_hospedajes_seed() == [{'id': '1'}]
 
-
 def test_seed_helper_reset_and_seed(monkeypatch):
     class FakeTable:
         @staticmethod
@@ -464,6 +464,7 @@ def test_seed_helper_reset_and_seed(monkeypatch):
 
     monkeypatch.setattr(seed_module.db, 'session', FakeSeedSession())
     monkeypatch.setattr(seed_module.SeedHelper, '_ensure_habitaciones_code_column', lambda: None)
+    monkeypatch.setattr(seed_module.SeedHelper, '_ensure_habitaciones_categoria_column', lambda: None)
     monkeypatch.setattr(seed_module.SeedHelper, '_ensure_hospedajes_country_code_column', lambda: None)
     monkeypatch.setattr(seed_module.SeedHelper, '_ensure_hospedajes_extended_columns', lambda: None)
 
@@ -564,7 +565,17 @@ def test_inventario_crud_hospedajes_and_detail(monkeypatch):
         reviews=10,
         created_at=SimpleNamespace(isoformat=lambda: '2026-04-01T00:00:00'),
         updated_at=SimpleNamespace(isoformat=lambda: '2026-04-02T00:00:00'),
-        habitaciones=[],
+        habitaciones=[
+            SimpleNamespace(
+                id=uuid4(),
+                code='101',
+                categoria='SENCILLA',
+                descripcion='Habitación sencilla',
+                capacidad=2,
+                precio=100,
+                imageUrl='url',
+            )
+        ],
         amenidades=[],
         imagenes=[],
     )
@@ -647,6 +658,7 @@ def test_inventario_crud_hospedajes_and_detail(monkeypatch):
         )
         hospedaje = crud.obtener_hospedaje_por_id(str(uuid4()), 'COP')
         assert hospedaje['nombre'] == 'Hotel Uno'
+        assert hospedaje['habitaciones'][0]['categoria'] == 'SENCILLA'
 
         assert crud.obtener_hospedaje_por_id('no-es-uuid', 'COP').message == 'El id del hospedaje no tiene un formato UUID válido'
 
@@ -668,6 +680,7 @@ def test_inventario_crud_habitaciones_and_countries(monkeypatch):
     room = Row(
         habitacion_id=uuid4(),
         code='101',
+        categoria='DOBLE',
         precio=100,
         capacidad=2,
         descripcion='Desc',
