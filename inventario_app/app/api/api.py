@@ -305,6 +305,7 @@ class HabitacionesporId(Resource):
                     'habitacion_id': str(habitacion.id),
                     'precio': habitacion.precio,
                     'capacidad': habitacion.capacidad,
+                                        'categoria': getattr(habitacion, 'categoria', '') or '',
                     'descripcion': habitacion.descripcion
                 }
                 for habitacion in habitaciones
@@ -562,12 +563,69 @@ class HospedajeInfo(Resource):
                        'pais': hospedaje.get('pais'),
                        'amenidades': hospedaje.get('amenidades'),
                        'imagenes': hospedaje.get('imagenes'),
+                       "habitacion": {
+                              'id': str(habitacion.id),
+                              'code': habitacion.code,
+                              'descripcion': habitacion.descripcion,
+                              'capacidad': habitacion.capacidad,
+                              'precio': habitacion.precio,
+                              'imagen_url': habitacion.imageUrl
+                       }   
                 }
 
                 return hospedaje_info, 200
+
+class HospedajeByHabitacionId(Resource):
+       def get(self, habitacion_id):
+                #Traemos la información de la habitación a partir del id
+                habitacion = inventario_CRUD.habitacionPorId(habitacion_id)
+
+                #Validamos que la habitación exista
+                if not habitacion:
+                        return {'msg': f'No se encontró una habitación para el id {habitacion_id}'}, 404
+
+                #Traemos la información del hospedaje al que pertenece la habitación
+                hospedaje_id = inventario_CRUD.hospedajeById(habitacion.propiedad_id)
+
+                #Traemos la descripcion de la habitacion
+                hospedaje_id['tipo_habitacion'] = habitacion.descripcion
+
+                #Validamos que el hospedaje exista
+                if not hospedaje_id:
+                        return {'msg': f'No se encontró el hospedaje para la habitación con id {habitacion_id}'}, 404
+
+                return hospedaje_id, 200
 
 class SeedReservations(Resource):
     #Proporciona un listado de Id's para seeding de reservas.
     def get(self):
         result = SeedHelper.seed_reservations()
         return result, 200
+
+class HabitacionDatos(Resource):
+        """Retorna datos simples de una habitación para consulta de tarifas."""
+        def get(self, habitacion_id):
+                try:
+                        habitacion = inventario_CRUD.habitacionPorId(habitacion_id)
+            
+                        if not habitacion:
+                                return {'msg': f'No se encontró una habitación para el id {habitacion_id}'}, 404
+            
+                        hospedaje = inventario_CRUD.obtener_hospedaje_por_id(habitacion.propiedad_id, None)
+            
+                        if not hospedaje:
+                                return {'msg': f'No se encontró el hospedaje para la habitación con id {habitacion_id}'}, 404
+            
+                        # Retornar solo los datos necesarios para consultar tarifa
+                        datos = {
+                                'habitacion_id': str(habitacion.id),
+                                'hospedaje_id': str(habitacion.propiedad_id),
+                                'categoria': getattr(habitacion, 'categoria', '') or '',
+                                'pais': hospedaje.get('pais'),
+                                'precio': habitacion.precio,
+                                'currency_code': hospedaje.get('currency_code'),
+                        }
+            
+                        return datos, 200
+                except Exception as e:
+                        return {'msg': f'Error al obtener datos de habitación: {str(e)}'}, 500

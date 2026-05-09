@@ -26,14 +26,15 @@ class ReservaCRUD:
 
             #Actualizamos el estado de la reserva
             if data_reserva.get('status') == 'success':
-                reserva.estado = ReservaEstado.CONFIRMADA.value
+                setattr(reserva, 'estado', ReservaEstado.CONFIRMADA.value)
+                self.db.commit()
+            
+            elif data_reserva.get('status') == 'completada':
+                setattr(reserva, 'estado', ReservaEstado.COMPLETADA.value)
                 self.db.commit()
 
         except Exception as e:
-            try:
-                self.db.rollback()
-            except RuntimeError:
-                pass
+            self.db.rollback()
             raise DatababaseError(f"Error al cambiar estado de reserva: {str(e)}")
 
     def _obtener_habitaciones_ocupadas(self, habitacion_ids: list[int | str], check_in: date, check_out: date) -> set[str] | str:
@@ -135,12 +136,18 @@ class ReservaCRUD:
 
     @staticmethod
     def _serializar_reserva(reserva: ReservaORM) -> dict:
-        created_at_iso = reserva.created_at.isoformat() if reserva.created_at else None
-        updated_at_iso = reserva.updated_at.isoformat() if reserva.updated_at else None
+        created_at = getattr(reserva, 'created_at', None)
+        updated_at = getattr(reserva, 'updated_at', None)
+        created_at_iso = created_at.isoformat() if created_at else None
+        updated_at_iso = updated_at.isoformat() if updated_at else None
+        tarifa_id = getattr(reserva, 'tarifa_id', None)
+        precio_tarifa_aplicada = getattr(reserva, 'precio_tarifa_aplicada', None)
+        descuentos_aplicados = getattr(reserva, 'descuentos_aplicados', None)
 
         return {
             "id": str(reserva.id),
             "public_id": str(reserva.public_id),
+            "user_id": str(reserva.user_id),
             "habitacion_id": str(reserva.habitacion_id),
             "check_in": reserva.check_in.isoformat(),
             "check_out": reserva.check_out.isoformat(),
@@ -149,9 +156,19 @@ class ReservaCRUD:
             "updated_at": updated_at_iso,
             "fecha_creacion": created_at_iso,
             "fecha_actualizacion": updated_at_iso,
+            "tarifa_id": str(tarifa_id) if tarifa_id else None,
+            "precio_tarifa_aplicada": precio_tarifa_aplicada,
+            "descuentos_aplicados": descuentos_aplicados,
         }
 
     def crearReserva(self, habitacion_id: int | str, check_in: date, check_out: date, user_id: int | str | None = None) -> dict | str:
+        disponible = self.verificarDisponibilidadHabitacion(habitacion_id, check_in, check_out, user_id=user_id)
+        if isinstance(disponible, str):
+            return disponible
+
+        if not disponible:
+            return 'La habitación no está disponible para las fechas seleccionadas'
+    def crearReserva(self, habitacion_id: int | str, check_in: date, check_out: date, user_id: int | str | None = None, tarifa_data: dict | None = None) -> dict | str:
         disponible = self.verificarDisponibilidadHabitacion(habitacion_id, check_in, check_out, user_id=user_id)
         if isinstance(disponible, str):
             return disponible
@@ -181,6 +198,9 @@ class ReservaCRUD:
                 estado=ReservaEstado.PENDIENTE.value,
                 created_at=now,
                 updated_at=now,
+                tarifa_id=tarifa_data.get('tarifa_id') if tarifa_data else None,
+                precio_tarifa_aplicada=tarifa_data.get('precio_tarifa_aplicada') if tarifa_data else None,
+                descuentos_aplicados=tarifa_data.get('descuentos_aplicados') if tarifa_data else None,
             )
             self.db.add(reserva)
             self.db.commit()
@@ -240,6 +260,23 @@ class ReservaCRUD:
                 pass
             return str(e)
     
+    def completarReserva(self, reserva_id: int | str) -> bool | str:
+        try:
+            reserva_uuid = UUID(str(reserva_id))
+            reserva = self.db.query(ReservaORM).filter_by(id=reserva_uuid).first()
+            if not reserva:
+                return f"No se encontró la reserva con ID {reserva_id}"
+
+            setattr(reserva, 'estado', ReservaEstado.COMPLETADA.value)
+            self.db.commit()
+            return True
+        except Exception as e:
+            try:
+                self.db.rollback()
+            except RuntimeError:
+                pass
+            return str(e)
+    
     def revocarReserva(self, reserva_id: int | str) -> bool | str:
         try:
             reserva_uuid = UUID(str(reserva_id))
@@ -248,7 +285,7 @@ class ReservaCRUD:
                 return f"No se encontró la reserva con ID {reserva_id}"
             self.db.delete(reserva)
             self.db.commit()
-            return True
+            return True, self._serializar_reserva(reserva)
         except Exception as e:
             try:
                 self.db.rollback()

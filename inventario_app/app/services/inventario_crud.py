@@ -1,4 +1,5 @@
 import uuid
+from sqlalchemy import func, and_
 from sqlalchemy import func
 from app.utils.helper import InventarioHelper
 from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM, Hospedaje_ImagenORM, Hospedaje_AmenidadORM, AmenidadORM
@@ -112,6 +113,25 @@ class InventarioCRUD:
             self.db.rollback()
             return DatababaseError(f"Error en la base de datos: {str(e)}")
 
+    def hospedajeById(self, hospedaje_id):
+        try:
+            hospedaje_uuid = uuid.UUID(str(hospedaje_id))
+            hospedaje = self.db.query(HospedajeORM).filter(HospedajeORM.id == hospedaje_uuid).first()
+
+            if not hospedaje:
+                return None
+
+            return {
+                'id': str(hospedaje.id),
+                'nombre': hospedaje.nombre,
+            }
+
+        except ValueError as e:
+            raise ValueError(str(e))
+        except Exception as e:
+            self.db.rollback()
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
+        
     def obtener_hospedaje_por_id(self, hospedaje_id, currency_code_destino):
         try:
             hospedaje_uuid = uuid.UUID(str(hospedaje_id))
@@ -128,6 +148,7 @@ class InventarioCRUD:
                 {
                     'id': str(h.id),
                     'code': h.code,
+                    'categoria': getattr(h, 'categoria', '') or '',
                     'descripcion': h.descripcion,
                     'capacidad': h.capacidad,
                     'precio': h.precio,
@@ -161,6 +182,7 @@ class InventarioCRUD:
                     {
                         'id': h['id'],
                         'code': h['code'],
+                        'categoria': h.get('categoria', '') or '',
                         'descripcion': h['descripcion'],
                         'capacidad': h['capacidad'],
                         'precio': h['precio'],
@@ -187,11 +209,11 @@ class InventarioCRUD:
                 'updated_at': hospedaje.updated_at.isoformat() if hasattr(hospedaje.updated_at, 'isoformat') else hospedaje.updated_at,
             }
 
-        except ValueError:
-            return DatababaseError("El id del hospedaje no tiene un formato UUID válido")
+        except ValueError as e:
+            raise DatababaseError(f"El id del hospedaje no tiene un formato UUID válido")
         except Exception as e:
             self.db.rollback()
-            return DatababaseError(f"Error en la base de datos: {str(e)}")
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
     
     def habitacionesDisponibles(self, ciudad, capacidad, currency_code_destino):
         try:
@@ -199,6 +221,7 @@ class InventarioCRUD:
             query = self.db.query(
                 HabitacionORM.id.label('habitacion_id'),
                 HabitacionORM.code,
+                HabitacionORM.categoria,
                 HabitacionORM.precio,
                 HabitacionORM.capacidad,
                 HabitacionORM.descripcion,
@@ -231,6 +254,7 @@ class InventarioCRUD:
                     'habitacion_id': str(campo.habitacion_id),
                     'hospedaje_id': str(campo.hospedaje_id),
                     'code': campo.code,
+                    'categoria': getattr(campo, 'categoria', '') or '',
                     'nombre': campo.nombre,
                     'pais': campo.pais,
                     'ciudad': campo.ciudad,
@@ -262,6 +286,7 @@ class InventarioCRUD:
             query = self.db.query(
                 HabitacionORM.id.label('habitacion_id'),
                 HabitacionORM.code,
+                HabitacionORM.categoria,
                 HabitacionORM.precio,
                 HabitacionORM.capacidad,
                 HabitacionORM.descripcion,
@@ -297,6 +322,7 @@ class InventarioCRUD:
                         'habitacion_id': str(campo.habitacion_id),
                         'hospedaje_id': hospedaje_id,
                         'code': campo.code,
+                        'categoria': getattr(campo, 'categoria', '') or '',
                         'nombre': campo.nombre,
                         'pais': campo.pais,
                         'ciudad': campo.ciudad,
@@ -361,7 +387,8 @@ class InventarioCRUD:
                     'pais': hospedaje.pais,
                     'ciudad': hospedaje.ciudad,
                     'direccion': hospedaje.direccion,
-                    'imagen': habitacion_orm.imageUrl
+                    'imagen': habitacion_orm.imageUrl,
+                    'categoria': getattr(habitacion_orm, 'categoria', '') if habitacion_orm else '',
                 }
         return respuesta
     
@@ -441,6 +468,32 @@ class CountriesCRUD:
 
             if not hospedajes:
                 return []
+            
+            # Subquery: precio mínimo por propiedad
+            subquery = (
+                self.db.query(
+                    HabitacionORM.propiedad_id,
+                    func.min(HabitacionORM.precio).label("precio_minimo")
+                )
+                .group_by(HabitacionORM.propiedad_id)
+                .subquery()
+            )
+
+            # Query: traer habitaciones que coincidan con el precio mínimo
+            habitaciones_economicas = (
+                self.db.query(HabitacionORM)
+                .join(
+                    subquery,
+                    and_(
+                        HabitacionORM.propiedad_id == subquery.c.propiedad_id,
+                        HabitacionORM.precio == subquery.c.precio_minimo
+                    )
+                )
+                .all()
+            )
+
+            # Convertimos a diccionario para acceso rápido
+            habitaciones_dict = {habitacion.propiedad_id: habitacion for habitacion in habitaciones_economicas}
 
             return [
                 {
@@ -458,6 +511,19 @@ class CountriesCRUD:
                     'reviews': hospedaje.reviews,
                     'created_at': hospedaje.created_at.isoformat() if hasattr(hospedaje.created_at, 'isoformat') else hospedaje.created_at,
                     'updated_at': hospedaje.updated_at.isoformat() if hasattr(hospedaje.updated_at, 'isoformat') else hospedaje.updated_at,
+                    'imagenes': [imagen.url for imagen in hospedaje.imagenes],
+                    'habitacion_mas_economica': (
+                        {
+                            'id': str(habitacion.id),
+                            'code': habitacion.code,
+                            'descripcion': habitacion.descripcion,
+                            'capacidad': habitacion.capacidad,
+                            'precio': habitacion.precio,
+                            'imageUrl': habitacion.imageUrl,
+                        }
+                        if (habitacion := habitaciones_dict.get(hospedaje.id))
+                        else None
+                    )
                 }
                 for hospedaje in hospedajes
             ]
