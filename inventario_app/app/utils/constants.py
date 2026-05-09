@@ -1,0 +1,8 @@
+CATEGORIAS_HABITACION = {
+    "SENCILLA",
+    "DOBLE",
+    "TRIPLE",
+    "SUITE",
+    "DELUXE",
+    "FAMILIAR",
+}

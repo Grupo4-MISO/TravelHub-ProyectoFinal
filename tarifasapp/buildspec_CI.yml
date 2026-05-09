@@ -1,0 +1,50 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: us-east-1
+    REPOSITORY_URI: 387050840675.dkr.ecr.us-east-1.amazonaws.com/tarifas-app
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+      
+  pre_build:
+    commands:
+      - echo "Pre-build iniciado en $(date)"
+
+      - cd tarifasapp
+      - echo "Instalando dependencias y ejecutando tests..."
+      - export PYTHONPATH=.
+      - python -m pip install --upgrade pip
+      - pip install -r requirements.txt
+      - pytest tests/ -v
+
+      - echo "Login en ECR..."
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI
+
+      - echo "Generando tag de imagen..."
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - echo "IMAGE_TAG=$IMAGE_TAG"
+
+      - echo "Construyendo imagen Docker..."
+      - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+      - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
+
+  build:
+    commands:
+      - echo "Build iniciado en $(date)"
+      - echo "Push de imagen a ECR..."
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:latest
+      - echo "Build completado en $(date)"
+
+  post_build:
+    commands:
+      - echo "Post-build iniciado en $(date)"
+      - echo "Escribiendo archivo de definición de imagen..."
+      - printf '[{"name":"tarifas-app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+
+artifacts:
+  files: imagedefinitions.json

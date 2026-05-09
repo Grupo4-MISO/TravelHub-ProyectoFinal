@@ -1,0 +1,27 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: us-east-1
+    CLUSTER_NAME: TravelHub-EKS-Cluster
+    SERVICE_NAME: tarifas-service
+
+phases:
+  pre_build:
+    commands:
+      - echo "Pre-deploy iniciado en $(date)"
+      - echo "Configurando kubectl..."
+      - aws eks update-kubeconfig --region $AWS_DEFAULT_REGION --name $CLUSTER_NAME
+
+  build:
+    commands:
+      - echo "Deploy iniciado en $(date)"
+      - echo "Desplegando servicio en EKS..."
+      - kubectl set image deployment/$SERVICE_NAME tarifas-app=$REPOSITORY_URI:$IMAGE_TAG --record
+
+  post_build:
+    commands:
+      - echo "Post-deploy iniciado en $(date)"
+      - echo "Verificando estado del deployment..."
+      - kubectl rollout status deployment/$SERVICE_NAME
+      - echo "Deploy completado en $(date)"
