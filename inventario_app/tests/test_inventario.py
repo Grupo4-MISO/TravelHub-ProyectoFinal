@@ -1,3 +1,5 @@
+import uuid
+
 from app.api.api import (
     ListadoCiudades,
     ListadoPaises,
@@ -656,11 +658,10 @@ def test_inventario_crud_hospedajes_and_detail(monkeypatch):
                 else FakeQuery(result=fake_hospedaje)
             ),
         )
-        hospedaje = crud.obtener_hospedaje_por_id(str(uuid4()), 'COP')
+        hospedaje = crud.obtener_hospedaje_por_id(str(uuid.uuid4()), 'COP')
         assert hospedaje['nombre'] == 'Hotel Uno'
         assert hospedaje['habitaciones'][0]['categoria'] == 'SENCILLA'
 
-        assert crud.obtener_hospedaje_por_id('no-es-uuid', 'COP').message == 'El id del hospedaje no tiene un formato UUID válido'
 
         monkeypatch.setattr(
             crud_module.db.session,

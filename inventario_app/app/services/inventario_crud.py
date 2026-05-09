@@ -210,7 +210,7 @@ class InventarioCRUD:
             }
 
         except ValueError as e:
-            raise ValueError(str(e))
+            raise DatababaseError(f"El id del hospedaje no tiene un formato UUID válido")
         except Exception as e:
             self.db.rollback()
             raise DatababaseError(f"Error en la base de datos: {str(e)}")
