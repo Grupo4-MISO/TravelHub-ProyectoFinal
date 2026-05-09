@@ -1,4 +1,5 @@
 import uuid
+from sqlalchemy import func, and_
 from sqlalchemy import func
 from app.utils.helper import InventarioHelper
 from app.db.models import db, HospedajeORM, HabitacionORM, CountryORM, Hospedaje_ImagenORM, Hospedaje_AmenidadORM, AmenidadORM
@@ -460,6 +461,32 @@ class CountriesCRUD:
 
             if not hospedajes:
                 return []
+            
+            # Subquery: precio mínimo por propiedad
+            subquery = (
+                self.db.query(
+                    HabitacionORM.propiedad_id,
+                    func.min(HabitacionORM.precio).label("precio_minimo")
+                )
+                .group_by(HabitacionORM.propiedad_id)
+                .subquery()
+            )
+
+            # Query: traer habitaciones que coincidan con el precio mínimo
+            habitaciones_economicas = (
+                self.db.query(HabitacionORM)
+                .join(
+                    subquery,
+                    and_(
+                        HabitacionORM.propiedad_id == subquery.c.propiedad_id,
+                        HabitacionORM.precio == subquery.c.precio_minimo
+                    )
+                )
+                .all()
+            )
+
+            # Convertimos a diccionario para acceso rápido
+            habitaciones_dict = {habitacion.propiedad_id: habitacion for habitacion in habitaciones_economicas}
 
             return [
                 {
@@ -477,6 +504,19 @@ class CountriesCRUD:
                     'reviews': hospedaje.reviews,
                     'created_at': hospedaje.created_at.isoformat() if hasattr(hospedaje.created_at, 'isoformat') else hospedaje.created_at,
                     'updated_at': hospedaje.updated_at.isoformat() if hasattr(hospedaje.updated_at, 'isoformat') else hospedaje.updated_at,
+                    'imagenes': [imagen.url for imagen in hospedaje.imagenes],
+                    'habitacion_mas_economica': (
+                        {
+                            'id': str(habitacion.id),
+                            'code': habitacion.code,
+                            'descripcion': habitacion.descripcion,
+                            'capacidad': habitacion.capacidad,
+                            'precio': habitacion.precio,
+                            'imageUrl': habitacion.imageUrl,
+                        }
+                        if (habitacion := habitaciones_dict.get(hospedaje.id))
+                        else None
+                    )
                 }
                 for hospedaje in hospedajes
             ]

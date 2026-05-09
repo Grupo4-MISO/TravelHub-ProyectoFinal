@@ -250,8 +250,11 @@ class Revocar_Reserva(Resource):
 
 class Reservas_por_usuario(Resource):
     @token_required
-    def get(self, user_id):
+    def get(current_user, self, user_id):
         try:
+            if current_user.get('sub') != user_id:
+                return {'msg': 'No tienes permisos para ver las reservas de este usuario'}, 403
+            
             reservas = reservas_crud.obtenerReservasPorUsuario(user_id)
             return reservas, 200
         except Exception as e:
