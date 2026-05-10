@@ -10,7 +10,7 @@ class TarifasHelper:
     """Helper para consultar el microservicio de tarifas y obtener tarifa/descuentos aplicables"""
 
     @staticmethod
-    def obtener_tarifa_para_reserva(hotel_id: str, categoria_habitacion: str, check_in_str: str, check_out_str: str, currency_code: str = None):
+    def obtener_tarifa_para_reserva(hotel_id: str, categoria_habitacion: str, check_in_str: str, check_out_str: str, currency_code: str = None, auth_headers=None):
         """
         Consulta la tarifa vigente para una combinación de hotel, categoría y fechas.
         
@@ -30,11 +30,16 @@ class TarifasHelper:
             check_in = datetime.strptime(check_in_str, '%Y-%m-%d').date()
             check_out = datetime.strptime(check_out_str, '%Y-%m-%d').date()
             now_utc = datetime.now(timezone.utc)
+
+            headers = dict(auth_headers) if auth_headers else None
+            if headers:
+                headers.pop('Host', None)
             
             # Consultamos todas las tarifas vigentes del hotel
             response = requests.get(
                 f"{TARIFAS_URL}/tarifas",
                 params={"vigentes": "true"},
+                headers=headers,
                 timeout=5
             )
             response.raise_for_status()

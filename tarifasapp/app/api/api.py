@@ -5,6 +5,7 @@ from flask import request
 from flask_restful import Resource
 
 from app.db.models import Tarifa, TarifaStatus, Descuento, db
+from app.utils.token_helper import token_required
 
 CATEGORIAS_HABITACION = {
     "SENCILLA",
@@ -16,6 +17,24 @@ CATEGORIAS_HABITACION = {
 }
 
 MONEDAS_PERMITIDAS = {"COP", "USD", "PEN", "MXN", "CLP", "ARS"}
+
+
+def _current_hotel_id(current_user):
+    return str(current_user.get("sub", "")).strip()
+
+
+def _get_owned_tarifa_or_404(tarifa_id, hotel_id):
+    tarifa_uuid = UUID(tarifa_id)
+    return Tarifa.query.filter_by(id=tarifa_uuid, hotel_id=hotel_id).first()
+
+
+def _get_owned_descuento_or_404(descuento_id, hotel_id):
+    descuento_uuid = UUID(descuento_id)
+    return (
+        Descuento.query.join(Tarifa, Descuento.tarifa_id == Tarifa.id)
+        .filter(Descuento.id == descuento_uuid, Tarifa.hotel_id == hotel_id)
+        .first()
+    )
 
 
 def _parse_iso_datetime(value, field_name):
@@ -99,8 +118,10 @@ def _parse_percent(value, field_name):
     if value is None or value == "":
         raise ValueError(f"El campo '{field_name}' es requerido")
     porcentaje = float(value)
-    if porcentaje <= 0 or porcentaje > 100:
-        raise ValueError(f"El campo '{field_name}' debe estar entre 0 y 100")
+    if porcentaje <= 0:
+        raise ValueError(f"El campo '{field_name}' debe ser mayor a 0")
+    if porcentaje > 100:
+        raise ValueError(f"El campo '{field_name}' no puede ser mayor a 100")
     return porcentaje
 
 
@@ -120,6 +141,20 @@ def _is_descuento_vigente(descuento, now_utc=None):
     inicio = descuento.vigencia_inicio if descuento.vigencia_inicio.tzinfo else descuento.vigencia_inicio.replace(tzinfo=timezone.utc)
     fin = descuento.vigencia_fin if descuento.vigencia_fin.tzinfo else descuento.vigencia_fin.replace(tzinfo=timezone.utc)
     return inicio <= now_utc <= fin
+
+
+def _to_naive_utc(value):
+    if value.tzinfo is not None:
+        return value.astimezone(timezone.utc).replace(tzinfo=None)
+    return value
+
+
+def _validate_descuento_within_tarifa(vigencia_inicio, vigencia_fin, tarifa):
+    tarifa_inicio = _to_naive_utc(tarifa.vigencia_inicio)
+    tarifa_fin = _to_naive_utc(tarifa.vigencia_fin)
+
+    if vigencia_inicio < tarifa_inicio or vigencia_fin > tarifa_fin:
+        raise ValueError("La vigencia del descuento debe estar dentro de la vigencia de la tarifa")
 
 
 def _serialize_descuento(descuento):
@@ -144,18 +179,22 @@ class Health(Resource):
 
 
 class TarifaListResource(Resource):
-    def get(self):
+    @token_required
+    def get(self, current_user):
         try:
+            hotel_id = _current_hotel_id(current_user)
             vigentes = _parse_bool_param(request.args.get("vigentes"), "vigentes")
-            tarifas = Tarifa.query.all()
+            tarifas = Tarifa.query.filter_by(hotel_id=hotel_id).all()
             if vigentes is not None:
                 tarifas = [tarifa for tarifa in tarifas if _is_tarifa_vigente(tarifa) is vigentes]
             return [_serialize_tarifa(tarifa) for tarifa in tarifas], 200
         except ValueError as exc:
             return {"error": str(exc)}, 400
 
-    def post(self):
+    @token_required
+    def post(self, current_user):
         try:
+            hotel_id = _current_hotel_id(current_user)
             data = request.get_json(silent=True) or {}
 
             if not data.get("nombre") and not data.get("identificador"):
@@ -164,7 +203,6 @@ class TarifaListResource(Resource):
             valor_base_raw = data.get("valor_base")
 
             required_fields = [
-                "hotel_id",
                 "moneda",
                 "categoria_habitacion",
                 "vigencia_inicio",
@@ -180,9 +218,9 @@ class TarifaListResource(Resource):
             if valor_base <= 0:
                 return {"error": "El campo 'valor_base' debe ser mayor a 0"}, 400
 
-            hotel_id = str(data.get("hotel_id") or data.get("hotelId") or "").strip()
-            if not hotel_id:
-                return {"error": "El campo 'hotel_id' es requerido"}, 400
+            body_hotel_id = str(data.get("hotel_id") or data.get("hotelId") or "").strip()
+            if body_hotel_id and body_hotel_id != hotel_id:
+                return {"error": "El campo 'hotel_id' debe coincidir con el claim 'sub' del token"}, 400
 
             moneda = str(data.get("moneda")).upper().strip()
             if moneda not in MONEDAS_PERMITIDAS:
@@ -231,10 +269,11 @@ class TarifaListResource(Resource):
 
 
 class TarifaResource(Resource):
-    def get(self, tarifa_id):
+    @token_required
+    def get(self, current_user, tarifa_id):
         try:
-            tarifa_uuid = UUID(tarifa_id)
-            tarifa = Tarifa.query.filter_by(id=tarifa_uuid).first()
+            hotel_id = _current_hotel_id(current_user)
+            tarifa = _get_owned_tarifa_or_404(tarifa_id, hotel_id)
             if not tarifa:
                 return {"error": "Tarifa no encontrada"}, 404
             return _serialize_tarifa(tarifa), 200
@@ -243,10 +282,11 @@ class TarifaResource(Resource):
         except Exception as exc:
             return {"error": str(exc)}, 500
 
-    def put(self, tarifa_id):
+    @token_required
+    def put(self, current_user, tarifa_id):
         try:
-            tarifa_uuid = UUID(tarifa_id)
-            tarifa = Tarifa.query.filter_by(id=tarifa_uuid).first()
+            hotel_id = _current_hotel_id(current_user)
+            tarifa = _get_owned_tarifa_or_404(tarifa_id, hotel_id)
             if not tarifa:
                 return {"error": "Tarifa no encontrada"}, 404
 
@@ -267,10 +307,9 @@ class TarifaResource(Resource):
             if "descripcion" in data:
                 tarifa.descripcion = data["descripcion"]
             if "hotel_id" in data or "hotelId" in data:
-                hotel_id = str(data.get("hotel_id", data.get("hotelId")) or "").strip()
-                if not hotel_id:
-                    return {"error": "El campo 'hotel_id' es requerido"}, 400
-                tarifa.hotel_id = hotel_id
+                body_hotel_id = str(data.get("hotel_id", data.get("hotelId")) or "").strip()
+                if body_hotel_id and body_hotel_id != hotel_id:
+                    return {"error": "El campo 'hotel_id' no puede cambiarse"}, 400
             if "valor_base" in data:
                 valor_base_raw = data.get("valor_base")
                 if valor_base_raw in (None, ""):
@@ -316,14 +355,37 @@ class TarifaResource(Resource):
             db.session.rollback()
             return {"error": str(exc)}, 500
 
+    @token_required
+    def delete(self, current_user, tarifa_id):
+        try:
+            hotel_id = _current_hotel_id(current_user)
+            tarifa = _get_owned_tarifa_or_404(tarifa_id, hotel_id)
+            if not tarifa:
+                return {"error": "Tarifa no encontrada"}, 404
+
+            db.session.delete(tarifa)
+            db.session.commit()
+            return {"message": "Tarifa eliminada"}, 200
+        except ValueError:
+            return {"error": "El id de la tarifa no tiene un formato UUID valido"}, 400
+        except Exception as exc:
+            db.session.rollback()
+            return {"error": str(exc)}, 500
+
 
 class DescuentoListResource(Resource):
-    def get(self):
+    @token_required
+    def get(self, current_user):
         try:
+            hotel_id = _current_hotel_id(current_user)
             activos = request.args.get("activos")
             tarifa_id = request.args.get("tarifa_id") or request.args.get("tarifaId")
 
-            descuentos = Descuento.query.all()
+            descuentos = [
+                descuento
+                for descuento in Descuento.query.all()
+                if descuento.tarifa and str(descuento.tarifa.hotel_id) == hotel_id
+            ]
 
             if activos is not None:
                 activos_normalizado = str(activos).strip().lower()
@@ -341,15 +403,17 @@ class DescuentoListResource(Resource):
         except Exception as exc:
             return {"error": str(exc)}, 500
 
-    def post(self):
+    @token_required
+    def post(self, current_user):
         try:
+            hotel_id = _current_hotel_id(current_user)
             data = request.get_json(silent=True) or {}
 
             tarifa_id = str(data.get("tarifa_id") or data.get("tarifaId") or "").strip()
             if not tarifa_id:
                 return {"error": "El campo 'tarifa_id' es requerido"}, 400
 
-            tarifa = Tarifa.query.filter_by(id=UUID(tarifa_id)).first()
+            tarifa = Tarifa.query.filter_by(id=UUID(tarifa_id), hotel_id=hotel_id).first()
             if not tarifa:
                 return {"error": "La tarifa asociada no existe"}, 404
 
@@ -358,6 +422,8 @@ class DescuentoListResource(Resource):
             vigencia_fin = _parse_iso_datetime(data.get("vigencia_fin"), "vigencia_fin")
             if vigencia_inicio > vigencia_fin:
                 return {"error": "'vigencia_inicio' no puede ser mayor a 'vigencia_fin'"}, 400
+
+            _validate_descuento_within_tarifa(vigencia_inicio, vigencia_fin, tarifa)
 
             activo = _parse_bool_value(data.get("activo", True), "activo")
 
@@ -381,10 +447,11 @@ class DescuentoListResource(Resource):
 
 
 class DescuentoResource(Resource):
-    def get(self, descuento_id):
+    @token_required
+    def get(self, current_user, descuento_id):
         try:
-            descuento_uuid = UUID(descuento_id)
-            descuento = Descuento.query.filter_by(id=descuento_uuid).first()
+            hotel_id = _current_hotel_id(current_user)
+            descuento = _get_owned_descuento_or_404(descuento_id, hotel_id)
             if not descuento:
                 return {"error": "Descuento no encontrado"}, 404
             return _serialize_descuento(descuento), 200
@@ -393,14 +460,16 @@ class DescuentoResource(Resource):
         except Exception as exc:
             return {"error": str(exc)}, 500
 
-    def put(self, descuento_id):
+    @token_required
+    def put(self, current_user, descuento_id):
         try:
-            descuento_uuid = UUID(descuento_id)
-            descuento = Descuento.query.filter_by(id=descuento_uuid).first()
+            hotel_id = _current_hotel_id(current_user)
+            descuento = _get_owned_descuento_or_404(descuento_id, hotel_id)
             if not descuento:
                 return {"error": "Descuento no encontrado"}, 404
 
             data = request.get_json(silent=True) or {}
+            tarifa_obj = descuento.tarifa
 
             if "nombre" in data:
                 descuento.nombre = data["nombre"]
@@ -416,13 +485,16 @@ class DescuentoResource(Resource):
                 tarifa_id = str(data.get("tarifa_id", data.get("tarifaId")) or "").strip()
                 if not tarifa_id:
                     return {"error": "El campo 'tarifa_id' es requerido"}, 400
-                tarifa = Tarifa.query.filter_by(id=UUID(tarifa_id)).first()
+                tarifa = Tarifa.query.filter_by(id=UUID(tarifa_id), hotel_id=hotel_id).first()
                 if not tarifa:
                     return {"error": "La tarifa asociada no existe"}, 404
                 descuento.tarifa_id = tarifa.id
+                tarifa_obj = tarifa
 
             if descuento.vigencia_inicio > descuento.vigencia_fin:
                 return {"error": "'vigencia_inicio' no puede ser mayor a 'vigencia_fin'"}, 400
+
+            _validate_descuento_within_tarifa(descuento.vigencia_inicio, descuento.vigencia_fin, tarifa_obj)
 
             db.session.commit()
             return _serialize_descuento(descuento), 200
@@ -432,10 +504,11 @@ class DescuentoResource(Resource):
             db.session.rollback()
             return {"error": str(exc)}, 500
 
-    def delete(self, descuento_id):
+    @token_required
+    def delete(self, current_user, descuento_id):
         try:
-            descuento_uuid = UUID(descuento_id)
-            descuento = Descuento.query.filter_by(id=descuento_uuid).first()
+            hotel_id = _current_hotel_id(current_user)
+            descuento = _get_owned_descuento_or_404(descuento_id, hotel_id)
             if not descuento:
                 return {"error": "Descuento no encontrado"}, 404
 

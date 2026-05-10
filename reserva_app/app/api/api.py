@@ -97,7 +97,8 @@ class CrearReserva(Resource):
                         hotel_id,
                         categoria,
                         check_in.isoformat(),
-                        check_out.isoformat()
+                        check_out.isoformat(),
+                        auth_headers=request.headers
                     )
         except Exception as e:
             # Log pero no fallar - continuar sin tarifa
