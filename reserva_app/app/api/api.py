@@ -5,14 +5,67 @@ from app.utils.seedHelper import SeedHelper
 from app.utils.helper import ReservaHelper
 from flask_restful import Resource
 from datetime import datetime
-from flask import request
+from flask import request, current_app
 from app.utils.tarifas_helper import TarifasHelper
+from app.db.models import ReservaORM
+import requests
 import os
 
 INVENTARIOS_URL = os.getenv('INVENTARIOS_URL', 'http://127.0.0.1:3000')
 
 #Instanciamos crud
 reservas_crud = ReservaCRUD()
+
+
+def _extract_bearer_token():
+    authorization = request.headers.get('Authorization', '')
+    if authorization.startswith('Bearer '):
+        return authorization.split(' ', 1)[1].strip()
+    return None
+
+
+def _get_current_user_claims():
+    token = _extract_bearer_token()
+    if not token:
+        return None, ({'msg': 'Se requiere token de autorizacion'}, 401)
+
+    secret_key = current_app.config.get('SECRET_KEY') or current_app.config.get('JWT_SECRET_KEY')
+
+    try:
+        import jwt
+        claims = jwt.decode(token, secret_key, algorithms=['HS256'])
+    except Exception:
+        return None, ({'msg': 'Token invalido'}, 401)
+
+    if not claims.get('sub'):
+        return None, ({'msg': "El token debe incluir el claim 'sub'"}, 401)
+
+    return claims, None
+
+
+def token_required(f):
+    def decorated(*args, **kwargs):
+        claims, error_response = _get_current_user_claims()
+        if error_response:
+            return error_response
+        return f(*args, claims, **kwargs)
+
+    decorated.__name__ = f.__name__
+    return decorated
+
+
+def _hotel_id_from_claims(current_user):
+    return str(current_user.get('sub', '')).strip()
+
+
+def _obtener_hospedaje_id_por_habitacion(habitacion_id):
+    response = requests.get(
+        f"{INVENTARIOS_URL}/api/v1/inventarios/habitacion-datos/{habitacion_id}",
+        timeout=5,
+    )
+    response.raise_for_status()
+    datos = response.json()
+    return str(datos.get('hospedaje_id') or '').strip()
 
 class ReservaHealth(Resource):
     def get(self):
@@ -350,6 +403,38 @@ class Reservas_por_usuario(Resource):
             return reservas, 200
         except Exception as e:
             return {'msg': 'Error al obtener las reservas del usuario', 'error': str(e)}, 500
+
+
+class Reservas_por_hotel(Resource):
+    @token_required
+    def get(self, current_user):
+        try:
+            hotel_id = _hotel_id_from_claims(current_user)
+            estado = request.args.get('estado')
+
+            reservas = reservas_crud.db.query(ReservaORM).all()
+            reservas_filtradas = []
+            cache_habitaciones = {}
+
+            for reserva in reservas:
+                habitacion_id = str(reserva.habitacion_id)
+                if habitacion_id not in cache_habitaciones:
+                    try:
+                        cache_habitaciones[habitacion_id] = _obtener_hospedaje_id_por_habitacion(habitacion_id)
+                    except Exception as exc:
+                        return {'msg': 'Error al consultar datos de inventario', 'error': str(exc)}, 502
+
+                if cache_habitaciones[habitacion_id] != hotel_id:
+                    continue
+
+                if estado and str(reserva.estado).strip().lower() != str(estado).strip().lower():
+                    continue
+
+                reservas_filtradas.append(reservas_crud._serializar_reserva(reserva))
+
+            return reservas_filtradas, 200
+        except Exception as e:
+            return {'msg': 'Error al obtener las reservas del hotel', 'error': str(e)}, 500
 
 class CleanDB(Resource):
     def post(self):
