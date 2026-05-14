@@ -3,10 +3,12 @@ import jwt
 from app.db.models import db, Tarifa, TarifaStatus, Descuento
 import sys
 import os
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from uuid import UUID
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
+from app.api.api import _parse_iso_datetime
 
 
 @pytest.fixture
@@ -138,6 +140,38 @@ class TestTarifaList:
     def test_filter_tarifas_invalid_vigentes_param(self, client, app_context, auth_headers):
         response = client.get('/tarifas?vigentes=talvez', headers=auth_headers)
         assert response.status_code == 400
+
+    def test_public_lookup_by_hotel_ids(self, client, app_context, auth_headers):
+        now = datetime.utcnow()
+        tarifa_otro_hotel = Tarifa(
+            nombre='Tarifa otro hotel',
+            hotel_id='HTL-OTRO',
+            valor_base=150,
+            moneda='COP',
+            categoria_habitacion='DOBLE',
+            vigencia_inicio=now - timedelta(days=1),
+            vigencia_fin=now + timedelta(days=5),
+            estado=TarifaStatus.Active,
+        )
+        tarifa_hotel_objetivo = Tarifa(
+            nombre='Tarifa hotel objetivo',
+            hotel_id='HTL-99281',
+            valor_base=180,
+            moneda='COP',
+            categoria_habitacion='SUITE',
+            vigencia_inicio=now - timedelta(days=1),
+            vigencia_fin=now + timedelta(days=5),
+            estado=TarifaStatus.Active,
+        )
+        db.session.add_all([tarifa_otro_hotel, tarifa_hotel_objetivo])
+        db.session.commit()
+
+        response = client.get('/tarifas/publicas?hotel_ids=HTL-99281,HTL-XXX&vigentes=true')
+        assert response.status_code == 200
+        data = response.get_json()
+        assert len(data) == 1
+        assert data[0]['hotel_id'] == 'HTL-99281'
+        assert data[0]['nombre'] == 'Tarifa hotel objetivo'
 
 
 class TestTarifaResource:
@@ -349,3 +383,11 @@ class TestDescuentos:
 
         assert update_response.status_code == 400
         assert update_response.get_json()['error'] == 'La vigencia del descuento debe estar dentro de la vigencia de la tarifa'
+
+
+def test_parse_iso_datetime_accepts_datetime_and_date_objects():
+    parsed_datetime = _parse_iso_datetime(datetime(2026, 5, 13, 12, 30, 45), 'vigencia_inicio')
+    parsed_date = _parse_iso_datetime(date(2026, 5, 13), 'vigencia_inicio')
+
+    assert parsed_datetime == datetime(2026, 5, 13, 12, 30, 45)
+    assert parsed_date == datetime(2026, 5, 13, 0, 0, 0)

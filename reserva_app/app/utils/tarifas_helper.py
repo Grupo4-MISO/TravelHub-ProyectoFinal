@@ -3,7 +3,7 @@ import os
 from datetime import datetime, timezone
 from app.errors.exceptions import ExternalServiceError, BadRequestError
 
-TARIFAS_URL = os.getenv('TARIFAS_URL', 'http://127.0.0.1:3005')
+TARIFAS_URL = os.getenv('TARIFAS_URL', 'http://tarifas_app:3008')
 
 
 class TarifasHelper:
@@ -35,10 +35,10 @@ class TarifasHelper:
             if headers:
                 headers.pop('Host', None)
             
-            # Consultamos todas las tarifas vigentes del hotel
+            # Consultamos todas las tarifas vigentes del hotel (endpoint público)
             response = requests.get(
-                f"{TARIFAS_URL}/tarifas",
-                params={"vigentes": "true"},
+                f"{TARIFAS_URL}/tarifas/publicas",
+                params={"vigentes": "true", "hotel_ids": hotel_id},
                 headers=headers,
                 timeout=5
             )
@@ -46,11 +46,17 @@ class TarifasHelper:
             
             tarifas = response.json()
             
-            # Filtramos por hotel_id y categoria_habitacion
+            currency_code_normalizado = (currency_code or '').upper().strip()
+
+            # Filtramos por hotel_id, categoria_habitacion y moneda
             tarifa_encontrada = None
             for tarifa in tarifas:
                 if (tarifa.get('hotel_id') == hotel_id and 
                     tarifa.get('categoria_habitacion') == categoria_habitacion.upper()):
+
+                    tarifa_moneda = (tarifa.get('moneda') or '').upper().strip()
+                    if currency_code_normalizado and tarifa_moneda and tarifa_moneda != currency_code_normalizado:
+                        continue
                     
                     # Validamos que esté vigente para las fechas de la reserva
                     vigencia_inicio = datetime.fromisoformat(tarifa.get('vigencia_inicio')).replace(tzinfo=None)

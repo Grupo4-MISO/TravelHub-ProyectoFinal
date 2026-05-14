@@ -1,5 +1,6 @@
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from uuid import UUID
+import re
 
 from flask import request
 from flask_restful import Resource
@@ -40,11 +41,23 @@ def _get_owned_descuento_or_404(descuento_id, hotel_id):
 def _parse_iso_datetime(value, field_name):
     if value is None or value == "":
         raise ValueError(f"El campo '{field_name}' es requerido")
-    if not isinstance(value, str):
-        raise ValueError(f"El campo '{field_name}' debe estar en formato ISO-8601")
     try:
-        normalized = value.replace("Z", "+00:00")
-        parsed = datetime.fromisoformat(normalized)
+        if isinstance(value, datetime):
+            parsed = value
+        elif isinstance(value, date):
+            parsed = datetime.combine(value, datetime.min.time())
+        elif isinstance(value, str):
+            normalized = value.strip()
+            # Normalizar "Z" a "+00:00"
+            normalized = normalized.replace("Z", "+00:00")
+            # Quitar espacio antes del offset (ej: "2026-05-13 00:00:00.000000 +00:00" -> "2026-05-13 00:00:00.000000+00:00")
+            # Maneja formatos como "+HH:MM" o "-HH:MM"
+            normalized = re.sub(r' ([+-]\d{2}:\d{2})', r'\1', normalized)
+            parsed = datetime.fromisoformat(normalized)
+        elif hasattr(value, "isoformat"):
+            return _parse_iso_datetime(value.isoformat(), field_name)
+        else:
+            raise ValueError(f"El campo '{field_name}' debe estar en formato ISO-8601")
         if parsed.tzinfo is not None:
             return parsed.astimezone(timezone.utc).replace(tzinfo=None)
         return parsed
@@ -144,16 +157,26 @@ def _is_descuento_vigente(descuento, now_utc=None):
 
 
 def _to_naive_utc(value):
+    """Convierte a datetime naive en UTC, manejando both aware y naive datetimes."""
     if value.tzinfo is not None:
         return value.astimezone(timezone.utc).replace(tzinfo=None)
     return value
 
 
-def _validate_descuento_within_tarifa(vigencia_inicio, vigencia_fin, tarifa):
-    tarifa_inicio = _to_naive_utc(tarifa.vigencia_inicio)
-    tarifa_fin = _to_naive_utc(tarifa.vigencia_fin)
+def _to_comparable_datetime(value):
+    """Convierte cualquier datetime (aware o naive) a naive UTC para comparaciones."""
+    naive = _to_naive_utc(value) if hasattr(value, 'tzinfo') else value
+    # Si es naive, asumir que ya está en UTC
+    return naive.replace(tzinfo=None) if naive.tzinfo else naive
 
-    if vigencia_inicio < tarifa_inicio or vigencia_fin > tarifa_fin:
+
+def _validate_descuento_within_tarifa(vigencia_inicio, vigencia_fin, tarifa):
+    tarifa_inicio = _to_comparable_datetime(tarifa.vigencia_inicio)
+    tarifa_fin = _to_comparable_datetime(tarifa.vigencia_fin)
+    desc_inicio = _to_comparable_datetime(vigencia_inicio)
+    desc_fin = _to_comparable_datetime(vigencia_fin)
+
+    if desc_inicio < tarifa_inicio or desc_fin > tarifa_fin:
         raise ValueError("La vigencia del descuento debe estar dentro de la vigencia de la tarifa")
 
 
@@ -268,6 +291,27 @@ class TarifaListResource(Resource):
             return {"error": str(exc)}, 500
 
 
+class TarifaPublicLookupResource(Resource):
+    def get(self):
+        try:
+            hotel_ids_raw = request.args.get("hotel_ids") or request.args.get("hotelIds") or ""
+            hotel_ids = [hotel_id.strip() for hotel_id in hotel_ids_raw.split(",") if hotel_id.strip()]
+            if not hotel_ids:
+                return {"error": "El parámetro 'hotel_ids' es requerido"}, 400
+
+            vigentes = _parse_bool_param(request.args.get("vigentes"), "vigentes")
+
+            tarifas = Tarifa.query.filter(Tarifa.hotel_id.in_(hotel_ids)).all()
+            if vigentes is not None:
+                tarifas = [tarifa for tarifa in tarifas if _is_tarifa_vigente(tarifa) is vigentes]
+
+            return [_serialize_tarifa(tarifa) for tarifa in tarifas], 200
+        except ValueError as exc:
+            return {"error": str(exc)}, 400
+        except Exception as exc:
+            return {"error": str(exc)}, 500
+
+
 class TarifaResource(Resource):
     @token_required
     def get(self, current_user, tarifa_id):
@@ -341,6 +385,41 @@ class TarifaResource(Resource):
                 tarifa.vigencia_inicio = _parse_iso_datetime(data["vigencia_inicio"], "vigencia_inicio")
             if "vigencia_fin" in data:
                 tarifa.vigencia_fin = _parse_iso_datetime(data["vigencia_fin"], "vigencia_fin")
+
+            # Si el cliente envía 'descuentos' lo tomamos como la lista definitiva:
+            # - lista vacía -> eliminar todos los descuentos asociados
+            # - lista con elementos -> reemplazar por los enviados
+            if 'descuentos' in data:
+                descuentos_payload = data.get('descuentos') or []
+                # Eliminar descuentos existentes
+                try:
+                    db.session.query(Descuento).filter(Descuento.tarifa_id == tarifa.id).delete(synchronize_session=False)
+                    db.session.flush()
+                except Exception:
+                    db.session.rollback()
+                    raise
+
+                # Añadir nuevos descuentos (si los hay)
+                for idx, d in enumerate(descuentos_payload):
+                    nombre = d.get('nombre')
+                    porcentaje = _parse_percent(d.get('porcentaje'), f'descuentos[{idx}].porcentaje')
+                    activo_val = _parse_bool_value(d.get('activo', True), f'descuentos[{idx}].activo')
+                    activo_flag = True if activo_val is None else activo_val
+                    vigencia_inicio = _parse_iso_datetime(d.get('vigencia_inicio'), f'descuentos[{idx}].vigencia_inicio')
+                    vigencia_fin = _parse_iso_datetime(d.get('vigencia_fin'), f'descuentos[{idx}].vigencia_fin')
+                    if vigencia_inicio > vigencia_fin:
+                        raise ValueError(f"descuentos[{idx}].vigencia_inicio no puede ser mayor a vigencia_fin")
+                    _validate_descuento_within_tarifa(vigencia_inicio, vigencia_fin, tarifa)
+
+                    nuevo_desc = Descuento(
+                        nombre=nombre,
+                        tarifa_id=tarifa.id,
+                        porcentaje=porcentaje,
+                        activo=activo_flag,
+                        vigencia_inicio=vigencia_inicio,
+                        vigencia_fin=vigencia_fin,
+                    )
+                    db.session.add(nuevo_desc)
 
             if tarifa.vigencia_inicio > tarifa.vigencia_fin:
                 return {"error": "'vigencia_inicio' no puede ser mayor a 'vigencia_fin'"}, 400

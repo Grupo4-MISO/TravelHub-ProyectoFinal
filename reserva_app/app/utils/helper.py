@@ -263,7 +263,7 @@ class ReservaHelper:
             raise ExternalServiceError(f"Error al consultar datos de habitación: {str(e)}")
 
     @staticmethod
-    def obtener_tarifa_para_reserva(hotel_id: str, categoria: str, check_in: str, check_out: str, auth_headers=None):
+    def obtener_tarifa_para_reserva(hotel_id: str, categoria: str, check_in: str, check_out: str, currency_code: str = None, auth_headers=None):
         """
         Obtiene la tarifa configurada para esta reserva.
         Retorna: dict con tarifa_id, precio_tarifa_aplicada, descuentos_aplicados
@@ -275,6 +275,7 @@ class ReservaHelper:
                 categoria,
                 check_in,
                 check_out,
+                currency_code=currency_code,
                 auth_headers=auth_headers,
             )
         except Exception as e:

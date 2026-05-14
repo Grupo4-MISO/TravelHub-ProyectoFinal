@@ -143,6 +143,7 @@ class CrearReserva(Resource):
                 habitacion_info = habitacion_response.json()
                 hotel_id = habitacion_info.get('hospedaje_id')
                 categoria = habitacion_info.get('categoria', '')
+                currency_code = habitacion_info.get('currency_code') or data.get('currency_code') or data.get('currency')
                 
                 if hotel_id and categoria:
                     # Consultar tarifa configurada
@@ -151,6 +152,7 @@ class CrearReserva(Resource):
                         categoria,
                         check_in.isoformat(),
                         check_out.isoformat(),
+                        currency_code=currency_code,
                         auth_headers=request.headers
                     )
         except Exception as e:

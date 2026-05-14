@@ -26,11 +26,11 @@ class Tarifa(db.Model):
     moneda = db.Column(db.String(3), nullable=False)
     categoria_habitacion = db.Column(db.String(50), nullable=False)
     estado = db.Column(db.Enum(TarifaStatus), nullable=False, default=TarifaStatus.Active)
-    vigencia_inicio = db.Column(db.DateTime(timezone=True), nullable=False)
-    vigencia_fin = db.Column(db.DateTime(timezone=True), nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), nullable=False)
+    vigencia_inicio = db.Column(db.DateTime(timezone=False), nullable=False)
+    vigencia_fin = db.Column(db.DateTime(timezone=False), nullable=False)
+    created_at = db.Column(db.DateTime(timezone=False), default=lambda: datetime.now(timezone.utc), nullable=False)
     updated_at = db.Column(
-        db.DateTime(timezone=True),
+        db.DateTime(timezone=False),
         default=lambda: datetime.now(timezone.utc),
         onupdate=lambda: datetime.now(timezone.utc),
         nullable=False
@@ -49,11 +49,11 @@ class Descuento(db.Model):
     tarifa_id = db.Column(UUID(as_uuid=True), db.ForeignKey('tarifas.id'), nullable=False, index=True)
     porcentaje = db.Column(db.Float, nullable=False)
     activo = db.Column(db.Boolean, nullable=False, default=True, index=True)
-    vigencia_inicio = db.Column(db.DateTime(timezone=True), nullable=False)
-    vigencia_fin = db.Column(db.DateTime(timezone=True), nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), nullable=False)
+    vigencia_inicio = db.Column(db.DateTime(timezone=False), nullable=False)
+    vigencia_fin = db.Column(db.DateTime(timezone=False), nullable=False)
+    created_at = db.Column(db.DateTime(timezone=False), default=lambda: datetime.now(timezone.utc), nullable=False)
     updated_at = db.Column(
-        db.DateTime(timezone=True),
+        db.DateTime(timezone=False),
         default=lambda: datetime.now(timezone.utc),
         onupdate=lambda: datetime.now(timezone.utc),
         nullable=False
