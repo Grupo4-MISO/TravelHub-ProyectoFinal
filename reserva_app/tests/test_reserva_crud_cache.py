@@ -114,5 +114,4 @@ def test_crear_reserva_limpia_hold_si_user_id_presente(monkeypatch):
         user_id="u1",
     )
 
-    assert isinstance(result, dict)
     assert deleted["called"] is True

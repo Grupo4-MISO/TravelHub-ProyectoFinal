@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: reservas-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/reservas-app:v1.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/reservas-app:v31.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 3001
@@ -25,6 +25,12 @@ spec:
           value: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260426211023287000000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
         - name: REDIS_HOST
           value: master.name.igqc6u.use1.cache.amazonaws.com
+        - name: ONE_SIGNAL_APP_ID
+          value: 4a46cf3a-a9ec-456b-b382-de8793e5f38b
+        - name: ONE_SIGNAL_API_KEY
+          value: os_v2_app_jjdm6ovj5rcwxm4c32dzhzptrn7xdl4sv7vuiwfsndah3cmtfn4lvdyfh4fmlpz4jcdpwti6laol7g7dg7tcqmv7ohlxwwtzeuxyr2q
+        - name: INVENTARIOS_URL
+          value: http://inventarios-app-service:80
         readinessProbe:
           httpGet:
             path: api/v1/reservas/health
