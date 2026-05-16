@@ -66,7 +66,12 @@ class TestHealth:
 class TestTarifaList:
     def test_get_empty_tarifas(self, client, app_context, auth_headers):
         """Prueba obtener lista vacía de tarifas"""
-        response = client.get(ENDPOINT_URL + '/tarifas', headers=auth_headers)
+        response = client.get(ENDPOINT_URL, headers=auth_headers)
+
+        print(response.status_code)
+        print(response.get_json())
+        print(response.data)
+
         assert response.status_code == 200
         assert response.get_json() == []
 
@@ -82,7 +87,7 @@ class TestTarifaList:
             'vigencia_inicio': (now - timedelta(days=1)).isoformat(),
             'vigencia_fin': (now + timedelta(days=10)).isoformat(),
         }
-        response = client.get(ENDPOINT_URL + '/tarifas', json=data, headers=auth_headers)
+        response = client.post(ENDPOINT_URL, json=data, headers=auth_headers)
         assert response.status_code == 201
         json_data = response.get_json()
         assert json_data['nombre'] == 'Tarifa Test'
@@ -97,7 +102,7 @@ class TestTarifaList:
         data = {
             'descripcion': 'Sin campos requeridos'
         }
-        response = client.get(ENDPOINT_URL + '/tarifas', json=data, headers=auth_headers)
+        response = client.post(ENDPOINT_URL, json=data, headers=auth_headers)
         assert response.status_code == 400
 
     def test_filter_tarifas_vigentes(self, client, app_context, auth_headers):
@@ -126,20 +131,20 @@ class TestTarifaList:
         db.session.add(no_vigente)
         db.session.commit()
 
-        response_vigentes = client.get(ENDPOINT_URL + '/tarifas?vigentes=true', headers=auth_headers)
+        response_vigentes = client.get(ENDPOINT_URL + '?vigentes=true', headers=auth_headers)
         assert response_vigentes.status_code == 200
         data_vigentes = response_vigentes.get_json()
         assert len(data_vigentes) == 1
         assert data_vigentes[0]['nombre'] == 'Tarifa Vigente'
 
-        response_no_vigentes = client.get(ENDPOINT_URL + '/tarifas?vigentes=false', headers=auth_headers)
+        response_no_vigentes = client.get(ENDPOINT_URL + '?vigentes=false', headers=auth_headers)
         assert response_no_vigentes.status_code == 200
         data_no_vigentes = response_no_vigentes.get_json()
         assert len(data_no_vigentes) == 1
         assert data_no_vigentes[0]['nombre'] == 'Tarifa Vencida'
 
     def test_filter_tarifas_invalid_vigentes_param(self, client, app_context, auth_headers):
-        response = client.get(ENDPOINT_URL + '/tarifas?vigentes=talvez', headers=auth_headers)
+        response = client.get(ENDPOINT_URL + '?vigentes=talvez', headers=auth_headers)
         assert response.status_code == 400
 
     def test_public_lookup_by_hotel_ids(self, client, app_context, auth_headers):
@@ -167,7 +172,7 @@ class TestTarifaList:
         db.session.add_all([tarifa_otro_hotel, tarifa_hotel_objetivo])
         db.session.commit()
 
-        response = client.get(ENDPOINT_URL + '/tarifas/publicas?hotel_ids=HTL-99281,HTL-XXX&vigentes=true')
+        response = client.get(ENDPOINT_URL + '?hotel_ids=HTL-99281,HTL-XXX&vigentes=true')
         assert response.status_code == 200
         data = response.get_json()
         assert len(data) == 1
@@ -178,12 +183,12 @@ class TestTarifaList:
 class TestTarifaResource:
     def test_get_nonexistent_tarifa(self, client, app_context, auth_headers):
         """Prueba obtener tarifa inexistente"""
-        response = client.get(ENDPOINT_URL + '/tarifas/00000000-0000-0000-0000-000000000000', headers=auth_headers)
+        response = client.get(ENDPOINT_URL + '/00000000-0000-0000-0000-000000000000', headers=auth_headers)
         assert response.status_code == 404
 
     def test_get_tarifa_includes_active_discounts(self, client, app_context, auth_headers):
         now = datetime.utcnow()
-        tarifa_response = client.get(ENDPOINT_URL + '/tarifas', json={
+        tarifa_response = client.post(ENDPOINT_URL, json={
             'nombre': 'Tarifa con descuentos',
             'valor_base': 250.0,
             'moneda': 'USD',
@@ -214,7 +219,7 @@ class TestTarifaResource:
         db.session.add_all([descuento_activo, descuento_inactivo])
         db.session.commit()
 
-        response = client.get(f'{ENDPOINT_URL}/tarifas/{tarifa_id}', headers=auth_headers)
+        response = client.get(f'{ENDPOINT_URL}/{tarifa_id}', headers=auth_headers)
         assert response.status_code == 200
         json_data = response.get_json()
         assert 'descuentos_activos' in json_data
@@ -233,14 +238,14 @@ class TestSeedDB:
         assert response.status_code == 200
         
         # Verificar que se crearon los datos
-        response = client.get(ENDPOINT_URL + '/tarifas', headers=auth_headers)
+        response = client.get(ENDPOINT_URL, headers=auth_headers)
         assert len(response.get_json()) > 0
 
 
 class TestDescuentos:
     def _create_tarifa(self, client, auth_headers):
         now = datetime.utcnow()
-        response = client.get(ENDPOINT_URL + '/tarifas', json={
+        response = client.post(ENDPOINT_URL, json={
             'nombre': 'Tarifa base',
             'valor_base': 200.0,
             'moneda': 'USD',
@@ -255,7 +260,7 @@ class TestDescuentos:
         tarifa_id = self._create_tarifa(client, auth_headers)
         now = datetime.utcnow()
 
-        create_response = client.get(ENDPOINT_URL + '/descuentos', json={
+        create_response = client.post(ENDPOINT_URL + '/descuentos', json={
             'nombre': 'Promo verano',
             'tarifa_id': tarifa_id,
             'porcentaje': 15,
