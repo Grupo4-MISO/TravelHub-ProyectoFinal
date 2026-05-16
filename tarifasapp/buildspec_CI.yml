@@ -28,23 +28,29 @@ phases:
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - echo "IMAGE_TAG=$IMAGE_TAG"
 
-      - echo "Construyendo imagen Docker..."
-      - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
-      - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
-
   build:
     commands:
       - echo "Build iniciado en $(date)"
-      - echo "Push de imagen a ECR..."
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - docker push $REPOSITORY_URI:latest
-      - echo "Build completado en $(date)"
+      - echo "Construyendo imagen Docker..."
+      - docker build -t tarifas-app:$IMAGE_TAG .
+
+      - echo "Taggeando imagen..."
+      - docker tag tarifas-app:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
 
   post_build:
     commands:
-      - echo "Post-build iniciado en $(date)"
-      - echo "Escribiendo archivo de definición de imagen..."
-      - printf '[{"name":"tarifas-app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - echo "Build finalizado en $(date)"
+      - echo "Pushing imagen a ECR..."
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+
+      - echo "Generando artifact para deploy..."
+      - printf '{"image_uri":"%s"}' "$REPOSITORY_URI:$IMAGE_TAG" > imageDetail.json
+      - cat imageDetail.json
 
 artifacts:
-  files: imagedefinitions.json
+  base-directory: .
+  files:
+    - tarifasapp/imageDetail.json
+    - tarifasapp/chart/**/*
+    - tarifasapp/buildspec_CD.yml
+    - k8s/gateway-ingress.yaml
