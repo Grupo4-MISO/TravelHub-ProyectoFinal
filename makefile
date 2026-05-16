@@ -9,10 +9,10 @@ DB_USER=proyectogrupo4
 DB_PASSWORD=proyectogrupo4
 
 # Microservicios
-SERVICES=busquedas-app inventarios-app reservas-app comentarios-app auth-app transacciones-app clientes-app proveedores-app
+SERVICES=busquedas-app inventarios-app reservas-app comentarios-app auth-app transacciones-app clientes-app proveedores-app tarifas-app
 SERVICES_LAMBDA=webhook-pagos-app email-app
 FOLDERS_LAMBDA=webhook_pagos email
-FOLDERS=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp transaccionesapp clientesapp proveedoresapp
+FOLDERS=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp transaccionesapp clientesapp proveedoresapp tarifasapp
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
