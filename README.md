@@ -92,7 +92,7 @@ Actúa como punto de entrada para las búsquedas de hospedajes. Agrega datos del
 
 ### 2. `inventario_app` — Servicio de Inventario
 
-Gestiona el catálogo de hospedajes y habitaciones. Permite filtrar habitaciones por ciudad y capacidad, y provee un endpoint para poblar la base de datos con datos de prueba.
+Gestiona el catálogo de hospedajes y habitaciones. Permite filtrar habitaciones por ciudad y capacidad, expone la categoría de habitación en las respuestas y provee un endpoint para poblar la base de datos con datos de prueba.
 
 **Endpoints:**
 
@@ -127,6 +127,13 @@ Gestiona el registro de reservas y verifica la disponibilidad de habitaciones en
 | `POST` | `/api/v1/reservas/crear` | Crear una reserva |
 | `POST` | `/api/v1/reservas/seed/<cantidad>` | Generar reservas de prueba |
 
+**Cuándo usar cada endpoint de reserva:**
+
+- `POST /api/v1/reservas/crear`: este es el endpoint principal para crear reservas. El servicio consulta automáticamente el inventario, busca una tarifa configurada si existe y guarda la reserva con la tarifa aplicada cuando corresponde.
+- `POST /api/v1/reservas/tarifa-reserva`: usarlo para cotización o cálculo explícito de una tarifa antes de confirmar la reserva, o para clientes antiguos que todavía envían `precio` y `descuento` manualmente.
+
+En otras palabras, el cliente no debería decidir la lógica de tarifas al crear la reserva. Si el objetivo es confirmar una reserva, siempre debe llamar a `crear`; el backend resuelve si aplica tarifa configurada, descuento o fallback.
+
 **Body de disponibilidad (`/disponibilidad`):**
 
 ```json
@@ -153,6 +160,11 @@ Campos del body:
 - `check_in` (string, requerido): Fecha de entrada en formato `YYYY-MM-DD`.
 - `check_out` (string, requerido): Fecha de salida en formato `YYYY-MM-DD`.
 - `user_id` (string, opcional): Identificador del usuario que realiza la reserva.
+
+**Nota sobre tarifas:**
+- Si existe una tarifa vigente para la habitación, la reserva se guarda con `tarifa_id`, `precio_tarifa_aplicada` y `descuentos_aplicados`.
+- Si no existe una tarifa configurada, la reserva se crea sin bloquear el flujo y se conserva el comportamiento tradicional.
+- `TarifaReserva` no reemplaza a `CrearReserva`; solo expone el cálculo de tarifa para cotización y compatibilidad.
 
 **Respuesta exitosa de creación (`201 Created`):**
 

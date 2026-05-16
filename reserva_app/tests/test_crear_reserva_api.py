@@ -6,6 +6,7 @@ from flask_restful import Api
 
 import app.api.api as api_module
 from app.api.api import CrearReserva
+from app.utils.tarifas_helper import TarifasHelper
 
 
 @pytest.fixture
@@ -115,3 +116,40 @@ def test_crear_reserva_envia_user_id_a_servicio(client, monkeypatch):
 
     assert response.status_code == 201
     assert captured["user_id"] == "u1"
+
+
+def test_obtener_tarifa_para_reserva_omite_tarifas_con_moneda_distinta(monkeypatch):
+    class _FakeResponse:
+        status_code = 200
+
+        @staticmethod
+        def raise_for_status():
+            return None
+
+        @staticmethod
+        def json():
+            return [
+                {
+                    "id": "tar-1",
+                    "hotel_id": "hotel-1",
+                    "categoria_habitacion": "SENCILLA",
+                    "vigencia_inicio": "2026-01-01T00:00:00",
+                    "vigencia_fin": "2026-12-31T23:59:59",
+                    "valor_final": 150000,
+                    "descuentos_activos": [],
+                    "valor_base": 180000,
+                    "moneda": "USD",
+                }
+            ]
+
+    monkeypatch.setattr("app.utils.tarifas_helper.requests.get", lambda *_args, **_kwargs: _FakeResponse())
+
+    tarifa = TarifasHelper.obtener_tarifa_para_reserva(
+        "hotel-1",
+        "SENCILLA",
+        "2026-05-10",
+        "2026-05-15",
+        currency_code="COP",
+    )
+
+    assert tarifa is None
