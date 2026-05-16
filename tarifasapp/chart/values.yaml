@@ -1,0 +1,13 @@
+image:
+  repository: 387050840675.dkr.ecr.us-east-1.amazonaws.com/tarifas-app
+  tag: v1.0.0
+
+service:
+  port: 80
+
+replicaCount: 1
+
+database: postgresql://proyectogrupo4:proyectogrupo4@terraform-20260426211023287000000001.cifuwoics1ov.us-east-1.rds.amazonaws.com:5432/proyect_db
+healthPath: api/v1/tarifas/health
+port: 3008
+nodePort: 30008

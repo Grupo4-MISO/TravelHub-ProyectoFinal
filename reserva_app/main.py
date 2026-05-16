@@ -1,5 +1,4 @@
-from app.api.api import CleanDB, ReservaHealth, Reservas_por_usuario, Reservas_por_hotel, VerificarDisponibilidad, SeedReservas, HoldReserva, darReservas, TarifaReserva, Confirmar_Reserva, Revocar_Reserva, CrearReserva
-from app.api.api import CleanDB, ReservaById, Completar_Reserva, ReservaHealth, Reservas_por_usuario, VerificarDisponibilidad, SeedReservas, HoldReserva, darReservas, TarifaReserva, Confirmar_Reserva, Revocar_Reserva, CrearReserva
+from app.api.api import CleanDB, ReservaById, Completar_Reserva, ReservaHealth, Reservas_por_usuario, Reservas_por_hotel, VerificarDisponibilidad, SeedReservas, HoldReserva, darReservas, TarifaReserva, Confirmar_Reserva, Revocar_Reserva, CrearReserva
 from app.errors.handlers import ErrorHandler
 from app.db.models import db
 from flask_restful import Api
