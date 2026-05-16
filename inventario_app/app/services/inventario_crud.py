@@ -148,6 +148,7 @@ class InventarioCRUD:
                 {
                     'id': str(h.id),
                     'code': h.code,
+                    'categoria': getattr(h, 'categoria', '') or '',
                     'descripcion': h.descripcion,
                     'capacidad': h.capacidad,
                     'precio': h.precio,
@@ -181,6 +182,7 @@ class InventarioCRUD:
                     {
                         'id': h['id'],
                         'code': h['code'],
+                        'categoria': h.get('categoria', '') or '',
                         'descripcion': h['descripcion'],
                         'capacidad': h['capacidad'],
                         'precio': h['precio'],
@@ -208,7 +210,7 @@ class InventarioCRUD:
             }
 
         except ValueError as e:
-            raise ValueError(str(e))
+            raise DatababaseError(f"El id del hospedaje no tiene un formato UUID válido")
         except Exception as e:
             self.db.rollback()
             raise DatababaseError(f"Error en la base de datos: {str(e)}")
@@ -219,6 +221,7 @@ class InventarioCRUD:
             query = self.db.query(
                 HabitacionORM.id.label('habitacion_id'),
                 HabitacionORM.code,
+                HabitacionORM.categoria,
                 HabitacionORM.precio,
                 HabitacionORM.capacidad,
                 HabitacionORM.descripcion,
@@ -251,6 +254,7 @@ class InventarioCRUD:
                     'habitacion_id': str(campo.habitacion_id),
                     'hospedaje_id': str(campo.hospedaje_id),
                     'code': campo.code,
+                    'categoria': getattr(campo, 'categoria', '') or '',
                     'nombre': campo.nombre,
                     'pais': campo.pais,
                     'ciudad': campo.ciudad,
@@ -282,6 +286,7 @@ class InventarioCRUD:
             query = self.db.query(
                 HabitacionORM.id.label('habitacion_id'),
                 HabitacionORM.code,
+                HabitacionORM.categoria,
                 HabitacionORM.precio,
                 HabitacionORM.capacidad,
                 HabitacionORM.descripcion,
@@ -317,6 +322,7 @@ class InventarioCRUD:
                         'habitacion_id': str(campo.habitacion_id),
                         'hospedaje_id': hospedaje_id,
                         'code': campo.code,
+                        'categoria': getattr(campo, 'categoria', '') or '',
                         'nombre': campo.nombre,
                         'pais': campo.pais,
                         'ciudad': campo.ciudad,
@@ -381,7 +387,8 @@ class InventarioCRUD:
                     'pais': hospedaje.pais,
                     'ciudad': hospedaje.ciudad,
                     'direccion': hospedaje.direccion,
-                    'imagen': habitacion_orm.imageUrl
+                    'imagen': habitacion_orm.imageUrl,
+                    'categoria': getattr(habitacion_orm, 'categoria', '') if habitacion_orm else '',
                 }
         return respuesta
     

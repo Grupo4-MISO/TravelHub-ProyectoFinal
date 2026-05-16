@@ -7,11 +7,19 @@ from flask_restful import Resource
 from flask import request
 import redis
 import os
+import logging
+import requests
 
 #Traemos las variables de entorno para las URLs de los microservicios
 INVENTARIOS_URL = os.getenv('INVENTARIOS_URL', 'http://127.0.0.1:3000')
-RESERVAS_URL = os.getenv('RESERVAS_URL', 'http://127.0.0.1:3001')
+RESERVAS_URL = os.getenv('RESERVAS_URL', 'https://dpyrs6tuvj15e.cloudfront.net')
 REDIS_HOST = os.getenv('REDIS_HOST')
+TARIFAS_URL = os.getenv('TARIFAS_URL', 'http://tarifas_app:3008')
+
+# Logger
+logger = logging.getLogger(__name__)
+if not logger.handlers:
+  logging.basicConfig(level=logging.INFO)
 
 #Conectamos a Redis
 redis_client = redis.Redis(
@@ -186,6 +194,55 @@ class Search(Resource):
               hospedajes_habitaciones,
               disponibles
             )
+
+            # Intentamos obtener tarifas vigentes una sola vez y armar un mapa (hotel_id, categoria) -> tarifa
+            try:
+              tarifas_endpoint = f"{TARIFAS_URL}/tarifas/publicas"
+              hotel_ids = sorted({str(hab.get('hospedaje_id') or hab.get('hospedajeId') or '').strip() for hab in hospedajes_habitaciones_disponibles if (hab.get('hospedaje_id') or hab.get('hospedajeId'))})
+              logger.info("Consultando tarifas vigentes en %s para hotel_ids=%s", tarifas_endpoint, hotel_ids)
+              resp = requests.get(tarifas_endpoint, params={"vigentes": "true", "hotel_ids": ",".join(hotel_ids)}, timeout=5)
+              resp.raise_for_status()
+              tarifas_list = resp.json() or []
+              logger.info("Se obtuvieron %d tarifas desde %s", len(tarifas_list), tarifas_endpoint)
+              tarifa_map = {}
+              for t in tarifas_list:
+                key = (t.get('hotel_id'), (t.get('categoria_habitacion') or '').upper())
+                tarifa_map[key] = t
+            except Exception as e:
+              logger.exception("No se pudieron obtener tarifas: %s", str(e))
+              tarifa_map = {}
+
+            # Aplicamos tarifas a las habitaciones disponibles cuando exista una tarifa válida
+            applied_count = 0
+            for hab in hospedajes_habitaciones_disponibles:
+              hotel_id = hab.get('hospedaje_id') or hab.get('hospedajeId') or hab.get('hospedaje_id')
+              categoria = (hab.get('categoria') or '').upper().strip()
+              if not categoria:
+                logger.debug("Habitacion %s sin categoria, se mantiene precio original", hab.get('habitacion_id'))
+                continue
+              tarifa = tarifa_map.get((hotel_id, categoria))
+              if tarifa:
+                # Validar moneda: sólo aplicar tarifa si la moneda de búsqueda coincide
+                tarifa_moneda = (tarifa.get('moneda') or '').upper().strip()
+                if currency_code and tarifa_moneda and currency_code.upper().strip() != tarifa_moneda:
+                  logger.debug(
+                    "No se aplica tarifa para hotel_id=%s categoria=%s porque la moneda de búsqueda '%s' no coincide con la tarifa '%s'",
+                    hotel_id,
+                    categoria,
+                    currency_code,
+                    tarifa_moneda,
+                  )
+                  continue
+                # Reemplazamos precio por la tarifa final si existe
+                valor_final = tarifa.get('valor_final') or tarifa.get('valor_noche') or tarifa.get('valor_base')
+                if valor_final is not None:
+                  hab['precio'] = valor_final
+                hab['tarifa_aplicada'] = tarifa.get('id')
+                hab['descuentos_activos'] = tarifa.get('descuentos_activos', [])
+                applied_count += 1
+              else:
+                logger.debug("No se encontró tarifa para hotel_id=%s categoria=%s", hotel_id, categoria)
+            logger.info("Se aplicaron %d tarifas a las habitaciones disponibles", applied_count)
 
             #Guardamos en cache
             CacheHelper.guardarCache(

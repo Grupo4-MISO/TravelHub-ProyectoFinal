@@ -282,6 +282,26 @@ class SeedHelper:
             db.session.commit()
 
     @staticmethod
+    def _ensure_habitaciones_categoria_column():
+        """
+        Asegura que la columna categoria exista en SQLite antes del seed.
+        Esto corrige bases locales creadas con un esquema anterior.
+        """
+        uri = str(db.engine.url)
+
+        if not uri.startswith("sqlite"):
+            return
+
+        columns = db.session.execute(text("PRAGMA table_info(habitaciones)"))
+        column_names = {row[1] for row in columns}
+
+        if "categoria" not in column_names:
+            db.session.execute(
+                text("ALTER TABLE habitaciones ADD COLUMN categoria VARCHAR(20) DEFAULT ''")
+            )
+            db.session.commit()
+
+    @staticmethod
     def _ensure_hospedajes_country_code_column():
         """
         Asegura que la columna countryCode exista en SQLite antes del seed.
@@ -343,6 +363,7 @@ class SeedHelper:
         """
         try:
             SeedHelper._ensure_habitaciones_code_column()
+            SeedHelper._ensure_habitaciones_categoria_column()
             SeedHelper._ensure_hospedajes_country_code_column()
             SeedHelper._ensure_hospedajes_extended_columns()
             CountryORM.__table__.create(bind=db.engine, checkfirst=True)
@@ -417,6 +438,7 @@ class SeedHelper:
                         id =uuid.UUID(hab["id"]),
                         propiedad_id=hospedaje.id,
                         code=hab["code"],
+                        categoria=hab.get("categoria", ""),
                         descripcion=hab["descripcion"],
                         capacidad=hab["capacidad"],
                         precio=hab["precio"],

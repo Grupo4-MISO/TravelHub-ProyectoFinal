@@ -1,0 +1,10 @@
+# Placeholder for Helm chart configuration
+# Para más información sobre Helm charts, ver:
+# https://helm.sh/docs/
+
+apiVersion: v2
+name: tarifas-app
+description: A Helm chart for tarifas-app deployment
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
