@@ -1,4 +1,4 @@
-from app.api.api import Health, TarifaResource, TarifaListResource, SeedDB, DescuentoListResource, DescuentoResource
+from app.api.api import Health, TarifaResource, TarifaListResource, TarifaPublicLookupResource, SeedDB, DescuentoListResource, DescuentoResource
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
@@ -68,6 +68,7 @@ api = Api(app)
 # Rutas de la API
 api.add_resource(Health, '/health')
 api.add_resource(TarifaListResource, '/tarifas')
+api.add_resource(TarifaPublicLookupResource, '/tarifas/publicas')
 api.add_resource(TarifaResource, '/tarifas/<tarifa_id>')
 api.add_resource(DescuentoListResource, '/descuentos')
 api.add_resource(DescuentoResource, '/descuentos/<descuento_id>')

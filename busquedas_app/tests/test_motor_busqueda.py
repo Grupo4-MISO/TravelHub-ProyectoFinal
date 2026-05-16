@@ -286,6 +286,61 @@ def test_busqueda_completa(mocker):
     assert response.json[0]['habitacion_id'] == '1'
     assert len(response.json) == 1
 
+def test_busqueda_aplica_tarifa_publica(mocker):
+    app = Flask(__name__)
+    api = Api(app)
+    api.add_resource(Search, "/search")
+    client = app.test_client()
+
+    mock_inventario = [
+        {
+            'habitacion_id': '1',
+            'hospedaje_id': 'HTL-99281',
+            'nombre': 'Habitación 1',
+            'pais': 'Colombia',
+            'ciudad': 'Bogota',
+            'direccion': 'Calle 123',
+            'rating': 4.5,
+            'capacidad': 2,
+            'precio': 100.0,
+            'categoria': 'DOBLE'
+        }
+    ]
+    mock_reserva = ['1']
+    mock_tarifas_response = mocker.Mock()
+    mock_tarifas_response.raise_for_status.return_value = None
+    mock_tarifas_response.json.return_value = [
+        {
+            'id': 'tarifa-1',
+            'hotel_id': 'HTL-99281',
+            'categoria_habitacion': 'DOBLE',
+            'valor_final': 75.0,
+            'descuentos_activos': []
+        }
+    ]
+
+    mocker.patch('app.utils.busquedas_helper.BusquedasHelper.validacionCampoCiudad', return_value=None)
+    mocker.patch('app.utils.busquedas_helper.BusquedasHelper.validacionCampoCapacidad', return_value=None)
+    mocker.patch('app.utils.busquedas_helper.BusquedasHelper.validacionCampoFechas', return_value=None)
+    mocker.patch('app.utils.cache_helper.CacheHelper.construirCacheKey', return_value='search:bogota:2:2027-12-01:2027-12-31')
+    mocker.patch('app.utils.cache_helper.CacheHelper.obtenerCache', return_value=None)
+    mocker.patch('app.utils.inventario_helper.InventarioHelper.getInventario', return_value=mock_inventario)
+    mocker.patch('app.utils.reserva_helper.ReservaHelper.disponibilidadReserva', return_value=mock_reserva)
+    mocker.patch('app.utils.cache_helper.CacheHelper.guardarCache', return_value=None)
+    mocker.patch('app.api.api.requests.get', return_value=mock_tarifas_response)
+
+    response = client.get('/search', query_string={
+        'ciudad': 'Bogota',
+        'capacidad': '2',
+        'check_in': '2027-12-01',
+        'check_out': '2027-12-31'
+    })
+
+    assert response.status_code == 200
+    assert response.json[0]['precio'] == 75.0
+    assert response.json[0]['tarifa_aplicada'] == 'tarifa-1'
+    assert response.json[0]['descuentos_activos'] == []
+
 def test_health_check():
     app = Flask(__name__)
     api = Api(app)

@@ -246,6 +246,45 @@ class ReservaHelper:
         }
 
         return mail_message
+    @staticmethod
+    def obtener_datos_habitacion(habitacion_id: str):
+        """
+        Obtiene los datos de una habitación desde inventario.
+        Retorna: hotel_id, categoria, pais, precio
+        """
+        try:
+            response = requests.get(
+                f"{INVENTARIOS_URL}/api/v1/inventarios/habitacion-datos/{habitacion_id}",
+                timeout=5
+            )
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            raise ExternalServiceError(f"Error al consultar datos de habitación: {str(e)}")
+
+    @staticmethod
+    def obtener_tarifa_para_reserva(hotel_id: str, categoria: str, check_in: str, check_out: str, currency_code: str = None, auth_headers=None):
+        """
+        Obtiene la tarifa configurada para esta reserva.
+        Retorna: dict con tarifa_id, precio_tarifa_aplicada, descuentos_aplicados
+        o None si no existe tarifa configurada
+        """
+        try:
+            return TarifasHelper.obtener_tarifa_para_reserva(
+                hotel_id,
+                categoria,
+                check_in,
+                check_out,
+                currency_code=currency_code,
+                auth_headers=auth_headers,
+            )
+        except Exception as e:
+            # Log pero no fallar - si no hay tarifa, continuar sin ella
+            print(f"Advertencia al obtener tarifa: {str(e)}")
+            return None
+
+
+        return None
     
     @staticmethod
     def hospedajeId(inventario_url, habitacion_id):
@@ -298,4 +337,3 @@ class ReservaHelper:
             return None
             
 
-        

@@ -563,6 +563,8 @@ class HospedajeInfo(Resource):
                        'pais': hospedaje.get('pais'),
                        'amenidades': hospedaje.get('amenidades'),
                        'imagenes': hospedaje.get('imagenes'),
+                        'categoria_habitacion': getattr(habitacion, 'categoria', '') or '',
+                        'categoria': getattr(habitacion, 'categoria', '') or '',
                        "habitacion": {
                               'id': str(habitacion.id),
                               'code': habitacion.code,
@@ -616,16 +618,22 @@ class HabitacionDatos(Resource):
                         if not hospedaje:
                                 return {'msg': f'No se encontró el hospedaje para la habitación con id {habitacion_id}'}, 404
             
-                        # Retornar solo los datos necesarios para consultar tarifa
+                        # Retornar la misma estructura base que HospedajeInfo y agregar los campos de tarifa
                         datos = {
+                                'nombre': hospedaje.get('nombre'),
+                                'direccion': hospedaje.get('direccion'),
+                                'ciudad': hospedaje.get('ciudad'),
+                                'pais': hospedaje.get('pais'),
+                                'amenidades': hospedaje.get('amenidades'),
+                                'imagenes': hospedaje.get('imagenes'),
+                                'categoria_habitacion': getattr(habitacion, 'categoria', '') or '',
+                                'categoria': getattr(habitacion, 'categoria', '') or '',
                                 'habitacion_id': str(habitacion.id),
                                 'hospedaje_id': str(habitacion.propiedad_id),
-                                'categoria': getattr(habitacion, 'categoria', '') or '',
-                                'pais': hospedaje.get('pais'),
                                 'precio': habitacion.precio,
                                 'currency_code': hospedaje.get('currency_code'),
                         }
-            
+
                         return datos, 200
                 except Exception as e:
                         return {'msg': f'Error al obtener datos de habitación: {str(e)}'}, 500

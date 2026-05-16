@@ -2597,6 +2597,7 @@
       {
         "id": "46f50af3-f0c8-401a-93b1-2f1c17ad36e8",
         "code": "101",
+        "categoria": "SENCILLA",
         "descripcion": "Habitación Sencilla",
         "capacidad": 1,
         "precio": 150000.0
@@ -2604,6 +2605,7 @@
       {
         "id": "6c0b7f21-e00e-4801-bd3e-edb755489be2",
         "code": "102",
+        "categoria": "DOBLE",
         "descripcion": "Habitación Doble",
         "capacidad": 2,
         "precio": 230000.0
@@ -2611,6 +2613,7 @@
       {
         "id": "58f2f88e-43ab-48c9-981e-9345d4f0d7e4",
         "code": "103",
+        "categoria": "FAMILIAR",
         "descripcion": "Habitación Familiar",
         "capacidad": 4,
         "precio": 380000.0
