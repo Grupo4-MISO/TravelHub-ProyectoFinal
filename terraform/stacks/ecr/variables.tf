@@ -74,3 +74,9 @@ variable "email_repository_name" {
   type        = string
   nullable    = false
 }
+
+variable "tarifas_repository_name" {
+  description = "Name of the repository to apps"
+  type        = string
+  nullable    = false
+}

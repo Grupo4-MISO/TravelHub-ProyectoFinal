@@ -58,3 +58,9 @@ module "email_repository_name" {
   keep_tags_number = var.keep_tags_number
   repository_name  = var.email_repository_name
 }
+
+module "tarifas_repository_name" {
+  source = "../../modules/ecr"
+  keep_tags_number = var.keep_tags_number
+  repository_name  = var.tarifas_repository_name
+}
