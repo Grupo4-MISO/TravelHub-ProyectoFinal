@@ -63,3 +63,10 @@ spec:
                 name: transacciones-app-service
                 port:
                   number: 80
+          - path: /api/v1/tarifas
+            pathType: Prefix
+            backend:
+              service:
+                name: tarifas-app-service
+                port:
+                  number: 80
