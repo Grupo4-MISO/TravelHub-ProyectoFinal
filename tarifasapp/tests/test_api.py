@@ -10,6 +10,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 from app.api.api import _parse_iso_datetime
 
+ENDPOINT_URL = '/api/v1/tarifas'
 
 @pytest.fixture
 def app():
@@ -57,7 +58,7 @@ def app_context(app):
 class TestHealth:
     def test_health_check(self, client):
         """Prueba del endpoint de salud"""
-        response = client.get('/health')
+        response = client.get(ENDPOINT_URL + '/health')
         assert response.status_code == 200
         assert response.get_json()['status'] == 'healthy'
 
@@ -65,7 +66,7 @@ class TestHealth:
 class TestTarifaList:
     def test_get_empty_tarifas(self, client, app_context, auth_headers):
         """Prueba obtener lista vacía de tarifas"""
-        response = client.get('/tarifas', headers=auth_headers)
+        response = client.get(ENDPOINT_URL + '/tarifas', headers=auth_headers)
         assert response.status_code == 200
         assert response.get_json() == []
 
@@ -81,7 +82,7 @@ class TestTarifaList:
             'vigencia_inicio': (now - timedelta(days=1)).isoformat(),
             'vigencia_fin': (now + timedelta(days=10)).isoformat(),
         }
-        response = client.post('/tarifas', json=data, headers=auth_headers)
+        response = client.get(ENDPOINT_URL + '/tarifas', json=data, headers=auth_headers)
         assert response.status_code == 201
         json_data = response.get_json()
         assert json_data['nombre'] == 'Tarifa Test'
@@ -96,7 +97,7 @@ class TestTarifaList:
         data = {
             'descripcion': 'Sin campos requeridos'
         }
-        response = client.post('/tarifas', json=data, headers=auth_headers)
+        response = client.get(ENDPOINT_URL + '/tarifas', json=data, headers=auth_headers)
         assert response.status_code == 400
 
     def test_filter_tarifas_vigentes(self, client, app_context, auth_headers):
@@ -125,20 +126,20 @@ class TestTarifaList:
         db.session.add(no_vigente)
         db.session.commit()
 
-        response_vigentes = client.get('/tarifas?vigentes=true', headers=auth_headers)
+        response_vigentes = client.get(ENDPOINT_URL + '/tarifas?vigentes=true', headers=auth_headers)
         assert response_vigentes.status_code == 200
         data_vigentes = response_vigentes.get_json()
         assert len(data_vigentes) == 1
         assert data_vigentes[0]['nombre'] == 'Tarifa Vigente'
 
-        response_no_vigentes = client.get('/tarifas?vigentes=false', headers=auth_headers)
+        response_no_vigentes = client.get(ENDPOINT_URL + '/tarifas?vigentes=false', headers=auth_headers)
         assert response_no_vigentes.status_code == 200
         data_no_vigentes = response_no_vigentes.get_json()
         assert len(data_no_vigentes) == 1
         assert data_no_vigentes[0]['nombre'] == 'Tarifa Vencida'
 
     def test_filter_tarifas_invalid_vigentes_param(self, client, app_context, auth_headers):
-        response = client.get('/tarifas?vigentes=talvez', headers=auth_headers)
+        response = client.get(ENDPOINT_URL + '/tarifas?vigentes=talvez', headers=auth_headers)
         assert response.status_code == 400
 
     def test_public_lookup_by_hotel_ids(self, client, app_context, auth_headers):
@@ -166,7 +167,7 @@ class TestTarifaList:
         db.session.add_all([tarifa_otro_hotel, tarifa_hotel_objetivo])
         db.session.commit()
 
-        response = client.get('/tarifas/publicas?hotel_ids=HTL-99281,HTL-XXX&vigentes=true')
+        response = client.get(ENDPOINT_URL + '/tarifas/publicas?hotel_ids=HTL-99281,HTL-XXX&vigentes=true')
         assert response.status_code == 200
         data = response.get_json()
         assert len(data) == 1
@@ -177,12 +178,12 @@ class TestTarifaList:
 class TestTarifaResource:
     def test_get_nonexistent_tarifa(self, client, app_context, auth_headers):
         """Prueba obtener tarifa inexistente"""
-        response = client.get('/tarifas/00000000-0000-0000-0000-000000000000', headers=auth_headers)
+        response = client.get(ENDPOINT_URL + '/tarifas/00000000-0000-0000-0000-000000000000', headers=auth_headers)
         assert response.status_code == 404
 
     def test_get_tarifa_includes_active_discounts(self, client, app_context, auth_headers):
         now = datetime.utcnow()
-        tarifa_response = client.post('/tarifas', json={
+        tarifa_response = client.get(ENDPOINT_URL + '/tarifas', json={
             'nombre': 'Tarifa con descuentos',
             'valor_base': 250.0,
             'moneda': 'USD',
@@ -213,7 +214,7 @@ class TestTarifaResource:
         db.session.add_all([descuento_activo, descuento_inactivo])
         db.session.commit()
 
-        response = client.get(f'/tarifas/{tarifa_id}', headers=auth_headers)
+        response = client.get(f'{ENDPOINT_URL}/tarifas/{tarifa_id}', headers=auth_headers)
         assert response.status_code == 200
         json_data = response.get_json()
         assert 'descuentos_activos' in json_data
@@ -228,18 +229,18 @@ class TestTarifaResource:
 class TestSeedDB:
     def test_seed_db(self, client, app_context, auth_headers):
         """Prueba poblar base de datos"""
-        response = client.post('/seed', headers=auth_headers)
+        response = client.post(ENDPOINT_URL + '/seed', headers=auth_headers)
         assert response.status_code == 200
         
         # Verificar que se crearon los datos
-        response = client.get('/tarifas', headers=auth_headers)
+        response = client.get(ENDPOINT_URL + '/tarifas', headers=auth_headers)
         assert len(response.get_json()) > 0
 
 
 class TestDescuentos:
     def _create_tarifa(self, client, auth_headers):
         now = datetime.utcnow()
-        response = client.post('/tarifas', json={
+        response = client.get(ENDPOINT_URL + '/tarifas', json={
             'nombre': 'Tarifa base',
             'valor_base': 200.0,
             'moneda': 'USD',
@@ -254,7 +255,7 @@ class TestDescuentos:
         tarifa_id = self._create_tarifa(client, auth_headers)
         now = datetime.utcnow()
 
-        create_response = client.post('/descuentos', json={
+        create_response = client.get(ENDPOINT_URL + '/descuentos', json={
             'nombre': 'Promo verano',
             'tarifa_id': tarifa_id,
             'porcentaje': 15,
@@ -268,7 +269,7 @@ class TestDescuentos:
         assert descuento['tarifa_id'] == tarifa_id
         assert descuento['activo'] is True
 
-        inactive_response = client.post('/descuentos', json={
+        inactive_response = client.post(ENDPOINT_URL + '/descuentos', json={
             'nombre': 'Promo vieja',
             'tarifa_id': tarifa_id,
             'porcentaje': 10,
@@ -278,12 +279,12 @@ class TestDescuentos:
         }, headers=auth_headers)
         assert inactive_response.status_code == 201
 
-        active_list = client.get('/descuentos?activos=true', headers=auth_headers)
+        active_list = client.get(ENDPOINT_URL + '/descuentos?activos=true', headers=auth_headers)
         assert active_list.status_code == 200
         assert len(active_list.get_json()) == 1
         assert active_list.get_json()[0]['nombre'] == 'Promo verano'
 
-        tarifa_filter = client.get(f'/descuentos?tarifa_id={tarifa_id}', headers=auth_headers)
+        tarifa_filter = client.get(f'{ENDPOINT_URL}/descuentos?tarifa_id={tarifa_id}', headers=auth_headers)
         assert tarifa_filter.status_code == 200
         assert len(tarifa_filter.get_json()) == 2
 
@@ -291,7 +292,7 @@ class TestDescuentos:
         tarifa_id = self._create_tarifa(client, auth_headers)
         now = datetime.utcnow()
 
-        response = client.post('/descuentos', json={
+        response = client.post(ENDPOINT_URL + '/descuentos', json={
             'nombre': 'Promo invalida',
             'tarifa_id': tarifa_id,
             'porcentaje': 101,
@@ -306,7 +307,7 @@ class TestDescuentos:
         tarifa_id = self._create_tarifa(client, auth_headers)
         now = datetime.utcnow()
 
-        response = client.post('/descuentos', json={
+        response = client.post(ENDPOINT_URL + '/descuentos', json={
             'nombre': 'Promo fuera de vigencia tarifa',
             'tarifa_id': tarifa_id,
             'porcentaje': 10,
@@ -320,7 +321,7 @@ class TestDescuentos:
     def test_update_get_and_delete_discount(self, client, app_context, auth_headers):
         tarifa_id = self._create_tarifa(client, auth_headers)
         now = datetime.utcnow()
-        create_response = client.post('/descuentos', json={
+        create_response = client.post(ENDPOINT_URL + '/descuentos', json={
             'nombre': 'Promo update',
             'tarifa_id': tarifa_id,
             'porcentaje': 5,
@@ -329,7 +330,7 @@ class TestDescuentos:
         }, headers=auth_headers)
         descuento_id = create_response.get_json()['id']
 
-        update_response = client.put(f'/descuentos/{descuento_id}', json={
+        update_response = client.put(f'{ENDPOINT_URL}/descuentos/{descuento_id}', json={
             'porcentaje': 20,
             'activo': False,
         }, headers=auth_headers)
@@ -337,19 +338,19 @@ class TestDescuentos:
         assert update_response.get_json()['porcentaje'] == 20
         assert update_response.get_json()['activo'] is False
 
-        get_response = client.get(f'/descuentos/{descuento_id}', headers=auth_headers)
+        get_response = client.get(f'{ENDPOINT_URL}/descuentos/{descuento_id}', headers=auth_headers)
         assert get_response.status_code == 200
 
-        delete_response = client.delete(f'/descuentos/{descuento_id}', headers=auth_headers)
+        delete_response = client.delete(f'{ENDPOINT_URL}/descuentos/{descuento_id}', headers=auth_headers)
         assert delete_response.status_code == 200
 
-        missing_response = client.get(f'/descuentos/{descuento_id}', headers=auth_headers)
+        missing_response = client.get(f'{ENDPOINT_URL}/descuentos/{descuento_id}', headers=auth_headers)
         assert missing_response.status_code == 404
 
     def test_update_discount_rejects_percentage_over_100(self, client, app_context, auth_headers):
         tarifa_id = self._create_tarifa(client, auth_headers)
         now = datetime.utcnow()
-        create_response = client.post('/descuentos', json={
+        create_response = client.post(ENDPOINT_URL + '/descuentos', json={
             'nombre': 'Promo update invalida',
             'tarifa_id': tarifa_id,
             'porcentaje': 5,
@@ -358,7 +359,7 @@ class TestDescuentos:
         }, headers=auth_headers)
         descuento_id = create_response.get_json()['id']
 
-        update_response = client.put(f'/descuentos/{descuento_id}', json={
+        update_response = client.put(f'{ENDPOINT_URL}/descuentos/{descuento_id}', json={
             'porcentaje': 101,
         }, headers=auth_headers)
 
@@ -368,7 +369,7 @@ class TestDescuentos:
     def test_update_discount_rejects_vigencia_outside_tarifa(self, client, app_context, auth_headers):
         tarifa_id = self._create_tarifa(client, auth_headers)
         now = datetime.utcnow()
-        create_response = client.post('/descuentos', json={
+        create_response = client.post(ENDPOINT_URL + '/descuentos', json={
             'nombre': 'Promo vigencia update invalida',
             'tarifa_id': tarifa_id,
             'porcentaje': 5,
@@ -377,7 +378,7 @@ class TestDescuentos:
         }, headers=auth_headers)
         descuento_id = create_response.get_json()['id']
 
-        update_response = client.put(f'/descuentos/{descuento_id}', json={
+        update_response = client.put(f'{ENDPOINT_URL}/descuentos/{descuento_id}', json={
             'vigencia_fin': (now + timedelta(days=30)).isoformat(),
         }, headers=auth_headers)
 
