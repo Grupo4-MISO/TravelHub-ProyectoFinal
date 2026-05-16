@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: busquedas-api
-        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/busquedas-app:v1.0.0
+        image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/busquedas-app:b3b1d19
         imagePullPolicy: Always
         ports:
         - containerPort: 3002
@@ -24,7 +24,7 @@ spec:
         - name: INVENTARIOS_URL
           value: http://inventarios-app-service:80
         - name: ENDPOINT_INVENTARIO
-          value: /api/v1/inventarios/filtro
+          value: /api/v1/inventarios/filtro-economico
         - name: RESERVAS_URL
           value: http://reservas-app-service:80
         - name: ENDPOINT_RESERVA

@@ -2,6 +2,8 @@ from app.db.models import Traveler, TravelerAddress, TravelerStatus, db
 from sqlalchemy.exc import IntegrityError
 from uuid import UUID
 
+TRAVELER_UPDATABLE_FIELDS = {"documentNumber", "first_name", "last_name", "phone", "gender"}
+
 class TravelerCrud:
 
     def create_traveler(self, data: dict):
@@ -70,7 +72,11 @@ class TravelerCrud:
             return None
 
         try:
-            for key, value in data.items():
+            allowed_data = {key: value for key, value in (data or {}).items() if key in TRAVELER_UPDATABLE_FIELDS}
+            if not allowed_data:
+                return None
+
+            for key, value in allowed_data.items():
                 if hasattr(traveler, key) and value is not None:
                     setattr(traveler, key, value)
 

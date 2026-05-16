@@ -1,17 +1,19 @@
 from app.errors.exceptions import InternalServerError, ExternalServiceError
 from app.services.reserva_crud import ReservaCRUD
 import boto3
+import json
 
 #Creamos instancia de ReservaCRUD
 reserva_crud = ReservaCRUD()
 
 class SQSHelper:
-    def __init__(self, reservas_sqs_url: str):
+    def __init__(self, reservas_sqs_url: str, mail_sqs_url: str):
         #Creamos cliente de SQS
         self.sqs_client = boto3.client('sqs', region_name = 'us-east-1')
 
         #Guardamos la URL de la cola
         self.reservas_queue_url = reservas_sqs_url
+        self.mail_queue_url = mail_sqs_url
 
     def readMessages(self):
         try:
@@ -46,3 +48,13 @@ class SQSHelper:
             )
         except Exception as e:
             raise ExternalServiceError(f'Error deleting message from SQS: {str(e)}')
+    
+    def sendMessage(self, message_body):
+        try:
+            #Enviamos mensaje a la cola
+            self.sqs_client.send_message(
+                QueueUrl = self.mail_queue_url,
+                MessageBody = json.dumps(message_body)
+            )
+        except Exception as e:
+            raise ExternalServiceError(f'Error sending message to SQS: {str(e)}')

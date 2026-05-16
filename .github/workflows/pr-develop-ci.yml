@@ -31,14 +31,11 @@ jobs:
           - name: proveedoresapp
             path: proveedoresapp
             tests_path: tests
-          - name: transaccionesapp
-            path: transaccionesapp
-            tests_path: tests
           - name: clientesapp
             path: clientesapp
             tests_path: tests
-          - name: proveedoresapp
-            path: proveedoresapp
+          - name: transaccionesapp
+            path: transaccionesapp
             tests_path: tests
 
     steps:
@@ -85,13 +82,11 @@ jobs:
             path: autenticadorapp
           - name: proveedoresapp
             path: proveedoresapp
-          - name: transaccionesapp
-            path: transaccionesapp
           - name: clientesapp
             path: clientesapp
-          - name: proveedoresapp
-            path: proveedoresapp
-            
+          - name: transaccionesapp
+            path: transaccionesapp
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

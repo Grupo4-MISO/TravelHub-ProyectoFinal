@@ -9,7 +9,7 @@ replicaCount: 1
 
 inventarios:
   URL: http://inventarios-app-service:80
-  endpoint: /api/v1/inventarios/filtro
+  endpoint: /api/v1/inventarios/filtro-economico
 
 reservas:
   URL: http://reservas-app-service:80

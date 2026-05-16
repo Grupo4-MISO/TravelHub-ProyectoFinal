@@ -30,11 +30,7 @@ app = Flask(__name__)
 ErrorHandler.errors(app)
 
 #Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-    "DATABASE_URL",
-    "sqlite:///travelhub.db"
-)
-#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL", "sqlite:///travelhub.db")
 app.config['JWT_SECRET_KEY'] = 'o+jGoFFM5+EZULQUkXUkmxNU9eGSxU89GlCG9hbNSYI='
 app.config['SECRET_KEY'] = app.config['JWT_SECRET_KEY']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -49,7 +45,7 @@ app.config['EXTERNAL_PAYMENT_SESSION_URL'] = os.getenv(
 )
 app.config['PAYMENT_WEBHOOK_URL'] = os.getenv(
     'PAYMENT_WEBHOOK_URL',
-    'https://v7iqo4ymndw6lnektybll5za4y0udwfi.lambda-url.us-east-1.on.aws'
+    'https://if2v3gkiranep7n2xau4lzxsrq0athlp.lambda-url.us-east-1.on.aws/'
 )
 app.config['PAYMENT_SIMULATE_OUTCOME'] = os.getenv('PAYMENT_SIMULATE_OUTCOME', 'success')
 app.config['PAYMENT_CALLBACK_DELAY_SECONDS'] = int(os.getenv('PAYMENT_CALLBACK_DELAY_SECONDS', '20'))
@@ -95,11 +91,10 @@ swagger_config = {
 
 Swagger(app, config=swagger_config, template=swagger_template)
 
-#Inicializamos la base de datos
+db.init_app(app)
+
 if not app.config.get('TESTING'):
     with app.app_context():
-        #Creamos tablas en la base de datos
-        db.init_app(app)
         db.create_all()
 
 #Habilitamos CORS

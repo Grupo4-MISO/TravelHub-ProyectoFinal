@@ -15,3 +15,7 @@ class BadRequestError(APIError):
 class DatababaseError(APIError):
     def __init__(self, message = 'Database error'):
         super().__init__(message, 500)
+
+class NotFoundError(APIError):
+    def __init__(self, message = 'Resource not found'):
+        super().__init__(message, 404)

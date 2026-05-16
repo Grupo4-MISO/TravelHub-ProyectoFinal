@@ -1,4 +1,4 @@
-from app.api.api import CleanDB, CountryList, PopularCitiesByCountry, InventarioHealth, FiltroHabitaciones, SeedDB, HospedajeCollection, HabitacionesporId, SeedDB, SeedReservations, HospedajeById, ListadoHoteles
+from app.api.api import HospedajeByHabitacionId, CleanDB, CountryList, HospedajeInfo, PopularCitiesByCountry, PopularAccommodationsByCountry, InventarioHealth, FiltroHabitaciones, FiltroHabitacionesConMenorPrecio, SeedDB, HospedajeCollection, HabitacionesporId, SeedDB, SeedReservations, HospedajeById, ListadoHoteles
 from app.errors.handlers import ErrorHandler
 from flask_restful import Api
 from app.db.models import db
@@ -17,11 +17,7 @@ app = Flask(__name__)
 ErrorHandler.errors(app)
 
 #Ponemos configuraciones de la app
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv( 
-    "DATABASE_URL",
-    "sqlite:///travelhub.db"
-)
-#app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL", "sqlite:///travelhub.db")
 app.config['JWT_SECRET_KEY'] = 'supersecretkey'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -77,7 +73,9 @@ api = Api(app)
 api.add_resource(InventarioHealth, '/api/v1/inventarios/health')
 api.add_resource(CountryList, '/api/v1/inventarios/countries')
 api.add_resource(PopularCitiesByCountry, '/api/v1/inventarios/countries/<code>/popular-cities')
+api.add_resource(PopularAccommodationsByCountry, '/api/v1/inventarios/countries/<code>/popular-accommodations')
 api.add_resource(FiltroHabitaciones, '/api/v1/inventarios/filtro')
+api.add_resource(FiltroHabitacionesConMenorPrecio, '/api/v1/inventarios/filtro-economico')
 api.add_resource(HabitacionesporId, '/api/v1/inventarios/habitaciones')
 api.add_resource(CleanDB, '/api/v1/inventarios/clean')
 api.add_resource(SeedDB, '/api/v1/inventarios/seed')
@@ -85,3 +83,5 @@ api.add_resource(HospedajeCollection, '/api/v1/inventarios/hospedajes')
 api.add_resource(HospedajeById, '/api/v1/inventarios/hospedajes/<string:hospedaje_id>/<string:currency_code>')
 api.add_resource(SeedReservations, '/api/v1/inventarios/seed-reservas') 
 api.add_resource(ListadoHoteles, '/api/v1/inventarios/hoteles')
+api.add_resource(HospedajeInfo, '/api/v1/inventarios/habitacion/<string:habitacion_id>/<string:currency_code>')
+api.add_resource(HospedajeByHabitacionId, '/api/v1/inventarios/hospedaje/<string:habitacion_id>')

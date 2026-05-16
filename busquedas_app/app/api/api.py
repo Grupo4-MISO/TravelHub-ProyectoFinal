@@ -21,7 +21,6 @@ redis_client = redis.Redis(
     ssl=True
 )
 
-
 class SearchHealth(Resource):
     def get(self):
         """---

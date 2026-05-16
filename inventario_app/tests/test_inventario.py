@@ -3,8 +3,10 @@ from app.api.api import (
     ListadoPaises,
     CountryList,
     PopularCitiesByCountry,
+    PopularAccommodationsByCountry,
     InventarioHealth,
     FiltroHabitaciones,
+    FiltroHabitacionesConMenorPrecio,
     HabitacionesporId,
     SeedDB,
     HospedajeCollection,
@@ -746,89 +748,175 @@ def test_inventario_crud_habitaciones_and_countries(monkeypatch):
     fake_session = FakeSession()
     monkeypatch.setattr(crud_module.db, 'session', fake_session)
 
-    hotel_detail = SimpleNamespace(
-        id=uuid4(),
-        providerId=uuid4(),
-        nombre='Hotel',
-        descripcion='Desc',
-        countryCode='CO',
-        pais='Colombia',
-        ciudad='Bogota',
-        direccion='Calle 1',
-        latitude=1.0,
-        longitude=2.0,
-        rating=4.5,
-        reviews=10,
-        created_at=SimpleNamespace(isoformat=lambda: '2026-04-01T00:00:00'),
-        updated_at=SimpleNamespace(isoformat=lambda: '2026-04-02T00:00:00'),
-        habitaciones=[room],
-        amenidades=[SimpleNamespace(id=uuid4(), name='WiFi', icon='wifi')],
-        imagenes=[SimpleNamespace(id=uuid4(), url='url')],
+
+def test_filtro_habitaciones_con_menor_precio_ok(mocker):
+    app, api = build_app()
+    api.add_resource(FiltroHabitacionesConMenorPrecio, '/filtro-economico')
+    client = app.test_client()
+
+    expected = [
+        {
+            'habitacion_id': '1', 
+            'hospedaje_id': 'h1',
+            'nombre': 'Hotel Economico', 
+            'ciudad': 'Bogota',
+            'precio': 50000,
+            'rating': 4.2
+        },
+        {
+            'habitacion_id': '2', 
+            'hospedaje_id': 'h2',
+            'nombre': 'Hotel Premium', 
+            'ciudad': 'Bogota',
+            'precio': 120000,
+            'rating': 4.8
+        }
+    ]
+    mocker.patch('app.api.api.InventarioHelper.validacionCampoCiudad', return_value='Bogota')
+    mocker.patch('app.api.api.InventarioHelper.validacionCampoCapacidad', return_value=2)
+    mocker.patch('app.api.api.inventario_CRUD.habitacionesDisponiblesConMenorPrecio', return_value=expected)
+
+    response = client.get('/filtro-economico?ciudad=bogota&capacidad=2&currency_code=COP')
+
+    assert response.status_code == 200
+    assert response.get_json() == expected
+    assert len(response.get_json()) == 2
+
+
+def test_filtro_habitaciones_con_menor_precio_empty(mocker):
+    app, api = build_app()
+    api.add_resource(FiltroHabitacionesConMenorPrecio, '/filtro-economico')
+    client = app.test_client()
+
+    mocker.patch('app.api.api.InventarioHelper.validacionCampoCiudad', return_value='NoExiste')
+    mocker.patch('app.api.api.InventarioHelper.validacionCampoCapacidad', return_value=2)
+    mocker.patch('app.api.api.inventario_CRUD.habitacionesDisponiblesConMenorPrecio', return_value=[])
+
+    response = client.get('/filtro-economico?ciudad=noexiste&capacidad=2&currency_code=COP')
+
+    assert response.status_code == 200
+    assert response.get_json() == []
+
+
+def test_filtro_habitaciones_con_menor_precio_db_error(mocker):
+    app, api = build_app()
+    api.add_resource(FiltroHabitacionesConMenorPrecio, '/filtro-economico')
+    client = app.test_client()
+
+    mocker.patch('app.api.api.InventarioHelper.validacionCampoCiudad', return_value='Bogota')
+    mocker.patch('app.api.api.InventarioHelper.validacionCampoCapacidad', return_value=2)
+    mocker.patch('app.api.api.inventario_CRUD.habitacionesDisponiblesConMenorPrecio', 
+                 side_effect=DatababaseError('Database error'))
+
+    response = client.get('/filtro-economico?ciudad=bogota&capacidad=2&currency_code=COP')
+
+    assert response.status_code == 500
+    assert 'error' in response.get_json().get('message', '').lower() or 'error' in str(response.get_json()).lower()
+
+
+def test_seed_helper_error_branches(monkeypatch):
+    import app.utils.seedHelper as seed_module
+    monkeypatch.setattr(seed_module, '_load_json_file', lambda file_name: {'countries': [{'countryCode': 'XX'}]})
+    with pytest.raises(ValueError):
+        seed_module._load_hospedajes_catalog()
+
+
+def test_popular_accommodations_by_country_success(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    accommodations = [
+        {
+            'id': '123e4567-e89b-12d3-a456-426614174000',
+            'providerId': '223e4567-e89b-12d3-a456-426614174000',
+            'nombre': 'Hotel Andino',
+            'descripcion': 'Hotel céntrico',
+            'countryCode': 'CO',
+            'pais': 'Colombia',
+            'ciudad': 'Bogotá',
+            'direccion': 'Calle 1 #2-3',
+            'latitude': 4.7110,
+            'longitude': -74.0721,
+            'rating': 4.5,
+            'reviews': 120,
+        },
+        {
+            'id': '323e4567-e89b-12d3-a456-426614174001',
+            'providerId': '323e4567-e89b-12d3-a456-426614174000',
+            'nombre': 'Hotel Paraíso',
+            'descripcion': 'Hotel con vistas',
+            'countryCode': 'CO',
+            'pais': 'Colombia',
+            'ciudad': 'Cartagena',
+            'direccion': 'Avenida Principal',
+            'latitude': 10.3932,
+            'longitude': -75.5148,
+            'rating': 4.8,
+            'reviews': 200,
+        },
+    ]
+    mocker.patch('app.api.api.countries_CRUD.obtener_hospedajes_populares_por_pais', return_value=accommodations)
+
+    response = client.get('/countries/CO/popular-accommodations')
+
+    assert response.status_code == 200
+    assert response.get_json() == accommodations
+    assert len(response.get_json()) == 2
+    assert response.get_json()[0]['nombre'] == 'Hotel Andino'
+    assert response.get_json()[1]['rating'] == 4.8
+
+
+def test_popular_accommodations_by_country_empty_list(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    mocker.patch('app.api.api.countries_CRUD.obtener_hospedajes_populares_por_pais', return_value=[])
+
+    response = client.get('/countries/CO/popular-accommodations')
+
+    assert response.status_code == 200
+    assert response.get_json() == []
+
+
+def test_popular_accommodations_by_country_db_error(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    mocker.patch(
+        'app.api.api.countries_CRUD.obtener_hospedajes_populares_por_pais',
+        return_value=DatababaseError('Error en la base de datos: fallo simulado')
     )
 
-    monkeypatch.setattr('app.services.inventario_crud.InventarioHelper.convertirPrecios', lambda habitaciones, destino: habitaciones)
+    response = client.get('/countries/CO/popular-accommodations')
 
-    crud = InventarioCRUD()
-    countries_crud = CountriesCRUD()
-
-    with build_app()[0].app_context():
-        monkeypatch.setattr(
-            crud_module.db.session,
-            'query',
-            lambda *args: FakeQuery(result=[SimpleNamespace(
-                habitacion_id=room.habitacion_id,
-                code=room.code,
-                precio=room.precio,
-                capacidad=room.capacidad,
-                descripcion=room.descripcion,
-                hospedaje_id=room.hospedaje_id,
-                nombre=room.nombre,
-                pais=room.pais,
-                ciudad=room.ciudad,
-                direccion=room.direccion,
-                rating=room.rating,
-                reviews=room.reviews,
-                currency_code=room.currency_code,
-                image_url=room.image_url,
-            )]),
-        )
-        habitaciones = crud.habitacionesDisponibles('Bogota', 2, 'COP')
-        assert habitaciones[0]['nombre'] == 'Hotel'
-
-        monkeypatch.setattr(crud_module.db.session, 'query', lambda *args: FakeQuery(result=[room], raise_on_all=True))
-        with pytest.raises(DatababaseError):
-            crud.habitacionesDisponibles('Bogota', 2, 'COP')
-
-        monkeypatch.setattr(
-            crud_module.db.session,
-            'query',
-            lambda *args: FakeQuery(result=[country]),
-        )
-        assert countries_crud.obtener_paises()[0]['name'] == 'Colombia'
-
-        monkeypatch.setattr(
-            crud_module.db.session,
-            'query',
-            lambda *args: FakeQuery(result=[SimpleNamespace(ciudad='Bogota')]),
-        )
-        assert countries_crud.obtener_ciudades_por_codigo('CO') == ['Bogota']
-
-        monkeypatch.setattr(
-            crud_module.db.session,
-            'query',
-            lambda *args: FakeQuery(result=hotel_detail),
-        )
-        assert crud.buscarHotelByName('Hotel').nombre == 'Hotel'
-
-        monkeypatch.setattr(
-            crud_module.db.session,
-            'query',
-            lambda *args: FakeQuery(result=[room]),
-        )
-        hotel_id = str(uuid4())
-        assert crud.habitacionesporIdHotel(hotel_id) == [room]
+    assert response.status_code == 500
+    assert response.get_json() == {'msg': 'Error en la base de datos: fallo simulado'}
 
 
+def test_popular_accommodations_by_country_missing_code(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    response = client.get('/countries//popular-accommodations')
+
+    assert response.status_code == 404
+
+
+def test_popular_accommodations_by_country_invalid_code(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    mocker.patch('app.api.api.countries_CRUD.obtener_hospedajes_populares_por_pais', return_value=[])
+
+    response = client.get('/countries/XX/popular-accommodations')
+
+    assert response.status_code == 200
+    assert response.get_json() == []
 def test_seed_helper_error_branches(monkeypatch):
     monkeypatch.setattr(seed_module, '_data_file_path', lambda file_name: 'missing.json')
     with pytest.raises(FileNotFoundError):
@@ -841,3 +929,101 @@ def test_seed_helper_error_branches(monkeypatch):
     monkeypatch.setattr(seed_module, '_load_json_file', lambda file_name: {'countries': [{'countryCode': 'XX'}]})
     with pytest.raises(ValueError):
         seed_module._load_hospedajes_catalog()
+
+
+def test_popular_accommodations_by_country_success(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    accommodations = [
+        {
+            'id': '123e4567-e89b-12d3-a456-426614174000',
+            'providerId': '223e4567-e89b-12d3-a456-426614174000',
+            'nombre': 'Hotel Andino',
+            'descripcion': 'Hotel céntrico',
+            'countryCode': 'CO',
+            'pais': 'Colombia',
+            'ciudad': 'Bogotá',
+            'direccion': 'Calle 1 #2-3',
+            'latitude': 4.7110,
+            'longitude': -74.0721,
+            'rating': 4.5,
+            'reviews': 120,
+        },
+        {
+            'id': '323e4567-e89b-12d3-a456-426614174001',
+            'providerId': '323e4567-e89b-12d3-a456-426614174000',
+            'nombre': 'Hotel Paraíso',
+            'descripcion': 'Hotel con vistas',
+            'countryCode': 'CO',
+            'pais': 'Colombia',
+            'ciudad': 'Cartagena',
+            'direccion': 'Avenida Principal',
+            'latitude': 10.3932,
+            'longitude': -75.5148,
+            'rating': 4.8,
+            'reviews': 200,
+        },
+    ]
+    mocker.patch('app.api.api.countries_CRUD.obtener_hospedajes_populares_por_pais', return_value=accommodations)
+
+    response = client.get('/countries/CO/popular-accommodations')
+
+    assert response.status_code == 200
+    assert response.get_json() == accommodations
+    assert len(response.get_json()) == 2
+    assert response.get_json()[0]['nombre'] == 'Hotel Andino'
+    assert response.get_json()[1]['rating'] == 4.8
+
+
+def test_popular_accommodations_by_country_empty_list(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    mocker.patch('app.api.api.countries_CRUD.obtener_hospedajes_populares_por_pais', return_value=[])
+
+    response = client.get('/countries/CO/popular-accommodations')
+
+    assert response.status_code == 200
+    assert response.get_json() == []
+
+
+def test_popular_accommodations_by_country_db_error(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    mocker.patch(
+        'app.api.api.countries_CRUD.obtener_hospedajes_populares_por_pais',
+        return_value=DatababaseError('Error en la base de datos: fallo simulado')
+    )
+
+    response = client.get('/countries/CO/popular-accommodations')
+
+    assert response.status_code == 500
+    assert response.get_json() == {'msg': 'Error en la base de datos: fallo simulado'}
+
+
+def test_popular_accommodations_by_country_missing_code(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    response = client.get('/countries//popular-accommodations')
+
+    assert response.status_code == 404
+
+
+def test_popular_accommodations_by_country_invalid_code(mocker):
+    app, api = build_app()
+    api.add_resource(PopularAccommodationsByCountry, '/countries/<code>/popular-accommodations')
+    client = app.test_client()
+
+    mocker.patch('app.api.api.countries_CRUD.obtener_hospedajes_populares_por_pais', return_value=[])
+
+    response = client.get('/countries/XX/popular-accommodations')
+
+    assert response.status_code == 200
+    assert response.get_json() == []

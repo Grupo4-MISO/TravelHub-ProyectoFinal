@@ -38,7 +38,12 @@ class HoldService:
             hold_ttl_seconds = self._get_hold_ttl_seconds()
 
             # Paso 1 — Verificar disponibilidad en base de datos
-            disponible_en_bd = self._verificar_disponibilidad_bd(habitacion_id, check_in, check_out)
+            disponible_en_bd = self._verificar_disponibilidad_bd(
+                habitacion_id,
+                check_in,
+                check_out,
+                user_id=user_id,
+            )
             if isinstance(disponible_en_bd, str):
                 return disponible_en_bd
             if not disponible_en_bd:
@@ -86,7 +91,7 @@ class HoldService:
     # ------------------------------------------------------------------
     # Método privado: verifica disponibilidad en base de datos
     # ------------------------------------------------------------------
-    def _verificar_disponibilidad_bd(self, habitacion_id, check_in, check_out):
+    def _verificar_disponibilidad_bd(self, habitacion_id, check_in, check_out, user_id=None):
         """
         Verifica disponibilidad consultando ReservaCRUD.
 
@@ -96,4 +101,16 @@ class HoldService:
         """
         # TODO: Reemplazar esta consulta directa por el servicio externo de consultas
         # cuando se implemente el patrón CQRS.
-        return self.reserva_crud.verificarDisponibilidadHabitacion(habitacion_id, check_in, check_out)
+        if user_id is None:
+            return self.reserva_crud.verificarDisponibilidadHabitacion(
+                habitacion_id,
+                check_in,
+                check_out,
+            )
+
+        return self.reserva_crud.verificarDisponibilidadHabitacion(
+            habitacion_id,
+            check_in,
+            check_out,
+            user_id=user_id,
+        )

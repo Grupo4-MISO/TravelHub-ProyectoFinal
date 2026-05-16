@@ -175,7 +175,7 @@ def test_get_provider_by_userid_includes_addresses(client, monkeypatch):
         lambda value: (provider, [address]) if value == user_id else None,
     )
 
-    resp = client.get(f"/api/v1/Providers/users/{user_id}")
+    resp = client.get(f"/api/v1/Managers/Providers/users/{user_id}")
 
     assert resp.status_code == 200
     body = resp.get_json()

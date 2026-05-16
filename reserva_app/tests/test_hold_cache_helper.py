@@ -357,11 +357,11 @@ def test_get_client_usa_host_port_db(monkeypatch):
     monkeypatch.setattr(hold_cache_module.redis, "Redis", FakeRedisFactory)
 
     client = HoldCacheHelper._get_client()
-
+    print(FakeRedisFactory.last_init_kwargs)
     assert isinstance(client, FakeRedisFactory)
     assert FakeRedisFactory.last_init_kwargs == {
-        "host": "redis-host",
-        "port": 6380,
-        "db": 3,
+        'host': "redis-host",
         "decode_responses": True,
+        'port': 6379,
+        "ssl": True,
     }

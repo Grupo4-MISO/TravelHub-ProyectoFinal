@@ -3,8 +3,8 @@ from app.db.models import ReservaORM, db
 from app.domain.reserva_estado import ReservaEstado
 from app.utils.hold_cache_helper import HoldCacheHelper
 from sqlalchemy import not_
-from datetime import date, datetime
 from uuid import UUID
+from datetime import date, datetime
 
 class ReservaCRUD:
     def __init__(self) -> None:
@@ -25,8 +25,13 @@ class ReservaCRUD:
                 raise NotFoundError(f"No se encontró la reserva con ID {data_reserva.get('reserva_id')}")
 
             #Actualizamos el estado de la reserva
-            reserva.estado = data_reserva.get('status')
-            self.db.commit()
+            if data_reserva.get('status') == 'success':
+                setattr(reserva, 'estado', ReservaEstado.CONFIRMADA.value)
+                self.db.commit()
+            
+            elif data_reserva.get('status') == 'completada':
+                setattr(reserva, 'estado', ReservaEstado.COMPLETADA.value)
+                self.db.commit()
 
         except Exception as e:
             self.db.rollback()
@@ -53,7 +58,10 @@ class ReservaCRUD:
             return {str(reserva_ocupada.habitacion_id) for reserva_ocupada in reservas_ocupadas}
 
         except Exception as e:
-            self.db.rollback()
+            try:
+                self.db.rollback()
+            except RuntimeError:
+                pass
             raise DatababaseError(f"Error al verificar disponibilidad: {str(e)}")
 
     def _obtener_habitaciones_ocupadas_cache(self, habitacion_ids: list[int | str], check_in: date, check_out: date) -> set[str] | str:
@@ -134,6 +142,7 @@ class ReservaCRUD:
         return {
             "id": str(reserva.id),
             "public_id": str(reserva.public_id),
+            "user_id": str(reserva.user_id),
             "habitacion_id": str(reserva.habitacion_id),
             "check_in": reserva.check_in.isoformat(),
             "check_out": reserva.check_out.isoformat(),
@@ -159,8 +168,16 @@ class ReservaCRUD:
 
         try:
             now = datetime.now()
+            user_uuid = None
+            if user_id is not None:
+                try:
+                    user_uuid = UUID(str(user_id))
+                except Exception:
+                    user_uuid = user_id
+
             reserva = ReservaORM(
                 habitacion_id=habitacion_uuid,
+                user_id=user_uuid,
                 check_in=check_in,
                 check_out=check_out,
                 estado=ReservaEstado.PENDIENTE.value,
@@ -181,7 +198,10 @@ class ReservaCRUD:
 
             return self._serializar_reserva(reserva)
         except Exception as e:
-            self.db.rollback()
+            try:
+                self.db.rollback()
+            except RuntimeError:
+                pass
             return str(e)
     
     def obtenerReservasPorHabitacion(self, habitacion_id: int | str) -> list[ReservaORM] | str:
@@ -216,7 +236,27 @@ class ReservaCRUD:
             self.db.commit()
             return True
         except Exception as e:
-            self.db.rollback()
+            try:
+                self.db.rollback()
+            except RuntimeError:
+                pass
+            return str(e)
+    
+    def completarReserva(self, reserva_id: int | str) -> bool | str:
+        try:
+            reserva_uuid = UUID(str(reserva_id))
+            reserva = self.db.query(ReservaORM).filter_by(id=reserva_uuid).first()
+            if not reserva:
+                return f"No se encontró la reserva con ID {reserva_id}"
+
+            setattr(reserva, 'estado', ReservaEstado.COMPLETADA.value)
+            self.db.commit()
+            return True
+        except Exception as e:
+            try:
+                self.db.rollback()
+            except RuntimeError:
+                pass
             return str(e)
     
     def revocarReserva(self, reserva_id: int | str) -> bool | str:
@@ -227,9 +267,12 @@ class ReservaCRUD:
                 return f"No se encontró la reserva con ID {reserva_id}"
             self.db.delete(reserva)
             self.db.commit()
-            return True
+            return True, self._serializar_reserva(reserva)
         except Exception as e:
-            self.db.rollback()
+            try:
+                self.db.rollback()
+            except RuntimeError:
+                pass
             return str(e)
         
     def obtenerReservasPorUsuario(self, user_id: int | str) -> list[ReservaORM] | str:
@@ -252,6 +295,23 @@ class ReservaCRUD:
         except Exception as e:
             return str(e)
     
+    def reservaById(self, reserva_id):
+        try:
+            #Normalizamos el ID a UUID
+            reserva_id = UUID(str(reserva_id))
+
+            #Consultamos en vase de datos
+            reserva = self.db.query(ReservaORM).filter_by(id = reserva_id).first()
+
+            #Validamos que la reserva exista
+            if not reserva:
+                raise NotFoundError(f"No se encontró la reserva con ID {reserva_id}")
+
+            return self._serializar_reserva(reserva)
+        
+        except Exception as e:
+            raise DatababaseError(f"Error al obtener reserva por ID: {str(e)}")
+
     def resetDb(self):
         try:
             # Reiniciamos el esquema completo para dejar la base limpia.
@@ -260,6 +320,9 @@ class ReservaCRUD:
             db.create_all()
             
         except Exception as e:
-            self.db.rollback()
+            try:
+                self.db.rollback()
+            except RuntimeError:
+                pass
             raise e
         

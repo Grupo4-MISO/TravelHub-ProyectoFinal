@@ -10,6 +10,6 @@ spec:
     app: proveedores-app
   ports:
     - protocol: TCP
-      port: 3007          # Service port
+      port: 80          # Service port
       targetPort: 3007  # Container port
       nodePort: 30007   # External port (30000-32767)

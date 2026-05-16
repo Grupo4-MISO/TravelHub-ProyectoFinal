@@ -24,3 +24,13 @@ spec:
           env:
             - name: SQS_RESERVAS_URL
               value: {{ .Values.sqsReservasUrl }}
+            - name: SQS_MAIL_URL
+              value: {{ .Values.sqsMailUrl }}
+            - name: INVENTARIOS_URL
+              value: {{ .Values.inventariosUrl }}
+            - name: DATABASE_URL
+              value: {{ .Values.database }}
+            - name: ONE_SIGNAL_APP_ID
+              value: {{ .Values.oneSignalAppId }}
+            - name: ONE_SIGNAL_API_KEY
+              value: {{ .Values.oneSignalApiKey }}
