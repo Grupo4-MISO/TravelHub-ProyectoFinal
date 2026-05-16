@@ -1,7 +1,6 @@
 from app.utils.token_helper import token_required, roles_required
 from app.utils.one_signal_helper import OneSignalHelper
 from app.services.reserva_crud import ReservaCRUD
-from app.utils.tarifas_helper import TarifasHelper
 from app.services.hold_service import HoldService
 from app.errors.exceptions import APIError
 from app.utils.seedHelper import SeedHelper
@@ -9,7 +8,6 @@ from app.utils.helper import ReservaHelper
 from flask_restful import Resource
 from datetime import datetime
 from flask import request, current_app
-from app.utils.tarifas_helper import TarifasHelper
 from app.db.models import ReservaORM
 import requests
 import os
@@ -52,7 +50,7 @@ def _get_current_user_claims():
     return claims, None
 
 
-def token_required(f):
+def token_required_(f):
     def decorated(*args, **kwargs):
         claims, error_response = _get_current_user_claims()
         if error_response:
@@ -469,7 +467,7 @@ class Reservas_por_usuario(Resource):
 
 
 class Reservas_por_hotel(Resource):
-    @token_required
+    @token_required_
     def get(self, current_user):
         try:
             hotel_id = _hotel_id_from_claims(current_user)
