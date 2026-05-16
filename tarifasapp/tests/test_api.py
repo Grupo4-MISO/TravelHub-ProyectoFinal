@@ -172,7 +172,7 @@ class TestTarifaList:
         db.session.add_all([tarifa_otro_hotel, tarifa_hotel_objetivo])
         db.session.commit()
 
-        response = client.get(ENDPOINT_URL + '?hotel_ids=HTL-99281,HTL-XXX&vigentes=true')
+        response = client.get(ENDPOINT_URL + '/publicas?hotel_ids=HTL-99281,HTL-XXX&vigentes=true')
         assert response.status_code == 200
         data = response.get_json()
         assert len(data) == 1
