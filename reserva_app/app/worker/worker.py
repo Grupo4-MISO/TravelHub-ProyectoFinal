@@ -1,8 +1,9 @@
-from app.utils.one_signal_helper import OneSignalHelper
+from reserva_app.app.utils.bus_helper import BusHelper
 from app.utils.helper import ReservaHelper
 from app.utils.sqs_helper import SQSHelper
 from main import app
 import os
+
 
 
 #Inventarios URL
@@ -13,10 +14,10 @@ SQS_RESERVAS_URL = os.getenv('SQS_RESERVAS_URL')
 SQS_MAIL_URL = os.getenv('SQS_MAIL_URL')
 sqs_helper = SQSHelper(SQS_RESERVAS_URL, SQS_MAIL_URL)
 
-#Variables de entorno para OneSignal
-ONE_SIGNAL_APP_ID = os.getenv('ONE_SIGNAL_APP_ID')
-ONE_SIGNAL_API_KEY = os.getenv('ONE_SIGNAL_API_KEY')
-one_signal_helper = OneSignalHelper(ONE_SIGNAL_APP_ID, ONE_SIGNAL_API_KEY)
+#Variables de entorno para la conexion a Azure Service Bus
+SERVICE_BUS_CONNECTION_STR = os.getenv('SERVICE_BUS_CONNECTION_STR')
+QUEUE_NAME = os.getenv('QUEUE_NAME')
+bus_helper = BusHelper(SERVICE_BUS_CONNECTION_STR, QUEUE_NAME)
 
 def reservasWorker():
     with app.app_context():
@@ -44,7 +45,7 @@ def reservasWorker():
                 #Enviamos notificación a OneSignal
                 notification_title = f"Confirmación reserva: {reserva.get('public_id')}"
                 notification_message = f"Tu reserva en el hotel {hospedaje_info.get('nombre')} ha sido confirmada del {reserva.get('check_in')} al {reserva.get('check_out')}."
-                one_signal_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
+                bus_helper.sendNotification(notification_title, notification_message, reserva.get('user_id'))
 
                 #Enviamos mensaje a cola de mail
                 mail_message = ReservaHelper.mailMessage(reserva, hospedaje_info, message)
