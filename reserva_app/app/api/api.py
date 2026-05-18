@@ -402,6 +402,11 @@ class Confirmar_Reserva(Resource):
             return {'msg': 'No tienes permisos para confirmar esta reserva'}, 403
 
         response = reservas_crud.confirmarReserva(reserva_id)
+
+        #Enviamos notificación a OneSignal
+        notification_title = f"Confirmaste tu reserva: {reserva.get('public_id')}"
+        notification_message = f"Tu reserva del {reserva.get('check_in')} al {reserva.get('check_out')} ha sido confirmada."
+        one_signal_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
         
         if response == True:
             return {'msg': 'Reserva confirmada correctamente'}, 200
@@ -423,7 +428,12 @@ class Completar_Reserva(Resource):
         hospedaje_id = ReservaHelper.hospedajeId(INVENTARIOS_URL, reserva.get('habitacion_id'))
         
         response = reservas_crud.completarReserva(reserva_id)
-        
+
+        #Enviamos notificación a OneSignal
+        notification_title = f"Completaste tu reserva: {reserva.get('public_id')}"
+        notification_message = f"Tu reserva del {reserva.get('check_in')} al {reserva.get('check_out')} ha sido completada."
+        one_signal_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
+
         if response:
             return {
                 'msg': 'Reserva completada correctamente',
