@@ -18,7 +18,7 @@ INVENTARIOS_URL = os.getenv('INVENTARIOS_URL', 'http://127.0.0.1:3000')
 #Variables de entorno para la conexion a Azure Service Bus
 SERVICE_BUS_CONNECTION_STR = os.getenv('SERVICE_BUS_CONNECTION_STR')
 QUEUE_NAME = os.getenv('QUEUE_NAME')
-bus_helper = BusHelper(QUEUE_NAME, SERVICE_BUS_CONNECTION_STR)
+bus_helper = BusHelper(SERVICE_BUS_CONNECTION_STR, QUEUE_NAME)
 
 #Instanciamos crud
 reservas_crud = ReservaCRUD()

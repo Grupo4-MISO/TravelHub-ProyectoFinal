@@ -3,7 +3,7 @@ from azure.servicebus.exceptions import ServiceBusError
 import json
 
 class BusHelper:
-    def __init__(self, queue_name, service_bus_connection_str):
+    def __init__(self, service_bus_connection_str, queue_name):
         self.queue_name = queue_name
         self.client = ServiceBusClient.from_connection_string(conn_str = service_bus_connection_str)
 

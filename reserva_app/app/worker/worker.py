@@ -1,4 +1,4 @@
-from reserva_app.app.utils.bus_helper import BusHelper
+from app.utils.bus_helper import BusHelper
 from app.utils.helper import ReservaHelper
 from app.utils.sqs_helper import SQSHelper
 from main import app
