@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/reservas-app:v4.0.0
+          image: 387050840675.dkr.ecr.us-east-1.amazonaws.com/reservas-app:v5.0.0
           imagePullPolicy: Always
 
           command: ["python", "worker_main.py"]
@@ -33,4 +33,4 @@ spec:
             - name: ONE_SIGNAL_APP_ID
               value: 4a46cf3a-a9ec-456b-b382-de8793e5f38b
             - name: ONE_SIGNAL_API_KEY
-              value: os_v2_app_jjdm6ovj5rcwxm4c32dzhzptrpknvqrx6zhepl4ie2ciw5fmoolfgzlon4rhoes4lwtxfbwjwwu65vhyvvchu44cm322swwjazlf3yi
+              value: os_v2_app_jjdm6ovj5rcwxm4c32dzhzptrmwygrw3ef6e4pv3lhwcbg2abb7z3hfwtjdgenq75mh4x7k5nl5lepluofishtxuzfg5sbwieyj34ai
