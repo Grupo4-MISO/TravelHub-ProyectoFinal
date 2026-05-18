@@ -1,24 +1,24 @@
 from app.utils.token_helper import token_required, roles_required
-from app.utils.one_signal_helper import OneSignalHelper
 from app.services.reserva_crud import ReservaCRUD
 from app.services.hold_service import HoldService
-from app.errors.exceptions import APIError
 from app.utils.seedHelper import SeedHelper
 from app.utils.helper import ReservaHelper
-from flask_restful import Resource
-from datetime import datetime
+from app.utils.bus_helper import BusHelper
+from app.errors.exceptions import APIError
 from flask import request, current_app
 from app.db.models import ReservaORM
+from flask_restful import Resource
+from datetime import datetime
 import requests
 import os
 
 #Url de microservicios
 INVENTARIOS_URL = os.getenv('INVENTARIOS_URL', 'http://127.0.0.1:3000')
 
-#Variables de entorno para OneSignal
-ONE_SIGNAL_APP_ID = os.getenv('ONE_SIGNAL_APP_ID')
-ONE_SIGNAL_API_KEY = os.getenv('ONE_SIGNAL_API_KEY')
-one_signal_helper = OneSignalHelper(ONE_SIGNAL_APP_ID, ONE_SIGNAL_API_KEY)
+#Variables de entorno para la conexion a Azure Service Bus
+SERVICE_BUS_CONNECTION_STR = os.getenv('SERVICE_BUS_CONNECTION_STR')
+QUEUE_NAME = os.getenv('QUEUE_NAME')
+bus_helper = BusHelper(QUEUE_NAME, SERVICE_BUS_CONNECTION_STR)
 
 #Instanciamos crud
 reservas_crud = ReservaCRUD()
@@ -406,7 +406,7 @@ class Confirmar_Reserva(Resource):
         #Enviamos notificación a OneSignal
         notification_title = f"Confirmaste tu reserva: {reserva.get('public_id')}"
         notification_message = f"Tu reserva del {reserva.get('check_in')} al {reserva.get('check_out')} ha sido confirmada."
-        one_signal_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
+        bus_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
         
         if response == True:
             return {'msg': 'Reserva confirmada correctamente'}, 200
@@ -432,7 +432,7 @@ class Completar_Reserva(Resource):
         #Enviamos notificación a OneSignal
         notification_title = f"Completaste tu reserva: {reserva.get('public_id')}"
         notification_message = f"Tu reserva del {reserva.get('check_in')} al {reserva.get('check_out')} ha sido completada."
-        one_signal_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
+        bus_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
 
         if response:
             return {
@@ -456,7 +456,7 @@ class Revocar_Reserva(Resource):
         #Enviamos notificación a OneSignal
         notification_title = f"Cancelación reserva: {reserva.get('public_id')}"
         notification_message = f"Tu reserva del {reserva.get('check_in')} al {reserva.get('check_out')} ha sido cancelada."
-        one_signal_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
+        bus_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
 
         if response:
             return {'msg': 'Reserva revocada correctamente'}, 200
