@@ -23,7 +23,6 @@ bus_helper = BusHelper(QUEUE_NAME, SERVICE_BUS_CONNECTION_STR)
 #Instanciamos crud
 reservas_crud = ReservaCRUD()
 
-
 def _extract_bearer_token():
     authorization = request.headers.get('Authorization', '')
     if authorization.startswith('Bearer '):
@@ -406,7 +405,7 @@ class Confirmar_Reserva(Resource):
         #Enviamos notificación a OneSignal
         notification_title = f"Confirmaste tu reserva: {reserva.get('public_id')}"
         notification_message = f"Tu reserva del {reserva.get('check_in')} al {reserva.get('check_out')} ha sido confirmada."
-        bus_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
+        bus_helper.sendNotification(notification_title, notification_message, reserva.get('user_id'))
         
         if response == True:
             return {'msg': 'Reserva confirmada correctamente'}, 200
@@ -432,7 +431,7 @@ class Completar_Reserva(Resource):
         #Enviamos notificación a OneSignal
         notification_title = f"Completaste tu reserva: {reserva.get('public_id')}"
         notification_message = f"Tu reserva del {reserva.get('check_in')} al {reserva.get('check_out')} ha sido completada."
-        bus_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
+        bus_helper.sendNotification(notification_title, notification_message, reserva.get('user_id'))
 
         if response:
             return {
@@ -456,7 +455,7 @@ class Revocar_Reserva(Resource):
         #Enviamos notificación a OneSignal
         notification_title = f"Cancelación reserva: {reserva.get('public_id')}"
         notification_message = f"Tu reserva del {reserva.get('check_in')} al {reserva.get('check_out')} ha sido cancelada."
-        bus_helper.sendNotificacion(notification_title, notification_message, reserva.get('user_id'))
+        bus_helper.sendNotification(notification_title, notification_message, reserva.get('user_id'))
 
         if response:
             return {'msg': 'Reserva revocada correctamente'}, 200

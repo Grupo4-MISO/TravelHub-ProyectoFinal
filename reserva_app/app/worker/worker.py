@@ -4,8 +4,6 @@ from app.utils.sqs_helper import SQSHelper
 from main import app
 import os
 
-
-
 #Inventarios URL
 INVENTARIOS_URL = os.getenv('INVENTARIOS_URL')
 

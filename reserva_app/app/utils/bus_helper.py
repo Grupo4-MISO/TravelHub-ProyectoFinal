@@ -7,7 +7,7 @@ class BusHelper:
         self.queue_name = queue_name
         self.client = ServiceBusClient.from_connection_string(conn_str = service_bus_connection_str)
 
-    def sendNotificacion(self, title, message, user_id):
+    def sendNotification(self, title, message, user_id):
         #Creamos payload para enviar a Azure Service Bus
         payload = {
             'title': title,
