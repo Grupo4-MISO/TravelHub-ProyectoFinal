@@ -177,6 +177,7 @@ class TestPayments:
             "reserva_id": str(uuid4()),
             "amount": 100.50,
             "currency": "COP",
+            "propiedad_id": str(uuid4()),
             "provider_id": str(uuid4()),
             "url": "https://pay.example/checkout/abc123",
             "description": "Pago de reserva",
@@ -209,6 +210,7 @@ class TestPayments:
     def test_get_payment_by_id(self, client, user_headers):
         payload = {
             "reserva_id": str(uuid4()),
+            "propiedad_id": str(uuid4()),
             "amount": 50.00,
             "currency": "USD",
         }
@@ -240,7 +242,11 @@ class TestPayments:
         reserva_2 = str(uuid4())
 
         for i in range(2):
-            payload = {"reserva_id": reserva_1, "amount": 10.0 + i, "currency": "COP"}
+            payload = {
+                "reserva_id": reserva_1, 
+                "propiedad_id": str(uuid4()),
+                "amount": 10.0 + i, 
+                "currency": "COP"}
             client.post(
                 "/api/v1/Transactions/payments",
                 data=json.dumps(payload),
@@ -276,6 +282,7 @@ class TestPayments:
         for i in range(2):
             payload = {
                 "reserva_id": str(uuid4()),
+                "propiedad_id": str(uuid4()),
                 "amount": 10.0 + i,
                 "currency": "COP",
                 "provider_id": provider_id,

@@ -1,9 +1,8 @@
 from uuid import UUID
-
 from sqlalchemy.exc import IntegrityError
-
 from app.db.models import Payment, PaymentProvider, PaymentTransaction, db
-
+from datetime import datetime
+import calendar
 
 class PaymentProviderCrud:
     def create_payment_provider(self, data: dict):
@@ -65,6 +64,7 @@ class PaymentCrud:
             payment = Payment(
                 id=UUID(str(data.get("id"))) if data.get("id") else None,
                 reserva_id=UUID(str(data.get("reserva_id"))),
+                propiedad_id=UUID(str(data.get("propiedad_id"))),
                 provider_id=UUID(str(data.get("provider_id"))) if data.get("provider_id") else None,
                 amount=data.get("amount"),
                 currency=data.get("currency"),
@@ -128,6 +128,18 @@ class PaymentCrud:
         db.session.delete(payment)
         db.session.commit()
         return True
+    
+    def get_all_payments_by_property_id(self, propiedad_id: UUID, month: int, year: int):
+        # Primer y último día del mes
+        start_date = datetime(year, month, 1)
+        _, last_day = calendar.monthrange(year, month)
+        end_date = datetime(year, month, last_day, 23, 59, 59)
+        
+        return Payment.query.filter(
+            Payment.propiedad_id == propiedad_id,
+            Payment.created_at >= start_date,
+            Payment.created_at <= end_date
+        ).all()
 
 
 class PaymentTransactionCrud:
