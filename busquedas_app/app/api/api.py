@@ -142,9 +142,6 @@ class Search(Resource):
           BusquedasHelper.validacionCampoCapacidad(capacidad)
           BusquedasHelper.validacionCampoFechas(check_in, check_out)
 
-          #Limpieza de parametros de busqueda
-          ciudad = BusquedasHelper.limpiarCampoCiudad(ciudad)
-
           #Construimos la clave de cache
           cache_key = CacheHelper.construirCacheKey(
             ciudad,
