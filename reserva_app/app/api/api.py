@@ -192,7 +192,7 @@ class CrearReserva(Resource):
 
 class SeedReservas(Resource):
     def post(self, cantidad):
-        if cantidad <= 0:
+        if cantidad < 0:
             return {'msg': 'La cantidad debe ser un entero positivo'}, 400
 
         result = SeedHelper.reset_and_seed(cantidad)

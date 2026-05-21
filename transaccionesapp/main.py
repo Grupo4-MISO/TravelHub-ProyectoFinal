@@ -6,6 +6,7 @@ from app.api.api import (
     PaymentProviderResource,
     PaymentResource,
     PaymentResourceById,
+    PaymentByPropertyIdResource,
     PaymentTransactionByIdResource,
     PaymentTransactionByPaymentIdResource,
     SeedDB,
@@ -112,6 +113,7 @@ api.add_resource(PaymentResource, '/payments')
 api.add_resource(PaymentResourceById, '/payments/<string:id>')
 api.add_resource(PaymentByReservaIdResource, '/payments/reserva/<string:reserva_id>')
 api.add_resource(PaymentByProviderIdResource, '/payments/provider/<string:provider_id>')
+api.add_resource(PaymentByPropertyIdResource, '/payments/property/<string:property_id>')
 
 api.add_resource(PaymentTransactionByIdResource, '/attempts/<string:id>')
 api.add_resource(PaymentTransactionByPaymentIdResource, '/attempts/payment/<string:payment_id>')
