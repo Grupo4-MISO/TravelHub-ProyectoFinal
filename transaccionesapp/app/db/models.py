@@ -49,7 +49,7 @@ class Payment(db.Model):
     __tablename__ = 'payments'
     id = db.Column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
     reserva_id = db.Column(Uuid(as_uuid=True), nullable=False) # ID de la reserva asociada a este pago
-    propiedad_id = db.Column(Uuid(as_uuid=True), nullable=False) # ID de la propiedad asociada a este pago
+    propiedad_id = db.Column(Uuid(as_uuid=True), nullable=True) # ID de la propiedad asociada a este pago
     provider_id = db.Column(Uuid(as_uuid=True), db.ForeignKey("payment_providers.id"), nullable=True)
     amount = db.Column(db.Numeric(10, 2), nullable=False)
     currency = db.Column(db.String(3), nullable=False)
