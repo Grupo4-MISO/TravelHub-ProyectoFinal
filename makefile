@@ -16,9 +16,9 @@ FOLDERS=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp 
 IMAGE_TAG=v1.0.0
 
 # Nueva version imagen
-SERVICES_NEW=busquedas-app inventarios-app reservas-app comentarios-app auth-app transacciones-app clientes-app proveedores-app tarifas-app
-FOLDERS_NEW=busquedas_app inventario_app reserva_app comentariosapp autenticadorapp transaccionesapp clientesapp proveedoresapp tarifasapp
-IMAGE_TAG_NEW=v20.0.0
+SERVICES_NEW=transacciones-app
+FOLDERS_NEW=transaccionesapp
+IMAGE_TAG_NEW=v21.0.0
 
 # Nueva version imagen lambda
 SERVICES_LAMBDA_NEW=email-app
