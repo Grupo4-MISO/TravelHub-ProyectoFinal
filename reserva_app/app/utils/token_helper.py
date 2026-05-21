@@ -45,6 +45,9 @@ def roles_required(*roles):
             user_role = current_user.get("role") if isinstance(current_user, dict) else None
 
             if user_role not in roles:
+                print(roles)
+                print(user_role)
+                print(current_user)
                 return {"message": "Unauthorized"}, 403
 
             return f(current_user, *args, **kwargs)

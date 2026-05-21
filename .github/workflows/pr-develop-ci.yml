@@ -37,6 +37,9 @@ jobs:
           - name: transaccionesapp
             path: transaccionesapp
             tests_path: tests
+          - name: tarifasapp
+            path: tarifasapp
+            tests_path: tests
 
     steps:
       - name: Checkout repository
@@ -86,6 +89,8 @@ jobs:
             path: clientesapp
           - name: transaccionesapp
             path: transaccionesapp
+          - name: tarifasapp
+            path: tarifasapp
 
     steps:
       - name: Checkout repository

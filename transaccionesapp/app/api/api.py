@@ -40,6 +40,7 @@ def _serialize_payment(payment):
     return {
         "id": str(payment.id),
         "reserva_id": str(payment.reserva_id) if payment.reserva_id else None,
+        "propiedad_id": str(payment.propiedad_id) if payment.propiedad_id else None,
         "provider_id": str(payment.provider_id) if payment.provider_id else None,
         "amount": amount,
         "currency": payment.currency,
@@ -534,6 +535,39 @@ class PaymentByProviderIdResource(Resource):
 
         payments = payment_crud.get_all_payments_by_provider_id(provider_uuid)
         return [_serialize_payment(payment) for payment in payments], 200
+  
+class PaymentByPropertyIdResource(Resource):
+  @token_required
+  def get(current_user, self, property_id):    
+    """
+    Listar pagos por propiedad
+    ---
+    tags:
+      - Payments
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: property_id
+        type: string
+        required: true
+    responses:
+      200:
+        description: Lista de pagos por propiedad
+      400:
+        description: Id invalido
+    """  
+    try:
+        property_uuid = _parse_uuid(property_id)
+        month = request.args.get("month")
+        year = request.args.get("year")
+        if month is None or year is None:
+          return {"message": "month y year son requeridos"}, 400
+    except ValueError:
+        return {"message": "property_id invalido"}, 400
+
+    payments = payment_crud.get_all_payments_by_property_id(property_uuid, int(month), int(year))
+    return [_serialize_payment(payment) for payment in payments], 200
 
 class PaymentTransactionByIdResource(Resource):
     @token_required

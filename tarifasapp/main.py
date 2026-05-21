@@ -1,13 +1,10 @@
-from app.api.api import Health, TarifaResource, TarifaListResource, SeedDB, DescuentoListResource, DescuentoResource
+from app.api.api import Health, TarifaResource, TarifaListResource, TarifaPublicLookupResource, SeedDB, DescuentoListResource, DescuentoResource
 from flask_restful import Api
 from app.db.models import db
 from flask_cors import CORS
 from flask import Flask
 import os
 from flasgger import Swagger
-
-# Traemos del ambiente las variables de configuracion
-DATABASE_URL = os.getenv('DATABASE_URL')
 
 # Creamos la aplicacion de Flask
 app = Flask(__name__)
@@ -56,8 +53,12 @@ swagger_config = {
 # Inicializar Swagger
 swagger = Swagger(app, template=swagger_template, config=swagger_config)
 
-# Inicializar base de datos
-db.init_app(app)
+#Inicializamos la base de datos
+if not app.config.get('TESTING'):
+    with app.app_context():
+        #Creamos tabla de reservas en la base de datos
+        db.init_app(app)
+        db.create_all()
 
 # Habilitar CORS
 CORS(app)
@@ -66,14 +67,10 @@ CORS(app)
 api = Api(app)
 
 # Rutas de la API
-api.add_resource(Health, '/health')
-api.add_resource(TarifaListResource, '/tarifas')
-api.add_resource(TarifaResource, '/tarifas/<tarifa_id>')
-api.add_resource(DescuentoListResource, '/descuentos')
-api.add_resource(DescuentoResource, '/descuentos/<descuento_id>')
-api.add_resource(SeedDB, '/seed')
-
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True, host='0.0.0.0', port=3008)
+api.add_resource(Health, '/api/v1/tarifas/health')
+api.add_resource(TarifaListResource, '/api/v1/tarifas')
+api.add_resource(TarifaPublicLookupResource, '/api/v1/tarifas/publicas')
+api.add_resource(TarifaResource, '/api/v1/tarifas/<tarifa_id>')
+api.add_resource(DescuentoListResource, '/api/v1/tarifas/descuentos')
+api.add_resource(DescuentoResource, '/api/v1/tarifas/descuentos/<descuento_id>')
+api.add_resource(SeedDB, '/api/v1/tarifas/seed')

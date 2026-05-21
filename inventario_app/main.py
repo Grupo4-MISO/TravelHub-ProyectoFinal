@@ -86,3 +86,6 @@ api.add_resource(ListadoHoteles, '/api/v1/inventarios/hoteles')
 api.add_resource(HospedajeInfo, '/api/v1/inventarios/habitacion/<string:habitacion_id>/<string:currency_code>')
 api.add_resource(HospedajeByHabitacionId, '/api/v1/inventarios/hospedaje/<string:habitacion_id>')
 api.add_resource(HabitacionDatos, '/api/v1/inventarios/habitacion-datos/<string:habitacion_id>')
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=3000, debug=True)
