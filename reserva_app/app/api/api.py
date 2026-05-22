@@ -16,8 +16,8 @@ import os
 INVENTARIOS_URL = os.getenv('INVENTARIOS_URL', 'http://127.0.0.1:3000')
 
 #Variables de entorno para la conexion a Azure Service Bus
-SERVICE_BUS_CONNECTION_STR = os.getenv('SERVICE_BUS_CONNECTION_STR')
-QUEUE_NAME = os.getenv('QUEUE_NAME')
+SERVICE_BUS_CONNECTION_STR = os.getenv('SERVICE_BUS_CONNECTION_STR', 'Endpoint=sb://reserva-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=your_key_here;EntityPath=notifications-queue')
+QUEUE_NAME = os.getenv('QUEUE_NAME', 'cola')
 bus_helper = BusHelper(SERVICE_BUS_CONNECTION_STR, QUEUE_NAME)
 
 #Instanciamos crud
