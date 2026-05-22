@@ -558,6 +558,7 @@ class HospedajeInfo(Resource):
 
                 #Filtramos informacion del hospedaje
                 hospedaje_info = {
+                       'id': str(hospedaje.get('id')),
                        'nombre': hospedaje.get('nombre'),
                        'direccion': hospedaje.get('direccion'),
                        'ciudad': hospedaje.get('ciudad'),
