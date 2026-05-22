@@ -392,6 +392,15 @@ class InventarioCRUD:
                 }
         return respuesta
     
+    def categoriasHabitaciones(self, habitacion, categoria):
+        try:
+            setattr(habitacion, 'categoria', categoria)
+            self.db.add(habitacion)
+            self.db.commit()
+        except Exception as e:
+            self.db.rollback()
+            raise DatababaseError(f"Error en la base de datos: {str(e)}")
+
     def resetDb(self):
         try:
             # Reiniciamos el esquema completo para dejar la base limpia.

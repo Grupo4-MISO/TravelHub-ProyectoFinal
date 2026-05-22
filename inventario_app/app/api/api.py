@@ -6,6 +6,7 @@ from flask_restful import Resource
 from flask import request
 from flasgger import swag_from
 import uuid
+import random
 
 # Inicializamos el CRUD
 inventario_CRUD = InventarioCRUD()
@@ -637,3 +638,45 @@ class HabitacionDatos(Resource):
                         return datos, 200
                 except Exception as e:
                         return {'msg': f'Error al obtener datos de habitación: {str(e)}'}, 500
+
+class HabitacionesCategoria(Resource):
+       def post(self):
+              ls_propiedades = [
+                        '0fedea59-bcc4-4b90-b703-b8613d93c415',
+                        '09e1229e-7832-5cb5-a9e7-e39f32c5d31b',
+                        '286c7159-2e57-595c-ae72-094772c88bc6',
+                        'a4c44c5f-b17d-5eed-a388-37cf96e3e431',
+                        '808dd541-8767-57d9-88fa-83ffda9ed6b6',
+                        '67d2ad02-4793-54f8-b4fa-0c4ace7683b3',
+                        '8180f5b3-0f0d-5dcc-b659-06ff8c804ebe',
+                        'a875d943-3fc4-53f2-adce-b2c760d18d79',
+                        '6d350755-fc82-557c-9e09-a9d88ad7bf01',
+                        '920ae6a3-537b-576d-9a0e-c0ac74460088',
+                        'e142b65f-8b48-53ae-8610-2d2324c364ed'
+                ]
+              
+              CATEGORIAS_HABITACION = [
+                        "SENCILLA",
+                        "DOBLE",
+                        "TRIPLE",
+                        "SUITE",
+                        "DELUXE",
+                        "FAMILIAR",
+              ]
+              
+              for propiedad_id in ls_propiedades:
+                     #Traemos las habitaciones de cada propiedad
+                     habitaciones = inventario_CRUD.habitacionesporIdHotel(propiedad_id)
+
+                     #Sacamos aleatorios
+                     aleatorios = random.sample(CATEGORIAS_HABITACION, min(len(habitaciones), len(CATEGORIAS_HABITACION)))
+                     cont_aleatorios = 0
+
+                     for habitacion in habitaciones:
+                            #Asignamos la cateogoria aleatoria a la habitación
+                            categoria = aleatorios[cont_aleatorios]
+
+                            inventario_CRUD.categoriasHabitaciones(habitacion, categoria)
+
+                            cont_aleatorios += 1
+              

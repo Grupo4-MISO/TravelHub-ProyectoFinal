@@ -13,7 +13,7 @@ healthPath: api/v1/reservas/health
 sqsReservasUrl: https://sqs.us-east-1.amazonaws.com/387050840675/reservas-sqs
 sqsMailUrl: https://sqs.us-east-1.amazonaws.com/387050840675/mail-sqs
 inventariosUrl: http://inventarios-app-service:80
-oneSignalAppId: 4a46cf3a-a9ec-456b-b382-de8793e5f38b
-oneSignalApiKey: os_v2_app_jjdm6ovj5rcwxm4c32dzhzptrpknvqrx6zhepl4ie2ciw5fmoolfgzlon4rhoes4lwtxfbwjwwu65vhyvvchu44cm322swwjazlf3yi
+serviceBusConnectionStr: Endpoint=sb://travelhubbus.servicebus.windows.net/;SharedAccessKeyName=SendKey;SharedAccessKey=z/Eo1+2R1YvgV7Fexm85gDtvK6C9KvIdR+ASbGePMIA=;EntityPath=onesignal
+queueName: onesignal
 port: 3001
 nodePort: 30001
